@@ -7,15 +7,58 @@
 //               github   @heyjaywilson
 //               website  cctplus.dev
 
+import AppInfoFeature
+import AppInfoView
+import ComposableArchitecture
 import SwiftUI
 
 public struct AppView: View {
-  public init() {}
-  public var body: some View {
-    Text("Hello, World!")
-  }
+    let appInfoStore: StoreOf<AppInfoFeature>
+    public init(appInfoStore: StoreOf<AppInfoFeature>) {
+        self.appInfoStore = appInfoStore
+    }
+
+    public var body: some View {
+        NavigationSplitView {
+            List {
+                Section {
+                    Text("Programmer")
+                    Text("Playback")
+                }
+
+                Section {
+                    Text("Show one")
+                    Text("Show two")
+                    Text("Show three")
+                } header: {
+                    Text("Shows")
+                }
+
+                Section {
+                    Text("OSC Settings")
+                    Text("Programmer Settings")
+                    Text("Show Settings")
+                }
+
+                AppInfoView(store: appInfoStore)
+
+                Text("Made with ☕ in Austin, Tx")
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+                    .listRowBackground(Color.clear)
+            }
+        } detail: {
+            Text("Hello")
+        }
+
+    }
 }
 
 #Preview {
-  AppView()
+    AppView(
+        appInfoStore: Store(initialState: AppInfoFeature.State()) {
+            AppInfoFeature()
+        }
+    )
 }
