@@ -7,7 +7,7 @@
 //               github   @heyjaywilson
 //               website  cctplus.dev
 
-import AppInfoFeature
+import AppInfoCore
 import ComposableArchitecture
 import SwiftUI
 

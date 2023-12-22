@@ -5,7 +5,7 @@
 //  Created by Jay on 12/22/23.
 //
 
-import AppInfoFeature
+import AppInfoCore
 import AppView
 import ComposableArchitecture
 import SwiftUI
