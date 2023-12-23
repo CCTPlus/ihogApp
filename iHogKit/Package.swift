@@ -59,6 +59,7 @@ let package = Package(
                 )
             ]
         ),
+        .testTarget(name: "ShowsCoreTests", dependencies: ["ShowsCore"]),
         .target(name: "ShowsView", dependencies: ["ShowsCore"]),
         .target(
             name: "iHogKit"

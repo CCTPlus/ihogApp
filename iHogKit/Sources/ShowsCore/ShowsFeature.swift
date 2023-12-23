@@ -25,36 +25,57 @@ public struct ShowsFeature {
     public init() {}
 
     public struct State: Equatable {
-        @PresentationState public var addShow: AddShowFeature.State?
+        @PresentationState public var destination: Destination.State?
 
         public var shows: [Show]
 
-        public init(addShow: AddShowFeature.State? = nil, shows: [Show] = []) {
-            self.addShow = addShow
+        public init(destination: Destination.State? = nil, shows: [Show] = []) {
+            self.destination = destination
             self.shows = shows
         }
     }
 
     public enum Action {
         case addButtonTapped
-        case addShow(PresentationAction<AddShowFeature.Action>)
+        case deleteButtonTapped(id: UUID)
+        case destination(PresentationAction<Destination.Action>)
+
+        public enum Alert: Equatable {
+            case confirmDeletion(id: UUID)
+        }
     }
 
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
                 case .addButtonTapped:
-                    state.addShow = AddShowFeature.State(show: Show(id: UUID(), name: ""))
+                    state.destination = .addShow(
+                        AddShowFeature.State(show: Show(id: UUID(), name: ""))
+                    )
                     return .none
-                case .addShow(.presented(.delegate(.saveShow(let show)))):
+                case .destination(.presented(.addShow(.delegate(.saveShow(let show))))):
                     state.shows.append(show)
                     return .none
-                case .addShow:
+                case .destination(.presented(.alert(.confirmDeletion(id: let id)))):
+                    state.shows.removeAll(where: { $0.id == id })
+                    return .none
+                case .destination:
+                    return .none
+                case .deleteButtonTapped(let id):
+                    state.destination = .alert(
+                        AlertState {
+                            TextState("Are you sure?")
+                        } actions: {
+                            ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
+                                TextState("Delete")
+                            }
+                        }
+                    )
                     return .none
             }
         }
-        .ifLet(\.$addShow, action: \.addShow) {
-            AddShowFeature()
+        .ifLet(\.$destination, action: \.destination) {
+            Destination()
         }
     }
 }

@@ -26,7 +26,16 @@ public struct ShowsView: View {
         WithViewStore(self.store, observe: \.shows) { viewStore in
             Section {
                 ForEach(viewStore.state) { show in
-                    Text(show.name)
+                    HStack {
+                        Text(show.name)
+                        Spacer()
+                        Button {
+                            viewStore.send(.deleteButtonTapped(id: show.id))
+                        } label: {
+                            Image(systemName: "trash")
+                                .foregroundStyle(.red)
+                        }
+                    }
                 }
             } header: {
                 HStack {
@@ -39,11 +48,19 @@ public struct ShowsView: View {
                     }
                 }
             }
-            .sheet(store: self.store.scope(state: \.$addShow, action: \.addShow)) { store in
+            .sheet(
+                store: self.store.scope(
+                    state: \.$destination.addShow,
+                    action: \.destination.addShow
+                )
+            ) { store in
                 NavigationStack {
                     AddShowView(store: store)
                 }
             }
+            .alert(
+                store: self.store.scope(state: \.$destination.alert, action: \.destination.alert)
+            )
         }
     }
 }
