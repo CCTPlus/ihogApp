@@ -11,6 +11,8 @@ let package = Package(
         .library(name: "AppInfoCore", targets: ["AppInfoCore"]),
         .library(name: "AppInfoView", targets: ["AppInfoView"]),
         .library(name: "AppView", targets: ["AppView"]),
+        .library(name: "ShowsCore", targets: ["ShowsCore"]),
+        .library(name: "ShowsView", targets: ["ShowsView"]),
         .library(
             name: "iHogKit",
             targets: ["iHogKit"]
@@ -27,7 +29,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "AppView",
-            dependencies: ["AppCore", "AppInfoView"]
+            dependencies: ["AppCore", "AppInfoView", "ShowsView"]
         ),
         .target(
             name: "AppCore",
@@ -48,6 +50,16 @@ let package = Package(
             ]
         ),
         .target(name: "AppInfoView", dependencies: ["AppInfoCore"]),
+        .target(
+            name: "ShowsCore",
+            dependencies: [
+                .product(
+                    name: "ComposableArchitecture",
+                    package: "swift-composable-architecture"
+                )
+            ]
+        ),
+        .target(name: "ShowsView", dependencies: ["ShowsCore"]),
         .target(
             name: "iHogKit"
         ),

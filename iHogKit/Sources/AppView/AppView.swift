@@ -10,6 +10,7 @@
 import AppInfoCore
 import AppInfoView
 import ComposableArchitecture
+import ShowsView
 import SwiftUI
 
 public struct AppView: View {
@@ -25,15 +26,7 @@ public struct AppView: View {
                     Text("Programmer")
                     Text("Playback")
                 }
-
-                Section {
-                    Text("Show one")
-                    Text("Show two")
-                    Text("Show three")
-                } header: {
-                    Text("Shows")
-                }
-
+                ShowsView()
                 Section {
                     Text("OSC Settings")
                     Text("Programmer Settings")
