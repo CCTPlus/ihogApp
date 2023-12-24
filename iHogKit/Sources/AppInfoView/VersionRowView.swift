@@ -12,22 +12,22 @@ import ComposableArchitecture
 import SwiftUI
 
 struct VersionRowView: View {
-    let store: StoreOf<AppInfoFeature>
-    var body: some View {
-        WithViewStore(self.store, observe: { $0.version }) { viewStore in
-            Text(viewStore.state)
-                .font(.monospaced(.body)())
-                .onAppear { viewStore.send(.versionViewLoaded) }
-        }
+  let store: StoreOf<AppInfoFeature>
+  var body: some View {
+    WithViewStore(self.store, observe: { $0.version }) { viewStore in
+      Text(viewStore.state)
+        .font(.monospaced(.body)())
+        .onAppear { viewStore.send(.versionViewLoaded) }
     }
+  }
 }
 
 #Preview {
-    List {
-        VersionRowView(
-            store: Store(initialState: AppInfoFeature.State()) {
-                AppInfoFeature()
-            }
-        )
-    }
+  List {
+    VersionRowView(
+      store: Store(initialState: AppInfoFeature.State()) {
+        AppInfoFeature()
+      }
+    )
+  }
 }

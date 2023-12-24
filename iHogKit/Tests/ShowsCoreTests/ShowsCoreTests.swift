@@ -14,11 +14,11 @@ import XCTest
 
 @MainActor
 final class ShowsCoreTests: XCTestCase {
-    func testAddFlow() async {
-        let store = TestStore(initialState: ShowsFeature.State(), reducer: { ShowsFeature() })
+  func testAddFlow() async {
+    let store = TestStore(initialState: ShowsFeature.State(), reducer: { ShowsFeature() })
 
-        //        await store.send(.addButtonTapped) {
-        //            $0.destination = .addShow()
-        //        }
-    }
+    //        await store.send(.addButtonTapped) {
+    //            $0.destination = .addShow()
+    //        }
+  }
 }

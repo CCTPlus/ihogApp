@@ -14,13 +14,13 @@ import SwiftUI
 struct iHogApp: App {
   let persistenceController = PersistenceController.shared
 
-    var body: some Scene {
-        WindowGroup {
-            AppView(
-                appInfoStore: Store(initialState: AppInfoFeature.State()) {
-                    AppInfoFeature()
-                }
-            )
+  var body: some Scene {
+    WindowGroup {
+      AppView(
+        appInfoStore: Store(initialState: AppInfoFeature.State()) {
+          AppInfoFeature()
         }
+      )
     }
+  }
 }
