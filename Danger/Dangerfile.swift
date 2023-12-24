@@ -13,12 +13,12 @@ let deletions: Int = danger.github.pullRequest.deletions ?? 0
 
 // MARK: PR Count
 if additions > bigPRThreshold {
-    warn(
-        "> Pull Request size seems relatively large. If this Pull Request contains multiple changes, please split each into separate PR will helps faster, easier review."
-    )
+  warn(
+    "> Pull Request size seems relatively large. If this Pull Request contains multiple changes, please split each into separate PR will helps faster, easier review."
+  )
 }
 if bodyText.count == 0 {
-    fail(
-        "Every PR deserves some kind of description. Please make sure to give this a good description."
-    )
+  fail(
+    "Every PR deserves some kind of description. Please make sure to give this a good description."
+  )
 }
