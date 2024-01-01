@@ -26,16 +26,17 @@ public struct ShowsView: View {
     WithViewStore(self.store, observe: \.shows) { viewStore in
       Section {
         ForEach(viewStore.state) { show in
-          HStack {
-            Text(show.name)
-            Spacer()
-            Button {
-              viewStore.send(.deleteButtonTapped(id: show.id))
-            } label: {
-              Image(systemName: "trash")
-                .foregroundStyle(.red)
+            HStack {
+                Text(show.name)
+                Spacer()
+                Button {
+                    viewStore.send(.deleteButtonTapped(id: show.id))
+                } label: {
+                    Image(systemName: "trash")
+                        .foregroundStyle(.red)
+                }
+                .buttonStyle(.plain)
             }
-          }
         }
       } header: {
         HStack {
