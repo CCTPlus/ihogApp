@@ -20,5 +20,5 @@ public struct Show: Equatable, Identifiable {
 }
 
 extension Show {
-    public static let mock = Show(id: UUID(), name: "The Eras Tour")
+  public static let mock = Show(id: UUID(), name: "The Eras Tour")
 }
