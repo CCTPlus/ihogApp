@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
+  enum LSSheet: Identifiable {
+    var id: Int {
+      self.hashValue
+    }
+    case newShow
+  }
+
+  @State private var sheetShown: LSSheet? = nil
+
   var body: some View {
     NavigationStack {
       List {
         Section {
           AllShowsView()
         } header: {
-          Text("Shows")
+          HStack {
+            Text("Shows")
+            Spacer()
+            Button {
+              sheetShown = LSSheet.newShow
+            } label: {
+              Image(systemName: "plus.circle")
+            }
+          }
         }
         Section {
           AboutSection()
@@ -24,6 +41,12 @@ struct LaunchScreenView: View {
         InfoRow()
       }
       .navigationTitle("iHog")
+      .sheet(item: $sheetShown) { sheet in
+        switch sheet {
+          case .newShow:
+            ShowCreationView()
+        }
+      }
     }
   }
 }
