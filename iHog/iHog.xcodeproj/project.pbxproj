@@ -7,127 +7,112 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		691305002B36080D00B3956A /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691304FF2B36080D00B3956A /* iHogApp.swift */; };
-		691305022B36080D00B3956A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691305012B36080D00B3956A /* ContentView.swift */; };
-		691305042B36080E00B3956A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 691305032B36080E00B3956A /* Assets.xcassets */; };
-		691305072B36080E00B3956A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 691305062B36080E00B3956A /* Preview Assets.xcassets */; };
-		691305092B36080E00B3956A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691305082B36080E00B3956A /* Persistence.swift */; };
-		6913050C2B36080E00B3956A /* iHog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6913050A2B36080E00B3956A /* iHog.xcdatamodeld */; };
-		691305182B3609C200B3956A /* AppView in Frameworks */ = {isa = PBXBuildFile; productRef = 691305172B3609C200B3956A /* AppView */; };
+		699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CC2B5C541300B61547 /* iHogApp.swift */; };
+		699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CE2B5C541300B61547 /* ContentView.swift */; };
+		699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D02B5C541400B61547 /* Assets.xcassets */; };
+		699DA6D42B5C541400B61547 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D32B5C541400B61547 /* Preview Assets.xcassets */; };
+		699DA6D62B5C541400B61547 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6D52B5C541400B61547 /* Persistence.swift */; };
+		699DA6D92B5C541400B61547 /* iHog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6D72B5C541400B61547 /* iHog.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		691304FC2B36080D00B3956A /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		691304FF2B36080D00B3956A /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
-		691305012B36080D00B3956A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		691305032B36080E00B3956A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		691305062B36080E00B3956A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		691305082B36080E00B3956A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		6913050B2B36080E00B3956A /* iHog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHog.xcdatamodel; sourceTree = "<group>"; };
-		6913050D2B36080E00B3956A /* iHog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iHog.entitlements; sourceTree = "<group>"; };
-		6913050E2B36080E00B3956A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		691305152B36090B00B3956A /* iHogKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iHogKit; path = ../iHogKit; sourceTree = "<group>"; };
+		699DA6C92B5C541300B61547 /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		699DA6CC2B5C541300B61547 /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
+		699DA6CE2B5C541300B61547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		699DA6D02B5C541400B61547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		699DA6D32B5C541400B61547 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		699DA6D52B5C541400B61547 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		699DA6D82B5C541400B61547 /* iHog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHog.xcdatamodel; sourceTree = "<group>"; };
+		699DA6DA2B5C541400B61547 /* iHog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iHog.entitlements; sourceTree = "<group>"; };
+		699DA6DB2B5C541400B61547 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		691304F92B36080D00B3956A /* Frameworks */ = {
+		699DA6C62B5C541300B61547 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				691305182B3609C200B3956A /* AppView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		691304F32B36080D00B3956A = {
+		699DA6C02B5C541300B61547 = {
 			isa = PBXGroup;
 			children = (
-				691305152B36090B00B3956A /* iHogKit */,
-				691304FE2B36080D00B3956A /* iHog */,
-				691304FD2B36080D00B3956A /* Products */,
-				691305162B3609C200B3956A /* Frameworks */,
+				699DA6CB2B5C541300B61547 /* iHog */,
+				699DA6CA2B5C541300B61547 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		691304FD2B36080D00B3956A /* Products */ = {
+		699DA6CA2B5C541300B61547 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				691304FC2B36080D00B3956A /* iHog.app */,
+				699DA6C92B5C541300B61547 /* iHog.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		691304FE2B36080D00B3956A /* iHog */ = {
+		699DA6CB2B5C541300B61547 /* iHog */ = {
 			isa = PBXGroup;
 			children = (
-				691304FF2B36080D00B3956A /* iHogApp.swift */,
-				691305012B36080D00B3956A /* ContentView.swift */,
-				691305032B36080E00B3956A /* Assets.xcassets */,
-				691305082B36080E00B3956A /* Persistence.swift */,
-				6913050D2B36080E00B3956A /* iHog.entitlements */,
-				6913050E2B36080E00B3956A /* Info.plist */,
-				6913050A2B36080E00B3956A /* iHog.xcdatamodeld */,
-				691305052B36080E00B3956A /* Preview Content */,
+				699DA6CC2B5C541300B61547 /* iHogApp.swift */,
+				699DA6CE2B5C541300B61547 /* ContentView.swift */,
+				699DA6D02B5C541400B61547 /* Assets.xcassets */,
+				699DA6D52B5C541400B61547 /* Persistence.swift */,
+				699DA6DA2B5C541400B61547 /* iHog.entitlements */,
+				699DA6DB2B5C541400B61547 /* Info.plist */,
+				699DA6D72B5C541400B61547 /* iHog.xcdatamodeld */,
+				699DA6D22B5C541400B61547 /* Preview Content */,
 			);
 			path = iHog;
 			sourceTree = "<group>";
 		};
-		691305052B36080E00B3956A /* Preview Content */ = {
+		699DA6D22B5C541400B61547 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				691305062B36080E00B3956A /* Preview Assets.xcassets */,
+				699DA6D32B5C541400B61547 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		691305162B3609C200B3956A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		691304FB2B36080D00B3956A /* iHog */ = {
+		699DA6C82B5C541300B61547 /* iHog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 691305112B36080E00B3956A /* Build configuration list for PBXNativeTarget "iHog" */;
+			buildConfigurationList = 699DA6DE2B5C541400B61547 /* Build configuration list for PBXNativeTarget "iHog" */;
 			buildPhases = (
-				691304F82B36080D00B3956A /* Sources */,
-				691304F92B36080D00B3956A /* Frameworks */,
-				691304FA2B36080D00B3956A /* Resources */,
+				699DA6C52B5C541300B61547 /* Sources */,
+				699DA6C62B5C541300B61547 /* Frameworks */,
+				699DA6C72B5C541300B61547 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iHog;
-			packageProductDependencies = (
-				691305172B3609C200B3956A /* AppView */,
-			);
 			productName = iHog;
-			productReference = 691304FC2B36080D00B3956A /* iHog.app */;
+			productReference = 699DA6C92B5C541300B61547 /* iHog.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		691304F42B36080D00B3956A /* Project object */ = {
+		699DA6C12B5C541300B61547 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					691304FB2B36080D00B3956A = {
+					699DA6C82B5C541300B61547 = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
-			buildConfigurationList = 691304F72B36080D00B3956A /* Build configuration list for PBXProject "iHog" */;
+			buildConfigurationList = 699DA6C42B5C541300B61547 /* Build configuration list for PBXProject "iHog" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -135,44 +120,44 @@
 				en,
 				Base,
 			);
-			mainGroup = 691304F32B36080D00B3956A;
-			productRefGroup = 691304FD2B36080D00B3956A /* Products */;
+			mainGroup = 699DA6C02B5C541300B61547;
+			productRefGroup = 699DA6CA2B5C541300B61547 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				691304FB2B36080D00B3956A /* iHog */,
+				699DA6C82B5C541300B61547 /* iHog */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		691304FA2B36080D00B3956A /* Resources */ = {
+		699DA6C72B5C541300B61547 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				691305072B36080E00B3956A /* Preview Assets.xcassets in Resources */,
-				691305042B36080E00B3956A /* Assets.xcassets in Resources */,
+				699DA6D42B5C541400B61547 /* Preview Assets.xcassets in Resources */,
+				699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		691304F82B36080D00B3956A /* Sources */ = {
+		699DA6C52B5C541300B61547 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6913050C2B36080E00B3956A /* iHog.xcdatamodeld in Sources */,
-				691305092B36080E00B3956A /* Persistence.swift in Sources */,
-				691305022B36080D00B3956A /* ContentView.swift in Sources */,
-				691305002B36080D00B3956A /* iHogApp.swift in Sources */,
+				699DA6D92B5C541400B61547 /* iHog.xcdatamodeld in Sources */,
+				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
+				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
+				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6913050F2B36080E00B3956A /* Debug */ = {
+		699DA6DC2B5C541400B61547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -235,7 +220,7 @@
 			};
 			name = Debug;
 		};
-		691305102B36080E00B3956A /* Release */ = {
+		699DA6DD2B5C541400B61547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -291,7 +276,7 @@
 			};
 			name = Release;
 		};
-		691305122B36080E00B3956A /* Debug */ = {
+		699DA6DF2B5C541400B61547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -314,7 +299,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsbymw.hogosc;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cctplus.iHog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -322,7 +307,7 @@
 			};
 			name = Debug;
 		};
-		691305132B36080E00B3956A /* Release */ = {
+		699DA6E02B5C541400B61547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -345,7 +330,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsbymw.hogosc;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.cctplus.iHog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -356,45 +341,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		691304F72B36080D00B3956A /* Build configuration list for PBXProject "iHog" */ = {
+		699DA6C42B5C541300B61547 /* Build configuration list for PBXProject "iHog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6913050F2B36080E00B3956A /* Debug */,
-				691305102B36080E00B3956A /* Release */,
+				699DA6DC2B5C541400B61547 /* Debug */,
+				699DA6DD2B5C541400B61547 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		691305112B36080E00B3956A /* Build configuration list for PBXNativeTarget "iHog" */ = {
+		699DA6DE2B5C541400B61547 /* Build configuration list for PBXNativeTarget "iHog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				691305122B36080E00B3956A /* Debug */,
-				691305132B36080E00B3956A /* Release */,
+				699DA6DF2B5C541400B61547 /* Debug */,
+				699DA6E02B5C541400B61547 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		691305172B3609C200B3956A /* AppView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppView;
-		};
-/* End XCSwiftPackageProductDependency section */
-
 /* Begin XCVersionGroup section */
-		6913050A2B36080E00B3956A /* iHog.xcdatamodeld */ = {
+		699DA6D72B5C541400B61547 /* iHog.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6913050B2B36080E00B3956A /* iHog.xcdatamodel */,
+				699DA6D82B5C541400B61547 /* iHog.xcdatamodel */,
 			);
-			currentVersion = 6913050B2B36080E00B3956A /* iHog.xcdatamodel */;
+			currentVersion = 699DA6D82B5C541400B61547 /* iHog.xcdatamodel */;
 			path = iHog.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 691304F42B36080D00B3956A /* Project object */;
+	rootObject = 699DA6C12B5C541300B61547 /* Project object */;
 }
