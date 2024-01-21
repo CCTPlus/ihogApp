@@ -24,7 +24,7 @@ struct LaunchScreenView: View {
           AllShowsView()
         } header: {
           HStack {
-            Text("Shows")
+            Text("LaunchScreenView.header.shows")
             Spacer()
             Button {
               sheetShown = LSSheet.newShow
@@ -36,11 +36,11 @@ struct LaunchScreenView: View {
         Section {
           AboutSection()
         } header: {
-          Text("About")
+          Text("LaunchScreenView.header.about")
         }
         InfoRow()
       }
-      .navigationTitle("iHog")
+      .navigationTitle(Text("AppTitle"))
       .sheet(item: $sheetShown) { sheet in
         switch sheet {
           case .newShow:

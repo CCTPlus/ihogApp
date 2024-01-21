@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct ShowCreationView: View {
+  @Environment(\.dismiss) var dismiss
+  @State private var showName = ""
+
   var body: some View {
-    Text("Hello, World!")
+    NavigationStack {
+      Form {
+        TextField("ShowCreateView.showName", text: $showName)
+      }
+      .toolbar {
+        ToolbarItem(placement: .topBarTrailing) {
+          Button("ShowCreateView.save") {
+            print("Save")
+          }
+        }
+        ToolbarItem(placement: .topBarLeading) {
+          Button("ShowCreateView.cancel") {
+            dismiss()
+          }
+          .tint(.red)
+        }
+      }
+      .navigationTitle(Text("ShowCreationView.viewTitle"))
+    }
   }
 }
 
 #Preview {
-  ShowCreationView()
+  Text("Hello")
+    .sheet(
+      isPresented: .constant(true),
+      content: {
+        ShowCreationView()
+      }
+    )
 }

@@ -14,19 +14,19 @@ struct AboutSection: View {
     Link(
       destination: URL(string: "https://github.com/cctplus/ihogapp")!,
       label: {
-        Label("Privacy", systemImage: "lock")
+        Label("AboutSection.privacy", systemImage: "lock")
       }
     )
     Link(
       destination: URL(string: "https://github.com/cctplus/ihogapp")!,
       label: {
-        Label("Terms", systemImage: "doc.text")
+        Label("AboutSection.terms", systemImage: "doc.text")
       }
     )
     Button {
       isShowingLibraries.toggle()
     } label: {
-      Label("Libraries used to make iHog", systemImage: "laptopcomputer.and.ipad")
+      Label("AboutSection.libraries", systemImage: "laptopcomputer.and.ipad")
     }
     .sheet(isPresented: $isShowingLibraries) {
       Text("Do this later")

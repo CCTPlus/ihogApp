@@ -1,0 +1,163 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "AboutSection.libraries" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Libraries used to make iHog"
+          }
+        }
+      }
+    },
+    "AboutSection.privacy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy"
+          }
+        }
+      }
+    },
+    "AboutSection.terms" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms"
+          }
+        }
+      }
+    },
+    "Add Item" : {
+
+    },
+    "AppTitle" : {
+      "comment" : "This is the title of the app and it should be the same in all languages",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iHog"
+          }
+        }
+      }
+    },
+    "Do this later" : {
+
+    },
+    "Hello" : {
+
+    },
+    "iHog v%@(%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "iHog v%1$@(%2$@)"
+          }
+        }
+      }
+    },
+    "InfoRow.developedBy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "developed by [Jay Wilson](https://heyjaywilson.com) 👋"
+          }
+        }
+      }
+    },
+    "InfoRow.madeIn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made in 🇺🇸 with lots of coffee ☕"
+          }
+        }
+      }
+    },
+    "Item at %@" : {
+
+    },
+    "LaunchScreenView.header.about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        }
+      }
+    },
+    "LaunchScreenView.header.shows" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your shows"
+          }
+        }
+      }
+    },
+    "Select an item" : {
+
+    },
+    "ShowCreateView.cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "ShowCreateView.save" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "ShowCreateView.showName" : {
+      "comment" : "TextField label for the user to enter a show's name",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Name"
+          }
+        }
+      }
+    },
+    "ShowCreationView.viewTitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Show"
+          }
+        }
+      }
+    },
+    "World" : {
+
+    }
+  },
+  "version" : "1.0"
+}
