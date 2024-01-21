@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  iHog
 //
-//  Created by Jay on 12/22/23.
+//  Created by Jay on 1/20/24.
 //
 
 import CoreData
@@ -25,6 +25,7 @@ struct PersistenceController {
       let nsError = error as NSError
       fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
     }
+    result.addMockData(context: viewContext)
     return result
   }()
 
@@ -41,13 +42,13 @@ struct PersistenceController {
         // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 
         /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
+         Typical reasons for an error here include:
+         * The parent directory does not exist, cannot be created, or disallows writing.
+         * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+         * The device is out of space.
+         * The store could not be migrated to the current model version.
+         Check the error message to determine what the actual problem was.
+         */
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     })
