@@ -8,23 +8,58 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
+  @Environment(\.managedObjectContext) var moc
+
+  @State private var sheetShown: LSSheet? = nil
+  @State private var router = Router()
+  @State private var alertManager = AlertManager()
+
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $router.path) {
       List {
         Section {
           AllShowsView()
+            .environment(router)
+            .environment(alertManager)
         } header: {
-          Text("Shows")
+          HStack {
+            Text("LaunchScreenView.header.shows")
+            Spacer()
+            Button {
+              sheetShown = LSSheet.newShow
+            } label: {
+              Image(systemName: "plus.circle")
+            }
+          }
         }
         Section {
           AboutSection()
         } header: {
-          Text("About")
+          Text("LaunchScreenView.header.about")
         }
         InfoRow()
       }
-      .navigationTitle("iHog")
+      .navigationTitle(Text("AppTitle"))
+      .sheet(item: $sheetShown) { sheet in
+        switch sheet {
+          case .newShow:
+            ShowCreationView()
+              .environment(\.managedObjectContext, moc)
+              .environment(router)
+              .environment(alertManager)
+        }
+      }
+      .appRouterDestination()
     }
+  }
+}
+
+extension LaunchScreenView {
+  enum LSSheet: Identifiable {
+    var id: Int {
+      self.hashValue
+    }
+    case newShow
   }
 }
 

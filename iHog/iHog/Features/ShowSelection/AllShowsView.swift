@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AllShowsView: View {
+  @Environment(\.managedObjectContext) var moc
+
   @FetchRequest(sortDescriptors: [
     SortDescriptor(\ShowEntity.dateModified, order: .reverse)
   ])
@@ -15,9 +17,7 @@ struct AllShowsView: View {
 
   var body: some View {
     ForEach(shows) { show in
-      NavigationLink {
-        Text(show.viewName)
-      } label: {
+      NavigationLink(value: RouterDestination.show(show.objectID)) {
         row(show)
       }
     }
