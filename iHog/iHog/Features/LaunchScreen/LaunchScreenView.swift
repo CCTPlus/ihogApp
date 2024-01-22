@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
-  enum LSSheet: Identifiable {
-    var id: Int {
-      self.hashValue
-    }
-    case newShow
-  }
+  @Environment(\.managedObjectContext) var moc
 
   @State private var sheetShown: LSSheet? = nil
+  @State private var router = Router()
 
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $router.path) {
       List {
         Section {
           AllShowsView()
+            .environment(router)
+            .appRouterDestination()
         } header: {
           HStack {
             Text("LaunchScreenView.header.shows")
@@ -45,9 +43,20 @@ struct LaunchScreenView: View {
         switch sheet {
           case .newShow:
             ShowCreationView()
+              .environment(\.managedObjectContext, moc)
+              .environment(router)
         }
       }
     }
+  }
+}
+
+extension LaunchScreenView {
+  enum LSSheet: Identifiable {
+    var id: Int {
+      self.hashValue
+    }
+    case newShow
   }
 }
 

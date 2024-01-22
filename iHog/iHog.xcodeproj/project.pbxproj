@@ -16,6 +16,10 @@
 		695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116D92B5DC0600006B04F /* InfoRow.swift */; };
 		695116DD2B5DC17E0006B04F /* ShowCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116DC2B5DC17E0006B04F /* ShowCreationView.swift */; };
 		695116DF2B5DC4520006B04F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 695116DE2B5DC4520006B04F /* Localizable.xcstrings */; };
+		695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116E22B5DD57F0006B04F /* ShowManager.swift */; };
+		695116E62B5E05820006B04F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116E52B5E05820006B04F /* Router.swift */; };
+		695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116E72B5E05B10006B04F /* RouterDestination.swift */; };
+		695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116E92B5E090E0006B04F /* appRouterDestination.swift */; };
 		699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CC2B5C541300B61547 /* iHogApp.swift */; };
 		699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CE2B5C541300B61547 /* ContentView.swift */; };
 		699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D02B5C541400B61547 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 		695116D92B5DC0600006B04F /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
 		695116DC2B5DC17E0006B04F /* ShowCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCreationView.swift; sourceTree = "<group>"; };
 		695116DE2B5DC4520006B04F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		695116E22B5DD57F0006B04F /* ShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManager.swift; sourceTree = "<group>"; };
+		695116E52B5E05820006B04F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		695116E72B5E05B10006B04F /* RouterDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDestination.swift; sourceTree = "<group>"; };
+		695116E92B5E090E0006B04F /* appRouterDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appRouterDestination.swift; sourceTree = "<group>"; };
 		699DA6C92B5C541300B61547 /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		699DA6CC2B5C541300B61547 /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
 		699DA6CE2B5C541300B61547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,12 +92,23 @@
 			path = PreviewStyleHelpers;
 			sourceTree = "<group>";
 		};
-		695116DB2B5DC14F0006B04F /* ShowCreation */ = {
+		695116DB2B5DC14F0006B04F /* ShowManagement */ = {
 			isa = PBXGroup;
 			children = (
 				695116DC2B5DC17E0006B04F /* ShowCreationView.swift */,
+				695116E22B5DD57F0006B04F /* ShowManager.swift */,
 			);
-			path = ShowCreation;
+			path = ShowManagement;
+			sourceTree = "<group>";
+		};
+		695116E42B5E05720006B04F /* AppRouter */ = {
+			isa = PBXGroup;
+			children = (
+				695116E52B5E05820006B04F /* Router.swift */,
+				695116E72B5E05B10006B04F /* RouterDestination.swift */,
+				695116E92B5E090E0006B04F /* appRouterDestination.swift */,
+			);
+			path = AppRouter;
 			sourceTree = "<group>";
 		};
 		699DA6C02B5C541300B61547 = {
@@ -137,9 +156,10 @@
 		699DA6E12B5C548300B61547 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				695116E42B5E05720006B04F /* AppRouter */,
 				695116C92B5CBE5A0006B04F /* DataStore */,
 				699DA6E52B5CBC8C00B61547 /* ShowSelection */,
-				695116DB2B5DC14F0006B04F /* ShowCreation */,
+				695116DB2B5DC14F0006B04F /* ShowManagement */,
 				699DA6E22B5C548A00B61547 /* LaunchScreen */,
 			);
 			path = Features;
@@ -241,11 +261,15 @@
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
 				695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */,
+				695116E62B5E05820006B04F /* Router.swift in Sources */,
+				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
 				699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */,
 				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
 				695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */,
 				695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */,
 				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
+				695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */,
+				695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */,
 				695116D82B5DBDA60006B04F /* PreviewList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

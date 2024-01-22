@@ -113,6 +113,9 @@
     "Select an item" : {
 
     },
+    "show object id %@" : {
+
+    },
     "ShowCreateView.cancel" : {
       "localizations" : {
         "en" : {

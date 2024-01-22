@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AllShowsView: View {
+  @Environment(\.managedObjectContext) var moc
+
   @FetchRequest(sortDescriptors: [
     SortDescriptor(\ShowEntity.dateModified, order: .reverse)
   ])

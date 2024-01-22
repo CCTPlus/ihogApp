@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ShowCreationView: View {
   @Environment(\.dismiss) var dismiss
+  @Environment(Router.self) var router
+
   @State private var showName = ""
+
+  var showManager = ShowManager(persistenceController: .shared)
 
   var body: some View {
     NavigationStack {
@@ -19,18 +23,40 @@ struct ShowCreationView: View {
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
           Button("ShowCreateView.save") {
-            print("Save")
+            sendAction(.saveTapped)
           }
         }
         ToolbarItem(placement: .topBarLeading) {
           Button("ShowCreateView.cancel") {
-            dismiss()
+            sendAction(.cancelTapped)
           }
           .tint(.red)
         }
       }
       .navigationTitle(Text("ShowCreationView.viewTitle"))
     }
+  }
+
+  private func sendAction(_ action: Action) {
+    switch action {
+      case .saveTapped:
+        do {
+          let showID = try showManager.createShow(name: showName)
+          router.navigate(to: .show(showID))
+          dismiss()
+        } catch {
+          print("Error")
+        }
+      case .cancelTapped:
+        dismiss()
+    }
+  }
+}
+
+extension ShowCreationView {
+  private enum Action {
+    case saveTapped
+    case cancelTapped
   }
 }
 
@@ -39,7 +65,8 @@ struct ShowCreationView: View {
     .sheet(
       isPresented: .constant(true),
       content: {
-        ShowCreationView()
+        ShowCreationView(showManager: ShowManager(persistenceController: .preview))
+          .environment(Router())
       }
     )
 }
