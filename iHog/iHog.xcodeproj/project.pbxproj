@@ -23,6 +23,13 @@
 		695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116EC2B5E0A880006B04F /* AlertReason.swift */; };
 		695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116EE2B5E0CB20006B04F /* AlertManager.swift */; };
 		695116F12B5E0F480006B04F /* HogAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116F02B5E0F480006B04F /* HogAlert.swift */; };
+		695116F42B5E1E680006B04F /* SelectedShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116F32B5E1E680006B04F /* SelectedShowView.swift */; };
+		695116F62B5E1F440006B04F /* FetchRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116F52B5E1F440006B04F /* FetchRequestBuilder.swift */; };
+		695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116F82B5E265B0006B04F /* ShowFixture.swift */; };
+		695116FB2B5E29220006B04F /* ShowRouterDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116FA2B5E29220006B04F /* ShowRouterDestination.swift */; };
+		695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116FD2B5EA6000006B04F /* ShowMenu.swift */; };
+		695117002B5EA6A10006B04F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116FF2B5EA6A10006B04F /* Constants.swift */; };
+		695117052B5EAA330006B04F /* ShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117042B5EAA330006B04F /* ShowRouter.swift */; };
 		699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CC2B5C541300B61547 /* iHogApp.swift */; };
 		699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CE2B5C541300B61547 /* ContentView.swift */; };
 		699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D02B5C541400B61547 /* Assets.xcassets */; };
@@ -49,6 +56,13 @@
 		695116EC2B5E0A880006B04F /* AlertReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertReason.swift; sourceTree = "<group>"; };
 		695116EE2B5E0CB20006B04F /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		695116F02B5E0F480006B04F /* HogAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HogAlert.swift; sourceTree = "<group>"; };
+		695116F32B5E1E680006B04F /* SelectedShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedShowView.swift; sourceTree = "<group>"; };
+		695116F52B5E1F440006B04F /* FetchRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestBuilder.swift; sourceTree = "<group>"; };
+		695116F82B5E265B0006B04F /* ShowFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFixture.swift; sourceTree = "<group>"; };
+		695116FA2B5E29220006B04F /* ShowRouterDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRouterDestination.swift; sourceTree = "<group>"; };
+		695116FD2B5EA6000006B04F /* ShowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
+		695116FF2B5EA6A10006B04F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		695117042B5EAA330006B04F /* ShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRouter.swift; sourceTree = "<group>"; };
 		699DA6C92B5C541300B61547 /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		699DA6CC2B5C541300B61547 /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
 		699DA6CE2B5C541300B61547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,8 +89,9 @@
 		695116C92B5CBE5A0006B04F /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				699DA6D52B5C541400B61547 /* Persistence.swift */,
 				695116C62B5CBE520006B04F /* iHog.xcdatamodeld */,
+				699DA6D52B5C541400B61547 /* Persistence.swift */,
+				695116F52B5E1F440006B04F /* FetchRequestBuilder.swift */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -127,6 +142,42 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		695116F22B5E1E5B0006B04F /* SelectedShow */ = {
+			isa = PBXGroup;
+			children = (
+				695117012B5EA7430006B04F /* ShowRouter */,
+				695116FC2B5EA5DE0006B04F /* ShowMenu */,
+				695116F32B5E1E680006B04F /* SelectedShowView.swift */,
+			);
+			path = SelectedShow;
+			sourceTree = "<group>";
+		};
+		695116F72B5E264C0006B04F /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				695116F82B5E265B0006B04F /* ShowFixture.swift */,
+				695116FF2B5EA6A10006B04F /* Constants.swift */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		695116FC2B5EA5DE0006B04F /* ShowMenu */ = {
+			isa = PBXGroup;
+			children = (
+				695116FD2B5EA6000006B04F /* ShowMenu.swift */,
+			);
+			path = ShowMenu;
+			sourceTree = "<group>";
+		};
+		695117012B5EA7430006B04F /* ShowRouter */ = {
+			isa = PBXGroup;
+			children = (
+				695116FA2B5E29220006B04F /* ShowRouterDestination.swift */,
+				695117042B5EAA330006B04F /* ShowRouter.swift */,
+			);
+			path = ShowRouter;
+			sourceTree = "<group>";
+		};
 		699DA6C02B5C541300B61547 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +213,7 @@
 		699DA6D22B5C541400B61547 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				695116F72B5E264C0006B04F /* Fixtures */,
 				695116D42B5CC6CA0006B04F /* PreviewStyleHelpers */,
 				699DA6D32B5C541400B61547 /* Preview Assets.xcassets */,
 				695116CA2B5CC0EA0006B04F /* ShowMockData.swift */,
@@ -195,6 +247,7 @@
 		699DA6E52B5CBC8C00B61547 /* ShowSelection */ = {
 			isa = PBXGroup;
 			children = (
+				695116F22B5E1E5B0006B04F /* SelectedShow */,
 				699DA6E62B5CBC9800B61547 /* AllShowsView.swift */,
 			);
 			path = ShowSelection;
@@ -271,21 +324,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695116F42B5E1E680006B04F /* SelectedShowView.swift in Sources */,
+				695117052B5EAA330006B04F /* ShowRouter.swift in Sources */,
 				695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */,
 				695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
 				695116DD2B5DC17E0006B04F /* ShowCreationView.swift in Sources */,
 				695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */,
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
+				695117002B5EA6A10006B04F /* Constants.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
 				695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */,
 				695116E62B5E05820006B04F /* Router.swift in Sources */,
 				695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */,
+				695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
+				695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */,
 				699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */,
 				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
 				695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */,
+				695116FB2B5E29220006B04F /* ShowRouterDestination.swift in Sources */,
 				695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */,
+				695116F62B5E1F440006B04F /* FetchRequestBuilder.swift in Sources */,
 				695116F12B5E0F480006B04F /* HogAlert.swift in Sources */,
 				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
 				695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */,

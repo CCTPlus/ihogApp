@@ -17,7 +17,7 @@ struct AllShowsView: View {
 
   var body: some View {
     ForEach(shows) { show in
-      NavigationLink(value: RouterDestination.show(show.objectID)) {
+      NavigationLink(value: RouterDestination.show(show.safeID)) {
         row(show)
       }
     }

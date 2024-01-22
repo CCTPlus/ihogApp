@@ -24,7 +24,7 @@ extension PersistenceController {
     show1.dateCreated = date
     show1.dateModified = date
     show1.icon = "folder"
-    show1.id = UUID()
+    show1.givenID = FixtureConstants.uuid1
     show1.name = "TS: Era's"
     show1.note = "This is a note"
 
@@ -32,7 +32,7 @@ extension PersistenceController {
     show2.dateCreated = date
     show2.dateModified = cal.date(byAdding: .day, value: 1, to: date)!
     show2.icon = "folder"
-    show2.id = UUID()
+    show2.givenID = UUID()
     show2.name = "New show"
     show2.note = "This is a note"
 

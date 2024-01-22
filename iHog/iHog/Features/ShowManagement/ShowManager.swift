@@ -24,21 +24,21 @@ struct ShowManager {
   }
 
   func createShow(name: String, id: UUID = UUID(), todayDate: Date = Date()) throws
-    -> NSManagedObjectID
+    -> UUID
   {
     guard name.isEmpty == false else { throw ShowManagerError.noShowName }
     let backgroundContext = self.backgroundContext
-    let showObjectID = try backgroundContext.performAndWait {
+    let showID = try backgroundContext.performAndWait {
       let show = ShowEntity(context: backgroundContext)
-      show.id = id
+      show.givenID = id
       show.name = name
       show.dateCreated = todayDate
       show.dateModified = todayDate
 
       try backgroundContext.save()
-      return show.objectID
+      return show.safeID
     }
 
-    return showObjectID
+    return showID
   }
 }
