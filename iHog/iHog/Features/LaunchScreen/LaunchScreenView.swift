@@ -12,6 +12,7 @@ struct LaunchScreenView: View {
 
   @State private var sheetShown: LSSheet? = nil
   @State private var router = Router()
+  @State private var alertManager = AlertManager()
 
   var body: some View {
     NavigationStack(path: $router.path) {
@@ -19,7 +20,7 @@ struct LaunchScreenView: View {
         Section {
           AllShowsView()
             .environment(router)
-            .appRouterDestination()
+            .environment(alertManager)
         } header: {
           HStack {
             Text("LaunchScreenView.header.shows")
@@ -45,8 +46,10 @@ struct LaunchScreenView: View {
             ShowCreationView()
               .environment(\.managedObjectContext, moc)
               .environment(router)
+              .environment(alertManager)
         }
       }
+      .appRouterDestination()
     }
   }
 }

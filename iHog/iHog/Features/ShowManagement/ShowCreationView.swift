@@ -10,16 +10,18 @@ import SwiftUI
 struct ShowCreationView: View {
   @Environment(\.dismiss) var dismiss
   @Environment(Router.self) var router
+  @Environment(AlertManager.self) var alertManager
 
-  @State private var showName = ""
+  @State private var newShowName = ""
 
   var showManager = ShowManager(persistenceController: .shared)
 
   var body: some View {
     NavigationStack {
       Form {
-        TextField("ShowCreateView.showName", text: $showName)
+        TextField("ShowCreateView.showName", text: $newShowName)
       }
+      .hogAlert()
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
           Button("ShowCreateView.save") {
@@ -41,11 +43,11 @@ struct ShowCreationView: View {
     switch action {
       case .saveTapped:
         do {
-          let showID = try showManager.createShow(name: showName)
+          let showID = try showManager.createShow(name: newShowName)
           router.navigate(to: .show(showID))
           dismiss()
         } catch {
-          print("Error")
+          alertManager.showAlert(for: .couldNotSaveShow)
         }
       case .cancelTapped:
         dismiss()
@@ -67,6 +69,7 @@ extension ShowCreationView {
       content: {
         ShowCreationView(showManager: ShowManager(persistenceController: .preview))
           .environment(Router())
+          .environment(AlertManager())
       }
     )
 }

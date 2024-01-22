@@ -35,6 +35,61 @@
     "Add Item" : {
 
     },
+    "Alert.button.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Alert.button.notFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Button title not found"
+          }
+        }
+      }
+    },
+    "Alert.button.okay" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okay"
+          }
+        }
+      }
+    },
+    "Alert.title.couldNotSaveShow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not save show"
+          }
+        }
+      }
+    },
+    "Alert.title.notFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title not found"
+          }
+        }
+      }
+    },
     "AppTitle" : {
       "comment" : "This is the title of the app and it should be the same in all languages",
       "extractionState" : "manual",
@@ -51,6 +106,9 @@
 
     },
     "Hello" : {
+
+    },
+    "Help" : {
 
     },
     "iHog v%@(%@)" : {

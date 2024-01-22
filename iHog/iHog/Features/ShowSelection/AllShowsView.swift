@@ -17,9 +17,7 @@ struct AllShowsView: View {
 
   var body: some View {
     ForEach(shows) { show in
-      NavigationLink {
-        Text(show.viewName)
-      } label: {
+      NavigationLink(value: RouterDestination.show(show.objectID)) {
         row(show)
       }
     }
