@@ -11,8 +11,8 @@ extension View {
   func appRouterDestination() -> some View {
     navigationDestination(for: RouterDestination.self) { destination in
       switch destination {
-        case let .show(showObjectID):
-          Text("show object id \(showObjectID.description)")
+        case let .show(showID):
+          SelectedShowView(showID: showID)
       }
     }
   }

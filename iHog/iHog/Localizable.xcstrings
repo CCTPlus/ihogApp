@@ -171,9 +171,6 @@
     "Select an item" : {
 
     },
-    "show object id %@" : {
-
-    },
     "ShowCreateView.cancel" : {
       "localizations" : {
         "en" : {
@@ -212,6 +209,60 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New Show"
+          }
+        }
+      }
+    },
+    "ShowTab.hardwarePlayback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HW PB"
+          }
+        }
+      }
+    },
+    "ShowTab.hardwarePlayProg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PlayProg"
+          }
+        }
+      }
+    },
+    "ShowTab.hardwareProg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HW Prog"
+          }
+        }
+      }
+    },
+    "ShowTab.playback" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playback"
+          }
+        }
+      }
+    },
+    "ShowTab.programming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program"
           }
         }
       }

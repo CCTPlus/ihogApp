@@ -19,4 +19,8 @@ extension ShowEntity {
   var viewDateModified: String {
     dateModified?.formatted(date: .numeric, time: .shortened) ?? "N/A"
   }
+
+  var safeID: UUID {
+    givenID ?? UUID()
+  }
 }
