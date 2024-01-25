@@ -30,6 +30,16 @@
 		695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116FD2B5EA6000006B04F /* ShowMenu.swift */; };
 		695117002B5EA6A10006B04F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116FF2B5EA6A10006B04F /* Constants.swift */; };
 		695117052B5EAA330006B04F /* ShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117042B5EAA330006B04F /* ShowRouter.swift */; };
+		695117082B5EBB930006B04F /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 695117072B5EBB930006B04F /* RevenueCat */; };
+		6951170A2B5EBB930006B04F /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 695117092B5EBB930006B04F /* RevenueCatUI */; };
+		6951170D2B5EBBBD0006B04F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6951170C2B5EBBBD0006B04F /* StoreKit.framework */; };
+		695117142B5EBD3F0006B04F /* AccessLevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117132B5EBD3F0006B04F /* AccessLevelManager.swift */; };
+		695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117152B5EBDC70006B04F /* AccessLevel.swift */; };
+		695117182B5EBDE60006B04F /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117172B5EBDE60006B04F /* Feature.swift */; };
+		6951171A2B5EBF470006B04F /* RCConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117192B5EBF470006B04F /* RCConstant.swift */; };
+		6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951171B2B5EC1240006B04F /* UserDefaultKey.swift */; };
+		6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951171E2B5ECB4B0006B04F /* NetworkManager.swift */; };
+		695117222B5ED2840006B04F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117212B5ED2840006B04F /* Logger.swift */; };
 		699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CC2B5C541300B61547 /* iHogApp.swift */; };
 		699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CE2B5C541300B61547 /* ContentView.swift */; };
 		699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D02B5C541400B61547 /* Assets.xcassets */; };
@@ -63,6 +73,14 @@
 		695116FD2B5EA6000006B04F /* ShowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
 		695116FF2B5EA6A10006B04F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		695117042B5EAA330006B04F /* ShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRouter.swift; sourceTree = "<group>"; };
+		6951170C2B5EBBBD0006B04F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		695117132B5EBD3F0006B04F /* AccessLevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessLevelManager.swift; sourceTree = "<group>"; };
+		695117152B5EBDC70006B04F /* AccessLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessLevel.swift; sourceTree = "<group>"; };
+		695117172B5EBDE60006B04F /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		695117192B5EBF470006B04F /* RCConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCConstant.swift; sourceTree = "<group>"; };
+		6951171B2B5EC1240006B04F /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
+		6951171E2B5ECB4B0006B04F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		695117212B5ED2840006B04F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		699DA6C92B5C541300B61547 /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		699DA6CC2B5C541300B61547 /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
 		699DA6CE2B5C541300B61547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +98,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6951170D2B5EBBBD0006B04F /* StoreKit.framework in Frameworks */,
+				6951170A2B5EBB930006B04F /* RevenueCatUI in Frameworks */,
+				695117082B5EBB930006B04F /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +199,55 @@
 			path = ShowRouter;
 			sourceTree = "<group>";
 		};
+		6951170B2B5EBBBD0006B04F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6951170C2B5EBBBD0006B04F /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6951170F2B5EBC830006B04F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				695117192B5EBF470006B04F /* RCConstant.swift */,
+				6951171B2B5EC1240006B04F /* UserDefaultKey.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		695117122B5EBD1F0006B04F /* AccessManagement */ = {
+			isa = PBXGroup;
+			children = (
+				695117132B5EBD3F0006B04F /* AccessLevelManager.swift */,
+				695117152B5EBDC70006B04F /* AccessLevel.swift */,
+				695117172B5EBDE60006B04F /* Feature.swift */,
+			);
+			path = AccessManagement;
+			sourceTree = "<group>";
+		};
+		6951171D2B5ECB3E0006B04F /* NetworkManagement */ = {
+			isa = PBXGroup;
+			children = (
+				6951171E2B5ECB4B0006B04F /* NetworkManager.swift */,
+			);
+			path = NetworkManagement;
+			sourceTree = "<group>";
+		};
+		695117202B5ED27D0006B04F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				695117212B5ED2840006B04F /* Logger.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		699DA6C02B5C541300B61547 = {
 			isa = PBXGroup;
 			children = (
 				699DA6CB2B5C541300B61547 /* iHog */,
 				699DA6CA2B5C541300B61547 /* Products */,
+				6951170B2B5EBBBD0006B04F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +262,8 @@
 		699DA6CB2B5C541300B61547 /* iHog */ = {
 			isa = PBXGroup;
 			children = (
+				695117202B5ED27D0006B04F /* Utilities */,
+				6951170F2B5EBC830006B04F /* Constants */,
 				695116CC2B5CC34B0006B04F /* Models */,
 				699DA6E12B5C548300B61547 /* Features */,
 				699DA6CC2B5C541300B61547 /* iHogApp.swift */,
@@ -224,6 +291,8 @@
 		699DA6E12B5C548300B61547 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6951171D2B5ECB3E0006B04F /* NetworkManagement */,
+				695117122B5EBD1F0006B04F /* AccessManagement */,
 				695116EB2B5E0A770006B04F /* Alert */,
 				695116E42B5E05720006B04F /* AppRouter */,
 				695116C92B5CBE5A0006B04F /* DataStore */,
@@ -269,6 +338,10 @@
 			dependencies = (
 			);
 			name = iHog;
+			packageProductDependencies = (
+				695117072B5EBB930006B04F /* RevenueCat */,
+				695117092B5EBB930006B04F /* RevenueCatUI */,
+			);
 			productName = iHog;
 			productReference = 699DA6C92B5C541300B61547 /* iHog.app */;
 			productType = "com.apple.product-type.application";
@@ -297,6 +370,9 @@
 				Base,
 			);
 			mainGroup = 699DA6C02B5C541300B61547;
+			packageReferences = (
+				695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */,
+			);
 			productRefGroup = 699DA6CA2B5C541300B61547 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -329,14 +405,17 @@
 				695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */,
 				695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
+				695117142B5EBD3F0006B04F /* AccessLevelManager.swift in Sources */,
 				695116DD2B5DC17E0006B04F /* ShowCreationView.swift in Sources */,
 				695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */,
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
 				695117002B5EA6A10006B04F /* Constants.swift in Sources */,
+				6951171A2B5EBF470006B04F /* RCConstant.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
 				695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */,
 				695116E62B5E05820006B04F /* Router.swift in Sources */,
 				695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */,
+				6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */,
 				695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
 				695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */,
@@ -346,10 +425,14 @@
 				695116FB2B5E29220006B04F /* ShowRouterDestination.swift in Sources */,
 				695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */,
 				695116F62B5E1F440006B04F /* FetchRequestBuilder.swift in Sources */,
+				695117222B5ED2840006B04F /* Logger.swift in Sources */,
+				695117182B5EBDE60006B04F /* Feature.swift in Sources */,
 				695116F12B5E0F480006B04F /* HogAlert.swift in Sources */,
 				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
 				695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */,
+				6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */,
 				695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */,
+				695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */,
 				695116D82B5DBDA60006B04F /* PreviewList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +643,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.32.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		695117072B5EBB930006B04F /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		695117092B5EBB930006B04F /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		695116C62B5CBE520006B04F /* iHog.xcdatamodeld */ = {
