@@ -1,5 +1,5 @@
 //
-//  AccessLevelManager.swift
+//  UserLevelManager.swift
 //  iHog
 //
 //  Created by Jay on 1/22/24.

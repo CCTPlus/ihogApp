@@ -13,6 +13,7 @@ struct iHogApp: App {
   @AppStorage(UserDefaultKey.proIsActive) var proIsActive = false
 
   @State var network = NetworkManager()
+  @State var userLevelManager = UserLevelManager()
 
   let persistenceController = PersistenceController.shared
 
@@ -24,8 +25,12 @@ struct iHogApp: App {
   var body: some Scene {
     WindowGroup {
       LaunchScreenView()
+        .task {
+          userLevelManager.determineUserLevel(network.isConnected)
+        }
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
         .environment(network)
+        .environment(userLevelManager)
     }
   }
 }

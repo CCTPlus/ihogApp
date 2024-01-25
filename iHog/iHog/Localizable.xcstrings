@@ -111,6 +111,9 @@
     "Help" : {
 
     },
+    "iHog Pro %@" : {
+
+    },
     "iHog v%@(%@)" : {
       "localizations" : {
         "en" : {
@@ -167,6 +170,12 @@
           }
         }
       }
+    },
+    "Not subscribed" : {
+
+    },
+    "Pro details" : {
+
     },
     "Select an item" : {
 

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct LaunchScreenView: View {
   @Environment(\.managedObjectContext) var moc
-
-  @State private var sheetShown: LSSheet? = nil
+  @Environment(UserLevelManager.self) var userLevelManager
   @State private var router = Router()
   @State private var alertManager = AlertManager()
 
@@ -18,15 +17,20 @@ struct LaunchScreenView: View {
     NavigationStack(path: $router.path) {
       List {
         Section {
+          if userLevelManager.userLevel == .free {
+            NotSubscribedRow()
+          } else {
+            Text("YAYYYY")
+          }
+        }
+        Section {
           AllShowsView()
-            .environment(router)
-            .environment(alertManager)
         } header: {
           HStack {
             Text("LaunchScreenView.header.shows")
             Spacer()
             Button {
-              sheetShown = LSSheet.newShow
+              router.show(sheet: .newShow)
             } label: {
               Image(systemName: "plus.circle")
             }
@@ -40,30 +44,26 @@ struct LaunchScreenView: View {
         InfoRow()
       }
       .navigationTitle(Text("AppTitle"))
-      .sheet(item: $sheetShown) { sheet in
+      .sheet(item: $router.sheet) { sheet in
         switch sheet {
           case .newShow:
             ShowCreationView()
               .environment(\.managedObjectContext, moc)
               .environment(router)
               .environment(alertManager)
+          case .proDetail:
+            Text("Pro details")
         }
       }
       .appRouterDestination()
+      .environment(router)
+      .environment(alertManager)
     }
-  }
-}
-
-extension LaunchScreenView {
-  enum LSSheet: Identifiable {
-    var id: Int {
-      self.hashValue
-    }
-    case newShow
   }
 }
 
 #Preview {
   LaunchScreenView()
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    .environment(UserLevelManager(userLevel: .free))
 }

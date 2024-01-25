@@ -10,6 +10,7 @@ import OSLog
 
 enum LoggerCategory: String {
   case networkMonitor
+  case user
 }
 
 extension Logger {
@@ -17,5 +18,9 @@ extension Logger {
   static let networkMonitor = Logger(
     subsystem: subsystem,
     category: LoggerCategory.networkMonitor.rawValue
+  )
+  static let user = Logger(
+    subsystem: subsystem,
+    category: LoggerCategory.user.rawValue
   )
 }
