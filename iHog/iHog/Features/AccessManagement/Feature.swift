@@ -9,7 +9,7 @@ import Foundation
 
 enum Feature: Int, Identifiable, CaseIterable {
 
-  case show, icon, puntPage
+  case show, icon
 
   var id: Int {
     return self.rawValue
@@ -22,8 +22,15 @@ enum Feature: Int, Identifiable, CaseIterable {
         1
       case .icon:
         0
-      case .puntPage:
-        0
+    }
+  }
+
+  var viewName: String {
+    switch self {
+      case .show:
+        "Add Unlimited Shows"
+      case .icon:
+        "Assign Icons to Shows"
     }
   }
 }

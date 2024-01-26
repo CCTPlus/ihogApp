@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "1 month" : {
+
+    },
+    "1 week free trial" : {
+
+    },
+    "12 months" : {
+
+    },
     "AboutSection.libraries" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -90,6 +99,9 @@
         }
       }
     },
+    "Any questions?" : {
+
+    },
     "AppTitle" : {
       "comment" : "This is the title of the app and it should be the same in all languages",
       "extractionState" : "manual",
@@ -102,7 +114,13 @@
         }
       }
     },
+    "billed %@" : {
+
+    },
     "Do this later" : {
+
+    },
+    "Email Jay" : {
 
     },
     "Hello" : {
@@ -111,7 +129,7 @@
     "Help" : {
 
     },
-    "iHog Pro %@" : {
+    "iHog Pro" : {
 
     },
     "iHog v%@(%@)" : {
@@ -174,7 +192,13 @@
     "Not subscribed" : {
 
     },
-    "Pro details" : {
+    "per month" : {
+
+    },
+    "Reach out to Jay and ask!" : {
+
+    },
+    "Ready to go pro?" : {
 
     },
     "Select an item" : {
@@ -276,7 +300,16 @@
         }
       }
     },
+    "Support an indie developer" : {
+
+    },
+    "Upgrade to pro" : {
+
+    },
     "World" : {
+
+    },
+    "YAYYYY" : {
 
     }
   },

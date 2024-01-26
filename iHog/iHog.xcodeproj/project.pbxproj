@@ -40,8 +40,12 @@
 		6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951171B2B5EC1240006B04F /* UserDefaultKey.swift */; };
 		6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951171E2B5ECB4B0006B04F /* NetworkManager.swift */; };
 		695117222B5ED2840006B04F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117212B5ED2840006B04F /* Logger.swift */; };
+		696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AF49F2B6360D60066F028 /* MYPackageView.swift */; };
 		697BD73D2B6322F8009CBB5F /* NotSubscribedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73C2B6322F8009CBB5F /* NotSubscribedRow.swift */; };
 		697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73E2B632485009CBB5F /* SheetDestination.swift */; };
+		697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */; };
+		697BD7452B635013009CBB5F /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 697BD7442B635013009CBB5F /* StoreKitTestCertificate.cer */; };
+		697BD7472B635224009CBB5F /* MonthAndYearOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7462B635224009CBB5F /* MonthAndYearOptionView.swift */; };
 		699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CC2B5C541300B61547 /* iHogApp.swift */; };
 		699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6CE2B5C541300B61547 /* ContentView.swift */; };
 		699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699DA6D02B5C541400B61547 /* Assets.xcassets */; };
@@ -49,6 +53,8 @@
 		699DA6D62B5C541400B61547 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6D52B5C541400B61547 /* Persistence.swift */; };
 		699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */; };
 		699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E62B5CBC9800B61547 /* AllShowsView.swift */; };
+		69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E12B642FCC0027BF0B /* View+Extensions.swift */; };
+		69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E32B64308B0027BF0B /* PreferenceKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,8 +89,13 @@
 		6951171B2B5EC1240006B04F /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		6951171E2B5ECB4B0006B04F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		695117212B5ED2840006B04F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		696AF49F2B6360D60066F028 /* MYPackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYPackageView.swift; sourceTree = "<group>"; };
 		697BD73C2B6322F8009CBB5F /* NotSubscribedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSubscribedRow.swift; sourceTree = "<group>"; };
 		697BD73E2B632485009CBB5F /* SheetDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDestination.swift; sourceTree = "<group>"; };
+		697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaywallView.swift; sourceTree = "<group>"; };
+		697BD7432B634F67009CBB5F /* iHog - OSC Remote for Hog 4.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "iHog - OSC Remote for Hog 4.storekit"; sourceTree = "<group>"; };
+		697BD7442B635013009CBB5F /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../Resources/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		697BD7462B635224009CBB5F /* MonthAndYearOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthAndYearOptionView.swift; sourceTree = "<group>"; };
 		699DA6C92B5C541300B61547 /* iHog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		699DA6CC2B5C541300B61547 /* iHogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogApp.swift; sourceTree = "<group>"; };
 		699DA6CE2B5C541300B61547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +106,8 @@
 		699DA6DB2B5C541400B61547 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		699DA6E62B5CBC9800B61547 /* AllShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShowsView.swift; sourceTree = "<group>"; };
+		69C710E12B642FCC0027BF0B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		69C710E32B64308B0027BF0B /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,9 +263,29 @@
 		697BD73B2B6322CE009CBB5F /* SubscriptionManagement */ = {
 			isa = PBXGroup;
 			children = (
+				697BD7482B63607C009CBB5F /* MonthAndYear */,
 				697BD73C2B6322F8009CBB5F /* NotSubscribedRow.swift */,
+				697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */,
 			);
 			path = SubscriptionManagement;
+			sourceTree = "<group>";
+		};
+		697BD7422B634F45009CBB5F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				697BD7432B634F67009CBB5F /* iHog - OSC Remote for Hog 4.storekit */,
+				697BD7442B635013009CBB5F /* StoreKitTestCertificate.cer */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		697BD7482B63607C009CBB5F /* MonthAndYear */ = {
+			isa = PBXGroup;
+			children = (
+				697BD7462B635224009CBB5F /* MonthAndYearOptionView.swift */,
+				696AF49F2B6360D60066F028 /* MYPackageView.swift */,
+			);
+			path = MonthAndYear;
 			sourceTree = "<group>";
 		};
 		699DA6C02B5C541300B61547 = {
@@ -275,16 +308,17 @@
 		699DA6CB2B5C541300B61547 /* iHog */ = {
 			isa = PBXGroup;
 			children = (
-				695117202B5ED27D0006B04F /* Utilities */,
-				6951170F2B5EBC830006B04F /* Constants */,
+				697BD7422B634F45009CBB5F /* Resources */,
 				695116CC2B5CC34B0006B04F /* Models */,
+				695116C92B5CBE5A0006B04F /* DataStore */,
 				699DA6E12B5C548300B61547 /* Features */,
+				69C710E02B642F720027BF0B /* Helpers */,
 				699DA6CC2B5C541300B61547 /* iHogApp.swift */,
 				699DA6CE2B5C541300B61547 /* ContentView.swift */,
 				695116DE2B5DC4520006B04F /* Localizable.xcstrings */,
 				699DA6D02B5C541400B61547 /* Assets.xcassets */,
-				699DA6DA2B5C541400B61547 /* iHog.entitlements */,
 				699DA6DB2B5C541400B61547 /* Info.plist */,
+				699DA6DA2B5C541400B61547 /* iHog.entitlements */,
 				699DA6D22B5C541400B61547 /* Preview Content */,
 			);
 			path = iHog;
@@ -308,7 +342,6 @@
 				695117122B5EBD1F0006B04F /* AccessManagement */,
 				695116EB2B5E0A770006B04F /* Alert */,
 				695116E42B5E05720006B04F /* AppRouter */,
-				695116C92B5CBE5A0006B04F /* DataStore */,
 				699DA6E52B5CBC8C00B61547 /* ShowSelection */,
 				695116DB2B5DC14F0006B04F /* ShowManagement */,
 				699DA6E22B5C548A00B61547 /* LaunchScreen */,
@@ -334,6 +367,17 @@
 				699DA6E62B5CBC9800B61547 /* AllShowsView.swift */,
 			);
 			path = ShowSelection;
+			sourceTree = "<group>";
+		};
+		69C710E02B642F720027BF0B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				695117202B5ED27D0006B04F /* Utilities */,
+				6951170F2B5EBC830006B04F /* Constants */,
+				69C710E12B642FCC0027BF0B /* View+Extensions.swift */,
+				69C710E32B64308B0027BF0B /* PreferenceKeys.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +448,7 @@
 				699DA6D42B5C541400B61547 /* Preview Assets.xcassets in Resources */,
 				699DA6D12B5C541400B61547 /* Assets.xcassets in Resources */,
 				695116DF2B5DC4520006B04F /* Localizable.xcstrings in Resources */,
+				697BD7452B635013009CBB5F /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +468,9 @@
 				695116DD2B5DC17E0006B04F /* ShowCreationView.swift in Sources */,
 				695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */,
 				697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */,
+				69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */,
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
+				696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */,
 				695117002B5EA6A10006B04F /* Constants.swift in Sources */,
 				6951171A2B5EBF470006B04F /* RCConstant.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
@@ -431,6 +478,7 @@
 				695116E62B5E05820006B04F /* Router.swift in Sources */,
 				695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */,
 				6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */,
+				697BD7472B635224009CBB5F /* MonthAndYearOptionView.swift in Sources */,
 				697BD73D2B6322F8009CBB5F /* NotSubscribedRow.swift in Sources */,
 				695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
@@ -449,6 +497,8 @@
 				6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */,
 				695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */,
 				695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */,
+				697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */,
+				69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */,
 				695116D82B5DBDA60006B04F /* PreviewList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,7 +648,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.cctplus.iHog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appsbymw.hogosc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -629,7 +679,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.cctplus.iHog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appsbymw.hogosc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

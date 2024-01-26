@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 import RevenueCat
 
 @Observable
@@ -41,6 +42,7 @@ class UserLevelManager {
 
   private func determineAccessLevelFromRevenueCat() async throws {
     let entitlements = try await Purchases.shared.customerInfo().entitlements
+    Logger.iap.debug("\(entitlements[RCConstant.Entitlement.pro])")
     if entitlements[RCConstant.Entitlement.pro]?.isActive == true {
       userLevel = .pro
       UserDefaults.standard.set(true, forKey: UserDefaultKey.proIsActive)

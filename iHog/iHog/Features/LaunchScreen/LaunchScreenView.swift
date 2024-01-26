@@ -52,7 +52,7 @@ struct LaunchScreenView: View {
               .environment(router)
               .environment(alertManager)
           case .proDetail:
-            Text("Pro details")
+            DefaultPaywallView()
         }
       }
       .appRouterDestination()
