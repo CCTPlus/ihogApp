@@ -1,10 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "1 month" : {
-
+    "%lld %@ free trial" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld %2$@ free trial"
+          }
+        }
+      }
     },
-    "1 week free trial" : {
+    "1 month" : {
 
     },
     "12 months" : {
@@ -117,6 +124,9 @@
     "billed %@" : {
 
     },
+    "Cancel" : {
+
+    },
     "Do this later" : {
 
     },
@@ -199,6 +209,9 @@
 
     },
     "Ready to go pro?" : {
+
+    },
+    "Restore purchases" : {
 
     },
     "Select an item" : {

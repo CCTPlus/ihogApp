@@ -9,6 +9,7 @@ import RevenueCat
 import SwiftUI
 
 struct DefaultPaywallView: View {
+  @Environment(\.dismiss) var dismiss
   @State private var showSheet = true
   @State private var sheetHeight: CGFloat = .zero
 
@@ -48,15 +49,29 @@ struct DefaultPaywallView: View {
       .listRowSeparator(.hidden)
     }
     .sheet(isPresented: $showSheet) {
-      MonthAndYearOptionView(offeringID: "default")
-        .heightChangePreference(completion: { height in
-          sheetHeight = height
-        })
-        .padding(.horizontal)
-        .presentationDetents([.height(sheetHeight)])
-        .presentationBackgroundInteraction(.enabled(upThrough: .height(sheetHeight)))
-        .presentationCornerRadius(24)
-        .interactiveDismissDisabled()
+      NavigationStack {
+        ScrollView {
+          VStack {
+            MonthAndYearOptionView(offeringID: "default")
+              .padding(.horizontal)
+            Button {
+              dismiss()
+            } label: {
+              Text("Cancel")
+            }
+            .tint(.red)
+            .padding()
+          }
+          .heightChangePreference(completion: { height in
+            sheetHeight = height
+          })
+        }
+      }
+      .presentationDetents([.height(sheetHeight / 4), .height(sheetHeight)])
+      .presentationBackgroundInteraction(.enabled(upThrough: .height(sheetHeight)))
+      .presentationCornerRadius(24)
+      .presentationContentInteraction(.resizes)
+      .interactiveDismissDisabled()
     }
   }
 

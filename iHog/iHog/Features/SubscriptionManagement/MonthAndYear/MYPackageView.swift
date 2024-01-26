@@ -16,12 +16,16 @@ struct MYPackageView: View {
 
   var body: some View {
     VStack {
-      if introOfferStatus == .eligible {
-        Text("1 week free trial")
-          .font(.subheadline)
-          .padding(.vertical, 8)
-          .frame(maxWidth: .infinity)
-          .background(.secondary)
+      if introOfferStatus == .eligible,
+        let discount = package.storeProduct.introductoryDiscount
+      {
+        Text(
+          "\(discount.subscriptionPeriod.value) \(discount.subscriptionPeriod.viewUnit) free trial"
+        )
+        .font(.subheadline)
+        .padding(.vertical, 8)
+        .frame(maxWidth: .infinity)
+        .background(.secondary)
       }
       Text(package.packageType == .monthly ? "1 month" : "12 months")
         .font(.headline)
@@ -48,9 +52,18 @@ struct MYPackageView: View {
       await viewSetup()
     }
   }
+
   func viewSetup() async {
     let statuses = await Purchases.shared.checkTrialOrIntroDiscountEligibility(packages: [package])
     introOfferStatus = statuses[package]?.status ?? .unknown
+
+    let discount = package.storeProduct.introductoryDiscount
+    print(
+      "🚨",
+      discount?.subscriptionPeriod.value,
+      discount?.subscriptionPeriod.unit,
+      discount?.paymentMode
+    )
   }
 }
 
