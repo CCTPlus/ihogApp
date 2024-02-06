@@ -13,6 +13,7 @@ struct LaunchScreenView: View {
   @Environment(\.managedObjectContext) var moc
   @Environment(UserLevelManager.self) var userLevelManager
   @Environment(NetworkManager.self) var network
+  @Environment(OSCManager.self) var oscManager
   @State private var router = Router()
   @State private var alertManager = AlertManager()
 
@@ -75,6 +76,7 @@ struct LaunchScreenView: View {
       .appRouterDestination()
       .environment(router)
       .environment(alertManager)
+      .environment(oscManager)
     }
   }
 }
@@ -84,7 +86,7 @@ struct LaunchScreenView: View {
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     .environment(UserLevelManager(userLevel: .free))
     .environment(NetworkManager())
-    .previewDisplayName("Not subscribed")
+    .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
 }
 
 #Preview("Subscribed") {
@@ -92,4 +94,5 @@ struct LaunchScreenView: View {
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     .environment(UserLevelManager(userLevel: .pro))
     .environment(NetworkManager())
+    .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
 }

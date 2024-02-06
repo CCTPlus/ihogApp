@@ -14,6 +14,8 @@ struct iHogApp: App {
 
   @State var network = NetworkManager()
   @State var userLevelManager = UserLevelManager()
+  /// This is configured with the default Hog settings
+  @State var oscManager = OSCManager(outputPort: 7002, consoleInputPort: 7001)
 
   let persistenceController = PersistenceController.shared
 
@@ -33,6 +35,7 @@ struct iHogApp: App {
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
         .environment(network)
         .environment(userLevelManager)
+        .environment(oscManager)
     }
   }
 }

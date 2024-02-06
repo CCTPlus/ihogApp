@@ -54,6 +54,9 @@
 		699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */; };
 		699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E62B5CBC9800B61547 /* AllShowsView.swift */; };
 		69B75BB92B72CDAA00A696C7 /* IPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B75BB82B72CDAA00A696C7 /* IPHelper.swift */; };
+		69B75BBC2B72D37E00A696C7 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 69B75BBB2B72D37E00A696C7 /* OSCKit */; };
+		69B75BBE2B72D37E00A696C7 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 69B75BBD2B72D37E00A696C7 /* OSCKitCore */; };
+		69B75BC02B72D4D200A696C7 /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B75BBF2B72D4D200A696C7 /* OSCManager.swift */; };
 		69B866A92B7054AE003EAD38 /* SubscriptionManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866A82B7054AE003EAD38 /* SubscriptionManagementView.swift */; };
 		69B866AC2B71DB2C003EAD38 /* WishKit in Frameworks */ = {isa = PBXBuildFile; productRef = 69B866AB2B71DB2C003EAD38 /* WishKit */; };
 		69B866AE2B71DC4D003EAD38 /* WishKitConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */; };
@@ -115,6 +118,7 @@
 		699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		699DA6E62B5CBC9800B61547 /* AllShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShowsView.swift; sourceTree = "<group>"; };
 		69B75BB82B72CDAA00A696C7 /* IPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPHelper.swift; sourceTree = "<group>"; };
+		69B75BBF2B72D4D200A696C7 /* OSCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCManager.swift; sourceTree = "<group>"; };
 		69B866A82B7054AE003EAD38 /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
 		69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishKitConstant.swift; sourceTree = "<group>"; };
 		69B866AF2B71DD19003EAD38 /* ContactSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSection.swift; sourceTree = "<group>"; };
@@ -130,7 +134,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69B75BBC2B72D37E00A696C7 /* OSCKit in Frameworks */,
 				6951170D2B5EBBBD0006B04F /* StoreKit.framework in Frameworks */,
+				69B75BBE2B72D37E00A696C7 /* OSCKitCore in Frameworks */,
 				6951170A2B5EBB930006B04F /* RevenueCatUI in Frameworks */,
 				69B866AC2B71DB2C003EAD38 /* WishKit in Frameworks */,
 				695117082B5EBB930006B04F /* RevenueCat in Frameworks */,
@@ -395,6 +401,7 @@
 			children = (
 				69B866B42B72BF9E003EAD38 /* Configure */,
 				69B866B22B71E553003EAD38 /* OSCSettingsSection.swift */,
+				69B75BBF2B72D4D200A696C7 /* OSCManager.swift */,
 			);
 			path = OpenSoundControl;
 			sourceTree = "<group>";
@@ -439,6 +446,8 @@
 				695117072B5EBB930006B04F /* RevenueCat */,
 				695117092B5EBB930006B04F /* RevenueCatUI */,
 				69B866AB2B71DB2C003EAD38 /* WishKit */,
+				69B75BBB2B72D37E00A696C7 /* OSCKit */,
+				69B75BBD2B72D37E00A696C7 /* OSCKitCore */,
 			);
 			productName = iHog;
 			productReference = 699DA6C92B5C541300B61547 /* iHog.app */;
@@ -471,6 +480,7 @@
 			packageReferences = (
 				695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				69B866AA2B71DB2C003EAD38 /* XCRemoteSwiftPackageReference "wishkit-ios" */,
+				69B75BBA2B72D37E00A696C7 /* XCRemoteSwiftPackageReference "OSCKit" */,
 			);
 			productRefGroup = 699DA6CA2B5C541300B61547 /* Products */;
 			projectDirPath = "";
@@ -505,6 +515,7 @@
 				695117052B5EAA330006B04F /* ShowRouter.swift in Sources */,
 				695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */,
 				69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */,
+				69B75BC02B72D4D200A696C7 /* OSCManager.swift in Sources */,
 				695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
 				695117142B5EBD3F0006B04F /* UserLevelManager.swift in Sources */,
@@ -767,6 +778,14 @@
 				minimumVersion = 4.32.0;
 			};
 		};
+		69B75BBA2B72D37E00A696C7 /* XCRemoteSwiftPackageReference "OSCKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/OSCKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		69B866AA2B71DB2C003EAD38 /* XCRemoteSwiftPackageReference "wishkit-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/wishkit/wishkit-ios.git";
@@ -787,6 +806,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCatUI;
+		};
+		69B75BBB2B72D37E00A696C7 /* OSCKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69B75BBA2B72D37E00A696C7 /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKit;
+		};
+		69B75BBD2B72D37E00A696C7 /* OSCKitCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69B75BBA2B72D37E00A696C7 /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKitCore;
 		};
 		69B866AB2B71DB2C003EAD38 /* WishKit */ = {
 			isa = XCSwiftPackageProductDependency;
