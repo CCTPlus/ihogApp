@@ -5,7 +5,9 @@
 //  Created by Jay on 1/20/24.
 //
 
+import RevenueCat
 import SwiftUI
+import WishKit
 
 struct LaunchScreenView: View {
   @Environment(\.managedObjectContext) var moc
@@ -13,6 +15,10 @@ struct LaunchScreenView: View {
   @Environment(NetworkManager.self) var network
   @State private var router = Router()
   @State private var alertManager = AlertManager()
+
+  init() {
+    WishKit.configure(with: WishKitConstant.apiKey)
+  }
 
   var body: some View {
     NavigationStack(path: $router.path) {
@@ -32,6 +38,11 @@ struct LaunchScreenView: View {
               Image(systemName: "plus.circle")
             }
           }
+        }
+        Section {
+          ContactSection()
+        } header: {
+          Text("Contact")
         }
         Section {
           AboutSection()
