@@ -40,6 +40,11 @@ struct LaunchScreenView: View {
           }
         }
         Section {
+          OSCSettingsSection()
+        } header: {
+          Text("Open Sound Control")
+        }
+        Section {
           ContactSection()
         } header: {
           Text("Contact")

@@ -16,6 +16,10 @@ extension View {
           SelectedShowView(showID: showID)
         case .wishkit:
           WishKit.view
+        case .oscConfiguration:
+          OSCConfigView()
+        case .oscLog:
+          Text("OSC Log")
       }
     }
   }

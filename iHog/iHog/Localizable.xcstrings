@@ -127,6 +127,12 @@
     "Cancel" : {
 
     },
+    "Configure OSC" : {
+
+    },
+    "Console" : {
+
+    },
     "Contact" : {
 
     },
@@ -134,6 +140,9 @@
 
     },
     "Email Jay" : {
+
+    },
+    "Enable OSC" : {
 
     },
     "Hello" : {
@@ -177,6 +186,12 @@
         }
       }
     },
+    "Input Port" : {
+
+    },
+    "IP Address" : {
+
+    },
     "Item at %@" : {
 
     },
@@ -205,7 +220,22 @@
     "Manage your subscription" : {
 
     },
+    "Match what's listed in the labels on the console" : {
+
+    },
     "Not subscribed" : {
+
+    },
+    "Open Sound Control" : {
+
+    },
+    "Open the console's log and see `/hog/test/0/` be received" : {
+
+    },
+    "OSC Log" : {
+
+    },
+    "Output Port" : {
 
     },
     "per month" : {
@@ -224,6 +254,9 @@
 
     },
     "Select an item" : {
+
+    },
+    "Send test signal" : {
 
     },
     "ShowCreateView.cancel" : {
@@ -329,6 +362,12 @@
 
     },
     "Thanks for purchasing and supporting iHog's development." : {
+
+    },
+    "This device" : {
+
+    },
+    "This is what you should put into the Output IP address" : {
 
     },
     "Upgrade to pro" : {
