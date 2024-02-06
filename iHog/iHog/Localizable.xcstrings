@@ -1,6 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld %@ free trial" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld %2$@ free trial"
+          }
+        }
+      }
+    },
+    "1 month" : {
+
+    },
+    "12 months" : {
+
+    },
     "AboutSection.libraries" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -90,6 +106,9 @@
         }
       }
     },
+    "Any questions?" : {
+
+    },
     "AppTitle" : {
       "comment" : "This is the title of the app and it should be the same in all languages",
       "extractionState" : "manual",
@@ -102,13 +121,25 @@
         }
       }
     },
+    "billed %@" : {
+
+    },
+    "Cancel" : {
+
+    },
     "Do this later" : {
+
+    },
+    "Email Jay" : {
 
     },
     "Hello" : {
 
     },
     "Help" : {
+
+    },
+    "iHog Pro" : {
 
     },
     "iHog v%@(%@)" : {
@@ -167,6 +198,24 @@
           }
         }
       }
+    },
+    "Manage your subscription" : {
+
+    },
+    "Not subscribed" : {
+
+    },
+    "per month" : {
+
+    },
+    "Reach out to Jay and ask!" : {
+
+    },
+    "Ready to go pro?" : {
+
+    },
+    "Restore purchases" : {
+
     },
     "Select an item" : {
 
@@ -267,7 +316,25 @@
         }
       }
     },
+    "Subscribed" : {
+
+    },
+    "Support an indie developer" : {
+
+    },
+    "Thanks for purchasing and supporting iHog's development." : {
+
+    },
+    "Upgrade to pro" : {
+
+    },
     "World" : {
+
+    },
+    "You're a pro!" : {
+
+    },
+    "You've been subscribed since %@ 🎉" : {
 
     }
   },

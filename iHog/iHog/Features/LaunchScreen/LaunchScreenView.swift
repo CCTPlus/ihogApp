@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LaunchScreenView: View {
   @Environment(\.managedObjectContext) var moc
-
-  @State private var sheetShown: LSSheet? = nil
+  @Environment(UserLevelManager.self) var userLevelManager
+  @Environment(NetworkManager.self) var network
   @State private var router = Router()
   @State private var alertManager = AlertManager()
 
@@ -18,15 +18,16 @@ struct LaunchScreenView: View {
     NavigationStack(path: $router.path) {
       List {
         Section {
+          SubscriptionRow(isSubscribed: userLevelManager.userLevel == .pro)
+        }
+        Section {
           AllShowsView()
-            .environment(router)
-            .environment(alertManager)
         } header: {
           HStack {
             Text("LaunchScreenView.header.shows")
             Spacer()
             Button {
-              sheetShown = LSSheet.newShow
+              router.show(sheet: .newShow)
             } label: {
               Image(systemName: "plus.circle")
             }
@@ -40,30 +41,39 @@ struct LaunchScreenView: View {
         InfoRow()
       }
       .navigationTitle(Text("AppTitle"))
-      .sheet(item: $sheetShown) { sheet in
+      .sheet(item: $router.sheet) { sheet in
         switch sheet {
           case .newShow:
             ShowCreationView()
               .environment(\.managedObjectContext, moc)
               .environment(router)
               .environment(alertManager)
+          case .paywall:
+            DefaultPaywallView()
+          case .subscriptionManagement:
+            SubscriptionManagementView()
+              .environment(userLevelManager)
+              .environment(network)
         }
       }
       .appRouterDestination()
+      .environment(router)
+      .environment(alertManager)
     }
   }
 }
 
-extension LaunchScreenView {
-  enum LSSheet: Identifiable {
-    var id: Int {
-      self.hashValue
-    }
-    case newShow
-  }
-}
-
-#Preview {
+#Preview("Not subscribed") {
   LaunchScreenView()
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    .environment(UserLevelManager(userLevel: .free))
+    .environment(NetworkManager())
+    .previewDisplayName("Not subscribed")
+}
+
+#Preview("Subscribed") {
+  LaunchScreenView()
+    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    .environment(UserLevelManager(userLevel: .pro))
+    .environment(NetworkManager())
 }
