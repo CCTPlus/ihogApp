@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WishKit
 
 extension View {
   func appRouterDestination() -> some View {
@@ -13,6 +14,8 @@ extension View {
       switch destination {
         case let .show(showID):
           SelectedShowView(showID: showID)
+        case .wishkit:
+          WishKit.view
       }
     }
   }

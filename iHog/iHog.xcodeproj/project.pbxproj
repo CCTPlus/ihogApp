@@ -54,6 +54,9 @@
 		699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */; };
 		699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DA6E62B5CBC9800B61547 /* AllShowsView.swift */; };
 		69B866A92B7054AE003EAD38 /* SubscriptionManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866A82B7054AE003EAD38 /* SubscriptionManagementView.swift */; };
+		69B866AC2B71DB2C003EAD38 /* WishKit in Frameworks */ = {isa = PBXBuildFile; productRef = 69B866AB2B71DB2C003EAD38 /* WishKit */; };
+		69B866AE2B71DC4D003EAD38 /* WishKitConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */; };
+		69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866AF2B71DD19003EAD38 /* ContactSection.swift */; };
 		69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E12B642FCC0027BF0B /* View+Extensions.swift */; };
 		69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E32B64308B0027BF0B /* PreferenceKeys.swift */; };
 		69C710E62B644BC60027BF0B /* RevenueCat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E52B644BC60027BF0B /* RevenueCat+Extensions.swift */; };
@@ -109,6 +112,8 @@
 		699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		699DA6E62B5CBC9800B61547 /* AllShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllShowsView.swift; sourceTree = "<group>"; };
 		69B866A82B7054AE003EAD38 /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
+		69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishKitConstant.swift; sourceTree = "<group>"; };
+		69B866AF2B71DD19003EAD38 /* ContactSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSection.swift; sourceTree = "<group>"; };
 		69C710E12B642FCC0027BF0B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		69C710E32B64308B0027BF0B /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		69C710E52B644BC60027BF0B /* RevenueCat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RevenueCat+Extensions.swift"; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 			files = (
 				6951170D2B5EBBBD0006B04F /* StoreKit.framework in Frameworks */,
 				6951170A2B5EBB930006B04F /* RevenueCatUI in Frameworks */,
+				69B866AC2B71DB2C003EAD38 /* WishKit in Frameworks */,
 				695117082B5EBB930006B04F /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +240,7 @@
 			children = (
 				695117192B5EBF470006B04F /* RCConstant.swift */,
 				6951171B2B5EC1240006B04F /* UserDefaultKey.swift */,
+				69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 				699DA6E32B5C549A00B61547 /* LaunchScreenView.swift */,
 				695116D02B5CC6A80006B04F /* AboutSection.swift */,
 				695116D92B5DC0600006B04F /* InfoRow.swift */,
+				69B866AF2B71DD19003EAD38 /* ContactSection.swift */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
@@ -405,6 +413,7 @@
 			packageProductDependencies = (
 				695117072B5EBB930006B04F /* RevenueCat */,
 				695117092B5EBB930006B04F /* RevenueCatUI */,
+				69B866AB2B71DB2C003EAD38 /* WishKit */,
 			);
 			productName = iHog;
 			productReference = 699DA6C92B5C541300B61547 /* iHog.app */;
@@ -436,6 +445,7 @@
 			mainGroup = 699DA6C02B5C541300B61547;
 			packageReferences = (
 				695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				69B866AA2B71DB2C003EAD38 /* XCRemoteSwiftPackageReference "wishkit-ios" */,
 			);
 			productRefGroup = 699DA6CA2B5C541300B61547 /* Products */;
 			projectDirPath = "";
@@ -469,6 +479,7 @@
 				69B866A92B7054AE003EAD38 /* SubscriptionManagementView.swift in Sources */,
 				695117052B5EAA330006B04F /* ShowRouter.swift in Sources */,
 				695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */,
+				69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */,
 				695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
 				695117142B5EBD3F0006B04F /* UserLevelManager.swift in Sources */,
@@ -482,6 +493,7 @@
 				6951171A2B5EBF470006B04F /* RCConstant.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
 				695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */,
+				69B866AE2B71DC4D003EAD38 /* WishKitConstant.swift in Sources */,
 				695116E62B5E05820006B04F /* Router.swift in Sources */,
 				695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */,
 				6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */,
@@ -727,6 +739,14 @@
 				minimumVersion = 4.32.0;
 			};
 		};
+		69B866AA2B71DB2C003EAD38 /* XCRemoteSwiftPackageReference "wishkit-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wishkit/wishkit-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -739,6 +759,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 695117062B5EBB930006B04F /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCatUI;
+		};
+		69B866AB2B71DB2C003EAD38 /* WishKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69B866AA2B71DB2C003EAD38 /* XCRemoteSwiftPackageReference "wishkit-ios" */;
+			productName = WishKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

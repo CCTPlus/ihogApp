@@ -9,4 +9,5 @@ import Foundation
 
 enum RouterDestination: Hashable {
   case show(UUID)
+  case wishkit
 }
