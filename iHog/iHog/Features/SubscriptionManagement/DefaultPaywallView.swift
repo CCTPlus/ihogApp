@@ -54,17 +54,21 @@ struct DefaultPaywallView: View {
           VStack {
             MonthAndYearOptionView(offeringID: "default")
               .padding(.horizontal)
+              .padding()
+          }
+          .heightChangePreference(completion: { height in
+            sheetHeight = height
+          })
+        }
+        .toolbar {
+          ToolbarItem(placement: .cancellationAction) {
             Button {
               dismiss()
             } label: {
               Text("Cancel")
             }
             .tint(.red)
-            .padding()
           }
-          .heightChangePreference(completion: { height in
-            sheetHeight = height
-          })
         }
       }
       .presentationDetents([.height(sheetHeight / 4), .height(sheetHeight)])

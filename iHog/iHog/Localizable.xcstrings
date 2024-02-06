@@ -199,6 +199,9 @@
         }
       }
     },
+    "Manage your subscription" : {
+
+    },
     "Not subscribed" : {
 
     },
@@ -313,7 +316,13 @@
         }
       }
     },
+    "Subscribed" : {
+
+    },
     "Support an indie developer" : {
+
+    },
+    "Thanks for purchasing and supporting iHog's development." : {
 
     },
     "Upgrade to pro" : {
@@ -322,7 +331,10 @@
     "World" : {
 
     },
-    "YAYYYY" : {
+    "You're a pro!" : {
+
+    },
+    "You've been subscribed since %@ 🎉" : {
 
     }
   },

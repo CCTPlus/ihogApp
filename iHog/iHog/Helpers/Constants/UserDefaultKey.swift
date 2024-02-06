@@ -9,4 +9,6 @@ import Foundation
 
 enum UserDefaultKey {
   static let proIsActive = "proIsActive"
+  static let userSince = "userSince"
+  static let proSince = "proSince"
 }

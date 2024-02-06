@@ -27,6 +27,8 @@ struct iHogApp: App {
       LaunchScreenView()
         .task {
           userLevelManager.determineUserLevel(network.isConnected)
+          userLevelManager.determineProSince(network.isConnected)
+          userLevelManager.determineUserSince(network.isConnected)
         }
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
         .environment(network)

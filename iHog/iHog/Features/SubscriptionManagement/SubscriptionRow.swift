@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct NotSubscribedRow: View {
+struct SubscriptionRow: View {
   @Environment(Router.self) var router
+
+  var isSubscribed: Bool
 
   var body: some View {
     Button {
-      router.show(sheet: .proDetail)
+      router.show(sheet: isSubscribed ? .subscriptionManagement : .paywall)
     } label: {
       label
     }
@@ -24,7 +26,7 @@ struct NotSubscribedRow: View {
       Text("iHog Pro")
         .bold()
       Spacer()
-      Text("Not subscribed")
+      Text(isSubscribed ? "Subscribed" : "Not subscribed")
         .font(.footnote)
         .bold()
         .padding(.all, 8)
@@ -35,11 +37,12 @@ struct NotSubscribedRow: View {
             .fill(.thinMaterial)
         }
     }
+    .tint(isSubscribed ? .green : .accentColor)
   }
 }
 
 #Preview {
-  NotSubscribedRow()
+  SubscriptionRow(isSubscribed: false)
     .previewListSection()
     .environment(Router())
 }

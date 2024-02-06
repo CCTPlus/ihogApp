@@ -13,5 +13,6 @@ enum SheetDestination: Identifiable {
   }
 
   case newShow
-  case proDetail
+  case paywall
+  case subscriptionManagement
 }
