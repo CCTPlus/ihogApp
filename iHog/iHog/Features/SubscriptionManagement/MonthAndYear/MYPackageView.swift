@@ -56,14 +56,6 @@ struct MYPackageView: View {
   func viewSetup() async {
     let statuses = await Purchases.shared.checkTrialOrIntroDiscountEligibility(packages: [package])
     introOfferStatus = statuses[package]?.status ?? .unknown
-
-    let discount = package.storeProduct.introductoryDiscount
-    print(
-      "🚨",
-      discount?.subscriptionPeriod.value,
-      discount?.subscriptionPeriod.unit,
-      discount?.paymentMode
-    )
   }
 }
 
