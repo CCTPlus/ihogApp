@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ProgrammerView: View {
+  @Environment(OSCManager.self) var oscManager
+
   var body: some View {
     VStack(spacing: 24) {
-      Text("Command line text here")
+      Text(oscManager.commandLine)
       Spacer()
       KindKeysView()
       KeypadView()

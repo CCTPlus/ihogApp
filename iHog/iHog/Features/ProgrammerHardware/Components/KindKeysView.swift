@@ -38,7 +38,7 @@ struct KindKeysView: View {
             })
         }
         .buttonStyle(.borderedProminent)
-        .tint(.secondary)
+        .tint(oscManager.leds[key] ?? false ? .accentColor : .secondary)
       }
     }
   }

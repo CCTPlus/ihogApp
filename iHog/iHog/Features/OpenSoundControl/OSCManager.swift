@@ -15,13 +15,27 @@ class OSCManager {
   private var client: OSCClient
 
   /// IP address of the console. Defaults to the hognet ip address
-  var consoleIPAddress: String
+  private var consoleIPAddress: String
   /// The port the console receives OSC messages on
-  var consoleInputPort: Int
+  private var consoleInputPort: Int
 
   private var safeInputPort: UInt16 {
     UInt16(consoleInputPort)
   }
+
+  // MARK: Received values
+  var commandLine: String = ""
+  var consoleTime: String = ""
+  var leds: [HogKey: Bool] = [
+    .intensity: false,
+    .position: false,
+    .color: false,
+    .beam: false,
+    .effect: false,
+    .time: false,
+    .group: false,
+    .fixture: false,
+  ]
 
   init(outputPort: Int, consoleInputPort: Int, consoleIPAddress: String = "172.31.0.1") {
     self.server = OSCServer(port: UInt16(outputPort))
@@ -31,8 +45,8 @@ class OSCManager {
   }
 
   func configureServer(with port: Int) {
-    server = OSCServer(port: UInt16(port)) { message, _ in
-      Logger.osc.debug("Received \(message)")
+    server = OSCServer(port: UInt16(port)) { [weak self] message, _ in
+      self?.readMessage(message: message)
     }
   }
 
