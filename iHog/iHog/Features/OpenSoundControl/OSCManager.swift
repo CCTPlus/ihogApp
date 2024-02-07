@@ -7,6 +7,7 @@
 
 import Foundation
 import OSCKit
+import OSLog
 
 @Observable
 class OSCManager {
@@ -31,7 +32,7 @@ class OSCManager {
 
   func configureServer(with port: Int) {
     server = OSCServer(port: UInt16(port)) { message, _ in
-      print("Received \(message)")
+      Logger.osc.debug("Received \(message)")
     }
   }
 
@@ -43,15 +44,26 @@ class OSCManager {
   }
 
   func sendTestMessage() throws {
-    let oscMessage = OSCMessage("/hog/0/tet")
+    let oscMessage = OSCMessage("/hog/0/test")
+    Logger.osc.debug("Message sending to \(self.consoleIPAddress) \(self.safeInputPort)")
     try client.send(oscMessage, to: consoleIPAddress, port: safeInputPort)
   }
 
   func toggleOSC() throws {
     if server.isStarted {
       server.stop()
+      Logger.osc.debug("🚨 stopped server")
     } else {
       try server.start()
+      Logger.osc.debug("🚨 started server")
     }
+  }
+
+  func push(button: HogKey) throws {
+    let messageDown = OSCMessage(button.oscAddress, values: [1])
+    let messageUp = OSCMessage(button.oscAddress, values: [0])
+
+    try client.send(messageDown, to: consoleIPAddress, port: safeInputPort)
+    try client.send(messageUp, to: consoleIPAddress, port: safeInputPort)
   }
 }
