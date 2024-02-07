@@ -23,4 +23,18 @@ extension View {
       })
     }
   }
+  func widthChangePreference(completion: @escaping (CGFloat) -> Void) -> some View {
+    self.overlay {
+      GeometryReader(content: { geometry in
+        Color.clear
+          .preference(key: WidthKey.self, value: geometry.size.width)
+          .onPreferenceChange(
+            WidthKey.self,
+            perform: { value in
+              completion(value)
+            }
+          )
+      })
+    }
+  }
 }

@@ -9,12 +9,12 @@ import OSLog
 import SwiftUI
 
 struct OSCConfigView: View {
-  @Environment(OSCManager.self) var oscManager
+  @AppStorage(UserDefaultKey.isOSCEnabled.rawValue) var isOSCEnabled = false
+  @AppStorage(UserDefaultKey.consoleIP.rawValue) var consoleIPAddress = "172.31.0.1"
+  @AppStorage(UserDefaultKey.clientPort.rawValue) var inputPort = "7001"
+  @AppStorage(UserDefaultKey.serverPort.rawValue) var outputPort = "7002"
 
-  @State private var isOSCEnabled = false
-  @State private var consoleIPAddress = "172.31.0.1"
-  @State private var inputPort = "7001"
-  @State private var outputPort = "7002"
+  @Environment(OSCManager.self) var oscManager
 
   var disableTextFields: Bool {
     isOSCEnabled == true
@@ -61,6 +61,7 @@ struct OSCConfigView: View {
         Button("Send test signal") {
           do {
             try oscManager.sendTestMessage()
+            Logger.osc.debug("Sent message")
           } catch {
             Logger.osc.error("\(error)")
           }
@@ -70,13 +71,9 @@ struct OSCConfigView: View {
         Text("Open the console's log and see `/hog/test/0/` be received")
       }
     }
-    .task {
-      isOSCEnabled = oscManager.server.isStarted
-    }
     .onChange(of: isOSCEnabled) {
       if isOSCEnabled {
-        oscManager.configureServer(with: Int(outputPort)!)
-        oscManager.configureConsoleInformation(port: Int(inputPort)!, ipAddress: consoleIPAddress)
+        configureOSC()
       }
       do {
         try oscManager.toggleOSC()
@@ -84,6 +81,11 @@ struct OSCConfigView: View {
         Logger.osc.error("\(error)")
       }
     }
+  }
+
+  func configureOSC() {
+    oscManager.configureServer(with: Int(outputPort)!)
+    oscManager.configureConsoleInformation(port: Int(inputPort)!, ipAddress: consoleIPAddress)
   }
 }
 

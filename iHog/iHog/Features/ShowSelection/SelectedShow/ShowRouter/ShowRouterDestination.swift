@@ -49,10 +49,11 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
     Label(self.title, systemImage: isSelected ? "checkmark" : self.icon)
   }
 
+  @ViewBuilder
   var view: some View {
     switch self {
       case .programming:
-        Text(title)
+        ProgrammerView()
       case .playback:
         Text(title)
       case .hardwarePlayback:

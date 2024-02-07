@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum UserDefaultKey {
-  static let proIsActive = "proIsActive"
-  static let userSince = "userSince"
-  static let proSince = "proSince"
+enum UserDefaultKey: String {
+  case proIsActive = "proIsActive"
+  case userSince = "userSince"
+  case proSince = "proSince"
+  case consoleIP = "consoleIP"
+  case serverPort = "serverPort"
+  case clientPort = "clientPort"
+  case isOSCEnabled
 }

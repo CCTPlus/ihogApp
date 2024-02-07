@@ -10,7 +10,7 @@ import SwiftUI
 
 @main
 struct iHogApp: App {
-  @AppStorage(UserDefaultKey.proIsActive) var proIsActive = false
+  @AppStorage(UserDefaultKey.proIsActive.rawValue) var proIsActive = false
 
   @State var network = NetworkManager()
   @State var userLevelManager = UserLevelManager()
@@ -22,6 +22,7 @@ struct iHogApp: App {
   init() {
     Purchases.logLevel = .debug
     Purchases.configure(withAPIKey: RCConstant.APIKEY)
+    UserDefaults.standard.set(false, forKey: UserDefaultKey.isOSCEnabled.rawValue)
   }
 
   var body: some Scene {
