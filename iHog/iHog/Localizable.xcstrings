@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "@" : {
+
+    },
+    "/" : {
+
+    },
     "%lld %@ free trial" : {
       "localizations" : {
         "en" : {
@@ -121,10 +127,19 @@
         }
       }
     },
+    "Beam" : {
+
+    },
     "billed %@" : {
 
     },
     "Cancel" : {
+
+    },
+    "Colour" : {
+
+    },
+    "Command line text here" : {
 
     },
     "Configure OSC" : {
@@ -139,10 +154,22 @@
     "Do this later" : {
 
     },
+    "Effect" : {
+
+    },
     "Email Jay" : {
 
     },
     "Enable OSC" : {
+
+    },
+    "Enter" : {
+
+    },
+    "Fixture" : {
+
+    },
+    "Group" : {
 
     },
     "Hello" : {
@@ -187,6 +214,9 @@
       }
     },
     "Input Port" : {
+
+    },
+    "Intens" : {
 
     },
     "IP Address" : {
@@ -239,6 +269,9 @@
 
     },
     "per month" : {
+
+    },
+    "Position" : {
 
     },
     "Reach out to Jay and ask!" : {
@@ -368,6 +401,9 @@
 
     },
     "This is what you should put into the Output IP address" : {
+
+    },
+    "Time" : {
 
     },
     "Upgrade to pro" : {

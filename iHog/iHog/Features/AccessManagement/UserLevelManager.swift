@@ -64,7 +64,7 @@ class UserLevelManager {
   }
 
   private func determineAccessLevelFromUserDefaults() {
-    let storedValue = UserDefaults.standard.bool(forKey: UserDefaultKey.proIsActive)
+    let storedValue = UserDefaults.standard.bool(forKey: UserDefaultKey.proIsActive.rawValue)
     if storedValue {
       userLevel = .pro
     } else {
@@ -77,16 +77,18 @@ class UserLevelManager {
     Logger.iap.debug("\(entitlements[RCConstant.Entitlement.pro])")
     if entitlements[RCConstant.Entitlement.pro]?.isActive == true {
       userLevel = .pro
-      UserDefaults.standard.set(true, forKey: UserDefaultKey.proIsActive)
+      UserDefaults.standard.set(true, forKey: UserDefaultKey.proIsActive.rawValue)
     } else {
       userLevel = .free
-      UserDefaults.standard.set(false, forKey: UserDefaultKey.proIsActive)
+      UserDefaults.standard.set(false, forKey: UserDefaultKey.proIsActive.rawValue)
     }
   }
 
   private func determineDatesFromUserDefaults() {
-    let userSinceDateString = UserDefaults.standard.string(forKey: UserDefaultKey.userSince)
-    let proSinceDateString = UserDefaults.standard.string(forKey: UserDefaultKey.proSince)
+    let userSinceDateString = UserDefaults.standard.string(
+      forKey: UserDefaultKey.userSince.rawValue
+    )
+    let proSinceDateString = UserDefaults.standard.string(forKey: UserDefaultKey.proSince.rawValue)
 
     let dateFormatter = ISO8601DateFormatter()
 
@@ -103,7 +105,10 @@ class UserLevelManager {
     let info = try await Purchases.shared.customerInfo()
     let purchaseDate = info.originalPurchaseDate
     guard let purchaseDate else { return }
-    UserDefaults.standard.set(purchaseDate.ISO8601Format(), forKey: UserDefaultKey.userSince)
+    UserDefaults.standard.set(
+      purchaseDate.ISO8601Format(),
+      forKey: UserDefaultKey.userSince.rawValue
+    )
     userSince = purchaseDate
     Logger.iap.debug("User since \(purchaseDate.ISO8601Format())")
   }
@@ -112,7 +117,10 @@ class UserLevelManager {
     let info = try await Purchases.shared.customerInfo()
     let purchaseDate = info.purchaseDate(forEntitlement: RCConstant.Entitlement.pro)
     guard let purchaseDate else { return }
-    UserDefaults.standard.set(purchaseDate.ISO8601Format(), forKey: UserDefaultKey.proSince)
+    UserDefaults.standard.set(
+      purchaseDate.ISO8601Format(),
+      forKey: UserDefaultKey.proSince.rawValue
+    )
     proSince = purchaseDate
     Logger.iap.debug("Pro since \(purchaseDate.ISO8601Format())")
   }
