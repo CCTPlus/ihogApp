@@ -14,57 +14,15 @@ struct PlaybackBar: View {
 
   var body: some View {
     VStack(spacing: 12) {
-      Button {
-        print("Something")
-      } label: {
-        Text("\(masterNumber)")
-          .font(.largeTitle)
-          .bold()
-          .padding(.all, 4)
-          .frame(maxWidth: .infinity)
-      }
-      .buttonStyle(.borderedProminent)
-      .tint(.secondary)
-      Button {
-        print("Something")
-      } label: {
-        Image(systemName: "play.fill")
-          .font(.largeTitle)
-          .frame(maxWidth: .infinity)
-      }
-      .buttonStyle(.borderedProminent)
-      .tint(.secondary)
-      Button {
-        print("Something")
-      } label: {
-        Image(systemName: "pause.fill")
-          .font(.largeTitle)
-          .frame(maxWidth: .infinity)
-      }
-      .buttonStyle(.borderedProminent)
-      .tint(.secondary)
-      Button {
-        print("Something")
-      } label: {
-        Image(systemName: "play.fill")
-          .font(.largeTitle)
-          .rotationEffect(Angle(degrees: 180))
-          .frame(maxWidth: .infinity)
-      }
-      .buttonStyle(.borderedProminent)
-      .tint(.secondary)
+      HardwareButton(key: .pbChoose, masterNumber: masterNumber)
+      HardwareButton(key: .pbGo, masterNumber: masterNumber)
+      HardwareButton(key: .pbHalt, masterNumber: masterNumber)
+      HardwareButton(key: .pbBack, masterNumber: masterNumber)
+
       Slider(value: $slider)
         .rotationEffect(Angle(degrees: -90))
         .frame(width: 200, height: 200)
-      Button {
-        print("Something")
-      } label: {
-        Image(systemName: "lines.measurement.vertical")
-          .font(.largeTitle)
-          .frame(maxWidth: .infinity)
-      }
-      .buttonStyle(.borderedProminent)
-      .tint(.secondary)
+      HardwareButton(key: .flash, masterNumber: masterNumber)
     }
     .frame(width: 100)
   }
@@ -77,4 +35,5 @@ struct PlaybackBar: View {
       PlaybackBar(masterNumber: 1)
     }
   }
+  .environment(OSCManager(outputPort: 7001, consoleInputPort: 7002))
 }

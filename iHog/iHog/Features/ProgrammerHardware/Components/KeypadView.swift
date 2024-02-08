@@ -12,7 +12,8 @@ struct KeypadView: View {
   @State private var buttonHeight: CGFloat = 0
 
   let keys: [HogKey] = [
-    .back, .slash, .minus, .plus, .seven, .eight, .nine, .thru, .four, .five, .six, .full, .one,
+    .backspace, .slash, .minus, .plus, .seven, .eight, .nine, .thru, .four, .five, .six, .full,
+    .one,
     .two, .three, .at, .zero, .dot, .enter,
   ]
   let lastRow: [HogKey] = [.zero, .dot, .enter]
@@ -27,29 +28,14 @@ struct KeypadView: View {
   var body: some View {
     LazyVGrid(columns: cols) {
       ForEach(keys) { key in
-        Button {
-          do {
-            try oscManager.push(button: key)
-          } catch {
-            print(error)
-          }
-        } label: {
-          if key == .enter {
-            key.label
-              .font(.largeTitle)
-              .frame(width: (buttonHeight * 2) + 32, height: buttonHeight)
-          } else {
-            key.label
-              .font(.largeTitle)
-              .frame(maxWidth: .infinity)
-              .frame(height: buttonHeight)
-              .widthChangePreference(completion: { width in
-                buttonHeight = width
-              })
-          }
+        if key == .enter {
+          HardwareButton(key: key, givenButtonWidth: buttonHeight * 2)
+        } else {
+          HardwareButton(key: key)
+            .heightChangePreference { height in
+              buttonHeight = height
+            }
         }
-        .buttonStyle(.borderedProminent)
-        .tint(.secondary)
       }
     }
   }

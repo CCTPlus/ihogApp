@@ -13,6 +13,7 @@ enum LoggerCategory: String {
   case user
   case iap
   case osc
+  case hardware
 }
 
 extension Logger {
@@ -32,5 +33,9 @@ extension Logger {
   static let osc = Logger(
     subsystem: subsystem,
     category: LoggerCategory.osc.rawValue
+  )
+  static let hardware = Logger(
+    subsystem: subsystem,
+    category: LoggerCategory.hardware.rawValue
   )
 }

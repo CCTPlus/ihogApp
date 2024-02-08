@@ -13,8 +13,9 @@ struct HardwareButton: View {
   @State private var buttonHeight: CGFloat = 0
 
   var key: HogKey
-  var masterNumber: Int?
-  var label: String?
+  var masterNumber: Int? = nil
+  var label: String? = nil
+  var givenButtonWidth: CGFloat? = nil
 
   var font: Font {
     switch key {
@@ -33,16 +34,28 @@ struct HardwareButton: View {
     Button {
       Logger.hardware.debug("\(key.rawValue) Button pushed")
     } label: {
-      buttonLabel
-        .font(font)
-        .frame(maxWidth: .infinity)
-        .frame(height: buttonHeight)
-        .widthChangePreference { width in
-          buttonHeight = width
-        }
+      if let givenButtonWidth {
+        buttonLabel
+          .font(font)
+          .frame(width: givenButtonWidth)
+          .frame(maxHeight: .infinity)
+      } else {
+        buttonLabel
+          .font(font)
+          .frame(maxWidth: .infinity)
+          .frame(height: buttonHeight)
+          .widthChangePreference { width in
+            if masterNumber != nil {
+              buttonHeight = width / 2
+            } else {
+
+              buttonHeight = width
+            }
+          }
+      }
     }
     .buttonStyle(.borderedProminent)
-    .tint(.secondary)
+    .tint(oscManager.leds[key] ?? false ? .accentColor : .secondary)
     .pressActions {
       oscManager.push(address: key.oscAddress(masterNumber: masterNumber))
     } onRelease: {
@@ -56,7 +69,7 @@ struct HardwareButton: View {
     if let label = label {
       Text(label)
     } else {
-      key.label
+      key.label(masterNumber: masterNumber)
     }
   }
 }

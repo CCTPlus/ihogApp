@@ -41,6 +41,8 @@
 		6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6951171E2B5ECB4B0006B04F /* NetworkManager.swift */; };
 		695117222B5ED2840006B04F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117212B5ED2840006B04F /* Logger.swift */; };
 		696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AF49F2B6360D60066F028 /* MYPackageView.swift */; };
+		696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537C2B73CB19002156B8 /* HardwareButton.swift */; };
+		696C537F2B73CD21002156B8 /* PressActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537E2B73CD21002156B8 /* PressActions.swift */; };
 		697BD73D2B6322F8009CBB5F /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */; };
 		697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73E2B632485009CBB5F /* SheetDestination.swift */; };
 		697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */; };
@@ -60,6 +62,8 @@
 		69AD9F5E2B7318D500974060 /* OSCManager+Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F5D2B7318D500974060 /* OSCManager+Receiver.swift */; };
 		69AD9F602B731E4A00974060 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F5F2B731E4A00974060 /* PersistenceController.swift */; };
 		69AD9F622B7323C900974060 /* HogStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F612B7323C900974060 /* HogStatus.swift */; };
+		69AD9F652B7336B600974060 /* PlaybackHardwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F642B7336B600974060 /* PlaybackHardwareView.swift */; };
+		69AD9F682B73BED600974060 /* PlaybackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F672B73BED600974060 /* PlaybackBar.swift */; };
 		69B75BB92B72CDAA00A696C7 /* IPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B75BB82B72CDAA00A696C7 /* IPHelper.swift */; };
 		69B75BBC2B72D37E00A696C7 /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 69B75BBB2B72D37E00A696C7 /* OSCKit */; };
 		69B75BBE2B72D37E00A696C7 /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = 69B75BBD2B72D37E00A696C7 /* OSCKitCore */; };
@@ -108,6 +112,8 @@
 		6951171E2B5ECB4B0006B04F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		695117212B5ED2840006B04F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		696AF49F2B6360D60066F028 /* MYPackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYPackageView.swift; sourceTree = "<group>"; };
+		696C537C2B73CB19002156B8 /* HardwareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareButton.swift; sourceTree = "<group>"; };
+		696C537E2B73CD21002156B8 /* PressActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressActions.swift; sourceTree = "<group>"; };
 		697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
 		697BD73E2B632485009CBB5F /* SheetDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDestination.swift; sourceTree = "<group>"; };
 		697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaywallView.swift; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 		69AD9F5D2B7318D500974060 /* OSCManager+Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSCManager+Receiver.swift"; sourceTree = "<group>"; };
 		69AD9F5F2B731E4A00974060 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		69AD9F612B7323C900974060 /* HogStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HogStatus.swift; sourceTree = "<group>"; };
+		69AD9F642B7336B600974060 /* PlaybackHardwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackHardwareView.swift; sourceTree = "<group>"; };
+		69AD9F672B73BED600974060 /* PlaybackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackBar.swift; sourceTree = "<group>"; };
 		69B75BB82B72CDAA00A696C7 /* IPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPHelper.swift; sourceTree = "<group>"; };
 		69B75BBF2B72D4D200A696C7 /* OSCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCManager.swift; sourceTree = "<group>"; };
 		69B866A82B7054AE003EAD38 /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
@@ -300,6 +308,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		696C537B2B73CB05002156B8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				696C537C2B73CB19002156B8 /* HardwareButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		697BD73B2B6322CE009CBB5F /* SubscriptionManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +369,7 @@
 				695116CC2B5CC34B0006B04F /* Models */,
 				695116C92B5CBE5A0006B04F /* DataStore */,
 				699DA6E12B5C548300B61547 /* Features */,
+				696C537B2B73CB05002156B8 /* Components */,
 				69C710E02B642F720027BF0B /* Helpers */,
 				699DA6CC2B5C541300B61547 /* iHogApp.swift */,
 				699DA6CE2B5C541300B61547 /* ContentView.swift */,
@@ -380,6 +397,7 @@
 		699DA6E12B5C548300B61547 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				69AD9F632B7336AA00974060 /* PlaybackHardware */,
 				69AD9F532B72E38900974060 /* ProgrammerHardware */,
 				69B866B12B71E542003EAD38 /* OpenSoundControl */,
 				6951171D2B5ECB3E0006B04F /* NetworkManagement */,
@@ -432,6 +450,23 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		69AD9F632B7336AA00974060 /* PlaybackHardware */ = {
+			isa = PBXGroup;
+			children = (
+				69AD9F662B73BEB500974060 /* Components */,
+				69AD9F642B7336B600974060 /* PlaybackHardwareView.swift */,
+			);
+			path = PlaybackHardware;
+			sourceTree = "<group>";
+		};
+		69AD9F662B73BEB500974060 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				69AD9F672B73BED600974060 /* PlaybackBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		69B866B12B71E542003EAD38 /* OpenSoundControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +494,7 @@
 				69C710E12B642FCC0027BF0B /* View+Extensions.swift */,
 				69C710E32B64308B0027BF0B /* PreferenceKeys.swift */,
 				69C710E52B644BC60027BF0B /* RevenueCat+Extensions.swift */,
+				696C537E2B73CD21002156B8 /* PressActions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,17 +613,20 @@
 				697BD7472B635224009CBB5F /* MonthAndYearOptionView.swift in Sources */,
 				697BD73D2B6322F8009CBB5F /* SubscriptionRow.swift in Sources */,
 				695116FE2B5EA6000006B04F /* ShowMenu.swift in Sources */,
+				696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
 				695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */,
 				699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */,
 				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
 				695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */,
 				695116FB2B5E29220006B04F /* ShowRouterDestination.swift in Sources */,
+				69AD9F652B7336B600974060 /* PlaybackHardwareView.swift in Sources */,
 				69AD9F592B72EBFF00974060 /* ProgrammerView.swift in Sources */,
 				695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */,
 				69B75BB92B72CDAA00A696C7 /* IPHelper.swift in Sources */,
 				695116F62B5E1F440006B04F /* FetchRequestBuilder.swift in Sources */,
 				695117222B5ED2840006B04F /* Logger.swift in Sources */,
+				696C537F2B73CD21002156B8 /* PressActions.swift in Sources */,
 				695117182B5EBDE60006B04F /* Feature.swift in Sources */,
 				695116F12B5E0F480006B04F /* HogAlert.swift in Sources */,
 				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
@@ -598,6 +637,7 @@
 				695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */,
 				697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */,
 				69AD9F552B72E3AF00974060 /* KeypadView.swift in Sources */,
+				69AD9F682B73BED600974060 /* PlaybackBar.swift in Sources */,
 				69C710E62B644BC60027BF0B /* RevenueCat+Extensions.swift in Sources */,
 				69AD9F622B7323C900974060 /* HogStatus.swift in Sources */,
 				69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */,
