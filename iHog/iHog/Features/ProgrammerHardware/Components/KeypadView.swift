@@ -18,15 +18,8 @@ struct KeypadView: View {
   ]
   let lastRow: [HogKey] = [.zero, .dot, .enter]
 
-  let cols = [
-    GridItem(.flexible(minimum: 70), spacing: 8, alignment: .leading),
-    GridItem(.flexible(minimum: 70), spacing: 8, alignment: .leading),
-    GridItem(.flexible(minimum: 70), spacing: 8, alignment: .leading),
-    GridItem(.flexible(minimum: 70), spacing: 8, alignment: .leading),
-  ]
-
   var body: some View {
-    LazyVGrid(columns: cols) {
+    LazyVGrid(columns: GridConstant.fourColumn) {
       ForEach(keys) { key in
         if key == .enter {
           HardwareButton(key: key, givenButtonWidth: buttonHeight * 2)

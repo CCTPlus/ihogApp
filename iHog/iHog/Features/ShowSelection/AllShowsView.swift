@@ -40,13 +40,18 @@ struct AllShowsView: View {
   }
 }
 
-#Preview {
-  NavigationStack {
-    List {
-      Section {
-        AllShowsView()
-          .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+#if DEBUG
+  #Preview {
+    NavigationStack {
+      List {
+        Section {
+          AllShowsView()
+            .environment(
+              \.managedObjectContext,
+              PersistenceController.preview.container.viewContext
+            )
+        }
       }
     }
   }
-}
+#endif

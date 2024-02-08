@@ -19,11 +19,12 @@ struct HardwareButton: View {
 
   var font: Font {
     switch key {
-      case .release:
+      case .release, .h1, .h2, .h3, .h4, .h5, .h6, .h7, .h8, .h9, .h10, .h11, .h12:
         return .footnote
-      case .assert, .nextPage:
-        return .body
-      case .intensity, .position, .color, .beam, .effect, .time, .group, .fixture:
+      case .assert, .nextPage, .intensity, .position, .color, .beam, .effect, .time, .group,
+        .fixture, .back, .all, .next, .list, .scene, .cue, .macro, .live, .page, .set, .pig, .goto,
+        .setup, .fan, .open, .delete, .move, .copy, .update, .merge, .record, .highlight, .blind,
+        .clear:
         return .body
       default:
         return .largeTitle
