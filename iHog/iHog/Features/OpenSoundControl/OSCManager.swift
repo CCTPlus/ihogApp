@@ -26,7 +26,7 @@ class OSCManager {
   // MARK: Received values
   var commandLine: String = ""
   var consoleTime: String = ""
-  var leds: [HogKey: Bool] = [
+  var blueLeds: [HogKey: Bool] = [
     .intensity: false,
     .position: false,
     .color: false,
@@ -36,6 +36,8 @@ class OSCManager {
     .group: false,
     .fixture: false,
   ]
+
+  var redLeds: [HogKey: PlaybackKey] = [:]
 
   init(outputPort: Int, consoleInputPort: Int, consoleIPAddress: String = "172.31.0.1") {
     self.server = OSCServer(port: UInt16(outputPort))

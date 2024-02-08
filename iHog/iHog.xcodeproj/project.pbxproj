@@ -43,6 +43,7 @@
 		696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AF49F2B6360D60066F028 /* MYPackageView.swift */; };
 		696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537C2B73CB19002156B8 /* HardwareButton.swift */; };
 		696C537F2B73CD21002156B8 /* PressActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537E2B73CD21002156B8 /* PressActions.swift */; };
+		696C53812B74755C002156B8 /* PlaybackKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C53802B74755C002156B8 /* PlaybackKey.swift */; };
 		697BD73D2B6322F8009CBB5F /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */; };
 		697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73E2B632485009CBB5F /* SheetDestination.swift */; };
 		697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */; };
@@ -114,6 +115,7 @@
 		696AF49F2B6360D60066F028 /* MYPackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYPackageView.swift; sourceTree = "<group>"; };
 		696C537C2B73CB19002156B8 /* HardwareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareButton.swift; sourceTree = "<group>"; };
 		696C537E2B73CD21002156B8 /* PressActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressActions.swift; sourceTree = "<group>"; };
+		696C53802B74755C002156B8 /* PlaybackKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackKey.swift; sourceTree = "<group>"; };
 		697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
 		697BD73E2B632485009CBB5F /* SheetDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDestination.swift; sourceTree = "<group>"; };
 		697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaywallView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				69B866AD2B71DC4D003EAD38 /* WishKitConstant.swift */,
 				69AD9F562B72E54D00974060 /* HogKey.swift */,
 				69AD9F612B7323C900974060 /* HogStatus.swift */,
+				696C53802B74755C002156B8 /* PlaybackKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */,
 				6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */,
 				695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */,
+				696C53812B74755C002156B8 /* PlaybackKey.swift in Sources */,
 				695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */,
 				697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */,
 				69AD9F552B72E3AF00974060 /* KeypadView.swift in Sources */,

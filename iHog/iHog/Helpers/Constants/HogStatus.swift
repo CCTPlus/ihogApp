@@ -19,8 +19,9 @@ enum HogStatus: String {
   case time
   case group
   case fixture
+  case flash
 
-  var address: String {
+  func address(masterNumber: Int? = nil) -> String {
     let status = "hog/status/"
     switch self {
       case .commandLine:
@@ -29,6 +30,8 @@ enum HogStatus: String {
         return status + "led/" + self.rawValue
       case .consoleTime:
         return status + "time"
+      case .flash:
+        return status + "led/\(self.rawValue)/\(masterNumber ?? 0)"
     }
   }
 
@@ -52,6 +55,8 @@ enum HogStatus: String {
         return .group
       case .fixture:
         return .fixture
+      case .flash:
+        return .flash
     }
   }
 }
