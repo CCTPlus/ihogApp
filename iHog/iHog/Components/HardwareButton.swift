@@ -30,6 +30,20 @@ struct HardwareButton: View {
     }
   }
 
+  var tintColor: Color {
+    if oscManager.blueLeds[key] == true {
+      return .blue
+    }
+
+    if (oscManager.redLeds[key]?.isOn == true)
+      && (oscManager.redLeds[key]?.masterNumber == masterNumber)
+    {
+      return .red
+    }
+
+    return .secondary
+  }
+
   var body: some View {
     Button {
       Logger.hardware.debug("\(key.rawValue) Button pushed")
@@ -55,7 +69,7 @@ struct HardwareButton: View {
       }
     }
     .buttonStyle(.borderedProminent)
-    .tint(oscManager.leds[key] ?? false ? .accentColor : .secondary)
+    .tint(tintColor)
     .pressActions {
       oscManager.push(address: key.oscAddress(masterNumber: masterNumber))
     } onRelease: {

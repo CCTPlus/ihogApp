@@ -13,9 +13,9 @@ extension OSCManager {
   func readMessage(message: OSCMessage) {
     let pattern = message.addressPattern
 
-    if pattern.matches(localAddress: HogStatus.consoleTime.address) {
+    if pattern.matches(localAddress: HogStatus.consoleTime.address()) {
       parseConsoleTime(message: message)
-    } else if pattern.matches(localAddress: HogStatus.commandLine.address) {
+    } else if pattern.matches(localAddress: HogStatus.commandLine.address()) {
       parseCommandLine(message: message)
     } else if pattern.pathComponents[2].lowercased() == "led" {
       parseLEDStatus(message: message)
@@ -41,13 +41,25 @@ extension OSCManager {
     }
     let isOn = value == Float(1)
 
-    guard let statusString = message.addressPattern.pathComponents.last?.lowercased(),
-      let statusButton = HogStatus(rawValue: statusString),
+    let statusString = message.addressPattern.pathComponents[3].lowercased()
+
+    guard let statusButton = HogStatus(rawValue: statusString),
       let hogKey = statusButton.hogKey
     else {
       Logger.osc.error("NO STATUS AVAILABLE")
       return
     }
-    leds[hogKey] = isOn
+
+    switch hogKey {
+      case .flash:
+        let numString = message.addressPattern.pathComponents.last?.lowercased() ?? ""
+        let num = Int(numString) ?? 0
+        let playbackKey = PlaybackKey(key: hogKey, masterNumber: num, isOn: isOn)
+        redLeds[hogKey] = playbackKey
+      case .intensity, .position, .color, .beam, .effect, .time, .group, .fixture:
+        blueLeds[hogKey] = isOn
+      default:
+        break
+    }
   }
 }
