@@ -73,11 +73,21 @@ class OSCManager {
     }
   }
 
-  func push(button: HogKey) throws {
-    let messageDown = OSCMessage(button.oscAddress, values: [1])
-    let messageUp = OSCMessage(button.oscAddress, values: [0])
+  func push(address: String) {
+    let messageDown = OSCMessage(address, values: [1])
+    do {
+      try client.send(messageDown, to: consoleIPAddress, port: safeInputPort)
+    } catch {
+      Logger.osc.error("Pushing down button did not send \(error)")
+    }
+  }
 
-    try client.send(messageDown, to: consoleIPAddress, port: safeInputPort)
-    try client.send(messageUp, to: consoleIPAddress, port: safeInputPort)
+  func release(address: String) {
+    let messageUp = OSCMessage(address, values: [0])
+    do {
+      try client.send(messageUp, to: consoleIPAddress, port: safeInputPort)
+    } catch {
+      Logger.osc.error("Releasing button did not send \(error)")
+    }
   }
 }

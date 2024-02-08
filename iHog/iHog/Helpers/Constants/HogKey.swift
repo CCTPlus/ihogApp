@@ -13,6 +13,7 @@ enum HogKey: Int, Identifiable {
     self.rawValue
   }
 
+  case zero = 0
   case one = 1
   case two = 2
   case three = 3
@@ -22,51 +23,69 @@ enum HogKey: Int, Identifiable {
   case seven = 7
   case eight = 8
   case nine = 9
-  case zero = 0
-  case back = 10
+  case backspace = 10
   case thru, full, at, minus, plus, slash, dot, enter
-  case intensity = 20
+  case intensity
   case position, color, beam, effect, time, group, fixture
+  case pig, assert, release, nextPage
+  case fader, flash, pbGo, pbBack, pbHalt, pbChoose
 
   @ViewBuilder
-  var label: some View {
+  func label(masterNumber: Int?) -> some View {
     switch self {
       case .one:
-        Image(systemName: "1.square")
+        Text("1")
+          .bold()
       case .two:
-        Image(systemName: "2.square")
+        Text("2")
+          .bold()
       case .three:
-        Image(systemName: "3.square")
+        Text("3")
+          .bold()
       case .four:
-        Image(systemName: "4.square")
+        Text("4")
+          .bold()
       case .five:
-        Image(systemName: "5.square")
+        Text("5")
+          .bold()
       case .six:
-        Image(systemName: "6.square")
+        Text("6")
+          .bold()
       case .seven:
-        Image(systemName: "7.square")
+        Text("7")
+          .bold()
       case .eight:
-        Image(systemName: "8.square")
+        Text("8")
+          .bold()
       case .nine:
-        Image(systemName: "9.square")
+        Text("9")
+          .bold()
       case .zero:
-        Image(systemName: "0.square")
-      case .back:
+        Text("0")
+          .bold()
+      case .backspace:
         Image(systemName: "arrowshape.left.fill")
       case .thru:
-        Image(systemName: "greaterthan.square")
+        Image(systemName: "greaterthan")
+          .bold()
       case .full:
-        Image(systemName: "arrowshape.up.fill")
+        Text("Full")
+          .bold()
       case .at:
         Text("@")
+          .bold()
       case .minus:
-        Image(systemName: "minus.square")
+        Image(systemName: "minus")
+          .bold()
       case .plus:
-        Image(systemName: "plus.square")
+        Image(systemName: "plus")
+          .bold()
       case .slash:
         Text("/")
+          .bold()
       case .dot:
-        Image(systemName: "dot.square")
+        Text(".")
+          .bold()
       case .enter:
         Text("Enter")
       case .intensity:
@@ -85,10 +104,31 @@ enum HogKey: Int, Identifiable {
         Text("Group")
       case .fixture:
         Text("Fixture")
+      case .pig:
+        Text("Pig")
+      case .assert:
+        Text("Assert")
+      case .release:
+        Text("Release")
+      case .nextPage:
+        Text(">> Page")
+      case .fader:
+        Text("nothing")
+      case .flash:
+        Image(systemName: "lines.measurement.vertical")
+      case .pbGo:
+        Image(systemName: "play.fill")
+      case .pbBack:
+        Image(systemName: "play.fill")
+          .rotationEffect(Angle(degrees: 180))
+      case .pbHalt:
+        Image(systemName: "pause.fill")
+      case .pbChoose:
+        Text("\(masterNumber ?? 0)")
     }
   }
 
-  var oscAddress: String {
+  func oscAddress(masterNumber: Int? = nil) -> String {
     switch self {
       case .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero:
         let formatter = NumberFormatter()
@@ -98,7 +138,7 @@ enum HogKey: Int, Identifiable {
           return "/hog/0/NO_VALID_NUMBER"
         }
         return "/hog/hardware/\(spelledOut)"
-      case .back:
+      case .backspace:
         return "/hog/hardware/backspace"
       case .thru:
         return "/hog/hardware/thru"
@@ -132,6 +172,26 @@ enum HogKey: Int, Identifiable {
         return "/hog/hardware/group"
       case .fixture:
         return "/hog/hardware/fixture"
+      case .pig:
+        return "/hog/hardware/pig"
+      case .assert:
+        return "/hog/hardware/assert"
+      case .release:
+        return "/hog/hardware/release"
+      case .nextPage:
+        return "/hog/hardware/nextpage"
+      case .fader:
+        return "/hog/hardware/fader"
+      case .flash:
+        return "/hog/hardware/flash/\(masterNumber ?? 0)"
+      case .pbGo:
+        return "/hog/hardware/go/\(masterNumber ?? 0)"
+      case .pbBack:
+        return "/hog/hardware/goback/\(masterNumber ?? 0)"
+      case .pbHalt:
+        return "/hog/hardware/pause/\(masterNumber ?? 0)"
+      case .pbChoose:
+        return "/hog/hardware/choose/\(masterNumber ?? 0)"
     }
   }
 }

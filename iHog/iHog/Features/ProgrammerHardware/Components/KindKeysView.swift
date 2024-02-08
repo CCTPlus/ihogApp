@@ -23,22 +23,7 @@ struct KindKeysView: View {
   var body: some View {
     LazyVGrid(columns: cols) {
       ForEach(keys) { key in
-        Button {
-          do {
-            try oscManager.push(button: key)
-          } catch {
-            print(error)
-          }
-        } label: {
-          key.label
-            .frame(maxWidth: .infinity)
-            .frame(height: buttonHeight)
-            .widthChangePreference(completion: { width in
-              buttonHeight = width
-            })
-        }
-        .buttonStyle(.borderedProminent)
-        .tint(oscManager.leds[key] ?? false ? .accentColor : .secondary)
+        HardwareButton(key: key)
       }
     }
   }
