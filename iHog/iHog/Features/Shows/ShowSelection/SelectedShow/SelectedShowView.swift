@@ -32,13 +32,25 @@ struct SelectedShowView: View {
           switch showRouter.selectedView {
             case .programming, .playback:
               Button("Add", systemImage: "plus") {
-                print("Show add object sheet")
+                showRouter.show(sheet: .newObject)
               }
             case .hardwarePlayback:
               Text("🤷‍♂️")
             case .hardwareProg:
               Text("🤷‍♂️")
           }
+        }
+      }
+      .sheet(
+        item: $showRouter.sheetShown,
+        onDismiss: {
+          moc.reset()
+        }
+      ) { sheet in
+        if let show = shows.first {
+          sheet.view(show: show)
+        } else {
+          Text("You should never see this")
         }
       }
   }

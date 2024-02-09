@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum ObjectType: String {
+enum ObjectType: String, CaseIterable, Identifiable {
+  var id: String {
+    self.rawValue
+  }
+
   case group
   case intensity
   case position
@@ -16,4 +21,8 @@ enum ObjectType: String {
   case effect
   case list
   case scene
+
+  var label: String {
+    return self.rawValue.capitalized
+  }
 }

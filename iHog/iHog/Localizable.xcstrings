@@ -20,6 +20,9 @@
         }
       }
     },
+    "%@ number will be incremented by 1 and have the same name if you entered a name" : {
+
+    },
     "%lld" : {
 
     },
@@ -108,6 +111,39 @@
     },
     "Add" : {
 
+    },
+    "Add 1 %@" : {
+
+    },
+    "Add 5 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 5 %1$@s starting at %2$@"
+          }
+        }
+      }
+    },
+    "Add 10 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 10 %1$@s starting at %2$@"
+          }
+        }
+      }
+    },
+    "Add 100 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 100 %1$@s starting at %2$@"
+          }
+        }
+      }
     },
     "Add Item" : {
 
@@ -204,6 +240,9 @@
 
     },
     "Contact" : {
+
+    },
+    "Could not save object" : {
 
     },
     "Do this later" : {
@@ -317,10 +356,16 @@
     "Match what's listed in the labels on the console" : {
 
     },
+    "Name" : {
+
+    },
     "Not subscribed" : {
 
     },
     "nothing" : {
+
+    },
+    "Number" : {
 
     },
     "Open Sound Control" : {
@@ -348,6 +393,9 @@
 
     },
     "Programming Panel" : {
+
+    },
+    "Quick add" : {
 
     },
     "Reach out to Jay and ask!" : {
@@ -456,10 +504,16 @@
     "Time" : {
 
     },
+    "Type" : {
+
+    },
     "Upgrade to pro" : {
 
     },
     "World" : {
+
+    },
+    "You should never see this" : {
 
     },
     "You're a pro!" : {
