@@ -13,9 +13,17 @@ extension ShowObjectEntity {
   }
 
   var viewTitle: String {
-    name ?? viewNumber
+    if let name,
+      name.isEmpty == false
+    {
+      return name
+    }
+    return safeObjType.label + " \(viewNumber)"
   }
 
+  var safeObjType: ObjectType {
+    ObjectType(rawValue: objType!)!
+  }
   var viewObjectType: String {
     ObjectType(rawValue: objType ?? "group")?.rawValue.first?.uppercased() ?? "🤷‍♂️"
   }

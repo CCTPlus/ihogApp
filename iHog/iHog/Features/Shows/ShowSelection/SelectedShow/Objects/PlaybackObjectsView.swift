@@ -22,8 +22,10 @@ struct PlaybackObjectsView: View {
 
   var body: some View {
     ScrollView {
+      Text("Lists")
       ShowObjectGridView(objects: Array(listObjects), size: CGSize(width: 100, height: 100))
         .id("lists")
+      Text("Scenes")
       ShowObjectGridView(objects: Array(scenes), size: CGSize(width: 100, height: 100))
         .id("scenes")
     }

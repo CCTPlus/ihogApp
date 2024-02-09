@@ -10,6 +10,7 @@
 		6909D9762B767A140033B522 /* OSCManager+Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6909D9752B767A140033B522 /* OSCManager+Mockable.swift */; };
 		692038C42B76A20B006DFA07 /* ShowSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692038C32B76A20B006DFA07 /* ShowSheet.swift */; };
 		692038C62B76A316006DFA07 /* NewObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692038C52B76A316006DFA07 /* NewObjectView.swift */; };
+		692038C82B76B8E4006DFA07 /* ProgrammingObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692038C72B76B8E4006DFA07 /* ProgrammingObjectsView.swift */; };
 		695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CA2B5CC0EA0006B04F /* ShowMockData.swift */; };
 		695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CD2B5CC35D0006B04F /* ShowEntity.swift */; };
 		695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116D02B5CC6A80006B04F /* AboutSection.swift */; };
@@ -101,6 +102,7 @@
 		6909D9752B767A140033B522 /* OSCManager+Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSCManager+Mockable.swift"; sourceTree = "<group>"; };
 		692038C32B76A20B006DFA07 /* ShowSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSheet.swift; sourceTree = "<group>"; };
 		692038C52B76A316006DFA07 /* NewObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObjectView.swift; sourceTree = "<group>"; };
+		692038C72B76B8E4006DFA07 /* ProgrammingObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammingObjectsView.swift; sourceTree = "<group>"; };
 		695116CA2B5CC0EA0006B04F /* ShowMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMockData.swift; sourceTree = "<group>"; };
 		695116CD2B5CC35D0006B04F /* ShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEntity.swift; sourceTree = "<group>"; };
 		695116D02B5CC6A80006B04F /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				69A3985F2B76935200ADC3F4 /* PlaybackObjectsView.swift */,
 				692038C52B76A316006DFA07 /* NewObjectView.swift */,
 				69773AE32B766F1A00C47316 /* Component */,
+				692038C72B76B8E4006DFA07 /* ProgrammingObjectsView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				69B866B32B71E553003EAD38 /* OSCSettingsSection.swift in Sources */,
 				692038C62B76A316006DFA07 /* NewObjectView.swift in Sources */,
 				697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */,
+				692038C82B76B8E4006DFA07 /* ProgrammingObjectsView.swift in Sources */,
 				69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */,
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
 				696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */,
