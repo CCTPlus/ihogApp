@@ -62,14 +62,16 @@ extension ShowCreationView {
   }
 }
 
-#Preview {
-  Text("Hello")
-    .sheet(
-      isPresented: .constant(true),
-      content: {
-        ShowCreationView(showManager: ShowManager(persistenceController: .preview))
-          .environment(Router())
-          .environment(AlertManager())
-      }
-    )
-}
+#if DEBUG
+  #Preview {
+    Text("Hello")
+      .sheet(
+        isPresented: .constant(true),
+        content: {
+          ShowCreationView(showManager: ShowManager(persistenceController: .preview))
+            .environment(Router())
+            .environment(AlertManager())
+        }
+      )
+  }
+#endif

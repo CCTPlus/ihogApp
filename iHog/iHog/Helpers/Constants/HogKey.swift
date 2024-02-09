@@ -29,6 +29,150 @@ enum HogKey: Int, Identifiable {
   case position, color, beam, effect, time, group, fixture
   case pig, assert, release, nextPage
   case fader, flash, pbGo, pbBack, pbHalt, pbChoose
+  case back, all, next
+  case h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12
+  case highlight, blind, clear
+  case live, scene, cue, macro, list, page
+  // ACTION BUTTONS
+  case delete, move, copy, update, merge, record
+  // UTILITY BUTTONS
+  case setup, goto, set, fan, open
+
+  var textRepresentation: String {
+    switch self {
+      case .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero:
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        guard let spelledOut: String = formatter.string(from: self.rawValue as NSNumber) else {
+          return "NO VALID NUMBER"
+        }
+        return "\(spelledOut)"
+      case .backspace:
+        return "backspace"
+      case .thru:
+        return "thru"
+      case .full:
+        return "full"
+      case .at:
+        return "at"
+      case .minus:
+        return "minus"
+      case .plus:
+        return "plus"
+      case .slash:
+        return "slash"
+      case .dot:
+        return "period"
+      case .enter:
+        return "enter"
+      case .intensity:
+        return "intensity"
+      case .position:
+        return "position"
+      case .color:
+        return "color"
+      case .beam:
+        return "beam"
+      case .effect:
+        return "effects"
+      case .time:
+        return "time"
+      case .group:
+        return "group"
+      case .fixture:
+        return "fixture"
+      case .pig:
+        return "pig"
+      case .assert:
+        return "assert"
+      case .release:
+        return "release"
+      case .nextPage:
+        return "nextpage"
+      case .fader:
+        return "fader"
+      case .flash:
+        return "flash"
+      case .pbGo:
+        return "go"
+      case .pbBack:
+        return "goback"
+      case .pbHalt:
+        return "pause"
+      case .pbChoose:
+        return "choose"
+      case .back:
+        return "back"
+      case .all:
+        return "all"
+      case .next:
+        return "next"
+      case .h1:
+        return "h1"
+      case .h2:
+        return "h2"
+      case .h3:
+        return "h3"
+      case .h4:
+        return "h4"
+      case .h5:
+        return "h5"
+      case .h6:
+        return "h6"
+      case .h7:
+        return "h7"
+      case .h8:
+        return "h8"
+      case .h9:
+        return "h9"
+      case .h10:
+        return "h10"
+      case .h11:
+        return "h11"
+      case .h12:
+        return "h12"
+      case .highlight:
+        return "highlight"
+      case .blind:
+        return "blind"
+      case .clear:
+        return "clear"
+      case .live:
+        return "live"
+      case .scene:
+        return "scene"
+      case .cue:
+        return "cue"
+      case .macro:
+        return "macro"
+      case .list:
+        return "list"
+      case .page:
+        return "page"
+      case .delete:
+        return "delete"
+      case .move:
+        return "move"
+      case .copy:
+        return "copy"
+      case .update:
+        return "update"
+      case .merge:
+        return "merge"
+      case .record:
+        return "record"
+      case .setup:
+        return "setup"
+      case .goto:
+        return "goto"
+      case .set:
+        return "set"
+      case .fan:
+        return "fan"
+      case .open:
+        return "open"
+    }
+  }
 
   @ViewBuilder
   func label(masterNumber: Int?) -> some View {
@@ -86,12 +230,10 @@ enum HogKey: Int, Identifiable {
       case .dot:
         Text(".")
           .bold()
-      case .enter:
-        Text("Enter")
       case .intensity:
         Text("Intens")
       case .position:
-        Text("Position")
+        Text("Positn")
       case .color:
         Text("Colour")
       case .beam:
@@ -125,103 +267,21 @@ enum HogKey: Int, Identifiable {
         Image(systemName: "pause.fill")
       case .pbChoose:
         Text("\(masterNumber ?? 0)")
+      case .h1, .h2, .h3, .h4, .h5, .h6, .h7, .h8, .h9, .h10, .h11, .h12:
+        Text("H\nh")
+      case .record:
+        Text("REC")
+      default:
+        Text(textRepresentation.uppercased())
     }
   }
 
   func oscAddress(masterNumber: Int? = nil) -> String {
     switch self {
-      case .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .zero:
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .spellOut
-        guard let spelledOut: String = formatter.string(from: self.rawValue as NSNumber) else {
-          print("NO VALID NUMBER")
-          return "/hog/0/NO_VALID_NUMBER"
-        }
-        return "/hog/hardware/\(spelledOut)"
-      case .backspace:
-        return "/hog/hardware/backspace"
-      case .thru:
-        return "/hog/hardware/thru"
-      case .full:
-        return "/hog/hardware/full"
-      case .at:
-        return "/hog/hardware/at"
-      case .minus:
-        return "/hog/hardware/minus"
-      case .plus:
-        return "/hog/hardware/plus"
-      case .slash:
-        return "/hog/hardware/slash"
-      case .dot:
-        return "/hog/hardware/period"
-      case .enter:
-        return "/hog/hardware/period"
-      case .intensity:
-        return "/hog/hardware/intensity"
-      case .position:
-        return "/hog/hardware/position"
-      case .color:
-        return "/hog/hardware/colour"
-      case .beam:
-        return "/hog/hardware/beam"
-      case .effect:
-        return "/hog/hardware/effects"
-      case .time:
-        return "/hog/hardware/time"
-      case .group:
-        return "/hog/hardware/group"
-      case .fixture:
-        return "/hog/hardware/fixture"
-      case .pig:
-        return "/hog/hardware/pig"
-      case .assert:
-        return "/hog/hardware/assert"
-      case .release:
-        return "/hog/hardware/release"
-      case .nextPage:
-        return "/hog/hardware/nextpage"
-      case .fader:
-        return "/hog/hardware/fader"
-      case .flash:
-        return "/hog/hardware/flash/\(masterNumber ?? 0)"
-      case .pbGo:
-        return "/hog/hardware/go/\(masterNumber ?? 0)"
-      case .pbBack:
-        return "/hog/hardware/goback/\(masterNumber ?? 0)"
-      case .pbHalt:
-        return "/hog/hardware/pause/\(masterNumber ?? 0)"
-      case .pbChoose:
-        return "/hog/hardware/choose/\(masterNumber ?? 0)"
+      case .flash, .pbGo, .pbBack, .pbHalt, .pbChoose:
+        return "/hog/hardware/\(textRepresentation)/\(masterNumber ?? 0)"
+      default:
+        return "/hog/hardware/\(textRepresentation)"
     }
   }
 }
-
-/*
-static let go = "/hog/playback/go/"
-static let halt = "/hog/playback/halt/"
-static let back = "/hog/playback/back/"
-static let release = "/hog/playback/release/"
-static let hardware = "/hog/hardware/"
-static let pig = "/hog/hardware/pig"
-static let hRelease = "/hog/hardware/release"
-static let choose = "/hog/hardware/choose/"
-static let goHardware = "/hog/hardware/go/"
-static let pauseHardware = "/hog/hardware/pause/"
-static let backHardware = "/hog/hardware/goback/"
-static let flashHardware = "/hog/hardware/flash/"
-static let fader = "/hog/hardware/fader/"
-static let encoderWheelButton = "/hog/hardware/ewheelbutton/"
-static let encoderWheel = "/hog/hardware/encoderwheel/"
-static let period = "/hog/hardware/period"
-static let enter = "/hog/hardware/enter"
-static let status = "/hog/status/"
-
-static func keypad(number: Int) throws -> String {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .spellOut
-    guard let spelledOut: String = formatter.string(from: number as NSNumber) else {
-        throw OSCCommandPathError.noValidButton
-    }
-    return "/hog/hardware/\(spelledOut)"
-}
-*/

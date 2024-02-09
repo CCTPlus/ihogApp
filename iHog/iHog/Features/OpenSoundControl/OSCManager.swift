@@ -24,7 +24,7 @@ class OSCManager {
   }
 
   // MARK: Received values
-  var commandLine: String = ""
+  var commandLine: String = "Command line waiting..."
   var consoleTime: String = ""
   var blueLeds: [HogKey: Bool] = [
     .intensity: false,

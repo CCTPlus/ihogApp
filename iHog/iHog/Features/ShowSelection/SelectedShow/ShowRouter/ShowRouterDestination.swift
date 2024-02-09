@@ -53,7 +53,7 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
   var view: some View {
     switch self {
       case .programming:
-        ProgrammerView()
+        ProgrammerScreen()
       case .playback:
         PlaybackHardwareView()
       case .hardwarePlayback:
