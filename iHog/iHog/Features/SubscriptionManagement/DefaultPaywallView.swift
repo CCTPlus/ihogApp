@@ -10,15 +10,28 @@ import SwiftUI
 
 struct DefaultPaywallView: View {
   @Environment(\.dismiss) var dismiss
-  @State private var showSheet = true
+  @State private var showSheet = false
   @State private var sheetHeight: CGFloat = .zero
+
+  var runningOnPhone: Bool {
+    UIDevice.current.userInterfaceIdiom == .phone
+  }
 
   var body: some View {
     List {
       Section {
-        Text("iHog Pro")
-          .font(.largeTitle)
-          .bold()
+        HStack(alignment: .top) {
+          Text("iHog Pro")
+            .font(.largeTitle)
+            .bold()
+          Spacer()
+          Button {
+            dismiss()
+          } label: {
+            Text("Cancel")
+          }
+          .tint(.red)
+        }
       }
       .listRowInsets(.none)
       .listRowBackground(Color.clear)
@@ -45,37 +58,15 @@ struct DefaultPaywallView: View {
           )
         }
       }
+      .task {
+        if runningOnPhone { showSheet = true }
+      }
       .listRowBackground(Color.clear)
       .listRowSeparator(.hidden)
-    }
-    .sheet(isPresented: $showSheet) {
-      NavigationStack {
-        ScrollView {
-          VStack {
-            MonthAndYearOptionView(offeringID: "default")
-              .padding(.horizontal)
-              .padding()
-          }
-          .heightChangePreference(completion: { height in
-            sheetHeight = height
-          })
-        }
-        .toolbar {
-          ToolbarItem(placement: .cancellationAction) {
-            Button {
-              dismiss()
-            } label: {
-              Text("Cancel")
-            }
-            .tint(.red)
-          }
-        }
+      VStack {
+        MonthAndYearOptionView(offeringID: "default")
       }
-      .presentationDetents([.height(sheetHeight / 4), .height(sheetHeight)])
-      .presentationBackgroundInteraction(.enabled(upThrough: .height(sheetHeight)))
-      .presentationCornerRadius(24)
-      .presentationContentInteraction(.resizes)
-      .interactiveDismissDisabled()
+      .buttonStyle(.plain)
     }
   }
 

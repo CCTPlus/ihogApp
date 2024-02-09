@@ -17,6 +17,11 @@ struct LaunchScreenView: View {
   @State private var router = Router()
   @State private var alertManager = AlertManager()
 
+  @FetchRequest(sortDescriptors: [
+    SortDescriptor(\ShowEntity.dateModified, order: .reverse)
+  ])
+  private var shows: FetchedResults<ShowEntity>
+
   init() {
     WishKit.configure(with: WishKitConstant.apiKey)
   }
@@ -34,7 +39,7 @@ struct LaunchScreenView: View {
             Text("LaunchScreenView.header.shows")
             Spacer()
             Button {
-              router.show(sheet: .newShow)
+              showNewShowForm()
             } label: {
               Image(systemName: "plus.circle")
             }
@@ -77,6 +82,14 @@ struct LaunchScreenView: View {
       .environment(router)
       .environment(alertManager)
       .environment(oscManager)
+    }
+  }
+
+  func showNewShowForm() {
+    if shows.count == 0 || userLevelManager.userLevel == .pro {
+      router.show(sheet: .newShow)
+    } else {
+      router.show(sheet: .paywall)
     }
   }
 }
