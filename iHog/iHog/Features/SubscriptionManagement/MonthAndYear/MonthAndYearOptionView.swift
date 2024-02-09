@@ -10,8 +10,6 @@ import RevenueCat
 import SwiftUI
 
 struct MonthAndYearOptionView: View {
-  @Environment(\.dismiss) var dismiss
-
   @State private var offering: Offering? = nil
   @State private var selectedPackage: Package? = nil
   @State private var annualPricePerYear: NSDecimalNumber = 0.0
@@ -62,8 +60,6 @@ struct MonthAndYearOptionView: View {
           do {
             let purchased = try await Purchases.shared.purchase(package: selectedPackage!)
             Logger.iap.debug("\(purchased.customerInfo.activeSubscriptions)")
-            // TODO: Make analytic call
-            dismiss()
           } catch {
             Logger.iap.error("\(error)")
           }
@@ -81,7 +77,6 @@ struct MonthAndYearOptionView: View {
         Task {
           do {
             _ = try await Purchases.shared.restorePurchases()
-            dismiss()
           } catch {
             Logger.iap.error("\(error)")
           }

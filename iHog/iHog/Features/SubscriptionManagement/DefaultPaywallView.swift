@@ -10,8 +10,6 @@ import SwiftUI
 
 struct DefaultPaywallView: View {
   @Environment(\.dismiss) var dismiss
-  @State private var showSheet = false
-  @State private var sheetHeight: CGFloat = .zero
 
   var runningOnPhone: Bool {
     UIDevice.current.userInterfaceIdiom == .phone
@@ -57,9 +55,6 @@ struct DefaultPaywallView: View {
             }
           )
         }
-      }
-      .task {
-        if runningOnPhone { showSheet = true }
       }
       .listRowBackground(Color.clear)
       .listRowSeparator(.hidden)

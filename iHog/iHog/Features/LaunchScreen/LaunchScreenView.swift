@@ -79,6 +79,14 @@ struct LaunchScreenView: View {
         }
       }
       .appRouterDestination()
+      .onChange(
+        of: userLevelManager.userLevel,
+        { oldValue, newValue in
+          if newValue == .pro && router.sheet == .paywall {
+            router.sheet = nil
+          }
+        }
+      )
       .environment(router)
       .environment(alertManager)
       .environment(oscManager)
