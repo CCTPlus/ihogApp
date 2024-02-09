@@ -10,15 +10,13 @@ import SwiftUI
 struct ShowObjectView: View {
   @Environment(OSCManager.self) var oscManager
 
-  var backgroundColor: Color {
-    showObject.isOutlined ? .clear : .blue
-  }
+  var showObject: ShowObjectEntity
+  var size: CGSize
 
   var strokeWidth: CGFloat {
     showObject.isOutlined ? 4.0 : 0.0
   }
 
-  var showObject: ShowObjectEntity
   var body: some View {
     Button {
       sendOSC()
@@ -36,7 +34,7 @@ struct ShowObjectView: View {
           .multilineTextAlignment(.leading)
       }
       .padding()
-      .frame(width: 125, height: 125)
+      .frame(width: size.width, height: size.height)
       .background(backgroundColor)
       .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
       .overlay {
@@ -47,6 +45,15 @@ struct ShowObjectView: View {
     .buttonStyle(.plain)
   }
 
+  @ViewBuilder
+  var backgroundColor: some View {
+    if showObject.isOutlined {
+      Color.primary.colorInvert()
+    } else {
+      Color.blue
+    }
+  }
+
   // TODO: Craft the message
   func sendOSC() {
   }
@@ -54,8 +61,8 @@ struct ShowObjectView: View {
 
 #Preview {
   HStack {
-    ShowObjectView(showObject: .mockNotOutlined)
-    ShowObjectView(showObject: .mock)
+    ShowObjectView(showObject: .mockNotOutlined, size: CGSize(width: 200, height: 200))
+    ShowObjectView(showObject: .mock, size: CGSize(width: 200, height: 200))
   }
   .environment(OSCManager.mock)
 }

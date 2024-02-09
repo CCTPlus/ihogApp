@@ -20,13 +20,25 @@ struct SelectedShowView: View {
     showRequest = FetchRequest(fetchRequest: FetchRequestBuilder.getShow(with: showID))
   }
   var body: some View {
-    showRouter.selectedView.view
+    showRouter.selectedView.view(showID: shows.first?.safeID ?? UUID())
       .environment(oscManager)
       .navigationTitle(Text(shows.first?.viewName ?? "Test"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarTitleMenu {
           ShowMenu(showRouter: showRouter)
+        }
+        ToolbarItem(placement: .primaryAction) {
+          switch showRouter.selectedView {
+            case .programming, .playback:
+              Button("Add", systemImage: "plus") {
+                print("Show add object sheet")
+              }
+            case .hardwarePlayback:
+              Text("🤷‍♂️")
+            case .hardwareProg:
+              Text("🤷‍♂️")
+          }
         }
       }
   }
@@ -36,8 +48,8 @@ struct SelectedShowView: View {
   #Preview {
     NavigationStack {
       SelectedShowView(showID: FixtureConstants.uuid1)
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        .environment(OSCManager(outputPort: 9000, consoleInputPort: 9001))
+        .environment(\.managedObjectContext, .mock)
+        .environment(OSCManager.mock)
     }
   }
 #endif

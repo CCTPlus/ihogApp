@@ -42,4 +42,10 @@ struct GridConstant {
       ]
     }
   }
+
+  static func objectGrid(width: CGFloat) -> [GridItem] {
+    return [
+      GridItem(.adaptive(minimum: width, maximum: width), spacing: 8, alignment: .leading)
+    ]
+  }
 }

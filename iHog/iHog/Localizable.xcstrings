@@ -36,6 +36,9 @@
     ">> Page" : {
 
     },
+    "🤷‍♂️" : {
+
+    },
     "0" : {
 
     },
@@ -102,6 +105,9 @@
           }
         }
       }
+    },
+    "Add" : {
+
     },
     "Add Item" : {
 
@@ -221,6 +227,9 @@
     "Group" : {
 
     },
+    "Groups & Palettes" : {
+
+    },
     "H\nh" : {
 
     },
@@ -299,6 +308,9 @@
         }
       }
     },
+    "Lists & Scenes" : {
+
+    },
     "Manage your subscription" : {
 
     },
@@ -329,7 +341,13 @@
     "Pig" : {
 
     },
+    "Playback Panel" : {
+
+    },
     "Positn" : {
+
+    },
+    "Programming Panel" : {
 
     },
     "Reach out to Jay and ask!" : {
@@ -398,40 +416,8 @@
         }
       }
     },
-    "ShowTab.hardwarePlayback" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW PB"
-          }
-        }
-      }
-    },
-    "ShowTab.hardwarePlayProg" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PlayProg"
-          }
-        }
-      }
-    },
-    "ShowTab.hardwareProg" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW Prog"
-          }
-        }
-      }
-    },
     "ShowTab.playback" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
