@@ -10,15 +10,30 @@ import SwiftUI
 
 struct DefaultPaywallView: View {
   @Environment(\.dismiss) var dismiss
-  @State private var showSheet = true
+  @State private var showSheet = false
   @State private var sheetHeight: CGFloat = .zero
+
+  var runningOnPhone: Bool {
+    UIDevice.current.userInterfaceIdiom == .phone
+  }
 
   var body: some View {
     List {
       Section {
-        Text("iHog Pro")
-          .font(.largeTitle)
-          .bold()
+        HStack(alignment: .top) {
+          Text("iHog Pro")
+            .font(.largeTitle)
+            .bold()
+          Spacer()
+          if runningOnPhone == false {
+            Button {
+              dismiss()
+            } label: {
+              Text("Cancel")
+            }
+            .tint(.red)
+          }
+        }
       }
       .listRowInsets(.none)
       .listRowBackground(Color.clear)
@@ -45,8 +60,19 @@ struct DefaultPaywallView: View {
           )
         }
       }
+      .task {
+        if runningOnPhone { showSheet = true }
+      }
       .listRowBackground(Color.clear)
       .listRowSeparator(.hidden)
+      if runningOnPhone == false {
+        VStack {
+          MonthAndYearOptionView(offeringID: "default")
+            .padding(.horizontal)
+            .padding()
+        }
+        .buttonStyle(.plain)
+      }
     }
     .sheet(isPresented: $showSheet) {
       NavigationStack {
