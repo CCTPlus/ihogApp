@@ -124,4 +124,14 @@ class UserLevelManager {
     proSince = purchaseDate
     Logger.iap.debug("Pro since \(purchaseDate.ISO8601Format())")
   }
+
+  func startListeningForRevenueCatChanges() async {
+    let infos = Purchases.shared.customerInfoStream
+    for await info in infos {
+      Logger.iap.debug("\(info.entitlements.activeInCurrentEnvironment)")
+      determineUserSince(true)
+      determineUserLevel(true)
+      determineProSince(true)
+    }
+  }
 }

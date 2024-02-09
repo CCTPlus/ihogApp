@@ -32,6 +32,7 @@ struct iHogApp: App {
           userLevelManager.determineUserLevel(network.isConnected)
           userLevelManager.determineProSince(network.isConnected)
           userLevelManager.determineUserSince(network.isConnected)
+          await userLevelManager.startListeningForRevenueCatChanges()
         }
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
         .environment(network)
