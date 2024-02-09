@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 695116C62B5CBE520006B04F /* iHog.xcdatamodeld */; };
 		695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CA2B5CC0EA0006B04F /* ShowMockData.swift */; };
 		695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CD2B5CC35D0006B04F /* ShowEntity.swift */; };
 		695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116D02B5CC6A80006B04F /* AboutSection.swift */; };
@@ -49,6 +48,7 @@
 		69773ACF2B74873D00C47316 /* GridConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773ACE2B74873D00C47316 /* GridConstant.swift */; };
 		69773AD12B7487FC00C47316 /* HardwareButtonsThreeAcross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AD02B7487FC00C47316 /* HardwareButtonsThreeAcross.swift */; };
 		69773AD72B75164200C47316 /* HogKey+Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AD62B75164200C47316 /* HogKey+Groups.swift */; };
+		69773ADF2B766C0600C47316 /* iHog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69773ADD2B766C0600C47316 /* iHog.xcdatamodeld */; };
 		697BD73D2B6322F8009CBB5F /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */; };
 		697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73E2B632485009CBB5F /* SheetDestination.swift */; };
 		697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */; };
@@ -86,7 +86,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		695116C72B5CBE520006B04F /* iHog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHog.xcdatamodel; sourceTree = "<group>"; };
 		695116CA2B5CC0EA0006B04F /* ShowMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMockData.swift; sourceTree = "<group>"; };
 		695116CD2B5CC35D0006B04F /* ShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEntity.swift; sourceTree = "<group>"; };
 		695116D02B5CC6A80006B04F /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
@@ -126,6 +125,8 @@
 		69773ACE2B74873D00C47316 /* GridConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridConstant.swift; sourceTree = "<group>"; };
 		69773AD02B7487FC00C47316 /* HardwareButtonsThreeAcross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareButtonsThreeAcross.swift; sourceTree = "<group>"; };
 		69773AD62B75164200C47316 /* HogKey+Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HogKey+Groups.swift"; sourceTree = "<group>"; };
+		69773ADE2B766C0600C47316 /* iHog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHog.xcdatamodel; sourceTree = "<group>"; };
+		69773AE02B766C7900C47316 /* iHogv1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHogv1.xcdatamodel; sourceTree = "<group>"; };
 		697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
 		697BD73E2B632485009CBB5F /* SheetDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDestination.swift; sourceTree = "<group>"; };
 		697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaywallView.swift; sourceTree = "<group>"; };
@@ -183,7 +184,7 @@
 		695116C92B5CBE5A0006B04F /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				695116C62B5CBE520006B04F /* iHog.xcdatamodeld */,
+				69773ADD2B766C0600C47316 /* iHog.xcdatamodeld */,
 				699DA6D52B5C541400B61547 /* Persistence.swift */,
 				695116F52B5E1F440006B04F /* FetchRequestBuilder.swift */,
 			);
@@ -616,7 +617,6 @@
 				69AD9F602B731E4A00974060 /* PersistenceController.swift in Sources */,
 				69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */,
 				69B75BC02B72D4D200A696C7 /* OSCManager.swift in Sources */,
-				695116C82B5CBE520006B04F /* iHog.xcdatamodeld in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
 				69773AC82B7483AC00C47316 /* ProgrammerScreen.swift in Sources */,
 				69773AD12B7487FC00C47316 /* HardwareButtonsThreeAcross.swift in Sources */,
@@ -646,6 +646,7 @@
 				696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
 				695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */,
+				69773ADF2B766C0600C47316 /* iHog.xcdatamodeld in Sources */,
 				699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */,
 				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
 				695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */,
@@ -939,12 +940,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		695116C62B5CBE520006B04F /* iHog.xcdatamodeld */ = {
+		69773ADD2B766C0600C47316 /* iHog.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				695116C72B5CBE520006B04F /* iHog.xcdatamodel */,
+				69773AE02B766C7900C47316 /* iHogv1.xcdatamodel */,
+				69773ADE2B766C0600C47316 /* iHog.xcdatamodel */,
 			);
-			currentVersion = 695116C72B5CBE520006B04F /* iHog.xcdatamodel */;
+			currentVersion = 69773AE02B766C7900C47316 /* iHogv1.xcdatamodel */;
 			path = iHog.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
