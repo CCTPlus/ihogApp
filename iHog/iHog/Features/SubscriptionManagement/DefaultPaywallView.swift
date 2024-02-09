@@ -25,14 +25,12 @@ struct DefaultPaywallView: View {
             .font(.largeTitle)
             .bold()
           Spacer()
-          if runningOnPhone == false {
-            Button {
-              dismiss()
-            } label: {
-              Text("Cancel")
-            }
-            .tint(.red)
+          Button {
+            dismiss()
+          } label: {
+            Text("Cancel")
           }
+          .tint(.red)
         }
       }
       .listRowInsets(.none)
@@ -65,43 +63,10 @@ struct DefaultPaywallView: View {
       }
       .listRowBackground(Color.clear)
       .listRowSeparator(.hidden)
-      if runningOnPhone == false {
-        VStack {
-          MonthAndYearOptionView(offeringID: "default")
-            .padding(.horizontal)
-            .padding()
-        }
-        .buttonStyle(.plain)
+      VStack {
+        MonthAndYearOptionView(offeringID: "default")
       }
-    }
-    .sheet(isPresented: $showSheet) {
-      NavigationStack {
-        ScrollView {
-          VStack {
-            MonthAndYearOptionView(offeringID: "default")
-              .padding(.horizontal)
-              .padding()
-          }
-          .heightChangePreference(completion: { height in
-            sheetHeight = height
-          })
-        }
-        .toolbar {
-          ToolbarItem(placement: .cancellationAction) {
-            Button {
-              dismiss()
-            } label: {
-              Text("Cancel")
-            }
-            .tint(.red)
-          }
-        }
-      }
-      .presentationDetents([.height(sheetHeight / 4), .height(sheetHeight)])
-      .presentationBackgroundInteraction(.enabled(upThrough: .height(sheetHeight)))
-      .presentationCornerRadius(24)
-      .presentationContentInteraction(.resizes)
-      .interactiveDismissDisabled()
+      .buttonStyle(.plain)
     }
   }
 
