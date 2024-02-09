@@ -94,18 +94,20 @@ struct LaunchScreenView: View {
   }
 }
 
-#Preview("Not subscribed") {
-  LaunchScreenView()
-    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    .environment(UserLevelManager(userLevel: .free))
-    .environment(NetworkManager())
-    .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
-}
+#if DEBUG
+  #Preview("Not subscribed") {
+    LaunchScreenView()
+      .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+      .environment(UserLevelManager(userLevel: .free))
+      .environment(NetworkManager())
+      .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
+  }
 
-#Preview("Subscribed") {
-  LaunchScreenView()
-    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    .environment(UserLevelManager(userLevel: .pro))
-    .environment(NetworkManager())
-    .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
-}
+  #Preview("Subscribed") {
+    LaunchScreenView()
+      .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+      .environment(UserLevelManager(userLevel: .pro))
+      .environment(NetworkManager())
+      .environment(OSCManager(outputPort: 120, consoleInputPort: 120, consoleIPAddress: ""))
+  }
+#endif

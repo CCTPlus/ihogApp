@@ -82,7 +82,9 @@ private let itemFormatter: DateFormatter = {
   return formatter
 }()
 
-#Preview {
-  ContentView()
-    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-}
+#if DEBUG
+  #Preview {
+    ContentView()
+      .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+  }
+#endif

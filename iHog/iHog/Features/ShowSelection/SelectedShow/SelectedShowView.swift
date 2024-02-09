@@ -32,10 +32,12 @@ struct SelectedShowView: View {
   }
 }
 
-#Preview {
-  NavigationStack {
-    SelectedShowView(showID: FixtureConstants.uuid1!)
-      .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-      .environment(OSCManager(outputPort: 9000, consoleInputPort: 9001))
+#if DEBUG
+  #Preview {
+    NavigationStack {
+      SelectedShowView(showID: FixtureConstants.uuid1!)
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        .environment(OSCManager(outputPort: 9000, consoleInputPort: 9001))
+    }
   }
-}
+#endif
