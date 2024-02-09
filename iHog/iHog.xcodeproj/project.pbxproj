@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6909D9762B767A140033B522 /* OSCManager+Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6909D9752B767A140033B522 /* OSCManager+Mockable.swift */; };
 		695116CB2B5CC0EA0006B04F /* ShowMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CA2B5CC0EA0006B04F /* ShowMockData.swift */; };
 		695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116CD2B5CC35D0006B04F /* ShowEntity.swift */; };
 		695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695116D02B5CC6A80006B04F /* AboutSection.swift */; };
@@ -49,6 +50,11 @@
 		69773AD12B7487FC00C47316 /* HardwareButtonsThreeAcross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AD02B7487FC00C47316 /* HardwareButtonsThreeAcross.swift */; };
 		69773AD72B75164200C47316 /* HogKey+Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AD62B75164200C47316 /* HogKey+Groups.swift */; };
 		69773ADF2B766C0600C47316 /* iHog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69773ADD2B766C0600C47316 /* iHog.xcdatamodeld */; };
+		69773AE52B766F2D00C47316 /* ShowObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AE42B766F2D00C47316 /* ShowObjectView.swift */; };
+		69773AE72B766F9B00C47316 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AE62B766F9B00C47316 /* Mockable.swift */; };
+		69773AEB2B76707200C47316 /* ShowObjectEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AEA2B76707200C47316 /* ShowObjectEntity+Mock.swift */; };
+		69773AED2B76723E00C47316 /* ShowObjectEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AEC2B76723E00C47316 /* ShowObjectEntity.swift */; };
+		69773AEF2B76739E00C47316 /* ObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69773AEE2B76739E00C47316 /* ObjectType.swift */; };
 		697BD73D2B6322F8009CBB5F /* SubscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */; };
 		697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD73E2B632485009CBB5F /* SheetDestination.swift */; };
 		697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */; };
@@ -86,6 +92,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6909D9752B767A140033B522 /* OSCManager+Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSCManager+Mockable.swift"; sourceTree = "<group>"; };
 		695116CA2B5CC0EA0006B04F /* ShowMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMockData.swift; sourceTree = "<group>"; };
 		695116CD2B5CC35D0006B04F /* ShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEntity.swift; sourceTree = "<group>"; };
 		695116D02B5CC6A80006B04F /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
@@ -127,6 +134,11 @@
 		69773AD62B75164200C47316 /* HogKey+Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HogKey+Groups.swift"; sourceTree = "<group>"; };
 		69773ADE2B766C0600C47316 /* iHog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHog.xcdatamodel; sourceTree = "<group>"; };
 		69773AE02B766C7900C47316 /* iHogv1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iHogv1.xcdatamodel; sourceTree = "<group>"; };
+		69773AE42B766F2D00C47316 /* ShowObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowObjectView.swift; sourceTree = "<group>"; };
+		69773AE62B766F9B00C47316 /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
+		69773AEA2B76707200C47316 /* ShowObjectEntity+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShowObjectEntity+Mock.swift"; sourceTree = "<group>"; };
+		69773AEC2B76723E00C47316 /* ShowObjectEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowObjectEntity.swift; sourceTree = "<group>"; };
+		69773AEE2B76739E00C47316 /* ObjectType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectType.swift; sourceTree = "<group>"; };
 		697BD73C2B6322F8009CBB5F /* SubscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionRow.swift; sourceTree = "<group>"; };
 		697BD73E2B632485009CBB5F /* SheetDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDestination.swift; sourceTree = "<group>"; };
 		697BD7402B6328F5009CBB5F /* DefaultPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaywallView.swift; sourceTree = "<group>"; };
@@ -181,6 +193,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6909D9742B767A040033B522 /* ObservableClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6909D9752B767A140033B522 /* OSCManager+Mockable.swift */,
+			);
+			path = ObservableClasses;
+			sourceTree = "<group>";
+		};
 		695116C92B5CBE5A0006B04F /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				695116CD2B5CC35D0006B04F /* ShowEntity.swift */,
+				69773AEC2B76723E00C47316 /* ShowObjectEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +274,7 @@
 			children = (
 				695116F82B5E265B0006B04F /* ShowFixture.swift */,
 				695116FF2B5EA6A10006B04F /* Constants.swift */,
+				69773AEA2B76707200C47316 /* ShowObjectEntity+Mock.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -293,6 +315,7 @@
 				69AD9F612B7323C900974060 /* HogStatus.swift */,
 				696C53802B74755C002156B8 /* PlaybackKey.swift */,
 				69773ACE2B74873D00C47316 /* GridConstant.swift */,
+				69773AEE2B76739E00C47316 /* ObjectType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -339,6 +362,40 @@
 				69773ACA2B74848700C47316 /* PadProgrammerView.swift */,
 			);
 			path = DeviceSpecificViews;
+			sourceTree = "<group>";
+		};
+		69773AE12B766EB000C47316 /* Shows */ = {
+			isa = PBXGroup;
+			children = (
+				69773AE22B766EDA00C47316 /* Objects */,
+				695116DB2B5DC14F0006B04F /* ShowManagement */,
+				699DA6E52B5CBC8C00B61547 /* ShowSelection */,
+			);
+			path = Shows;
+			sourceTree = "<group>";
+		};
+		69773AE22B766EDA00C47316 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				69773AE32B766F1A00C47316 /* Component */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		69773AE32B766F1A00C47316 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				69773AE42B766F2D00C47316 /* ShowObjectView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		69773AE92B766FDE00C47316 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				69773AE62B766F9B00C47316 /* Mockable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		697BD73B2B6322CE009CBB5F /* SubscriptionManagement */ = {
@@ -410,6 +467,8 @@
 		699DA6D22B5C541400B61547 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				6909D9742B767A040033B522 /* ObservableClasses */,
+				69773AE92B766FDE00C47316 /* Protocols */,
 				695116F72B5E264C0006B04F /* Fixtures */,
 				695116D42B5CC6CA0006B04F /* PreviewStyleHelpers */,
 				699DA6D32B5C541400B61547 /* Preview Assets.xcassets */,
@@ -422,16 +481,15 @@
 		699DA6E12B5C548300B61547 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				69AD9F632B7336AA00974060 /* PlaybackHardware */,
-				69AD9F532B72E38900974060 /* ProgrammerHardware */,
 				69B866B12B71E542003EAD38 /* OpenSoundControl */,
 				6951171D2B5ECB3E0006B04F /* NetworkManagement */,
 				695117122B5EBD1F0006B04F /* AccessManagement */,
 				695116EB2B5E0A770006B04F /* Alert */,
 				695116E42B5E05720006B04F /* AppRouter */,
-				699DA6E52B5CBC8C00B61547 /* ShowSelection */,
-				695116DB2B5DC14F0006B04F /* ShowManagement */,
 				699DA6E22B5C548A00B61547 /* LaunchScreen */,
+				69AD9F532B72E38900974060 /* ProgrammerHardware */,
+				69AD9F632B7336AA00974060 /* PlaybackHardware */,
+				69773AE12B766EB000C47316 /* Shows */,
 				697BD73B2B6322CE009CBB5F /* SubscriptionManagement */,
 			);
 			path = Features;
@@ -629,14 +687,17 @@
 				69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */,
 				699DA6D62B5C541400B61547 /* Persistence.swift in Sources */,
 				696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */,
+				6909D9762B767A140033B522 /* OSCManager+Mockable.swift in Sources */,
 				695117002B5EA6A10006B04F /* Constants.swift in Sources */,
 				69B866B62B72BFA7003EAD38 /* OSCConfigView.swift in Sources */,
 				6951171A2B5EBF470006B04F /* RCConstant.swift in Sources */,
 				695116D62B5CC6DF0006B04F /* PreviewListSection.swift in Sources */,
 				69773AD72B75164200C47316 /* HogKey+Groups.swift in Sources */,
+				69773AEF2B76739E00C47316 /* ObjectType.swift in Sources */,
 				695116CE2B5CC35D0006B04F /* ShowEntity.swift in Sources */,
 				69B866AE2B71DC4D003EAD38 /* WishKitConstant.swift in Sources */,
 				695116E62B5E05820006B04F /* Router.swift in Sources */,
+				69773AE52B766F2D00C47316 /* ShowObjectView.swift in Sources */,
 				695116EF2B5E0CB20006B04F /* AlertManager.swift in Sources */,
 				6951171F2B5ECB4B0006B04F /* NetworkManager.swift in Sources */,
 				697BD7472B635224009CBB5F /* MonthAndYearOptionView.swift in Sources */,
@@ -653,6 +714,7 @@
 				695116FB2B5E29220006B04F /* ShowRouterDestination.swift in Sources */,
 				69AD9F652B7336B600974060 /* PlaybackHardwareView.swift in Sources */,
 				69AD9F592B72EBFF00974060 /* PhoneProgrammerView.swift in Sources */,
+				69773AED2B76723E00C47316 /* ShowObjectEntity.swift in Sources */,
 				695116DA2B5DC0600006B04F /* InfoRow.swift in Sources */,
 				69B75BB92B72CDAA00A696C7 /* IPHelper.swift in Sources */,
 				695116F62B5E1F440006B04F /* FetchRequestBuilder.swift in Sources */,
@@ -663,11 +725,13 @@
 				695116F12B5E0F480006B04F /* HogAlert.swift in Sources */,
 				699DA6CD2B5C541300B61547 /* iHogApp.swift in Sources */,
 				69AD9F572B72E54D00974060 /* HogKey.swift in Sources */,
+				69773AEB2B76707200C47316 /* ShowObjectEntity+Mock.swift in Sources */,
 				695116E32B5DD57F0006B04F /* ShowManager.swift in Sources */,
 				6951171C2B5EC1240006B04F /* UserDefaultKey.swift in Sources */,
 				695116EA2B5E090E0006B04F /* appRouterDestination.swift in Sources */,
 				696C53812B74755C002156B8 /* PlaybackKey.swift in Sources */,
 				695117162B5EBDC70006B04F /* AccessLevel.swift in Sources */,
+				69773AE72B766F9B00C47316 /* Mockable.swift in Sources */,
 				697BD7412B6328F5009CBB5F /* DefaultPaywallView.swift in Sources */,
 				69AD9F552B72E3AF00974060 /* KeypadView.swift in Sources */,
 				69AD9F682B73BED600974060 /* PlaybackBar.swift in Sources */,
