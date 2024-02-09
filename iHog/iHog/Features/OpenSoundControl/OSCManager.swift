@@ -82,6 +82,7 @@ class OSCManager {
     } catch {
       Logger.osc.error("Pushing down button did not send \(error)")
     }
+    Logger.osc.debug("💬 \(messageDown.addressPattern)")
   }
 
   func release(address: String) {
@@ -91,5 +92,16 @@ class OSCManager {
     } catch {
       Logger.osc.error("Releasing button did not send \(error)")
     }
+    Logger.osc.debug("💬 \(messageUp.addressPattern)")
+  }
+
+  func sendListSceneCommand(address: String, value: [Double]) {
+    let message = OSCMessage(address, values: value)
+    do {
+      try client.send(message, to: consoleIPAddress, port: safeInputPort)
+    } catch {
+      Logger.osc.error("\(#function) \(error)")
+    }
+    Logger.osc.debug("💬 \(message.addressPattern) \(message.values)")
   }
 }

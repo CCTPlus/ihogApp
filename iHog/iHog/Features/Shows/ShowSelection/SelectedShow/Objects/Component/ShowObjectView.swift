@@ -56,6 +56,43 @@ struct ShowObjectView: View {
 
   // TODO: Craft the message
   func sendOSC() {
+    if showObject.safeObjType == .list || showObject.safeObjType == .scene {
+      let address = showObject.safeObjType.pressAddress
+      oscManager.sendListSceneCommand(address: address, value: [showObject.number])
+      return
+    }
+    // for group only, clear the command line
+    if showObject.safeObjType == .group {
+      oscManager.push(address: HogKey.backspace.oscAddress())
+      oscManager.release(address: HogKey.backspace.oscAddress())
+      usleep(1000)
+      oscManager.push(address: HogKey.backspace.oscAddress())
+      oscManager.release(address: HogKey.backspace.oscAddress())
+      usleep(1000)
+    }
+    // push/release button for object
+    let address = showObject.safeObjType.pressAddress
+    oscManager.push(address: address)
+    oscManager.release(address: address)
+    usleep(1000)
+    // push/release numbers for number
+    for num in showObject.viewNumber {
+      if num == "." {
+        oscManager.push(address: HogKey.dot.oscAddress())
+        oscManager.release(address: HogKey.dot.oscAddress())
+      } else {
+        guard let number = Int(num.lowercased()),
+          let hogKey = HogKey(rawValue: number)
+        else { return }
+        oscManager.push(address: hogKey.oscAddress())
+        oscManager.release(address: hogKey.oscAddress())
+      }
+      usleep(1000)
+    }
+    // push enter
+    oscManager.push(address: HogKey.enter.oscAddress())
+    oscManager.release(address: HogKey.enter.oscAddress())
+    usleep(1000)
   }
 }
 

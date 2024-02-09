@@ -25,4 +25,34 @@ enum ObjectType: String, CaseIterable, Identifiable {
   var label: String {
     return self.rawValue.capitalized
   }
+
+  var hogKey: HogKey? {
+    switch self {
+      case .group:
+        HogKey.group
+      case .intensity:
+        HogKey.intensity
+      case .position:
+        HogKey.position
+      case .color:
+        HogKey.color
+      case .beam:
+        HogKey.beam
+      case .effect:
+        HogKey.effect
+      case .list, .scene:
+        nil
+    }
+  }
+
+  var pressAddress: String {
+    switch self {
+      case .list:
+        "/hog/playback/go/0"
+      case .scene:
+        "/hog/playback/go/1/"
+      default:
+        hogKey!.oscAddress()
+    }
+  }
 }

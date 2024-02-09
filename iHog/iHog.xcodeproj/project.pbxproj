@@ -384,9 +384,9 @@
 			isa = PBXGroup;
 			children = (
 				69A3985F2B76935200ADC3F4 /* PlaybackObjectsView.swift */,
+				692038C72B76B8E4006DFA07 /* ProgrammingObjectsView.swift */,
 				692038C52B76A316006DFA07 /* NewObjectView.swift */,
 				69773AE32B766F1A00C47316 /* Component */,
-				692038C72B76B8E4006DFA07 /* ProgrammingObjectsView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
