@@ -13,20 +13,18 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
     return self.rawValue
   }
 
-  case programming, playback, hardwarePlayback, hardwarePlayProg, hardwareProg
+  case hardwareProg, hardwarePlayback, programming, playback
 
   var title: LocalizedStringKey {
     switch self {
       case .programming:
-        "ShowTab.programming"
+        "Groups & Palettes"
       case .playback:
-        "ShowTab.playback"
+        "Lists & Scenes"
       case .hardwarePlayback:
-        "ShowTab.hardwarePlayback"
-      case .hardwarePlayProg:
-        "ShowTab.hardwarePlayProg"
+        "Playback Panel"
       case .hardwareProg:
-        "ShowTab.hardwareProg"
+        "Programming Panel"
     }
   }
 
@@ -38,8 +36,6 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
         "play.square"
       case .hardwarePlayback:
         "slider.horizontal.below.rectangle"
-      case .hardwarePlayProg:
-        "cpu"
       case .hardwareProg:
         "paintbrush"
     }
@@ -50,18 +46,16 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
   }
 
   @ViewBuilder
-  var view: some View {
+  func view(showID: UUID) -> some View {
     switch self {
       case .programming:
-        ProgrammerScreen()
+        ProgrammingObjectsView(showID: showID)
       case .playback:
-        PlaybackHardwareView()
+        PlaybackObjectsView(showID: showID)
       case .hardwarePlayback:
-        Text(title)
-      case .hardwarePlayProg:
-        Text(title)
+        PlaybackHardwareView()
       case .hardwareProg:
-        Text(title)
+        ProgrammerScreen()
     }
   }
 }

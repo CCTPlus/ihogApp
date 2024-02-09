@@ -9,9 +9,14 @@ import Foundation
 
 @Observable
 class ShowRouter {
-  var selectedView: ShowRouterDestination = .programming
+  var selectedView: ShowRouterDestination = .playback
+  var sheetShown: ShowSheet? = nil
 
   func changeSelectedView(to destination: ShowRouterDestination) {
     selectedView = destination
+  }
+
+  func show(sheet: ShowSheet) {
+    sheetShown = sheet
   }
 }

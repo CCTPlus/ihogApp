@@ -10,6 +10,19 @@
     "/" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ number will be incremented by 1 and have the same name if you entered a name" : {
+
+    },
     "%lld" : {
 
     },
@@ -24,6 +37,9 @@
       }
     },
     ">> Page" : {
+
+    },
+    "🤷‍♂️" : {
 
     },
     "0" : {
@@ -89,6 +105,42 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terms"
+          }
+        }
+      }
+    },
+    "Add" : {
+
+    },
+    "Add 1 %@" : {
+
+    },
+    "Add 5 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 5 %1$@s starting at %2$@"
+          }
+        }
+      }
+    },
+    "Add 10 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 10 %1$@s starting at %2$@"
+          }
+        }
+      }
+    },
+    "Add 100 %@s starting at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add 100 %1$@s starting at %2$@"
           }
         }
       }
@@ -190,6 +242,9 @@
     "Contact" : {
 
     },
+    "Could not save object" : {
+
+    },
     "Do this later" : {
 
     },
@@ -209,6 +264,12 @@
 
     },
     "Group" : {
+
+    },
+    "Groups" : {
+
+    },
+    "Groups & Palettes" : {
 
     },
     "H\nh" : {
@@ -289,16 +350,28 @@
         }
       }
     },
+    "Lists" : {
+
+    },
+    "Lists & Scenes" : {
+
+    },
     "Manage your subscription" : {
 
     },
     "Match what's listed in the labels on the console" : {
 
     },
+    "Name" : {
+
+    },
     "Not subscribed" : {
 
     },
     "nothing" : {
+
+    },
+    "Number" : {
 
     },
     "Open Sound Control" : {
@@ -313,13 +386,25 @@
     "Output Port" : {
 
     },
+    "Palettes" : {
+
+    },
     "per month" : {
 
     },
     "Pig" : {
 
     },
+    "Playback Panel" : {
+
+    },
     "Positn" : {
+
+    },
+    "Programming Panel" : {
+
+    },
+    "Quick add" : {
 
     },
     "Reach out to Jay and ask!" : {
@@ -338,6 +423,9 @@
 
     },
     "Restore purchases" : {
+
+    },
+    "Scenes" : {
 
     },
     "Select an item" : {
@@ -388,40 +476,8 @@
         }
       }
     },
-    "ShowTab.hardwarePlayback" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW PB"
-          }
-        }
-      }
-    },
-    "ShowTab.hardwarePlayProg" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PlayProg"
-          }
-        }
-      }
-    },
-    "ShowTab.hardwareProg" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HW Prog"
-          }
-        }
-      }
-    },
     "ShowTab.playback" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -460,10 +516,16 @@
     "Time" : {
 
     },
+    "Type" : {
+
+    },
     "Upgrade to pro" : {
 
     },
     "World" : {
+
+    },
+    "You should never see this" : {
 
     },
     "You're a pro!" : {
