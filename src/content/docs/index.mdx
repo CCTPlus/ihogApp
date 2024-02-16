@@ -7,12 +7,12 @@ hero:
   image:
     file: ../../assets/icon.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: See what's new
+      link: /releases/v2024-2
       icon: right-arrow
       variant: primary
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Download on the App Store
+      link: /guides/
       icon: external
 ---
 
@@ -21,6 +21,9 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Next steps
 
 <CardGrid stagger>
+	<Card title="Developer Resources" icon="document">
+	Learn more about developer best practices for [iHog](/dev).
+	</Card>
 	<Card title="Update content" icon="pencil">
 		Edit `src/content/docs/index.mdx` to see this page change.
 	</Card>
