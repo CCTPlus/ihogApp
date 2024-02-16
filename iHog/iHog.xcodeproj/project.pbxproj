@@ -83,7 +83,6 @@
 		69AD9F592B72EBFF00974060 /* PhoneProgrammerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F582B72EBFF00974060 /* PhoneProgrammerView.swift */; };
 		69AD9F5B2B72F76B00974060 /* HardwareButtonsFourAcross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F5A2B72F76B00974060 /* HardwareButtonsFourAcross.swift */; };
 		69AD9F5E2B7318D500974060 /* OSCManager+Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F5D2B7318D500974060 /* OSCManager+Receiver.swift */; };
-		69AD9F602B731E4A00974060 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F5F2B731E4A00974060 /* PersistenceController.swift */; };
 		69AD9F622B7323C900974060 /* HogStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F612B7323C900974060 /* HogStatus.swift */; };
 		69AD9F652B7336B600974060 /* PlaybackHardwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F642B7336B600974060 /* PlaybackHardwareView.swift */; };
 		69AD9F682B73BED600974060 /* PlaybackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD9F672B73BED600974060 /* PlaybackBar.swift */; };
@@ -182,7 +181,6 @@
 		69AD9F582B72EBFF00974060 /* PhoneProgrammerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneProgrammerView.swift; sourceTree = "<group>"; };
 		69AD9F5A2B72F76B00974060 /* HardwareButtonsFourAcross.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareButtonsFourAcross.swift; sourceTree = "<group>"; };
 		69AD9F5D2B7318D500974060 /* OSCManager+Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSCManager+Receiver.swift"; sourceTree = "<group>"; };
-		69AD9F5F2B731E4A00974060 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		69AD9F612B7323C900974060 /* HogStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HogStatus.swift; sourceTree = "<group>"; };
 		69AD9F642B7336B600974060 /* PlaybackHardwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackHardwareView.swift; sourceTree = "<group>"; };
 		69AD9F672B73BED600974060 /* PlaybackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackBar.swift; sourceTree = "<group>"; };
@@ -503,7 +501,6 @@
 				695116D42B5CC6CA0006B04F /* PreviewStyleHelpers */,
 				699DA6D32B5C541400B61547 /* Preview Assets.xcassets */,
 				695116CA2B5CC0EA0006B04F /* ShowMockData.swift */,
-				69AD9F5F2B731E4A00974060 /* PersistenceController.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -714,7 +711,6 @@
 				69B866A92B7054AE003EAD38 /* SubscriptionManagementView.swift in Sources */,
 				695117052B5EAA330006B04F /* ShowRouter.swift in Sources */,
 				695116ED2B5E0A880006B04F /* AlertReason.swift in Sources */,
-				69AD9F602B731E4A00974060 /* PersistenceController.swift in Sources */,
 				69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */,
 				69B75BC02B72D4D200A696C7 /* OSCManager.swift in Sources */,
 				699DA6E42B5C549A00B61547 /* LaunchScreenView.swift in Sources */,
