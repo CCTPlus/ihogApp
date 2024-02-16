@@ -45,14 +45,34 @@ enum ObjectType: String, CaseIterable, Identifiable {
     }
   }
 
-  var pressAddress: String {
+  var pressAddress: String? {
+    switch self {
+      case .list, .scene:
+        nil
+      default:
+        hogKey!.oscAddress()
+    }
+  }
+
+  var goAddress: String? {
     switch self {
       case .list:
         "/hog/playback/go/0"
       case .scene:
-        "/hog/playback/go/1/"
+        "/hog/playback/go/1"
       default:
-        hogKey!.oscAddress()
+        nil
+    }
+  }
+
+  var releaseAddress: String? {
+    switch self {
+      case .list:
+        "/hog/playback/release/0"
+      case .scene:
+        "/hog/playback/release/1"
+      default:
+        nil
     }
   }
 }

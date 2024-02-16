@@ -80,12 +80,19 @@ struct ShowObjectView: View {
   }
 
   func release() {
-
+    guard let address = showObject.safeObjType.releaseAddress else {
+      Logger.osc.error("No address found")
+      return
+    }
+    oscManager.sendListSceneCommand(address: address, value: [showObject.number])
   }
 
   func sendOSC() {
     if showObject.safeObjType == .list || showObject.safeObjType == .scene {
-      let address = showObject.safeObjType.pressAddress
+      guard let address = showObject.safeObjType.goAddress else {
+        Logger.osc.error("No address found")
+        return
+      }
       oscManager.sendListSceneCommand(address: address, value: [showObject.number])
       return
     }
@@ -99,7 +106,10 @@ struct ShowObjectView: View {
       usleep(1000)
     }
     // push/release button for object
-    let address = showObject.safeObjType.pressAddress
+    guard let address = showObject.safeObjType.pressAddress else {
+      Logger.osc.error("No address found")
+      return
+    }
     oscManager.push(address: address)
     oscManager.release(address: address)
     usleep(1000)
