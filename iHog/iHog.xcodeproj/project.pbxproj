@@ -45,6 +45,8 @@
 		695117222B5ED2840006B04F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695117212B5ED2840006B04F /* Logger.swift */; };
 		6967DA0D2B7FB4E20072982A /* LargePlaybackObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967DA0C2B7FB4E20072982A /* LargePlaybackObjectsView.swift */; };
 		6967DA112B7FB5040072982A /* PlaybackObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967DA102B7FB5040072982A /* PlaybackObjectView.swift */; };
+		6967DA132B7FCC3E0072982A /* ProgrammingObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967DA122B7FCC3E0072982A /* ProgrammingObjectsView.swift */; };
+		6967DA152B7FCD2B0072982A /* LargeProgrammingObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6967DA142B7FCD2B0072982A /* LargeProgrammingObjectsView.swift */; };
 		696AF4A02B6360D60066F028 /* MYPackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696AF49F2B6360D60066F028 /* MYPackageView.swift */; };
 		696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537C2B73CB19002156B8 /* HardwareButton.swift */; };
 		696C537F2B73CD21002156B8 /* PressActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696C537E2B73CD21002156B8 /* PressActions.swift */; };
@@ -137,6 +139,8 @@
 		695117212B5ED2840006B04F /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6967DA0C2B7FB4E20072982A /* LargePlaybackObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePlaybackObjectsView.swift; sourceTree = "<group>"; };
 		6967DA102B7FB5040072982A /* PlaybackObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackObjectView.swift; sourceTree = "<group>"; };
+		6967DA122B7FCC3E0072982A /* ProgrammingObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammingObjectsView.swift; sourceTree = "<group>"; };
+		6967DA142B7FCD2B0072982A /* LargeProgrammingObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeProgrammingObjectsView.swift; sourceTree = "<group>"; };
 		696AF49F2B6360D60066F028 /* MYPackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYPackageView.swift; sourceTree = "<group>"; };
 		696C537C2B73CB19002156B8 /* HardwareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardwareButton.swift; sourceTree = "<group>"; };
 		696C537E2B73CD21002156B8 /* PressActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressActions.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				69A3985F2B76935200ADC3F4 /* SmallPlaybackObjectsView.swift */,
 				692038C72B76B8E4006DFA07 /* SmallProgrammingObjectsView.swift */,
 				6967DA0C2B7FB4E20072982A /* LargePlaybackObjectsView.swift */,
+				6967DA142B7FCD2B0072982A /* LargeProgrammingObjectsView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				69773AE32B766F1A00C47316 /* Component */,
 				692038C52B76A316006DFA07 /* NewObjectView.swift */,
 				6967DA102B7FB5040072982A /* PlaybackObjectView.swift */,
+				6967DA122B7FCC3E0072982A /* ProgrammingObjectsView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -721,6 +727,7 @@
 				6967DA112B7FB5040072982A /* PlaybackObjectView.swift in Sources */,
 				695116D12B5CC6A80006B04F /* AboutSection.swift in Sources */,
 				69B866B32B71E553003EAD38 /* OSCSettingsSection.swift in Sources */,
+				6967DA132B7FCC3E0072982A /* ProgrammingObjectsView.swift in Sources */,
 				692038C62B76A316006DFA07 /* NewObjectView.swift in Sources */,
 				697BD73F2B632485009CBB5F /* SheetDestination.swift in Sources */,
 				692038C82B76B8E4006DFA07 /* SmallProgrammingObjectsView.swift in Sources */,
@@ -782,6 +789,7 @@
 				69AD9F622B7323C900974060 /* HogStatus.swift in Sources */,
 				69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */,
 				69AD9F5E2B7318D500974060 /* OSCManager+Receiver.swift in Sources */,
+				6967DA152B7FCD2B0072982A /* LargeProgrammingObjectsView.swift in Sources */,
 				695116D82B5DBDA60006B04F /* PreviewList.swift in Sources */,
 				69A398652B7697CB00ADC3F4 /* NSManagedObjectContext+Mockable.swift in Sources */,
 			);
