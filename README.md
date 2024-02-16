@@ -1,4 +1,5 @@
 # iHog App documentation and website
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bcd81dfa-95c7-41ad-a0e6-fe1f2c1e2cb5/deploy-status)](https://app.netlify.com/sites/ihog/deploys)
 
 This is a separate branch to keep documentation close to the code. Below are all the resources included with the Astro template used.
 
