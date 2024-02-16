@@ -52,7 +52,7 @@ struct AllShowsView: View {
       moc.delete(showToDelete)
       try moc.save()
     } catch {
-      Logger.user.error("COULDN'T DELETE SHOW")
+      Logger.coredata.error("Can't delete show \(error)")
       moc.reset()
     }
   }
