@@ -29,4 +29,9 @@ extension ShowEntity {
     }
     return givenID
   }
+
+  var allShowObjects: [ShowObjectEntity] {
+    let set = objects as? Set<ShowObjectEntity> ?? []
+    return set.sorted { $0.number < $1.number }
+  }
 }

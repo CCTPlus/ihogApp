@@ -248,6 +248,9 @@
     "Could not save object" : {
 
     },
+    "Delete" : {
+
+    },
     "Do this later" : {
 
     },
@@ -285,6 +288,9 @@
 
     },
     "Help" : {
+
+    },
+    "Horizontal size: %@" : {
 
     },
     "iHog Pro" : {
@@ -529,6 +535,9 @@
 
     },
     "Upgrade to pro" : {
+
+    },
+    "Vertical size: %@" : {
 
     },
     "World" : {

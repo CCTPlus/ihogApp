@@ -5,6 +5,7 @@
 //  Created by Jay on 1/20/24.
 //
 
+import OSLog
 import SwiftUI
 
 struct AllShowsView: View {
@@ -21,6 +22,7 @@ struct AllShowsView: View {
         row(show)
       }
     }
+    .onDelete(perform: delete)
   }
 
   @ViewBuilder
@@ -38,20 +40,31 @@ struct AllShowsView: View {
         .monospaced()
     }
   }
+
+  func delete(at offsets: IndexSet) {
+    let index: Int = offsets.first ?? 0
+    let showToDelete = shows[index]
+
+    do {
+      for showObject in showToDelete.allShowObjects {
+        moc.delete(showObject)
+      }
+      moc.delete(showToDelete)
+      try moc.save()
+    } catch {
+      Logger.coredata.error("Can't delete show \(error)")
+      moc.reset()
+    }
+  }
 }
 
-#if DEBUG
-  #Preview {
-    NavigationStack {
-      List {
-        Section {
-          AllShowsView()
-            .environment(
-              \.managedObjectContext,
-              PersistenceController.preview.container.viewContext
-            )
-        }
+#Preview {
+  NavigationStack {
+    List {
+      Section {
+        AllShowsView()
+          .environment(\.managedObjectContext, .mock)
       }
     }
   }
-#endif
+}
