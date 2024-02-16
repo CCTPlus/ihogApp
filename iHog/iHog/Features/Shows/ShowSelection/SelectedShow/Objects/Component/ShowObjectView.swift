@@ -5,9 +5,11 @@
 //  Created by Jay on 2/9/24.
 //
 
+import OSLog
 import SwiftUI
 
 struct ShowObjectView: View {
+  @Environment(\.managedObjectContext) var moc
   @Environment(OSCManager.self) var oscManager
 
   var showObject: ShowObjectEntity
@@ -43,6 +45,19 @@ struct ShowObjectView: View {
       }
     }
     .buttonStyle(.plain)
+    .contextMenu(
+      ContextMenu(menuItems: {
+        Button(role: .destructive, action: deleteObject) {
+          Label("Delete", systemImage: "trash")
+        }
+        .tint(.red)
+        if showObject.safeObjType == .list || showObject.safeObjType == .scene {
+          Button(action: deleteObject) {
+            Label("Release", systemImage: "stop")
+          }
+        }
+      })
+    )
   }
 
   @ViewBuilder
@@ -54,7 +69,20 @@ struct ShowObjectView: View {
     }
   }
 
-  // TODO: Craft the message
+  func deleteObject() {
+    do {
+      moc.delete(showObject)
+      try moc.save()
+    } catch {
+      Logger.coredata.error("Couldn't delete object \(error)")
+      moc.reset()
+    }
+  }
+
+  func release() {
+
+  }
+
   func sendOSC() {
     if showObject.safeObjType == .list || showObject.safeObjType == .scene {
       let address = showObject.safeObjType.pressAddress
@@ -101,5 +129,6 @@ struct ShowObjectView: View {
     ShowObjectView(showObject: .mockNotOutlined, size: CGSize(width: 200, height: 200))
     ShowObjectView(showObject: .mock, size: CGSize(width: 200, height: 200))
   }
+  .environment(\.managedObjectContext, .mock)
   .environment(OSCManager.mock)
 }
