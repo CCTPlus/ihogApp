@@ -13,12 +13,13 @@ struct SelectedShowView: View {
 
   @State var showRouter = ShowRouter()
 
-  var showRequest: FetchRequest<ShowEntity>
-  var shows: FetchedResults<ShowEntity> { showRequest.wrappedValue }
+  @FetchRequest<ShowEntity>
+  var shows: FetchedResults<ShowEntity>
 
   init(showID: UUID) {
-    showRequest = FetchRequest(fetchRequest: FetchRequestBuilder.getShow(with: showID))
+    _shows = FetchRequest(fetchRequest: FetchRequestBuilder.getShow(with: showID))
   }
+
   var body: some View {
     showRouter.selectedView.view(showID: shows.first?.safeID ?? UUID())
       .environment(oscManager)
@@ -56,12 +57,10 @@ struct SelectedShowView: View {
   }
 }
 
-#if DEBUG
-  #Preview {
-    NavigationStack {
-      SelectedShowView(showID: FixtureConstants.uuid1)
-        .environment(\.managedObjectContext, .mock)
-        .environment(OSCManager.mock)
-    }
+#Preview {
+  NavigationStack {
+    SelectedShowView(showID: FixtureConstants.uuid1)
+      .environment(\.managedObjectContext, .mock)
+      .environment(OSCManager.mock)
   }
-#endif
+}
