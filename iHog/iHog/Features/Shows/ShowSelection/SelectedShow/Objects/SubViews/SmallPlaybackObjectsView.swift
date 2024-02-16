@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlaybackObjectsView: View {
+struct SmallPlaybackObjectsView: View {
   @Environment(\.managedObjectContext) var moc
 
   @FetchRequest<ShowObjectEntity> var listObjects: FetchedResults<ShowObjectEntity>
@@ -33,7 +33,7 @@ struct PlaybackObjectsView: View {
 }
 
 #Preview {
-  PlaybackObjectsView(showID: ShowEntity.mock.safeID)
+  SmallPlaybackObjectsView(showID: ShowEntity.mock.safeID)
     .environment(\.managedObjectContext, .mock)
     .environment(OSCManager.mock)
 }

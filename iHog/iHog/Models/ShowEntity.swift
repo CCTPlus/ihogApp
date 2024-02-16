@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 extension ShowEntity {
   var viewName: String {
@@ -21,6 +22,11 @@ extension ShowEntity {
   }
 
   var safeID: UUID {
-    givenID ?? UUID()
+    guard let givenID else {
+      Logger.coredata.debug("\(self.viewName) no id found")
+      Logger.coredata.error("🚨 No id found")
+      return UUID()
+    }
+    return givenID
   }
 }

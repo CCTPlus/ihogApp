@@ -3,7 +3,7 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
-    <entity name="ShowEntity" representedClassName="ShowEntity" syncable="YES" codeGenerationType="class">
+    <entity name="ShowEntity" representedClassName=".ShowEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="givenID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -12,7 +12,7 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <relationship name="objects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShowObjectEntity" inverseName="show" inverseEntity="ShowObjectEntity"/>
     </entity>
-    <entity name="ShowObjectEntity" representedClassName="ShowObjectEntity" syncable="YES" codeGenerationType="class">
+    <entity name="ShowObjectEntity" representedClassName=".ShowObjectEntity" syncable="YES" codeGenerationType="class">
         <attribute name="givenID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isOutlined" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>

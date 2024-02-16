@@ -75,12 +75,14 @@ class UserLevelManager {
   private func determineAccessLevelFromRevenueCat() async throws {
     let entitlements = try await Purchases.shared.customerInfo().entitlements
     Logger.iap.debug("\(entitlements[RCConstant.Entitlement.pro])")
-    if entitlements[RCConstant.Entitlement.pro]?.isActive == true {
-      userLevel = .pro
-      UserDefaults.standard.set(true, forKey: UserDefaultKey.proIsActive.rawValue)
-    } else {
-      userLevel = .free
-      UserDefaults.standard.set(false, forKey: UserDefaultKey.proIsActive.rawValue)
+    await MainActor.run {
+      if entitlements[RCConstant.Entitlement.pro]?.isActive == true {
+        userLevel = .pro
+        UserDefaults.standard.set(true, forKey: UserDefaultKey.proIsActive.rawValue)
+      } else {
+        userLevel = .free
+        UserDefaults.standard.set(false, forKey: UserDefaultKey.proIsActive.rawValue)
+      }
     }
   }
 
@@ -105,12 +107,14 @@ class UserLevelManager {
     let info = try await Purchases.shared.customerInfo()
     let purchaseDate = info.originalPurchaseDate
     guard let purchaseDate else { return }
-    UserDefaults.standard.set(
-      purchaseDate.ISO8601Format(),
-      forKey: UserDefaultKey.userSince.rawValue
-    )
-    userSince = purchaseDate
-    Logger.iap.debug("User since \(purchaseDate.ISO8601Format())")
+    await MainActor.run {
+      UserDefaults.standard.set(
+        purchaseDate.ISO8601Format(),
+        forKey: UserDefaultKey.userSince.rawValue
+      )
+      userSince = purchaseDate
+      Logger.iap.debug("User since \(purchaseDate.ISO8601Format())")
+    }
   }
 
   private func determineProSinceFromRevenueCat() async throws {

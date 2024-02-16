@@ -13,7 +13,11 @@ struct ShowObjectGridView: View {
 
   let columns: [GridItem]
 
-  init(objects: [ShowObjectEntity], size: CGSize) {
+  init(
+    objects: [ShowObjectEntity],
+    size: CGSize,
+    columns: [GridItem] = GridConstant.objectGrid(width: 100)
+  ) {
     self.objects = objects
     self.size = size
     self.columns = GridConstant.objectGrid(width: size.width)
@@ -29,6 +33,6 @@ struct ShowObjectGridView: View {
 }
 
 #Preview {
-  ShowObjectGridView(objects: ShowObjectEntity.mockList, size: CGSize(width: 80, height: 80))
+  ShowObjectGridView(objects: ShowObjectEntity.mock(with: 4), size: CGSize(width: 80, height: 80))
     .environment(OSCManager.mock)
 }

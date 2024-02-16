@@ -2,22 +2,27 @@
 //  ProgrammingObjectsView.swift
 //  iHog
 //
-//  Created by Jay on 2/9/24.
+//  Created by Jay on 2/16/24.
 //
 
 import SwiftUI
 
 struct ProgrammingObjectsView: View {
-  @Environment(\.managedObjectContext) var moc
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass
+  @Environment(\.verticalSizeClass) var verticalSizeClass
 
-  @FetchRequest<ShowObjectEntity> var groups: FetchedResults<ShowObjectEntity>
-  @FetchRequest<ShowObjectEntity> var palettes: FetchedResults<ShowObjectEntity>
+  @FetchRequest<ShowObjectEntity> var groupObjects: FetchedResults<ShowObjectEntity>
+  @FetchRequest<ShowObjectEntity> var paletteObjects: FetchedResults<ShowObjectEntity>
+
+  var showID: UUID
+
+  var device = UIDevice.current.userInterfaceIdiom
 
   init(showID: UUID) {
-    _groups = FetchRequest(
+    _groupObjects = FetchRequest(
       fetchRequest: FetchRequestBuilder.getObjects(for: showID, of: .group)
     )
-    _palettes = FetchRequest(
+    _paletteObjects = FetchRequest(
       fetchRequest: FetchRequestBuilder.getObjects(
         for: showID,
         of: .intensity,
@@ -27,16 +32,32 @@ struct ProgrammingObjectsView: View {
         .effect
       )
     )
+    self.showID = showID
   }
 
   var body: some View {
-    ScrollView {
-      Text("Groups")
-      ShowObjectGridView(objects: Array(groups), size: CGSize(width: 100, height: 100))
-        .id("lists")
-      Text("Palettes")
-      ShowObjectGridView(objects: Array(palettes), size: CGSize(width: 100, height: 100))
-        .id("scenes")
+    if verticalSizeClass == .regular && horizontalSizeClass == .compact {
+      SmallProgrammingObjectsView(showID: showID)
+    } else if verticalSizeClass == .regular && horizontalSizeClass == .regular {
+      LargeProgrammingObjectsView(groups: Array(groupObjects), palettes: Array(paletteObjects))
+    } else if verticalSizeClass == .compact && horizontalSizeClass == .compact {
+      LargeProgrammingObjectsView(groups: Array(groupObjects), palettes: Array(paletteObjects))
+    } else {
+      VStack {
+        #if DEBUG
+          Text("Vertical size: \(verticalSizeClass == .regular ? "regular" : "compact")")
+          Text("Horizontal size: \(horizontalSizeClass == .regular ? "regular" : "compact")")
+        #endif
+        Text("⚠️")
+          .font(.largeTitle)
+        Text("You shouldn't see this!")
+        Link(
+          destination: URL(string: "mailto:support@cctplus.dev?subject=Invalid Screen in iHog")!,
+          label: {
+            Label("Email Jay and let him know", systemImage: "envelope")
+          }
+        )
+      }
     }
   }
 }

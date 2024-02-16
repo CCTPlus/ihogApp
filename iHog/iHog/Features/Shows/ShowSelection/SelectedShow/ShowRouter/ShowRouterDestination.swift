@@ -51,7 +51,7 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
       case .programming:
         ProgrammingObjectsView(showID: showID)
       case .playback:
-        PlaybackObjectsView(showID: showID)
+        PlaybackObjectView(showID: showID)
       case .hardwarePlayback:
         PlaybackHardwareView()
       case .hardwareProg:
