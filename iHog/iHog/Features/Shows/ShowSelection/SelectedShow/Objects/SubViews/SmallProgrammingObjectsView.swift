@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgrammingObjectsView: View {
+struct SmallProgrammingObjectsView: View {
   @Environment(\.managedObjectContext) var moc
 
   @FetchRequest<ShowObjectEntity> var groups: FetchedResults<ShowObjectEntity>
@@ -42,7 +42,7 @@ struct ProgrammingObjectsView: View {
 }
 
 #Preview {
-  ProgrammingObjectsView(showID: ShowEntity.mock.safeID)
+  SmallProgrammingObjectsView(showID: ShowEntity.mock.safeID)
     .environment(\.managedObjectContext, .mock)
     .environment(OSCManager.mock)
 }

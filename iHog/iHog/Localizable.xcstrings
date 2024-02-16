@@ -39,6 +39,9 @@
     ">> Page" : {
 
     },
+    "⚠️" : {
+
+    },
     "🤷‍♂️" : {
 
     },
@@ -254,6 +257,9 @@
     "Email Jay" : {
 
     },
+    "Email Jay and let him know" : {
+
+    },
     "Enable OSC" : {
 
     },
@@ -279,6 +285,9 @@
 
     },
     "Help" : {
+
+    },
+    "Horizontal size: %@" : {
 
     },
     "iHog Pro" : {
@@ -419,6 +428,9 @@
     "Release" : {
 
     },
+    "Release All" : {
+
+    },
     "Request a feature" : {
 
     },
@@ -522,10 +534,16 @@
     "Upgrade to pro" : {
 
     },
+    "Vertical size: %@" : {
+
+    },
     "World" : {
 
     },
     "You should never see this" : {
+
+    },
+    "You shouldn't see this!" : {
 
     },
     "You're a pro!" : {

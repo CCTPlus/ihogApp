@@ -71,4 +71,20 @@ extension ShowObjectEntity: Mockable {
   static var mockList: [ShowObjectEntity] {
     return [.mock, .mockNotOutlined, .mock3, .mock4, .mock5]
   }
+
+  static func mock(with numLists: Int, type: ObjectType = .list) -> [ShowObjectEntity] {
+    var objects = [ShowObjectEntity]()
+    for num in 1...numLists {
+      let object = ShowObjectEntity(context: PersistenceController.preview.container.viewContext)
+      object.givenID = UUID()
+      object.isOutlined = false
+      object.name = "\(type.label) \(num)"
+      object.number = Double(num)
+      object.objType = type.rawValue
+      object.showID = FixtureConstants.uuid1.uuidString
+      objects.append(object)
+    }
+
+    return objects
+  }
 }

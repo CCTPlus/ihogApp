@@ -49,9 +49,9 @@ enum ShowRouterDestination: Int, Identifiable, CaseIterable {
   func view(showID: UUID) -> some View {
     switch self {
       case .programming:
-        ProgrammingObjectsView(showID: showID)
+        SmallProgrammingObjectsView(showID: showID)
       case .playback:
-        PlaybackObjectsView(showID: showID)
+        PlaybackObjectView(showID: showID)
       case .hardwarePlayback:
         PlaybackHardwareView()
       case .hardwareProg:
