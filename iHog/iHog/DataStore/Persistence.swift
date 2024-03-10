@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import OSLog
 
 struct PersistenceController {
   static let shared = PersistenceController()

@@ -104,4 +104,15 @@ class OSCManager {
     }
     Logger.osc.debug("💬 \(message.addressPattern) \(message.values)")
   }
+
+  func sendEncoder(number: Int, isPositive: Bool) {
+    let address = "/hog/hardware/encoderwheel/\(number)"
+    let message = OSCMessage(address, values: [isPositive ? -2.0 : 2.0])
+    do {
+      try client.send(message, to: consoleIPAddress, port: safeInputPort)
+    } catch {
+      Logger.osc.error("\(#function) \(error)")
+    }
+    Logger.osc.debug("💬 \(message.addressPattern) \(message.values)")
+  }
 }
