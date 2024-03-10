@@ -13,6 +13,16 @@ struct PadProgrammerView: View {
     VStack(spacing: 24) {
       Text(oscManager.commandLine)
       Spacer()
+      HStack(spacing: 24) {
+        EncoderWheel(wheelNumber: 1)
+        EncoderWheel(wheelNumber: 2)
+        EncoderWheel(wheelNumber: 3)
+        EncoderWheel(wheelNumber: 4)
+        EncoderWheel(wheelNumber: 5)
+
+      }
+      .padding(.horizontal)
+      .frame(maxHeight: 160.0)
       HStack(alignment: .bottom) {
         VStack(spacing: 24) {
           HardwareButtonsThreeAcross(keys: HogKey.objectKeys)

@@ -96,6 +96,7 @@
 		69B866B02B71DD19003EAD38 /* ContactSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866AF2B71DD19003EAD38 /* ContactSection.swift */; };
 		69B866B32B71E553003EAD38 /* OSCSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866B22B71E553003EAD38 /* OSCSettingsSection.swift */; };
 		69B866B62B72BFA7003EAD38 /* OSCConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B866B52B72BFA7003EAD38 /* OSCConfigView.swift */; };
+		69C4DA562B802093004EACA3 /* EncoderWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C4DA552B802093004EACA3 /* EncoderWheel.swift */; };
 		69C710E22B642FCC0027BF0B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E12B642FCC0027BF0B /* View+Extensions.swift */; };
 		69C710E42B64308B0027BF0B /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E32B64308B0027BF0B /* PreferenceKeys.swift */; };
 		69C710E62B644BC60027BF0B /* RevenueCat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C710E52B644BC60027BF0B /* RevenueCat+Extensions.swift */; };
@@ -191,6 +192,7 @@
 		69B866AF2B71DD19003EAD38 /* ContactSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSection.swift; sourceTree = "<group>"; };
 		69B866B22B71E553003EAD38 /* OSCSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCSettingsSection.swift; sourceTree = "<group>"; };
 		69B866B52B72BFA7003EAD38 /* OSCConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCConfigView.swift; sourceTree = "<group>"; };
+		69C4DA552B802093004EACA3 /* EncoderWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderWheel.swift; sourceTree = "<group>"; };
 		69C710E12B642FCC0027BF0B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		69C710E32B64308B0027BF0B /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		69C710E52B644BC60027BF0B /* RevenueCat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RevenueCat+Extensions.swift"; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				69AD9F542B72E3AF00974060 /* KeypadView.swift */,
 				69AD9F5A2B72F76B00974060 /* HardwareButtonsFourAcross.swift */,
 				69773AD02B7487FC00C47316 /* HardwareButtonsThreeAcross.swift */,
+				69C4DA552B802093004EACA3 /* EncoderWheel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				696C537D2B73CB19002156B8 /* HardwareButton.swift in Sources */,
 				695116E82B5E05B10006B04F /* RouterDestination.swift in Sources */,
 				695116F92B5E265B0006B04F /* ShowFixture.swift in Sources */,
+				69C4DA562B802093004EACA3 /* EncoderWheel.swift in Sources */,
 				69773ADF2B766C0600C47316 /* iHog.xcdatamodeld in Sources */,
 				699DA6E72B5CBC9800B61547 /* AllShowsView.swift in Sources */,
 				699DA6CF2B5C541300B61547 /* ContentView.swift in Sources */,
