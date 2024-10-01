@@ -30,16 +30,15 @@ struct EncoderWheel: View {
     ZStack {
       RoundedRectangle(cornerRadius: 24.0)
         .fill(.secondary)
-      RoundedRectangle(cornerRadius: 24.0)
-        .fill(.secondary)
-        .frame(width: height / 1.5, height: height / 3)
-        .gesture(dragGesture)
-        .offset(y: yOffset)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .aspectRatio(1.0, contentMode: .fit)
-    .heightChangePreference { measuredHeight in
-      height = measuredHeight
+    .overlay {
+      RoundedRectangle(cornerRadius: 24.0)
+        .fill(.secondary)
+        .frame(width: 100, height: 60)
+        .gesture(dragGesture)
+        .offset(y: yOffset)
     }
   }
 

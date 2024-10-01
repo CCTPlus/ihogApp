@@ -38,7 +38,9 @@ struct SelectedShowView: View {
             case .hardwarePlayback:
               Text("🤷‍♂️")
             case .hardwareProg:
-              Text("🤷‍♂️")
+              Button("Encoders", systemImage: "cooktop") {
+                showRouter.show(sheet: .encoder)
+              }
           }
         }
       }

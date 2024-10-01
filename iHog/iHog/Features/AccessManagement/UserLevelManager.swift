@@ -25,6 +25,12 @@ class UserLevelManager {
     self.proSince = nil
   }
 
+  func determineLevels(_ canConnectToRC: Bool) {
+    determineUserLevel(canConnectToRC)
+    determineProSince(canConnectToRC)
+    determineUserSince(canConnectToRC)
+  }
+
   func determineUserLevel(_ canConnectToRC: Bool) {
     if canConnectToRC {
       Task {

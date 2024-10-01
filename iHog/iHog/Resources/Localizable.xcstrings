@@ -266,6 +266,9 @@
     "Enable OSC" : {
 
     },
+    "Encoders" : {
+
+    },
     "Fixture" : {
 
     },
@@ -282,12 +285,6 @@
 
     },
     "H\nh" : {
-
-    },
-    "Hello" : {
-
-    },
-    "Help" : {
 
     },
     "Horizontal size: %@" : {
@@ -538,9 +535,6 @@
 
     },
     "Vertical size: %@" : {
-
-    },
-    "World" : {
 
     },
     "You should never see this" : {

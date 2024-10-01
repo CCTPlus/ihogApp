@@ -29,9 +29,7 @@ struct iHogApp: App {
     WindowGroup {
       LaunchScreenView()
         .task {
-          userLevelManager.determineUserLevel(network.isConnected)
-          userLevelManager.determineProSince(network.isConnected)
-          userLevelManager.determineUserSince(network.isConnected)
+          userLevelManager.determineLevels(network.isConnected)
           await userLevelManager.startListeningForRevenueCatChanges()
         }
         .environment(\.managedObjectContext, persistenceController.container.viewContext)

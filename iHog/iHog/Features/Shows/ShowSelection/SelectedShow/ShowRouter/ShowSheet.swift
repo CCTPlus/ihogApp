@@ -14,12 +14,15 @@ enum ShowSheet: Int, Identifiable {
   }
 
   case newObject
+  case encoder
 
   @ViewBuilder
   func view(show: ShowEntity) -> some View {
     switch self {
       case .newObject:
         NewObjectView(show: show)
+      case .encoder:
+        Text("Encoders")
     }
   }
 }
