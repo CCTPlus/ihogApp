@@ -1,4 +1,14 @@
 {
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
   "identifier" : "0908771B",
   "nonRenewingSubscriptions" : [
 
@@ -226,7 +236,10 @@
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "IH4_099_month",
           "subscriptionGroupID" : "20571170",
-          "type" : "RecurringSubscription"
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         },
         {
           "adHocOffers" : [
@@ -256,13 +269,16 @@
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "IH_0499_year",
           "subscriptionGroupID" : "20571170",
-          "type" : "RecurringSubscription"
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         }
       ]
     }
   ],
   "version" : {
-    "major" : 3,
+    "major" : 4,
     "minor" : 0
   }
 }
