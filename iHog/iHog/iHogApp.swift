@@ -51,7 +51,6 @@ struct iHogApp: App {
         Purchases.logLevel = .debug
         Purchases.configure(
             with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
-                .with(usesStoreKit2IfAvailable: true)
                 .build())
     }
 
