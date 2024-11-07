@@ -1,0 +1,360 @@
+/* No comment provided by engineer. */
+"-" = "-";
+
+/* No comment provided by engineer. */
+"." = ".";
+
+/* No comment provided by engineer. */
+"@" = "@";
+
+/* No comment provided by engineer. */
+"/" = "/";
+
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ About [iHog Website]" = "%@ About [iHog Website]";
+
+/* No comment provided by engineer. */
+"%@ Chat about iHog [Dev's discord link]" = "%@ Chat about iHog [Dev's discord link]";
+
+/* No comment provided by engineer. */
+"%@ Numeric Keypad" = "%@ Numeric Keypad";
+
+/* No comment provided by engineer. */
+"%@ Send Feedback" = "%@ Send Feedback";
+
+/* No comment provided by engineer. */
+"%@ Sending" = "%@ Sending";
+
+/* No comment provided by engineer. */
+"%@ Submit" = "%@ Submit";
+
+/* No comment provided by engineer. */
+"%@ Submitted" = "%@ Submitted";
+
+/* No comment provided by engineer. */
+"%@ Tip Jar (%@)" = "%@ Tip Jar (%@)";
+
+/* No comment provided by engineer. */
+"%@s" = "%@s";
+
+/* No comment provided by engineer. */
+"+" = "+";
+
+/* No comment provided by engineer. */
+"<-" = "<-";
+
+/* No comment provided by engineer. */
+"0" = "0";
+
+/* No comment provided by engineer. */
+"1" = "1";
+
+/* No comment provided by engineer. */
+"2" = "2";
+
+/* No comment provided by engineer. */
+"3" = "3";
+
+/* No comment provided by engineer. */
+"4" = "4";
+
+/* No comment provided by engineer. */
+"5" = "5";
+
+/* No comment provided by engineer. */
+"6" = "6";
+
+/* No comment provided by engineer. */
+"7" = "7";
+
+/* No comment provided by engineer. */
+"8" = "8";
+
+/* No comment provided by engineer. */
+"9" = "9";
+
+/* No comment provided by engineer. */
+"20" = "20";
+
+/* No comment provided by engineer. */
+"About" = "About";
+
+/* No comment provided by engineer. */
+"Action Keys" = "Action Keys";
+
+/* No comment provided by engineer. */
+"Add %@" = "Add %@";
+
+/* No comment provided by engineer. */
+"Add Group" = "Add Group";
+
+/* No comment provided by engineer. */
+"Add Item" = "Add Item";
+
+/* No comment provided by engineer. */
+"Add List" = "Add List";
+
+/* No comment provided by engineer. */
+"Add Scene" = "Add Scene";
+
+/* No comment provided by engineer. */
+"Add Show" = "Add Show";
+
+/* No comment provided by engineer. */
+"All" = "All";
+
+/* No comment provided by engineer. */
+"App Version: %@ (%@)" = "App Version: %@ (%@)";
+
+/* No comment provided by engineer. */
+"Apply Settings" = "Apply Settings";
+
+/* No comment provided by engineer. */
+"Back" = "Back";
+
+/* No comment provided by engineer. */
+"Blind" = "Blind";
+
+/* No comment provided by engineer. */
+"Bug" = "Bug";
+
+/* No comment provided by engineer. */
+"Button Color" = "Button Color";
+
+/* No comment provided by engineer. */
+"Button Size" = "Button Size";
+
+/* No comment provided by engineer. */
+"By making a purchase you are unlocking the Punt Page features." = "By making a purchase you are unlocking the Punt Page features.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Clear" = "Clear";
+
+/* No comment provided by engineer. */
+"CLEAR" = "CLEAR";
+
+/* No comment provided by engineer. */
+"Close" = "Close";
+
+/* No comment provided by engineer. */
+"Color" = "Color";
+
+/* No comment provided by engineer. */
+"Connect" = "Connect";
+
+/* No comment provided by engineer. */
+"Connect for game controller" = "Connect for game controller";
+
+/* No comment provided by engineer. */
+"Console's HogNet IP Address" = "Console's HogNet IP Address";
+
+/* No comment provided by engineer. */
+"Console's Input Port" = "Console's Input Port";
+
+/* No comment provided by engineer. */
+"Console's Output Port" = "Console's Output Port";
+
+/* No comment provided by engineer. */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Device" = "Device";
+
+/* No comment provided by engineer. */
+"Device Settings" = "Device Settings";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Encoder Wheel Precision" = "Encoder Wheel Precision";
+
+/* No comment provided by engineer. */
+"Encoder Wheel Precision: %lf" = "Encoder Wheel Precision: %lf";
+
+/* No comment provided by engineer. */
+"Enter" = "Enter";
+
+/* No comment provided by engineer. */
+"Feature Request" = "Feature Request";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
+
+/* No comment provided by engineer. */
+"Feedback Details" = "Feedback Details";
+
+/* No comment provided by engineer. */
+"Fine Control" = "Fine Control";
+
+/* No comment provided by engineer. */
+"Focus" = "Focus";
+
+/* No comment provided by engineer. */
+"Front Panel" = "Front Panel";
+
+/* No comment provided by engineer. */
+"full" = "full";
+
+/* No comment provided by engineer. */
+"Full" = "Full";
+
+/* No comment provided by engineer. */
+"Function Keys" = "Function Keys";
+
+/* No comment provided by engineer. */
+"Game Controller Options" = "Game Controller Options";
+
+/* No comment provided by engineer. */
+"Groups" = "Groups";
+
+/* No comment provided by engineer. */
+"Haptic Feedback for encoders is %@" = "Haptic Feedback for encoders is %@";
+
+/* No comment provided by engineer. */
+"Hello, World!" = "Hello, World!";
+
+/* No comment provided by engineer. */
+"High Light" = "High Light";
+
+/* No comment provided by engineer. */
+"I'm one person building iHog, and it relies on your support for development. Pay what you want when you want and no matter what you will be loved for it 💙" = "I'm one person building iHog, and it relies on your support for development. Pay what you want when you want and no matter what you will be loved for it 💙";
+
+/* No comment provided by engineer. */
+"If using cellular data, it is recommended to turn it off to ensure Wi-Fi is being used." = "If using cellular data, it is recommended to turn it off to ensure Wi-Fi is being used.";
+
+/* No comment provided by engineer. */
+"Is Outlined" = "Is Outlined";
+
+/* No comment provided by engineer. */
+"Item at %@" = "Item at %@";
+
+/* No comment provided by engineer. */
+"Kind Keys & Encoders" = "Kind Keys & Encoders";
+
+/* No comment provided by engineer. */
+"Learn more about Punt Page" = "Learn more about Punt Page";
+
+/* No comment provided by engineer. */
+"Lists" = "Lists";
+
+/* No comment provided by engineer. */
+"Main Buttons" = "Main Buttons";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Nano Mode is %@" = "Nano Mode is %@";
+
+/* No comment provided by engineer. */
+"Next" = "Next";
+
+/* No comment provided by engineer. */
+"Number" = "Number";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"OSC is %@" = "OSC is %@";
+
+/* No comment provided by engineer. */
+"OSC Log" = "OSC Log";
+
+/* No comment provided by engineer. */
+"OSC Settings" = "OSC Settings";
+
+/* No comment provided by engineer. */
+"palette selection" = "palette selection";
+
+/* No comment provided by engineer. */
+"Palettes" = "Palettes";
+
+/* No comment provided by engineer. */
+"Pause OSC Log" = "Pause OSC Log";
+
+/* No comment provided by engineer. */
+"Playback" = "Playback";
+
+/* No comment provided by engineer. */
+"Please pay what you think the Punt Page is worth. A lot of time and effort went into making sure these screens will look good and function on your device." = "Please pay what you think the Punt Page is worth. A lot of time and effort went into making sure these screens will look good and function on your device.";
+
+/* No comment provided by engineer. */
+"Programmer Settings" = "Programmer Settings";
+
+/* No comment provided by engineer. */
+"Programming" = "Programming";
+
+/* No comment provided by engineer. */
+"Punt Page Unlock" = "Punt Page Unlock";
+
+/* No comment provided by engineer. */
+"Release" = "Release";
+
+/* No comment provided by engineer. */
+"Release All" = "Release All";
+
+/* No comment provided by engineer. */
+"Restore purchases" = "Restore purchases";
+
+/* No comment provided by engineer. */
+"Resume OSC Log" = "Resume OSC Log";
+
+/* No comment provided by engineer. */
+"Save" = "Save";
+
+/* No comment provided by engineer. */
+"Scenes" = "Scenes";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Short summary" = "Short summary";
+
+/* No comment provided by engineer. */
+"Show Name" = "Show Name";
+
+/* No comment provided by engineer. */
+"Show Settings" = "Show Settings";
+
+/* No comment provided by engineer. */
+"Shows" = "Shows";
+
+/* No comment provided by engineer. */
+"Summary" = "Summary";
+
+/* No comment provided by engineer. */
+"Thanks for checking out this page. Without a purchase, you won't be able to use it." = "Thanks for checking out this page. Without a purchase, you won't be able to use it.";
+
+/* No comment provided by engineer. */
+"This device's IP address" = "This device's IP address";
+
+/* No comment provided by engineer. */
+"thru" = "thru";
+
+/* No comment provided by engineer. */
+"Thru" = "Thru";
+
+/* No comment provided by engineer. */
+"Tip Jar" = "Tip Jar";
+
+/* No comment provided by engineer. */
+"Total in Jar: %@" = "Total in Jar: %@";
+
+/* No comment provided by engineer. */
+"Type" = "Type";
+
+/* No comment provided by engineer. */
+"Unlock Punt Page" = "Unlock Punt Page";
+
+/* No comment provided by engineer. */
+"Utility Keys" = "Utility Keys";
+

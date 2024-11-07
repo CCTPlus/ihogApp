@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="iHog/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.2.1" build-num="13C100"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>iHog</source>
+        <target>iHog</target>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>iHog</source>
+        <target>iHog</target>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="iHog/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.2.1" build-num="13C100"/>
+    </header>
+    <body>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <target>%@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ About [iHog Website]" xml:space="preserve">
+        <source>%@ About [iHog Website]</source>
+        <target>%@ About [iHog Website]</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Chat about iHog [Dev's discord link]" xml:space="preserve">
+        <source>%@ Chat about iHog [Dev's discord link]</source>
+        <target>%@ Chat about iHog [Dev's discord link]</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Numeric Keypad" xml:space="preserve">
+        <source>%@ Numeric Keypad</source>
+        <target>%@ Numeric Keypad</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Send Feedback" xml:space="preserve">
+        <source>%@ Send Feedback</source>
+        <target>%@ Send Feedback</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Sending" xml:space="preserve">
+        <source>%@ Sending</source>
+        <target>%@ Sending</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Submit" xml:space="preserve">
+        <source>%@ Submit</source>
+        <target>%@ Submit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Submitted" xml:space="preserve">
+        <source>%@ Submitted</source>
+        <target>%@ Submitted</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Tip Jar (%@)" xml:space="preserve">
+        <source>%@ Tip Jar (%@)</source>
+        <target>%@ Tip Jar (%@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@s" xml:space="preserve">
+        <source>%@s</source>
+        <target>%@s</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="+" xml:space="preserve">
+        <source>+</source>
+        <target>+</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="-" xml:space="preserve">
+        <source>-</source>
+        <target>-</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="." xml:space="preserve">
+        <source>.</source>
+        <target>.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/" xml:space="preserve">
+        <source>/</source>
+        <target>/</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="0" xml:space="preserve">
+        <source>0</source>
+        <target>0</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="1" xml:space="preserve">
+        <source>1</source>
+        <target>1</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="2" xml:space="preserve">
+        <source>2</source>
+        <target>2</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="3" xml:space="preserve">
+        <source>3</source>
+        <target>3</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="4" xml:space="preserve">
+        <source>4</source>
+        <target>4</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="5" xml:space="preserve">
+        <source>5</source>
+        <target>5</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="6" xml:space="preserve">
+        <source>6</source>
+        <target>6</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="7" xml:space="preserve">
+        <source>7</source>
+        <target>7</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="8" xml:space="preserve">
+        <source>8</source>
+        <target>8</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="9" xml:space="preserve">
+        <source>9</source>
+        <target>9</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="20" xml:space="preserve">
+        <source>20</source>
+        <target>20</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="&lt;-" xml:space="preserve">
+        <source>&lt;-</source>
+        <target>&lt;-</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="@" xml:space="preserve">
+        <source>@</source>
+        <target>@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About" xml:space="preserve">
+        <source>About</source>
+        <target>About</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Action Keys" xml:space="preserve">
+        <source>Action Keys</source>
+        <target>Action Keys</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add %@" xml:space="preserve">
+        <source>Add %@</source>
+        <target>Add %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Group" xml:space="preserve">
+        <source>Add Group</source>
+        <target>Add Group</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Item" xml:space="preserve">
+        <source>Add Item</source>
+        <target>Add Item</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add List" xml:space="preserve">
+        <source>Add List</source>
+        <target>Add List</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Scene" xml:space="preserve">
+        <source>Add Scene</source>
+        <target>Add Scene</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Show" xml:space="preserve">
+        <source>Add Show</source>
+        <target>Add Show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="All" xml:space="preserve">
+        <source>All</source>
+        <target>All</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="App Version: %@ (%@)" xml:space="preserve">
+        <source>App Version: %@ (%@)</source>
+        <target>App Version: %@ (%@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Apply Settings" xml:space="preserve">
+        <source>Apply Settings</source>
+        <target>Apply Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Back" xml:space="preserve">
+        <source>Back</source>
+        <target>Back</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Blind" xml:space="preserve">
+        <source>Blind</source>
+        <target>Blind</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bug" xml:space="preserve">
+        <source>Bug</source>
+        <target>Bug</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Button Color" xml:space="preserve">
+        <source>Button Color</source>
+        <target>Button Color</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Button Size" xml:space="preserve">
+        <source>Button Size</source>
+        <target>Button Size</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="By making a purchase you are unlocking the Punt Page features." xml:space="preserve">
+        <source>By making a purchase you are unlocking the Punt Page features.</source>
+        <target>By making a purchase you are unlocking the Punt Page features.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="CLEAR" xml:space="preserve">
+        <source>CLEAR</source>
+        <target>CLEAR</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Clear" xml:space="preserve">
+        <source>Clear</source>
+        <target>Clear</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target>Close</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Color" xml:space="preserve">
+        <source>Color</source>
+        <target>Color</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connect" xml:space="preserve">
+        <source>Connect</source>
+        <target>Connect</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Connect for game controller" xml:space="preserve">
+        <source>Connect for game controller</source>
+        <target>Connect for game controller</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Console's HogNet IP Address" xml:space="preserve">
+        <source>Console's HogNet IP Address</source>
+        <target>Console's HogNet IP Address</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Console's Input Port" xml:space="preserve">
+        <source>Console's Input Port</source>
+        <target>Console's Input Port</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Console's Output Port" xml:space="preserve">
+        <source>Console's Output Port</source>
+        <target>Console's Output Port</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete" xml:space="preserve">
+        <source>Delete</source>
+        <target>Delete</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Device" xml:space="preserve">
+        <source>Device</source>
+        <target>Device</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Device Settings" xml:space="preserve">
+        <source>Device Settings</source>
+        <target>Device Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit" xml:space="preserve">
+        <source>Edit</source>
+        <target>Edit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Encoder Wheel Precision" xml:space="preserve">
+        <source>Encoder Wheel Precision</source>
+        <target>Encoder Wheel Precision</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Encoder Wheel Precision: %lf" xml:space="preserve">
+        <source>Encoder Wheel Precision: %lf</source>
+        <target>Encoder Wheel Precision: %lf</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter" xml:space="preserve">
+        <source>Enter</source>
+        <target>Enter</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Feature Request" xml:space="preserve">
+        <source>Feature Request</source>
+        <target>Feature Request</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Feedback" xml:space="preserve">
+        <source>Feedback</source>
+        <target>Feedback</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Feedback Details" xml:space="preserve">
+        <source>Feedback Details</source>
+        <target>Feedback Details</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Fine Control" xml:space="preserve">
+        <source>Fine Control</source>
+        <target>Fine Control</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Focus" xml:space="preserve">
+        <source>Focus</source>
+        <target>Focus</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Front Panel" xml:space="preserve">
+        <source>Front Panel</source>
+        <target>Front Panel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Full" xml:space="preserve">
+        <source>Full</source>
+        <target>Full</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Function Keys" xml:space="preserve">
+        <source>Function Keys</source>
+        <target>Function Keys</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Game Controller Options" xml:space="preserve">
+        <source>Game Controller Options</source>
+        <target>Game Controller Options</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Groups" xml:space="preserve">
+        <source>Groups</source>
+        <target>Groups</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Haptic Feedback for encoders is %@" xml:space="preserve">
+        <source>Haptic Feedback for encoders is %@</source>
+        <target>Haptic Feedback for encoders is %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello, World!" xml:space="preserve">
+        <source>Hello, World!</source>
+        <target>Hello, World!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="High Light" xml:space="preserve">
+        <source>High Light</source>
+        <target>High Light</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'm one person building iHog, and it relies on your support for development. Pay what you want when you want and no matter what you will be loved for it 💙" xml:space="preserve">
+        <source>I'm one person building iHog, and it relies on your support for development. Pay what you want when you want and no matter what you will be loved for it 💙</source>
+        <target>I'm one person building iHog, and it relies on your support for development. Pay what you want when you want and no matter what you will be loved for it 💙</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If using cellular data, it is recommended to turn it off to ensure Wi-Fi is being used." xml:space="preserve">
+        <source>If using cellular data, it is recommended to turn it off to ensure Wi-Fi is being used.</source>
+        <target>If using cellular data, it is recommended to turn it off to ensure Wi-Fi is being used.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Is Outlined" xml:space="preserve">
+        <source>Is Outlined</source>
+        <target>Is Outlined</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Item at %@" xml:space="preserve">
+        <source>Item at %@</source>
+        <target>Item at %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Kind Keys &amp; Encoders" xml:space="preserve">
+        <source>Kind Keys &amp; Encoders</source>
+        <target>Kind Keys &amp; Encoders</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Learn more about Punt Page" xml:space="preserve">
+        <source>Learn more about Punt Page</source>
+        <target>Learn more about Punt Page</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Lists" xml:space="preserve">
+        <source>Lists</source>
+        <target>Lists</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Main Buttons" xml:space="preserve">
+        <source>Main Buttons</source>
+        <target>Main Buttons</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name" xml:space="preserve">
+        <source>Name</source>
+        <target>Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nano Mode is %@" xml:space="preserve">
+        <source>Nano Mode is %@</source>
+        <target>Nano Mode is %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Next" xml:space="preserve">
+        <source>Next</source>
+        <target>Next</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Number" xml:space="preserve">
+        <source>Number</source>
+        <target>Number</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OSC Log" xml:space="preserve">
+        <source>OSC Log</source>
+        <target>OSC Log</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OSC Settings" xml:space="preserve">
+        <source>OSC Settings</source>
+        <target>OSC Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OSC is %@" xml:space="preserve">
+        <source>OSC is %@</source>
+        <target>OSC is %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Palettes" xml:space="preserve">
+        <source>Palettes</source>
+        <target>Palettes</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pause OSC Log" xml:space="preserve">
+        <source>Pause OSC Log</source>
+        <target>Pause OSC Log</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Playback" xml:space="preserve">
+        <source>Playback</source>
+        <target>Playback</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please pay what you think the Punt Page is worth. A lot of time and effort went into making sure these screens will look good and function on your device." xml:space="preserve">
+        <source>Please pay what you think the Punt Page is worth. A lot of time and effort went into making sure these screens will look good and function on your device.</source>
+        <target>Please pay what you think the Punt Page is worth. A lot of time and effort went into making sure these screens will look good and function on your device.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Programmer Settings" xml:space="preserve">
+        <source>Programmer Settings</source>
+        <target>Programmer Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Programming" xml:space="preserve">
+        <source>Programming</source>
+        <target>Programming</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Punt Page Unlock" xml:space="preserve">
+        <source>Punt Page Unlock</source>
+        <target>Punt Page Unlock</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Release" xml:space="preserve">
+        <source>Release</source>
+        <target>Release</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Release All" xml:space="preserve">
+        <source>Release All</source>
+        <target>Release All</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore purchases" xml:space="preserve">
+        <source>Restore purchases</source>
+        <target>Restore purchases</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Resume OSC Log" xml:space="preserve">
+        <source>Resume OSC Log</source>
+        <target>Resume OSC Log</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <target>Save</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Scenes" xml:space="preserve">
+        <source>Scenes</source>
+        <target>Scenes</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings" xml:space="preserve">
+        <source>Settings</source>
+        <target>Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Short summary" xml:space="preserve">
+        <source>Short summary</source>
+        <target>Short summary</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show Name" xml:space="preserve">
+        <source>Show Name</source>
+        <target>Show Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show Settings" xml:space="preserve">
+        <source>Show Settings</source>
+        <target>Show Settings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Shows" xml:space="preserve">
+        <source>Shows</source>
+        <target>Shows</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Summary" xml:space="preserve">
+        <source>Summary</source>
+        <target>Summary</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Thanks for checking out this page. Without a purchase, you won't be able to use it." xml:space="preserve">
+        <source>Thanks for checking out this page. Without a purchase, you won't be able to use it.</source>
+        <target>Thanks for checking out this page. Without a purchase, you won't be able to use it.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This device's IP address" xml:space="preserve">
+        <source>This device's IP address</source>
+        <target>This device's IP address</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Thru" xml:space="preserve">
+        <source>Thru</source>
+        <target>Thru</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tip Jar" xml:space="preserve">
+        <source>Tip Jar</source>
+        <target>Tip Jar</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Total in Jar: %@" xml:space="preserve">
+        <source>Total in Jar: %@</source>
+        <target>Total in Jar: %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type" xml:space="preserve">
+        <source>Type</source>
+        <target>Type</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unlock Punt Page" xml:space="preserve">
+        <source>Unlock Punt Page</source>
+        <target>Unlock Punt Page</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Utility Keys" xml:space="preserve">
+        <source>Utility Keys</source>
+        <target>Utility Keys</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="full" xml:space="preserve">
+        <source>full</source>
+        <target>full</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="palette selection" xml:space="preserve">
+        <source>palette selection</source>
+        <target>palette selection</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="thru" xml:space="preserve">
+        <source>thru</source>
+        <target>thru</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,4 +1,5 @@
 {
+  "originHash" : "9431a066a024d2538b9ed8c01a6a6967bd059fe602bcf3d2c7c661d668e999c3",
   "pins" : [
     {
       "identity" : "cocoaasyncsocket",
@@ -10,12 +11,39 @@
       }
     },
     {
+      "identity" : "coffeetoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maeganwilson/CoffeeToast",
+      "state" : {
+        "revision" : "29fb9b44b5bc22dd1d19b613125922c186d314b5",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "coreosc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sammysmallman/CoreOSC.git",
+      "state" : {
+        "revision" : "887328eb34c406405fc24988a81d49ac457fb2f8",
+        "version" : "1.3.1"
+      }
+    },
+    {
+      "identity" : "octokit.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nerdishbynature/octokit.swift",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1e63f582d69a2c78335af532171e2fb2749251a6"
+      }
+    },
+    {
       "identity" : "osckit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/orchetect/OSCKit",
+      "location" : "https://github.com/maeganwilson/OSCKit",
       "state" : {
-        "revision" : "77bdf99fd1e988e33c07242feef1efdd512700e9",
-        "version" : "0.5.0"
+        "revision" : "f5982778ddfe573d82d9a1137dbfea17bb52989b",
+        "version" : "3.1.0"
       }
     },
     {
@@ -23,37 +51,28 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RevenueCat/purchases-ios.git",
       "state" : {
-        "revision" : "2f559c69a255da5cd5f66d5a6b9a1dfe6bc61ead",
-        "version" : "4.32.0"
+        "revision" : "1357d57a38d09e60f967d0e78a912254fe46137c",
+        "version" : "4.43.3"
       }
     },
     {
-      "identity" : "swiftascii",
+      "identity" : "requestkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/orchetect/SwiftASCII",
+      "location" : "https://github.com/nerdishbynature/RequestKit.git",
       "state" : {
-        "revision" : "81efd5731286be759e91096043be10384034ee57",
-        "version" : "1.1.3"
+        "revision" : "e4d905fed938807e36d87f28375f88b7c1c26840",
+        "version" : "3.3.0"
       }
     },
     {
-      "identity" : "wishkit-ios",
+      "identity" : "swift-netutils",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wishkit/wishkit-ios.git",
+      "location" : "https://github.com/svdo/swift-netutils",
       "state" : {
-        "revision" : "2514baa0597bf084d72af4fc4bebd2ca98bbfc18",
-        "version" : "4.0.5"
-      }
-    },
-    {
-      "identity" : "wishkit-ios-shared",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wishkit/wishkit-ios-shared.git",
-      "state" : {
-        "revision" : "118c9c482e4ad57c65d664283516425b98616483",
-        "version" : "1.4.3"
+        "revision" : "28eb6f86a84e34e97dd3bea7e9658da15e8a1767",
+        "version" : "4.2.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
