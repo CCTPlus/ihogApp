@@ -23,6 +23,7 @@ struct SelectedShowView: View {
   var body: some View {
     showRouter.selectedView.view(showID: shows.first?.safeID ?? UUID())
       .environment(oscManager)
+      .environment(showRouter)
       .navigationTitle(Text(shows.first?.viewName ?? "Test"))
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
