@@ -17,6 +17,29 @@ struct DefaultPaywallView: View {
 
   var body: some View {
     List {
+        titleBar
+        // MARK: Feeatures
+      Section {
+        ForEach(Feature.allCases) { feature in
+          featureRow(string: feature.viewName)
+        }
+        Label("Support an indie developer", systemImage: "laptopcomputer.and.ipad")
+      }
+      VStack {
+        MonthAndYearOptionView(offeringID: "default")
+      }
+      .buttonStyle(.plain)
+        questionsSection
+    }
+  }
+}
+
+#Preview {
+  DefaultPaywallView()
+}
+
+extension DefaultPaywallView {
+    @ViewBuilder var titleBar: some View {
       Section {
         HStack(alignment: .top) {
           Text("iHog Pro")
@@ -34,13 +57,10 @@ struct DefaultPaywallView: View {
       .listRowInsets(.none)
       .listRowBackground(Color.clear)
       .listSectionSeparator(.hidden)
-      Section {
-        ForEach(Feature.allCases) { feature in
-          featureRow(string: feature.viewName)
-        }
-        Label("Support an indie developer", systemImage: "laptopcomputer.and.ipad")
-      }
-
+    }
+    
+    @ViewBuilder var questionsSection: some View {
+        // MARK: Questions
       Section {
         VStack(alignment: .center, spacing: 12) {
           Text("Any questions?")
@@ -58,20 +78,12 @@ struct DefaultPaywallView: View {
       }
       .listRowBackground(Color.clear)
       .listRowSeparator(.hidden)
-      VStack {
-        MonthAndYearOptionView(offeringID: "default")
-      }
-      .buttonStyle(.plain)
     }
-  }
-
-  @ViewBuilder
-  func featureRow(string: String) -> some View {
-    Label(string, systemImage: "chevron.right.circle")
-      .padding(.bottom, 2)
-  }
-}
-
-#Preview {
-  DefaultPaywallView()
+    
+    @ViewBuilder
+    func featureRow(string: String) -> some View {
+      Label(string, systemImage: "chevron.right.circle")
+        .padding(.bottom, 2)
+    }
+    
 }

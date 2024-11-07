@@ -8,33 +8,37 @@
 import RevenueCat
 import SwiftUI
 
-struct MYPackageView: View {
+struct PurchasePackageView: View {
   @State private var introOfferStatus: IntroEligibilityStatus = .noIntroOfferExists
 
   var isSelected: Bool
   var package: Package
 
   var body: some View {
-    VStack {
-      if introOfferStatus == .eligible,
-        let discount = package.storeProduct.introductoryDiscount
-      {
-        Text(
-          "\(discount.subscriptionPeriod.value) \(discount.subscriptionPeriod.viewUnit) free trial"
-        )
-        .font(.subheadline)
-        .padding(.vertical, 8)
+      VStack(spacing: 0) {
+        VStack {
+            if introOfferStatus == .eligible,
+               let discount = package.storeProduct.introductoryDiscount
+            {
+                Text(
+                    "\(discount.subscriptionPeriod.value) \(discount.subscriptionPeriod.viewUnit) free trial"
+                )
+                .font(.subheadline)
+                .padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+                .background(.secondary)
+            }
+            Text(package.packageType == .monthly ? "1 month" : "12 months")
+                .font(.headline)
+                .padding(.top, 8)
+            Text(package.localizedPriceString)
+                .font(.title)
+                .bold()
+                .padding(.bottom, 8)
+                .padding(.top, 4)
+        }
         .frame(maxWidth: .infinity)
-        .background(.secondary)
-      }
-      Text(package.packageType == .monthly ? "1 month" : "12 months")
-        .font(.headline)
-        .padding(.top, 8)
-      Text(package.localizedPriceString)
-        .font(.title)
-        .bold()
-        .padding(.bottom, 8)
-        .padding(.top, 4)
+        .background(.thickMaterial)
       VStack {
         Text(package.storeProduct.localizedPricePerMonth ?? "0.0")
         Text("per month")
@@ -43,10 +47,9 @@ struct MYPackageView: View {
       }
       .font(.footnote)
       .padding(.vertical, 8)
-      .background(.secondary)
+      .background(.ultraThinMaterial)
     }
-    .background(.bar)
-    .background(isSelected ? Color.accentColor : .clear)
+      .background(isSelected ? Color.accentColor : .secondary)
     .clipShape(RoundedRectangle(cornerRadius: 12.0, style: .continuous))
     .task {
       await viewSetup()

@@ -29,30 +29,18 @@ struct MonthAndYearOptionView: View {
         .padding()
       HStack(alignment: .bottom, spacing: 16.0) {
         if let offering {
-          if let package = offering.monthly {
-            Button {
-              selectedPackage = package
-            } label: {
-              MYPackageView(isSelected: selectedPackage == package, package: package)
+            ForEach(offering.availablePackages) { package in
+                Button {
+                    selectedPackage = package
+                } label: {
+                    PurchasePackageView(isSelected: selectedPackage == package, package: package)
+                }
+                .overlay {
+                  RoundedRectangle(cornerRadius: 12, style: .circular)
+                    .stroke(selectedPackage == package ? Color.accentColor : .clear, lineWidth: 4.0)
+                }
+
             }
-            .buttonStyle(.plain)
-            .overlay {
-              RoundedRectangle(cornerRadius: 12, style: .circular)
-                .stroke(selectedPackage == package ? Color.accentColor : .clear, lineWidth: 4.0)
-            }
-          }
-          if let package = offering.annual {
-            Button {
-              selectedPackage = package
-            } label: {
-              MYPackageView(isSelected: selectedPackage == package, package: package)
-            }
-            .buttonStyle(.plain)
-            .overlay {
-              RoundedRectangle(cornerRadius: 12, style: .circular)
-                .stroke(selectedPackage == package ? Color.accentColor : .clear, lineWidth: 4.0)
-            }
-          }
         }
       }
       Button {
@@ -71,8 +59,7 @@ struct MonthAndYearOptionView: View {
           .bold()
       }
       .buttonStyle(.borderedProminent)
-      .padding(.top, 12)
-
+      .padding(.vertical, 12)
       Button {
         Task {
           do {
@@ -83,8 +70,12 @@ struct MonthAndYearOptionView: View {
         }
       } label: {
         Text("Restore purchases")
+              .font(.footnote)
+              .fontDesign(.monospaced)
       }
+      .buttonStyle(.borderless)
     }
+    .padding(.bottom, 12)
     .task {
       do {
         try await getOffering()
@@ -103,6 +94,10 @@ struct MonthAndYearOptionView: View {
 }
 
 #Preview {
-  MonthAndYearOptionView(offeringID: "default")
-    .padding()
+    List {
+        VStack {
+            MonthAndYearOptionView(offeringID: "default")
+        }
+        .buttonStyle(.plain)
+    }
 }
