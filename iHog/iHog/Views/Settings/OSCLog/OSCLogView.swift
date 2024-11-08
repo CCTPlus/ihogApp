@@ -15,10 +15,11 @@ struct OSCLogView: View {
         VStack{
             Toggle(isOn: $osc.isLogPaused){
                 Text(osc.isLogPaused ? "Resume OSC Log" : "Pause OSC Log")
-            }.onChange(of: logIsPaused){ newValue in
-                    osc.toggleLog(logIsPaused)
-                }
-                .padding(.horizontal)
+            }
+            .onChange(of: logIsPaused){
+                osc.toggleLog(logIsPaused)
+            }
+            .padding(.horizontal)
             List{
                 ForEach(osc.oscLog.reversed(), id: \.self) { message in
                     HStack{
