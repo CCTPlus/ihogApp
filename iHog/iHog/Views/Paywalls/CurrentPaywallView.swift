@@ -20,13 +20,15 @@ struct CurrentPaywallView: View {
     var showTitle: Bool {
         return issue != nil
     }
+    
+    var analyticsSource: PaywallSource
 
     var body: some View {
         VStack {
             PaidFeaturesView(issue: issue)
             Spacer()
             ForEach(0..<packages.count, id: \.self){ packageInt in
-                PurchaseButtonView(isSelected: (packageInt == selectedPackage), package: packages[packageInt])
+                PurchaseButtonView(isSelected: (packageInt == selectedPackage), package: packages[packageInt], analyticsSource: analyticsSource)
                     .padding(.horizontal)
                     .onTapGesture {
                         selectedPackage = packageInt
@@ -57,7 +59,7 @@ struct CurrentPaywallView: View {
         do {
             user.customerInfo = try await Purchases.shared.restorePurchases()
         } catch {
-            print(error)
+            Analytics.shared.logError(with: error, for: .purchases)
         }
     }
 }
@@ -66,13 +68,13 @@ struct CurrentPaywallView_Previews: PreviewProvider {
     @StateObject static private var user = UserState()
     
     static var previews: some View {
-        CurrentPaywallView()
+        CurrentPaywallView(analyticsSource: .preview)
             .environmentObject(user)
             .task {
                 do {
                     user.offerings = try await Purchases.shared.offerings()
                 } catch {
-                    print(error.localizedDescription)
+                    Analytics.shared.logError(with: error, for: .purchases)
                 }
             }
     }

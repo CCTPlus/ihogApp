@@ -52,7 +52,7 @@ struct ShowNavigation: View {
                     }
                     .tag(Views.puntPageProgramming)
             } else {
-                CurrentPaywallView(issue: 1)
+                CurrentPaywallView(issue: 1, analyticsSource: .puntPage)
                     .tabItem{
                         Image(symbol: ._sliderhorizontalbelowsquareandsquarefilled)
                     }

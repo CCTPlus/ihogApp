@@ -44,32 +44,8 @@ struct SettingsView: View {
         NavigationSplitView {
             List(selection: $user.navigation) {
                 if !user.isPro {
-                    VStack(alignment: .center) {
-                        HStack {
-                            Image(symbol: ._wandandstars)
-                            Text("Be a PRO-grammer")
-                            Image(symbol: ._wandandstars)
-                        }
-                        Text("Unlock unlimited shows and more")
-                            .lineLimit(nil)
-                        ForEach(foundProducts, id: \.self) { package in
-                            Button("Start your \(package.terms(for: package))") {
-                                Purchases.shared.purchase(package: package) { (_, customerInfo, error, _) in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                    }
-                                    if customerInfo?.entitlements[RCConstants.Entitlements.pro.name]?.isActive == true {
-                                        user.unlockPro()
-                                    }
-                                }
-                            }.buttonStyle(.borderedProminent)
-                            Text(setPrice(package))
-                                .font(.footnote)
-                        }
-                        NavigationLink("Learn more", value: Routes.paywall(.currentPaywall))
-                            .font(.footnote)
-                            .foregroundColor(.blue)
-                    }
+                    SettingsSectionPaywall()
+                        .environmentObject(user)
                 } else {
                     HStack {
                         ListIcon(color: .accentColor, symbol: ._wandandrays)
@@ -183,7 +159,7 @@ struct SettingsView: View {
         } detail: {
             switch user.navigation {
             case let .paywall(paywall):
-                PaywallView(paywall: paywall)
+                    PaywallView(analtycsSource: .settings, paywall: paywall)
             case let .addView(addView):
                 AddViewController(viewToAdd: addView)
             case let .shows(show):
@@ -212,13 +188,6 @@ struct SettingsView: View {
         }
     }
     
-    func setPrice( _ package: Package) -> String {
-        let price = package.localizedPriceString
-        let duration = package.storeProduct.subscriptionPeriod!.durationTitle
-        return "then \(price) per \(duration)"
-    }
-    
-    
     func delete(at offsets: IndexSet) {
         let indexOfShow: Int = offsets.first ?? 0
         
@@ -233,7 +202,7 @@ struct SettingsView: View {
             viewContext.delete(showToDelete)
             try viewContext.save()
         } catch{
-            print(error)
+            Analytics.shared.logError(with: error, for: .coreData)
         }
     }
     
