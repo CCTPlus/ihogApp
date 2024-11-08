@@ -18,6 +18,7 @@
 		3769730C28A52743004D9BEF /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 3769730B28A52743004D9BEF /* RevenueCat */; };
 		377087D727AABFF000B0754A /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 377087D627AABFF000B0754A /* CoffeeToast */; };
 		37EAFA9027AF31530092C11E /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37EAFA8F27AF31530092C11E /* OSCKit */; };
+		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 				3769730C28A52743004D9BEF /* RevenueCat in Frameworks */,
 				3730E00D27A17B27006FCA5E /* OctoKit in Frameworks */,
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
+				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +218,7 @@
 				377087D627AABFF000B0754A /* CoffeeToast */,
 				37EAFA8F27AF31530092C11E /* OSCKit */,
 				3769730B28A52743004D9BEF /* RevenueCat */,
+				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -297,6 +300,7 @@
 				377087D527AABFF000B0754A /* XCRemoteSwiftPackageReference "CoffeeToast" */,
 				37EAFA8E27AF31530092C11E /* XCRemoteSwiftPackageReference "OSCKit" */,
 				3769730A28A52743004D9BEF /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = 15DA2674251237D60063E236 /* Products */;
 			projectDirPath = "";
@@ -778,6 +782,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -800,6 +812,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37EAFA8E27AF31530092C11E /* XCRemoteSwiftPackageReference "OSCKit" */;
 			productName = OSCKit;
+		};
+		69666DE82CDD774B008A0057 /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

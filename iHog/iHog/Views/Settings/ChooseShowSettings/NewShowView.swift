@@ -56,7 +56,7 @@ struct NewShowView: View {
                             }
                         }.padding(.bottom)
                 } else {
-                    CurrentPaywallView(issue: 4)
+                    CurrentPaywallView(issue: 4, analyticsSource: .addIconView)
                 }
             }
         }.navigationTitle("\(showName)")
@@ -84,6 +84,7 @@ struct NewShowView: View {
                 try viewContext.save()
                 user.resetNavigation()
             } catch {
+                Analytics.shared.logError(with: error, for: .coreData)
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }

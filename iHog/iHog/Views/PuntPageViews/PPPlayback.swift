@@ -122,7 +122,7 @@ struct PPPlayback: View {
             show.lists.sort(by: {$0.number < $1.number})
             show.scenes.sort(by: {$0.number < $1.number})
         } catch {
-            print(error)
+            Analytics.shared.logError(with: error, for: .coreData)
         }
     }
 }

@@ -44,6 +44,8 @@ struct iHogApp: App {
 
     @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
     @StateObject var user = UserState()
+    
+    let analtyics = Analytics.shared
 
     let persistenceController = PersistenceController.shared
     
@@ -59,40 +61,52 @@ struct iHogApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Toast(toastNotification.text, backgroundColor: toastNotification.color, isShown: $toastNotification.isShown) {
-                if showOnboarding {
-                    OnboardingView(setting: $settings)
-                        .environmentObject(osc)
-                        .environmentObject(user)
-                } else {
-                    SettingsView()
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .environmentObject(osc)
-                        .environmentObject(user)
-                        .environmentObject(toastNotification)
+            Group {
+                Toast(toastNotification.text, backgroundColor: toastNotification.color, isShown: $toastNotification.isShown) {
+                    if showOnboarding {
+                        OnboardingView(setting: $settings)
+                            .environmentObject(osc)
+                            .environmentObject(user)
+                    } else {
+                        SettingsView()
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .environmentObject(osc)
+                            .environmentObject(user)
+                            .environmentObject(toastNotification)
+                    }
                 }
-            }.task {
-                timesLaunched += 1
-                if timesLaunched >= 5 {
-                    requestReview()
-                }
+            }
+            .task {
+                analtyics.logEvent(with: .appLaunched)
+                increaseTimesLaunchedAndAskReview()
                 do {
-                    user.customerInfo = try await Purchases.shared.restorePurchases()
-                } catch {
-                    print("⚠️ \(error.localizedDescription)")
-                }
-                do {
+                    try await getCustomerInfo()
                     user.offerings = try await Purchases.shared.offerings()
                     for await customerInfo in Purchases.shared.customerInfoStream {
-                        #if DEBUG
-                        print(":::: \(customerInfo.activeSubscriptions)")
-                        #endif
+                        for _ in customerInfo.activeSubscriptions {
+                            HogLogger.log(category: .purchases).debug("🐛 \(customerInfo.activeSubscriptions)")
+                        }
                         user.customerInfo = customerInfo
                     }
                 } catch {
-                    print(error.localizedDescription)
+                    Analytics.shared.logError(with: error, for: .purchases)
                 }
             }
         }
+    }
+}
+
+extension iHogApp {
+    func increaseTimesLaunchedAndAskReview() {
+        HogLogger.log().debug("🐛 App launched times: \(timesLaunched)")
+        timesLaunched += 1
+        if timesLaunched >= 10 {
+            requestReview()
+        }
+    }
+    
+    func getCustomerInfo() async throws {
+        user.customerInfo = try await Purchases.shared.restorePurchases()
+        analtyics.updateUserID(with: Purchases.shared.appUserID)
     }
 }

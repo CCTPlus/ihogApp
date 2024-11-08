@@ -254,15 +254,15 @@ class OSCHelper: ObservableObject {
         guard let tcpServer = tcpServer else {
             do {
                 try startUDPServer()
-            } catch OSCErrors.UDPServerNotSet {
+            } catch let error as OSCErrors {
                 oscErrorDescription = "Server has not been configured. Make sure to enter an IP address and port numbers."
-                print("UDP Server IS NOT SETUP")
+                Analytics.shared.logError(with: error, for: .osc)
                 DispatchQueue.main.async {
                     self.oscErrorOccured = true
                 }
             } catch {
                 oscErrorDescription = error.localizedDescription
-                print("ERROR WITH UDP")
+                Analytics.shared.logError(with: error, for: .osc)
                 DispatchQueue.main.async {
                     self.oscErrorOccured = true
                 }
@@ -273,7 +273,7 @@ class OSCHelper: ObservableObject {
         do {
             try tcpServer.startListening()
         } catch {
-            print(error.localizedDescription)
+            Analytics.shared.logError(with: error, for: .osc)
         }
     }
 
@@ -314,8 +314,10 @@ class OSCHelper: ObservableObject {
         } catch OSCErrors.FailedToCreateMessage {
             print("MESSAGE IS NOT RIGHT ")
             print("Unable to make message invalid address: \(stringMessage) \(arguments)")
+            HogLogger.log(category: .osc).error("🚨: Message is not right. Unable to make message using: \(stringMessage, privacy: .public) \(arguments, privacy: .public)")
+            Analytics.shared.logError(with: OSCErrors.FailedToCreateMessage, for: .osc)
         } catch {
-            print("Other error")
+            Analytics.shared.logError(with: error, for: .osc)
         }
         guard let oscMessage = message else {
             return
@@ -326,14 +328,14 @@ class OSCHelper: ObservableObject {
             // runs if using UDP
             do {
                 guard let udpClient = udpClient else {
-                    print("ERROR WITH UDP CLIENT")
+                    HogLogger.log(category: .osc).error("🚨: UDP CLIENT NOT FOUND")
                     return
                 }
                 try udpClient.send(oscMessage)
             } catch OSCErrors.UDPFailedToSend {
-                print("Unable to send on UDP")
+                Analytics.shared.logError(with: OSCErrors.UDPFailedToSend, for: .osc)
             } catch {
-                print("Other error \(error.localizedDescription)")
+                Analytics.shared.logError(with: error, for: .osc)
             }
             return
         }
@@ -342,9 +344,10 @@ class OSCHelper: ObservableObject {
         do {
             try tcpClient.send(oscMessage)
         } catch OSCErrors.TCPFailedToSend {
-            print("Unable to send on TCP")
+            HogLogger.log(category: .osc).error("Unable to send message on TCP")
+            Analytics.shared.logError(with: OSCErrors.TCPFailedToSend, for: .osc)
         } catch {
-            print("Other error \(error.localizedDescription)")
+            Analytics.shared.logError(with: error, for: .osc)
         }
     }
 

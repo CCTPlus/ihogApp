@@ -113,7 +113,7 @@ struct EditObjectView: View {
                 print("DOESN'T GET ADDED TO ANYTHING")
             }
         } catch {
-            print(error)
+            Analytics.shared.logError(with: error, for: .coreData)
         }
         
     }
