@@ -2,12 +2,10 @@ on:
     push:
         branches:
           - main
-  
-  permissions:
+permissions:
     contents: read
-  
-  name: Release Drafter
-  jobs:
+name: Release Drafter
+jobs:
     update_release_draft:
       permissions:
         # write permission is required to create a github release
