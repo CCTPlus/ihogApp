@@ -1,0 +1,1 @@
+Running the app should no longer crash
