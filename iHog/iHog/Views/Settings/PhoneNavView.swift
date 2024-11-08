@@ -90,7 +90,7 @@ struct PhoneNavView: View {
                     }
                 }.listRowBackground(Color.clear)
                     .sheet(isPresented: $showPaywall) {
-                        CurrentPaywallView()
+                        CurrentPaywallView(analyticsSource: .learnMore)
                     }
             }
             AllShowsView()

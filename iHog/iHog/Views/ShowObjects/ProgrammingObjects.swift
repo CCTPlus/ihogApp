@@ -164,7 +164,7 @@ struct ProgrammingObjects: View {
         do{
             try viewContext.save()
         } catch{
-            print("Error")
+            Analytics.shared.logError(with: error, for: .coreData)
         }
     }
     
@@ -192,7 +192,7 @@ struct ProgrammingObjects: View {
         do{
             try viewContext.save()
         } catch{
-            print("Error")
+            Analytics.shared.logError(with: error, for: .coreData)
         }
     }
     
@@ -245,7 +245,7 @@ struct ProgrammingObjects: View {
             show.groups.sort(by: {$0.number < $1.number})
             show.palettes.sort(by: {$0.number < $1.number})
         } catch {
-            print(error)
+            Analytics.shared.logError(with: error, for: .coreData)
         }
     }
     

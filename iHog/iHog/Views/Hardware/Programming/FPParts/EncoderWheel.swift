@@ -78,7 +78,7 @@ struct EncoderWheel: View {
             self.engine = try CHHapticEngine()
             try engine?.start()
         } catch {
-            print("There was an error creating the engine: \(error.localizedDescription)")
+            Analytics.shared.logError(with: error, for: .haptics)
         }
     }
     
@@ -99,7 +99,7 @@ struct EncoderWheel: View {
             let player = try engine?.makePlayer(with: pattern)
             try player?.start(atTime: 0)
         } catch {
-            print("Failed to play pattern: \(error.localizedDescription).")
+            Analytics.shared.logError(with: error, for: .haptics)
         }
     }
 }

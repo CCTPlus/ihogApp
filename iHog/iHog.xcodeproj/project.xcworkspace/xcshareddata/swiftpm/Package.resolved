@@ -1,5 +1,5 @@
 {
-  "originHash" : "9431a066a024d2538b9ed8c01a6a6967bd059fe602bcf3d2c7c661d668e999c3",
+  "originHash" : "57d825b758bd614498db3f15d424f0d7fe62dd2c2358135c6f39d5269d6619d9",
   "pins" : [
     {
       "identity" : "cocoaasyncsocket",
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RevenueCat/purchases-ios.git",
       "state" : {
-        "revision" : "1357d57a38d09e60f967d0e78a912254fe46137c",
-        "version" : "4.43.3"
+        "revision" : "2f559c69a255da5cd5f66d5a6b9a1dfe6bc61ead",
+        "version" : "4.32.0"
       }
     },
     {
@@ -71,6 +71,15 @@
       "state" : {
         "revision" : "28eb6f86a84e34e97dd3bea7e9658da15e8a1767",
         "version" : "4.2.1"
+      }
+    },
+    {
+      "identity" : "swiftsdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TelemetryDeck/SwiftSDK",
+      "state" : {
+        "revision" : "06bd6c3005da9113ae3766f8e23bb0fd07f8852f",
+        "version" : "2.5.0"
       }
     }
   ],

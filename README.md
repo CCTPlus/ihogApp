@@ -5,7 +5,7 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org) is needed for git hooks
-- Xcode 15 (@heyjaywilson suggests using the [Xcodes app](https://github.com/XcodesOrg/XcodesApp) to manage Xcode versions)
+- Xcode 16 (@heyjaywilson suggests using the [Xcodes app](https://github.com/XcodesOrg/XcodesApp) to manage Xcode versions)
 - [swift-format](https://github.com/apple/swift-format#getting-swift-format)
 
 ### Steps

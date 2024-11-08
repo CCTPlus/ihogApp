@@ -45,6 +45,8 @@ struct PurchaseButtonView: View {
             return "Start now"
         }
     }
+    
+    var analyticsSource: PaywallSource
 
     var body: some View {
         VStack {
@@ -82,6 +84,10 @@ struct PurchaseButtonView: View {
             if isSelected {
                 Button(buttonText) {
                     purchase()
+                    Analytics.shared.logEvent(
+                        with: .subscribeButtonTapped,
+                        parameters: [.paywallSource: analyticsSource.analyticsLabel]
+                    )
                 }.buttonStyle(.borderedProminent)
             }
         }.padding(BASE_PADDING)
@@ -93,7 +99,7 @@ struct PurchaseButtonView: View {
     func purchase() {
         Purchases.shared.purchase(package: package!) { (_, customerInfo, error, _) in
             if let error = error {
-                print(error.localizedDescription)
+                Analytics.shared.logError(with: error, for: .purchases)
                 dismiss()
             }
 
@@ -108,9 +114,9 @@ struct PurchaseButtonView: View {
 struct PurchaseButtonView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            PurchaseButtonView(isSelected: true)
+            PurchaseButtonView(isSelected: true, analyticsSource: .preview)
                 .padding()
-            PurchaseButtonView(isSelected: false)
+            PurchaseButtonView(isSelected: false, analyticsSource: .preview)
                 .padding()
         }
     }
