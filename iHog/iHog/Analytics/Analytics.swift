@@ -13,10 +13,11 @@ class Analytics {
   // Analytics should only be initialized one time so a signleton it is!
   static let shared = Analytics()
 
-  private let appID = "63666D7A-FE6E-4509-B166-A00FF4A7171C"
+  private let telemetryDeckAppID = "63666D7A-FE6E-4509-B166-A00FF4A7171C"
+  private var userID = ""
 
   init() {
-    let config = TelemetryDeck.Config(appID: appID)
+    let config = TelemetryDeck.Config(appID: telemetryDeckAppID)
     TelemetryDeck.initialize(config: config)
 
     // Setup posthog for analytics and feature flags
@@ -29,8 +30,10 @@ class Analytics {
     PostHogSDK.shared.setup(postHogConfig)
   }
 
-  func updateUserID(with userID: String) {
+  func identifyUser(with userID: String) {
+    self.userID = userID
     TelemetryDeck.updateDefaultUserID(to: userID)
+    PostHogSDK.shared.identify(userID)
   }
 
   private func getNumberOfShows() async -> Int {
@@ -44,6 +47,8 @@ class Analytics {
   }
 
   func logEvent(with event: AnalyticEvent, parameters: [AnalyticEventParameter: Any] = [:]) {
+    // Make sure the user has the right user ID
+    identifyUser(with: userID)
     Task {
       var parameters = parameters
       parameters[.numberOfShows] = await getNumberOfShows()

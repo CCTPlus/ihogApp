@@ -16,9 +16,12 @@ struct OSCLogView: View {
       Toggle(isOn: $osc.isLogPaused) {
         Text(osc.isLogPaused ? "Resume OSC Log" : "Pause OSC Log")
       }
-      .onChange(of: logIsPaused) {
-        osc.toggleLog(logIsPaused)
-      }
+      .onChange(
+        of: logIsPaused,
+        perform: { newValue in
+          osc.toggleLog(newValue)
+        }
+      )
       .padding(.horizontal)
       List {
         ForEach(osc.oscLog.reversed(), id: \.self) { message in

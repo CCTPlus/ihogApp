@@ -10,6 +10,7 @@ import Foundation
 import SwiftData
 
 // This class is NO LONGER USED. The app is subscription model, so no lnoger asking for tips.
+@available(iOS 17, *)
 @Model final class TipEntity {
   var amount: Double? = 0.0
   var dateTipped: Date?
