@@ -21,9 +21,11 @@ categories:
       - 'test'
 change-template: '- $TITLE #$NUMBER @$AUTHOR'
 version-resolver:
-  minor:
+  major:
     labels:
       - 'breaking'
+  minor:
+    labels:
       - 'feature'
       - 'enhancement'
   patch:
