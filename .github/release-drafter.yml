@@ -1,6 +1,6 @@
-name-template: 'v2024.$RESOLVED_VERSION'
-tag-template: '2024.$RESOLVED_VERSION'
-version-template: '$MAJOR.$MINOR'
+name-template: 'v$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+version-template: '$MAJOR.$MINOR.$PATCH'
 categories:
   - title: '🚨 BREAKING CHANGES'
     labels:
@@ -21,12 +21,12 @@ categories:
       - 'test'
 change-template: '- $TITLE #$NUMBER @$AUTHOR'
 version-resolver:
-  major:
+  minor:
     labels:
       - 'breaking'
       - 'feature'
       - 'enhancement'
-  minor:
+  patch:
     labels:
       - 'fix'
       - 'bug'
