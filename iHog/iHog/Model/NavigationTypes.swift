@@ -8,22 +8,22 @@
 import Foundation
 
 enum Paywall: Hashable {
-    case currentPaywall
-    case onboarding
-    case yearly
+  case currentPaywall
+  case onboarding
+  case yearly
 }
 
 enum AddView: Hashable {
-    case shows
+  case shows
 }
 enum Routes: Hashable {
-    case paywall(Paywall)
-    case addView(AddView)
-    case shows(ShowEntity)
-    case programmerSettings
-    case showSettings
-    case osc
-    case programmer
-    case playback
-    case appFeedback
+  case paywall(Paywall)
+  case addView(AddView)
+  case shows(CDShowEntity)
+  case programmerSettings
+  case showSettings
+  case osc
+  case programmer
+  case playback
+  case appFeedback
 }
