@@ -9,7 +9,7 @@
 import Foundation
 import SwiftData
 
-@Model class ShowEntity {
+@Model final class ShowEntity {
   var dateCreated: Date?
   var dateLastModified: Date?
   var icon: String?
@@ -18,8 +18,21 @@ import SwiftData
   var note: String?
   var objects: [ShowObjectEntity]?
 
-  init() {
-
+  init(
+    dateCreated: Date? = nil,
+    dateLastModified: Date? = nil,
+    icon: String? = nil,
+    id: UUID = UUID(),
+    name: String,
+    note: String? = nil,
+    objects: [ShowObjectEntity]? = nil
+  ) {
+    self.dateCreated = dateCreated
+    self.dateLastModified = dateLastModified
+    self.icon = icon
+    self.id = id
+    self.name = name
+    self.note = note
+    self.objects = objects
   }
-
 }

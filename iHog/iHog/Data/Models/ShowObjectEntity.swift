@@ -9,7 +9,7 @@
 import Foundation
 import SwiftData
 
-@Model class ShowObjectEntity {
+@Model final class ShowObjectEntity {
   var id: UUID?
   var isOutlined: Bool?
   var name: String?
@@ -18,8 +18,25 @@ import SwiftData
   var objType: String?
   var showID: String?
   var show: ShowEntity?
-  init() {
 
+  init(
+    id: UUID = UUID(),
+    isOutlined: Bool? = nil,
+    name: String? = nil,
+    number: Double? = nil,
+    objColor: String? = nil,
+    objType: String? = nil,
+    showID: String? = nil,
+    show: ShowEntity? = nil
+  ) {
+    self.id = id
+    self.isOutlined = isOutlined
+    self.name = name
+    self.number = number
+    self.objColor = objColor
+    self.objType = objType
+    self.showID = showID
+    self.show = show
   }
 
 }
