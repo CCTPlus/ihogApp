@@ -26,7 +26,7 @@ labels:
     matcher:
       title: "^refactor.*"
       branch: "^refactor.*"
-  - label: 'chore'
+  - label: 'ci'
     sync: true
     matcher:
       title: "^ci.*"
