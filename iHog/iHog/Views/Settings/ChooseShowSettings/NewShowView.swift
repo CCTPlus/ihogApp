@@ -71,7 +71,7 @@ struct NewShowView: View {
     .navigationTitle("\(showName)")
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
-      ToolbarItem(placement: .navigation) {
+      ToolbarItem(placement: .topBarTrailing) {
         Button("Add") {
           addShow()
         }
