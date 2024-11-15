@@ -152,7 +152,7 @@ struct SettingsView: View {
 
         VStack {
           Text("App version: \(appVersion ?? "UNRELEASED") (\(appBuild ?? "UNRELEASED"))")
-          Text("Made with ♡ in Austin")
+          Text("Made with ☕ in 🌲🌲🌲")
         }
         .frame(maxWidth: .infinity)
         .font(.footnote)
