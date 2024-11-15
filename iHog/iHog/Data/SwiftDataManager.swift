@@ -14,22 +14,51 @@ struct SwiftDataManager {
     let schema = Schema([
       Item.self, ShowEntity.self, ShowObjectEntity.self, TipEntity.self,
     ])
-    //                let url = appGroupContainer.appendingPathComponent("Trips.sqlite")
+
     guard
-      let appGroupContainer = FileManager.default.containerURL(
+      let url = FileManager.default.containerURL(
         forSecurityApplicationGroupIdentifier: AppInfo.appGroup
-      )
+      )?
+      .appendingPathComponent("iHog.sqlite")
     else {
       Analytics.shared.logError(with: HogOSCError.noAppGroupURL, for: .swiftData, level: .fatal)
       fatalError(HogOSCError.noAppGroupURL.localizedDescription)
     }
-    let url = appGroupContainer.appending(path: "iHog.sqlite")
 
     let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
     do {
       return try ModelContainer(
         for: schema,
-        configurations: [modelConfiguration]
+        configurations: [modelConfiguration, ModelConfiguration(url: url)]
+      )
+    } catch {
+      Analytics.shared.logError(with: error, for: .swiftData, level: .fatal)
+      fatalError("Could not create ModelContainer: \(error)")
+    }
+  }()
+
+  public static let previewContainer = {
+    let schema = Schema([
+      Item.self, ShowEntity.self, ShowObjectEntity.self, TipEntity.self,
+    ])
+
+    guard
+      let url = FileManager.default.containerURL(
+        forSecurityApplicationGroupIdentifier: AppInfo.appGroup
+      )?
+      .appendingPathComponent("iHog.sqlite")
+    else {
+      Analytics.shared.logError(with: HogOSCError.noAppGroupURL, for: .swiftData, level: .fatal)
+      fatalError(HogOSCError.noAppGroupURL.localizedDescription)
+    }
+
+    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+    do {
+      return try ModelContainer(
+        for: schema,
+        configurations: [modelConfiguration, ModelConfiguration(url: url)]
       )
     } catch {
       Analytics.shared.logError(with: error, for: .swiftData, level: .fatal)

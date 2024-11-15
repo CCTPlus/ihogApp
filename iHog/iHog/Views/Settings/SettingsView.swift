@@ -28,6 +28,8 @@ struct SettingsView: View {
   @State private var isAddingShow: Bool = false
   @State var issueSubmitted: Bool? = false
   @State private var isOSCExpanded = true
+  @State private var showExportLog = false
+  @State private var logURL: URL? = nil
 
   /// MARK: Navigation
   let paywalls: [Paywall] = [.currentPaywall]
@@ -148,6 +150,38 @@ struct SettingsView: View {
           if !networkMonitor.isReachable {
             Text("Connect to the internet")
           }
+        }
+
+        Section {
+          Button {
+            let mailTo = "mailto:support@cctplus.dev?subject=iHog%20help%20needed?"
+            UIApplication.shared.open(URL(string: mailTo)!)
+          } label: {
+            Label {
+              Text("Email Jay")
+            } icon: {
+              ListIcon(color: .accentColor, symbol: ._paperplane)
+            }
+          }
+          Button {
+            do {
+              logURL = nil
+              logURL = try HogLogger().getLogs()
+            } catch {
+              Analytics.shared.logError(with: error, for: .default, level: .warning)
+            }
+          } label: {
+            Label {
+              Text("Collect Logs")
+            } icon: {
+              ListIcon(color: .red, symbol: ._listbullet)
+            }
+          }
+          if logURL != nil {
+            ShareLink(item: logURL!, message: Text("Logs from iHog"))
+          }
+        } header: {
+          Text("Need help?")
         }
 
         VStack {
