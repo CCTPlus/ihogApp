@@ -7,8 +7,10 @@
 
 /// Events tracked by analtyics
 enum AnalyticEvent: String {
-    case appLaunched
-    case showCreated
-    case showSelected
-    case subscribeButtonTapped
+  case appLaunched
+  case showCreated
+  case showSelected
+  case subscribeButtonTapped
+  case error
+  case purchase
 }

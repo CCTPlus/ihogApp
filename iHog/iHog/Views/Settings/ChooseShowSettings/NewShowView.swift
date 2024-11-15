@@ -93,7 +93,7 @@ struct NewShowView: View {
         try viewContext.save()
         user.resetNavigation()
       } catch {
-        Analytics.shared.logError(with: error, for: .coreData)
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
         let nsError = error as NSError
         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
       }
