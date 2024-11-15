@@ -1,1 +1,2 @@
-Running the app should no longer crash
+- Check that your shows and objects are still around after this update
+- 
