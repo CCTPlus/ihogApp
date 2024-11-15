@@ -1,2 +1,2 @@
 - Check that your shows and objects are still around after this update
-- 
+- Check that you can still Add a show since the button changed locations
