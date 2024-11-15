@@ -94,7 +94,7 @@ struct iHogApp: App {
             user.customerInfo = customerInfo
           }
         } catch {
-          Analytics.shared.logError(with: error, for: .purchases)
+          Analytics.shared.logError(with: error, for: .purchases, level: .critical)
         }
       }
     }

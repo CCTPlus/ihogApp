@@ -9,18 +9,20 @@ import Foundation
 import OSLog
 
 enum LogCategory: String {
-    case `default`
-    case analytics
-    case error
-    case purchases
-    case osc
-    case haptics
-    case coreData
+  case `default`
+  case analytics
+  case error
+  case purchases
+  case osc
+  case haptics
+  case coreData
+  case swiftData
 }
 
 struct HogLogger {
-    static func log(category: LogCategory = .default) -> Logger {
-        let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String ?? "com.appsbymw.hogosc"
-        return Logger(subsystem: bundleID, category: category.rawValue)
-    }
+  static func log(category: LogCategory = .default) -> Logger {
+    let bundleID =
+      Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String ?? "com.appsbymw.hogosc"
+    return Logger(subsystem: bundleID, category: category.rawValue)
+  }
 }

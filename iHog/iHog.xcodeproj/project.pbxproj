@@ -579,7 +579,7 @@
 				DEVELOPMENT_TEAM = ZDK82FGR3Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -610,7 +610,7 @@
 				DEVELOPMENT_TEAM = ZDK82FGR3Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

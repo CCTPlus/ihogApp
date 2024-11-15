@@ -162,7 +162,7 @@ struct AllShowsView: View {
       viewContext.delete(showToDelete)
       try viewContext.save()
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData)
+      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
   }
 }

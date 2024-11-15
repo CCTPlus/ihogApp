@@ -219,7 +219,7 @@ struct PPProgramming: View {
       show.groups.sort(by: { $0.number < $1.number })
       show.palettes.sort(by: { $0.number < $1.number })
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData)
+      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
   }
 }

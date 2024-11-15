@@ -7,6 +7,7 @@
 
 import CoreData
 import PostHog
+import StoreKit  // I don't like this but it's necessary for logging strekit transactions
 import TelemetryDeck
 
 class Analytics {
@@ -74,17 +75,35 @@ class Analytics {
       }
 
       TelemetryDeck.signal(event.rawValue, parameters: stringParameters)
-      PostHogSDK.shared.capture(event.rawValue, properties: anyParameters)
+      await MainActor.run {
+        PostHogSDK.shared.capture(event.rawValue, properties: anyParameters)
+      }
       HogLogger.log(category: .analytics)
         .debug("🔦 Logged event: \(event.rawValue) | \(stringParameters)")
     }
   }
 
-  func logError(with error: Error, for logCategory: LogCategory) {
+  func logError(with error: Error, for logCategory: LogCategory, level: ErrorLevel) {
     HogLogger.log(category: logCategory).error("🚨 Error: \(error)")
+    PostHogSDK.shared.capture(
+      AnalyticEvent.error.rawValue,
+      properties: ["ErrorID": error.localizedDescription, "errorLevel": level.rawValue]
+    )
     TelemetryDeck.signal(
       "TelemetryDeck.Error.occurred",
       parameters: ["TelemetryDeck.Error.id": error.localizedDescription]
+    )
+  }
+
+  func logPurchase(transacion: Transaction) {
+    TelemetryDeck.purchaseCompleted(transaction: transacion)
+    let amount = transacion.price ?? 0
+    PostHogSDK.shared.capture(
+      AnalyticEvent.purchase.rawValue,
+      properties: [
+        AnalyticEventParameter.purchaseState.rawValue: PurchaseState.completed.analyticsLabel,
+        AnalyticEventParameter.purchaseAmount.rawValue: amount,
+      ]
     )
   }
 }
