@@ -1,3 +1,2 @@
-- Check that your shows and objects are still around after this update
-- Check that you can still Add a show since the button changed locations
-- Collect and share logs from app. You can email them to support@cctplus.dev or just save to your device and delete later
+- You are able to switch shows and see objects change
+- You can connect to OSC and send button pushes from the app to the console
