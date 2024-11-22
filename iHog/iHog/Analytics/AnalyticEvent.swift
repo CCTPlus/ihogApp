@@ -13,4 +13,6 @@ enum AnalyticEvent: String {
   case subscribeButtonTapped
   case error
   case purchase
+  case connectToConsoleTapped
+  case disconnectFromConsoleTapped
 }

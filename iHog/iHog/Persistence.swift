@@ -71,6 +71,7 @@ struct PersistenceController {
     container = NSPersistentCloudKitContainer(name: "iHog")
     if inMemory {
       container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+      return
     }
 
     guard let description = container.persistentStoreDescriptions.first else {
