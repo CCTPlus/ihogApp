@@ -144,7 +144,7 @@ struct ProgrammingObjects: View {
     }
     .padding()
     .onAppear {
-      getAllObjects()
+      //      getAllObjects()
     }
   }
 

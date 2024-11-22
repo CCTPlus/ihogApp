@@ -110,7 +110,7 @@ struct PlaybackObjects: View {
     }
     .padding()
     .onAppear {
-      getAllObjects()
+      //      getAllObjects()
     }
   }
 

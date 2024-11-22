@@ -203,7 +203,17 @@ struct SettingsView: View {
         case let .addView(addView):
           AddViewController(viewToAdd: addView)
         case let .shows(show):
-          ShowNavigation(selectedShow: show)
+          if let showID = show.id {
+            ShowNavigation(
+              selectedShow: show,
+              chosenShow: ChosenShow(
+                showID: showID.uuidString,
+                persistence: PersistenceController.shared
+              )
+            )
+          } else {
+            Text("Something is wrong. Please send an email to support@cctplus.dev")
+          }
         case .osc:
           OSCSettings()
             .navigationTitle("OSC Settings")

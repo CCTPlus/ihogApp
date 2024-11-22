@@ -10,9 +10,10 @@ import SwiftUI
 struct ShowNavigation: View {
   @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
   @EnvironmentObject var user: UserState
+
   var selectedShow: CDShowEntity
 
-  @StateObject var chosenShow = ChosenShow()
+  @ObservedObject var chosenShow: ChosenShow
 
   @State private var selectedView: Views = Views.programmingObjects
 
@@ -23,6 +24,7 @@ struct ShowNavigation: View {
     case puntPagePlayback
     case puntPageProgPlay
   }
+
   var body: some View {
     TabView(selection: $selectedView) {
       ProgrammingObjects(show: chosenShow)
@@ -61,7 +63,7 @@ struct ShowNavigation: View {
     }
     .navigationBarTitle(selectedShow.name!)
     .navigationBarTitleDisplayMode(.inline)
-    .onAppear {
+    .task {
       chosenShowID = selectedShow.id!.uuidString
     }
   }
