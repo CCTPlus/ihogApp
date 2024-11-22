@@ -54,7 +54,13 @@ struct AllShowsView: View {
             ForEach(shows) { show in
               NavigationLink(
                 destination: {
-                  ShowNavigation(selectedShow: show)
+                  ShowNavigation(
+                    selectedShow: show,
+                    chosenShow: ChosenShow(
+                      showID: (show.id ?? UUID()).uuidString,
+                      persistence: .shared
+                    )
+                  )
                 },
                 label: {
                   HStack {
@@ -104,7 +110,13 @@ struct AllShowsView: View {
           ForEach(shows) { show in
             NavigationLink(
               destination: {
-                ShowNavigation(selectedShow: show)
+                ShowNavigation(
+                  selectedShow: show,
+                  chosenShow: ChosenShow(
+                    showID: (show.id ?? UUID()).uuidString,
+                    persistence: .shared
+                  )
+                )
               },
               label: {
                 HStack {
