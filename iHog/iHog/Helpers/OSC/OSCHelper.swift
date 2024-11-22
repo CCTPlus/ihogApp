@@ -264,7 +264,7 @@ class OSCHelper: ObservableObject {
   private var tcpClient: OSCTcpClient?
   private var tcpServer: OSCTcpServer?
 
-  private let interface = "en0"
+  private var interface = "en0"
 
   @Published var isLogPaused = false
 
@@ -277,6 +277,7 @@ class OSCHelper: ObservableObject {
 
   // MARK: OSC Settings
   func setOSCClientServer() {
+    HogLogger.log().debug("ℹ️ Interface: \(self.interface)")
     if useTCP {
       tcpClient = OSCTcpClient(
         interface: interface,
@@ -295,22 +296,24 @@ class OSCHelper: ObservableObject {
       udpClient = OSCUdpClient(
         interface: interface,
         host: consoleIP,
-        port: UInt16(consoleInputPort),
-        delegate: self
+        port: UInt16(consoleInputPort)
       )
-      udpServer = OSCUdpServer(
-        interface: interface,
-        port: UInt16(consoleOutputPort),
-        delegate: self
-      )
+      udpServer = OSCUdpServer(interface: interface, port: UInt16(consoleOutputPort))
     }
   }
 
-  func setConsoleSettings(ip: String, inputPort: Int, outputPort: Int, useTCP: Bool = false) {
+  func setConsoleSettings(
+    ip: String,
+    inputPort: Int,
+    outputPort: Int,
+    useTCP: Bool = false,
+    interface: String
+  ) {
     consoleIP = ip
     consoleInputPort = inputPort
     consoleOutputPort = outputPort
     self.useTCP = useTCP
+    self.interface = interface
 
     setOSCClientServer()
   }
@@ -322,6 +325,7 @@ class OSCHelper: ObservableObject {
 
     return try udpServer.startListening()
   }
+
   func startServer() {
     guard let tcpServer = tcpServer else {
       do {
@@ -765,6 +769,7 @@ class OSCHelper: ObservableObject {
     }
 
     oscLog.append([
+      "date": Date().ISO8601Format(),
       "sent": sent,
       "message": message,
       "argument": tempArg,
