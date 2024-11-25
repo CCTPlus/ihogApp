@@ -61,6 +61,7 @@
 		15DA2698251237D70063E236 /* iHogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogUITests.swift; sourceTree = "<group>"; };
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		690373122CF43E3000A24255 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = ../Packages/Features; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -130,6 +131,7 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
+				690373122CF43E3000A24255 /* Features */,
 				69666BD82CDD6CA0008A0057 /* iHog */,
 				15DA268C251237D70063E236 /* iHogTests */,
 				15DA2697251237D70063E236 /* iHogUITests */,
