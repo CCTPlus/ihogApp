@@ -17,7 +17,7 @@ public struct AppEntryView: View {
   public var body: some View {
     ZStack(alignment: .bottom) {
       VStack {
-        Text("Hello")
+        HeaderView(isConnectedOSC: true)
         Spacer()
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)

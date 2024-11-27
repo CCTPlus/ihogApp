@@ -12,6 +12,7 @@
 import Analytics
 import AppEntry
 import CoffeeToast
+import PostHog
 import RevenueCat
 import StoreKit
 import SwiftUI
@@ -47,7 +48,7 @@ struct iHogApp: App {
   @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
   @StateObject var user = UserState()
 
-  let analtyics = Analytics.shared
+  let analtyics: Analytics
 
   let persistenceController = PersistenceController.shared
 
@@ -57,6 +58,7 @@ struct iHogApp: App {
       with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
         .build()
     )
+    analtyics = Analytics.shared
   }
 
   @StateObject private var toastNotification = ToastNotification()
@@ -64,7 +66,11 @@ struct iHogApp: App {
 
   var body: some Scene {
     WindowGroup {
-      AppEntryView()
+      if PostHogSDK.shared.isFeatureEnabled(FeatureFlagKey.newApp2024.rawValue) {
+        AppEntryView()
+      } else {
+        legacyView
+      }
     }
   }
 

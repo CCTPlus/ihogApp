@@ -9,4 +9,5 @@
 enum FeatureFlagKey: String {
   // Enables the use of SwiftData instead of CoreData in the app
   case swiftdata
+  case newApp2024
 }

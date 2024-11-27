@@ -9,6 +9,7 @@ import Foundation
 
 extension CGFloat {
   struct Spacing {
+    /// 12
     static let large: CGFloat = 12
   }
 }
