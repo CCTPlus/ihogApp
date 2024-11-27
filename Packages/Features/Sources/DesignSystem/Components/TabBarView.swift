@@ -5,11 +5,12 @@
 //  Created by Jay Wilson on 11/24/24.
 //
 
+import Analytics
 import Router
 import SwiftUI
 
 /// Custom tab bar
-struct TabBarView: View {
+public struct TabBarView: View {
   @Environment(\.colorScheme) var colorScheme
   @Environment(Router.self) var router
 
@@ -42,7 +43,9 @@ struct TabBarView: View {
     }
   }
 
-  var body: some View {
+  public init() {}
+
+  public var body: some View {
     HStack {
       Spacer()
       HStack(spacing: .Spacing.large) {
@@ -50,6 +53,7 @@ struct TabBarView: View {
           withAnimation {
             isExpanded.toggle()
           }
+          Analytics.shared.logEvent(with: isExpanded ? .tabBarExpanded : .tabBarCollapsed)
         } label: {
           Image(systemName: isExpanded ? "chevron.right" : "chevron.left")
             .bold()
@@ -61,8 +65,16 @@ struct TabBarView: View {
         if isExpanded {
           ForEach(AppTab.allCases) { appTab in
             Button {
+              let shouldPopToRoot = router.selectedTab == appTab
+              Analytics.shared.logEvent(
+                with: .tabTapped,
+                parameters: [
+                  .tabSelected: appTab.analyticsValue,
+                  .tabDidPopToRoot: shouldPopToRoot,
+                ]
+              )
               withAnimation {
-                if router.selectedTab == appTab {
+                if shouldPopToRoot {
                   router.popToRoot()
                 }
                 router.selectedTab = appTab

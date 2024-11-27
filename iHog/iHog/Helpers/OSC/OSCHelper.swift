@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 12/17/20.
 //
 
+import Analytics
 import Combine
 import Foundation
 import OSCKit
@@ -326,7 +327,7 @@ class OSCHelper: ObservableObject {
     return try udpServer.startListening()
   }
 
-  func startServer() {
+  @MainActor func startServer() {
     guard let tcpServer = tcpServer else {
       do {
         try startUDPServer()
@@ -381,7 +382,7 @@ class OSCHelper: ObservableObject {
   }
 
   // MARK: Send a message
-  func send(_ stringMessage: String, arguments: [OSCArgumentProtocol] = []) {
+  @MainActor func send(_ stringMessage: String, arguments: [OSCArgumentProtocol] = []) {
     if !isLogPaused {
       logMessage(sent: "yes", message: stringMessage, argument: arguments)
     }
@@ -430,27 +431,28 @@ class OSCHelper: ObservableObject {
       Analytics.shared.logError(with: error, for: .osc, level: .critical)
     }
   }
-
+  @MainActor
   func pushFrontPanelButton(button: String) {
     let stringMessage = OSCCommands.hardware.rawValue + button
     send(stringMessage, arguments: [1])
   }
 
+  @MainActor
   func pushPlaybackButton(button: String, master: Int) {
     let stringMessage = OSCCommands.hardware.rawValue + button + "/\(master)"
     send(stringMessage, arguments: [1])
   }
-
+  @MainActor
   func releaseFrontPanelButton(button: String) {
     let stringMessage = OSCCommands.hardware.rawValue + button
     send(stringMessage, arguments: [0])
   }
-
+  @MainActor
   func releasePlaybackButton(button: String, master: Int) {
     let stringMessage = OSCCommands.hardware.rawValue + button + "/\(master)"
     send(stringMessage, arguments: [0])
   }
-
+  @MainActor
   func sendReleaseAllMessage() {
     // Push the buttons
     send(OSCCommands.pig.rawValue, arguments: [1])
@@ -460,19 +462,19 @@ class OSCHelper: ObservableObject {
     send(OSCCommands.pig.rawValue, arguments: [0])
     send(OSCCommands.hRelease.rawValue, arguments: [0])
   }
-
+  @MainActor
   func sendFaderValue(master: Int, value: Float) {
     let stringMessage = OSCCommands.fader.rawValue + "\(master)"
     let args = [value]
     send(stringMessage, arguments: args)
   }
-
+  @MainActor
   func sendEncoderWheelValue(encoderNum: Int, value: Double) {
     let stringMessage = OSCCommands.encoderWheel.rawValue + "\(encoderNum)"
     let args = [value]
     send(stringMessage, arguments: args)
   }
-
+  @MainActor
   func selectProgrammingObject(objNumber: String, objType: ShowObjectType) {
     let objTypeString = objType.rawValue
     var message: String
@@ -525,32 +527,34 @@ class OSCHelper: ObservableObject {
     send(message, arguments: pressedValue)
     usleep(1000)
     send(message, arguments: releasedValue)
-
-    print(message)
   }
 
+  @MainActor
   func goList(objNumber: String) {
     let message = OSCCommands.go.rawValue + "0" + objNumber
     send(message)
   }
 
+  @MainActor
   func goScene(objNumber: String) {
     let message = OSCCommands.go.rawValue + "1" + objNumber
     send(message)
   }
 
+  @MainActor
   func releaseList(_ objNumber: String) {
     let message = OSCCommands.release.rawValue + "0" + objNumber
     send(message)
   }
 
+  @MainActor
   func releaseScene(_ objNumber: String) {
     let message = OSCCommands.release.rawValue + "1" + objNumber
     send(message)
   }
 
   // MARK: Receive Values
-
+  @MainActor
   func readBundle(bundle: OSCBundle) {
     for item in bundle.elements {
       if let message = item as? OSCMessage {
@@ -648,7 +652,7 @@ class OSCHelper: ObservableObject {
       }
     }
   }
-
+  @MainActor
   func getStatusOfLED(parts: [String], arguments: [OSCArgumentProtocol]) {
     switch parts[3] {
       case "clear":
@@ -738,6 +742,7 @@ class OSCHelper: ObservableObject {
     }
   }
 
+  @MainActor
   func setEncoderLabelValue(index: Int, isLabel: Bool, value: String) {
     if isLabel {
       encoderWheelLabels[index] = value
@@ -746,6 +751,7 @@ class OSCHelper: ObservableObject {
     }
   }
 
+  @MainActor
   func setStatusOfFunctionKey(
     funcitonKey: ButtonFunctionNames,
     parts: [String],

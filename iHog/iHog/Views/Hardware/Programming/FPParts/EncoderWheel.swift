@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 9/24/20.
 //
 
+import Analytics
 import CoreHaptics
 import SwiftUI
 

@@ -5,9 +5,11 @@
 //  Created by Jay Wilson on 6/9/21.
 //
 
+import Analytics
 import CoreData
 import Foundation
 
+@MainActor
 class ChosenShow: ObservableObject {
   @Published var scenes: [ShowObject]
   @Published var lists: [ShowObject]

@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "15BE2E5725C88F35009D8E77"
+               BuildableName = "iHogUITestsScreenShots.xctest"
+               BlueprintName = "iHogUITestsScreenShots"
+               ReferencedContainer = "container:iHog.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "15DA2693251237D70063E236"
+               BuildableName = "iHogUITests.xctest"
+               BlueprintName = "iHogUITests"
+               ReferencedContainer = "container:iHog.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

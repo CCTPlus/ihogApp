@@ -9,6 +9,8 @@
 //  MikaelaCaron - 2022-09-21
 //
 
+import Analytics
+import AppEntry
 import CoffeeToast
 import RevenueCat
 import StoreKit
@@ -62,41 +64,31 @@ struct iHogApp: App {
 
   var body: some Scene {
     WindowGroup {
-      Group {
-        Toast(
-          toastNotification.text,
-          backgroundColor: toastNotification.color,
-          isShown: $toastNotification.isShown
-        ) {
-          if showOnboarding {
-            OnboardingView(setting: $settings)
-              .environmentObject(osc)
-              .environmentObject(user)
-          } else {
-            SettingsView()
-              .environment(\.managedObjectContext, persistenceController.container.viewContext)
-              .environmentObject(osc)
-              .environmentObject(user)
-              .environmentObject(toastNotification)
-          }
-        }
+      AppEntryView()
+    }
+  }
+
+  @ViewBuilder
+  private var legacyView: some View {
+    Toast(
+      toastNotification.text,
+      backgroundColor: toastNotification.color,
+      isShown: $toastNotification.isShown
+    ) {
+      if showOnboarding {
+        OnboardingView(setting: $settings)
+          .environmentObject(osc)
+          .environmentObject(user)
+      } else {
+        SettingsView()
+          .environment(\.managedObjectContext, persistenceController.container.viewContext)
+          .environmentObject(osc)
+          .environmentObject(user)
+          .environmentObject(toastNotification)
       }
-      .task {
-        analtyics.logEvent(with: .appLaunched)
-        increaseTimesLaunchedAndAskReview()
-        do {
-          try await getCustomerInfo()
-          user.offerings = try await Purchases.shared.offerings()
-          for await customerInfo in Purchases.shared.customerInfoStream {
-            for _ in customerInfo.activeSubscriptions {
-              HogLogger.log(category: .purchases).debug("🐛 \(customerInfo.activeSubscriptions)")
-            }
-            user.customerInfo = customerInfo
-          }
-        } catch {
-          Analytics.shared.logError(with: error, for: .purchases, level: .critical)
-        }
-      }
+    }
+    .task {
+      await handleAppLaunch()
     }
   }
 }
@@ -113,5 +105,23 @@ extension iHogApp {
   func getCustomerInfo() async throws {
     user.customerInfo = try await Purchases.shared.restorePurchases()
     analtyics.identifyUser(with: Purchases.shared.appUserID)
+  }
+
+  @MainActor
+  private func handleAppLaunch() async {
+    analtyics.logEvent(with: .appLaunched)
+    increaseTimesLaunchedAndAskReview()
+    do {
+      try await getCustomerInfo()
+      user.offerings = try await Purchases.shared.offerings()
+      for await customerInfo in Purchases.shared.customerInfoStream {
+        for _ in customerInfo.activeSubscriptions {
+          HogLogger.log(category: .purchases).debug("🐛 \(customerInfo.activeSubscriptions)")
+        }
+        user.customerInfo = customerInfo
+      }
+    } catch {
+      Analytics.shared.logError(with: error, for: .purchases, level: .critical)
+    }
   }
 }

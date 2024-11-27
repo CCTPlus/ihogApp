@@ -19,6 +19,9 @@
 		377087D727AABFF000B0754A /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 377087D627AABFF000B0754A /* CoffeeToast */; };
 		37EAFA9027AF31530092C11E /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37EAFA8F27AF31530092C11E /* OSCKit */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
+		6949A1122CF553D300916DA1 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6949A1112CF553D300916DA1 /* Analytics */; };
+		6949A1142CF553D300916DA1 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 6949A1132CF553D300916DA1 /* Utilities */; };
+		6949A1162CF5574600916DA1 /* AppEntry in Frameworks */ = {isa = PBXBuildFile; productRef = 6949A1152CF5574600916DA1 /* AppEntry */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +49,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6949A1282CF55A9E00916DA1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1521CA8D26700E1D00014B34 /* ShowObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowObjectTests.swift; sourceTree = "<group>"; };
 		15893A2B2671734000780B31 /* ChosenShowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenShowTests.swift; sourceTree = "<group>"; };
@@ -62,6 +78,8 @@
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		690373122CF43E3000A24255 /* Features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Features; path = ../Packages/Features; sourceTree = SOURCE_ROOT; };
+		6949A10F2CF4EA0D00916DA1 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Models; path = ../Packages/Models; sourceTree = SOURCE_ROOT; };
+		6949A1102CF54D3800916DA1 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Utilities; path = ../Packages/Utilities; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -90,13 +108,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6949A1122CF553D300916DA1 /* Analytics in Frameworks */,
 				15E2D204253F14F900C7A453 /* CloudKit.framework in Frameworks */,
 				37EAFA9027AF31530092C11E /* OSCKit in Frameworks */,
+				6949A1142CF553D300916DA1 /* Utilities in Frameworks */,
 				3769730C28A52743004D9BEF /* RevenueCat in Frameworks */,
 				693137A42CE1579000562B73 /* PostHog in Frameworks */,
 				3730E00D27A17B27006FCA5E /* OctoKit in Frameworks */,
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
 				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
+				6949A1162CF5574600916DA1 /* AppEntry in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +152,8 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
+				6949A1102CF54D3800916DA1 /* Utilities */,
+				6949A10F2CF4EA0D00916DA1 /* Models */,
 				690373122CF43E3000A24255 /* Features */,
 				69666BD82CDD6CA0008A0057 /* iHog */,
 				15DA268C251237D70063E236 /* iHogTests */,
@@ -208,6 +231,7 @@
 				15DA266F251237D60063E236 /* Sources */,
 				15DA2670251237D60063E236 /* Frameworks */,
 				15DA2671251237D60063E236 /* Resources */,
+				6949A1282CF55A9E00916DA1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,6 +248,9 @@
 				3769730B28A52743004D9BEF /* RevenueCat */,
 				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 				693137A32CE1579000562B73 /* PostHog */,
+				6949A1112CF553D300916DA1 /* Analytics */,
+				6949A1132CF553D300916DA1 /* Utilities */,
+				6949A1152CF5574600916DA1 /* AppEntry */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -581,7 +608,7 @@
 				DEVELOPMENT_TEAM = ZDK82FGR3Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -612,7 +639,7 @@
 				DEVELOPMENT_TEAM = ZDK82FGR3Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -836,6 +863,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 693137A22CE1579000562B73 /* XCRemoteSwiftPackageReference "posthog-ios" */;
 			productName = PostHog;
+		};
+		6949A1112CF553D300916DA1 /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Analytics;
+		};
+		6949A1132CF553D300916DA1 /* Utilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utilities;
+		};
+		6949A1152CF5574600916DA1 /* AppEntry */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppEntry;
 		};
 		69666DE82CDD774B008A0057 /* TelemetryDeck */ = {
 			isa = XCSwiftPackageProductDependency;

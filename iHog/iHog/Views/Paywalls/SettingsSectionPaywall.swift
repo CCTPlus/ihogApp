@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 11/8/24.
 //
 
+import Analytics
 import RevenueCat
 import StoreKit
 import SwiftUI

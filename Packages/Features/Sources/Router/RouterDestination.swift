@@ -7,10 +7,10 @@
 
 import Foundation
 
-public enum RouterDestination: Hashable {
+public enum RouterDestination: String, Hashable {
   case programmingObjects
   case playbackObjects
   case puntpageProgramming
   case puntpagePlayback
-  case puntpageProgrammingPlatback
+  case puntpageProgrammingPlayback
 }

@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 9/16/20.
 //
 
+import Analytics
 import CoreData
 import RevenueCat
 import StoreKit

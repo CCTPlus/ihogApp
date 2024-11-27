@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 10/15/20.
 //
 
+import Analytics
 import SwiftUI
 
 struct ShowNavigation: View {

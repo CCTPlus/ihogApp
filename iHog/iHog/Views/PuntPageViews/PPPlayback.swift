@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 2/4/21.
 //
 
+import Analytics
 import CoreData
 import SwiftUI
 

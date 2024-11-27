@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 9/16/20.
 //
 
+import Analytics
 import CoreData
 
 struct PersistenceController {
@@ -36,7 +37,11 @@ struct PersistenceController {
     } catch {
       // Replace this implementation with code to handle the error appropriately.
       // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+      Task {
+        await MainActor.run {
+          Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+        }
+      }
       let nsError = error as NSError
       fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
     }
@@ -76,7 +81,15 @@ struct PersistenceController {
 
     guard let description = container.persistentStoreDescriptions.first else {
       HogLogger.log(category: .error).error("Could not get persistent store description")
-      Analytics.shared.logError(with: HogOSCError.notAbleToLoadStore, for: .coreData, level: .fatal)
+      Task {
+        await MainActor.run {
+          Analytics.shared.logError(
+            with: HogOSCError.notAbleToLoadStore,
+            for: .coreData,
+            level: .fatal
+          )
+        }
+      }
       fatalError()
     }
 
@@ -103,7 +116,11 @@ struct PersistenceController {
       HogLogger.log(category: .coreData)
         .info("Store loaded at:\(storeDescription.url?.absoluteString ?? "NO STORE FOUND")")
       if let error = error as NSError? {
-        Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+        Task {
+          await MainActor.run {
+            Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+          }
+        }
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     }
@@ -119,7 +136,15 @@ struct PersistenceController {
   ) {
     let coordinator = container.persistentStoreCoordinator
     guard let storeDescription = container.persistentStoreDescriptions.first else {
-      Analytics.shared.logError(with: HogOSCError.notAbleToLoadStore, for: .coreData, level: .fatal)
+      Task {
+        await MainActor.run {
+          Analytics.shared.logError(
+            with: HogOSCError.notAbleToLoadStore,
+            for: .coreData,
+            level: .fatal
+          )
+        }
+      }
       HogLogger.log(category: .coreData)
         .error("Could not load store descriptions during migration from default to app groups")
       fatalError()
@@ -137,7 +162,11 @@ struct PersistenceController {
         type: .sqlite
       )
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+      Task {
+        await MainActor.run {
+          Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+        }
+      }
       HogLogger.log(category: .coreData)
         .error("Something went wrong during migration of the store: \(error, privacy: .public)")
       fatalError("Something went wrong during migration of the store \(error)")
@@ -147,7 +176,11 @@ struct PersistenceController {
     do {
       try coordinator.destroyPersistentStore(at: oldStoreURL, type: .sqlite)
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+      Task {
+        await MainActor.run {
+          Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
+        }
+      }
       HogLogger.log(category: .coreData)
         .log("Something went wrong deleting the old store: \(error)")
       fatalError("Something went wrong deleting the old store: \(error)")
