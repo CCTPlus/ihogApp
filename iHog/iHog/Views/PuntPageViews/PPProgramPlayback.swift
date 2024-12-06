@@ -12,7 +12,7 @@ struct PPProgramPlayback: View {
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
-  @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
+  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
 
   //    @State private var show.groups: [ShowObject] = []
   //    @State private var show.palettes: [ShowObject] = []

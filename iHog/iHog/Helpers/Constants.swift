@@ -74,51 +74,6 @@ enum SettingsNav: Hashable {
   case userFeedbackView
 }
 
-// MARK: SETTING ENUMS
-enum Settings: String {
-  case timesLaunched
-  case showOnboarding
-
-  case chosenShowID
-
-  case consoleIP
-  case serverPort
-  case clientPort
-  case isOSCOn
-
-  case encoderWheelPrecision
-  case isEncoderFine
-  case isNanoModeOn
-  case isHapticOn
-
-  // MARK: Button Group
-  case buttonColorGroup
-  case buttonSizeGroup
-  case buttonsAcrossGroup
-  case isButtonFilledGroup
-
-  // MARK: Button Palette
-  case buttonColorPalette
-  case buttonSizePalette
-  case buttonsAcrossPalette
-  case isButtonFilledPalette
-
-  // MARK: Button List
-  case buttonColorList
-  case buttonSizeList
-  case buttonsAcrossList
-  case isButtonFilledList
-
-  // MARK: Button Scene
-  case buttonColorScene
-  case buttonSizeScene
-  case buttonsAcrossScene
-  case isButtonFilledScene
-
-  // MARK: Feature Unlocks
-  case puntPageIsEnabled
-}
-
 /// BUTTON NAME ENUMS
 enum ButtonFunctionNames: String {
   // MARK: PLAYBACKS
