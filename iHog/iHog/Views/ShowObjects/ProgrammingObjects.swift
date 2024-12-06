@@ -259,8 +259,7 @@ struct ProgrammingObjects: View {
     }
   }
 
-  // Returns: Integer array of 2. First index is groups
-  //          Second index is palettes
+  /// Returns: Integer array of 2. First index is groups, Second index is palettes
   func getMaxButtonSize() -> [Int] {
     switch horizontalSizeClass {
       case .compact:

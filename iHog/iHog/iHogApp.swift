@@ -63,21 +63,46 @@ struct iHogApp: App {
   var body: some Scene {
     WindowGroup {
       Group {
-        Toast(
-          toastNotification.text,
-          backgroundColor: toastNotification.color,
-          isShown: $toastNotification.isShown
-        ) {
-          if showOnboarding {
-            OnboardingView(setting: $settings)
-              .environmentObject(osc)
-              .environmentObject(user)
-          } else {
-            SettingsView()
-              .environment(\.managedObjectContext, persistenceController.container.viewContext)
-              .environmentObject(osc)
-              .environmentObject(user)
-              .environmentObject(toastNotification)
+        if #available(iOS 17.0, *) {
+          Group {
+            Toast(
+              toastNotification.text,
+              backgroundColor: toastNotification.color,
+              isShown: $toastNotification.isShown
+            ) {
+              if showOnboarding {
+                OnboardingView(setting: $settings)
+                  .environmentObject(osc)
+                  .environmentObject(user)
+              } else {
+                SettingsView()
+                  .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                  .environmentObject(osc)
+                  .environmentObject(user)
+                  .environmentObject(toastNotification)
+              }
+            }
+          }
+          .modelContainer(SwiftDataManager.modelContainer)
+        } else {
+          Group {
+            Toast(
+              toastNotification.text,
+              backgroundColor: toastNotification.color,
+              isShown: $toastNotification.isShown
+            ) {
+              if showOnboarding {
+                OnboardingView(setting: $settings)
+                  .environmentObject(osc)
+                  .environmentObject(user)
+              } else {
+                SettingsView()
+                  .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                  .environmentObject(osc)
+                  .environmentObject(user)
+                  .environmentObject(toastNotification)
+              }
+            }
           }
         }
       }

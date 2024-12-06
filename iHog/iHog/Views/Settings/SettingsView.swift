@@ -81,22 +81,27 @@ struct SettingsView: View {
               addShow()
             }
           }
-          ForEach(shows) { show in
-            NavigationLink(value: Routes.shows(show)) {
-              HStack {
-                ZStack {
-                  Color.gray
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(5)
-                  Image(systemName: show.icon ?? SFSymbol._folder.name)
-                    .foregroundColor(.white)
+
+          if #available(iOS 17.0, *) {
+            ShowSelectionView()
+          } else {
+            ForEach(shows) { show in
+              NavigationLink(value: Routes.shows(show)) {
+                HStack {
+                  ZStack {
+                    Color.gray
+                      .frame(width: 30, height: 30)
+                      .cornerRadius(5)
+                    Image(systemName: show.icon ?? SFSymbol._folder.name)
+                      .foregroundColor(.white)
+                  }
+                  Text(show.name ?? "Name not found")
                 }
-                Text(show.name ?? "Name not found")
               }
             }
-          }
-          .onDelete { indexSet in
-            self.delete(at: indexSet)
+            .onDelete { indexSet in
+              self.delete(at: indexSet)
+            }
           }
         }
         // MARK: Settings
