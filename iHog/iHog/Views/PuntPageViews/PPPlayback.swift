@@ -31,7 +31,7 @@ struct PPPlayback: View {
           )
         }
         .onAppear {
-          getAllObjects()
+          //          getAllObjects()
         }
       } else {
         HStack {
@@ -50,7 +50,7 @@ struct PPPlayback: View {
           }
         }
         .onAppear {
-          getAllObjects()
+          //          getAllObjects()
         }
 
       }
@@ -72,7 +72,8 @@ struct PPPlayback: View {
           }
         }
         .onAppear {
-          getAllObjects()
+          //          getAllObjects
+          ()
         }
       } else {
         HStack {
@@ -91,52 +92,52 @@ struct PPPlayback: View {
           }
         }
         .onAppear {
-          getAllObjects()
+          //          getAllObjects()
         }
       }
     }
   }
 
-  func getAllObjects() {
-    show.lists = []
-    show.scenes = []
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDShowObjectEntity")
-    fetchRequest.predicate = NSPredicate(format: "showID == %@", chosenShowID)
-
-    do {
-      let results = try viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
-      for showObj in results {
-        switch showObj.objType {
-          case ShowObjectType.list.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .list,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "gray",
-              isOutlined: showObj.isOutlined
-            )
-            show.addList(newObj)
-          case ShowObjectType.scene.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .scene,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "green",
-              isOutlined: showObj.isOutlined
-            )
-            show.addScene(newObj)
-          default:
-            continue
-        }
-      }
-      show.lists.sort(by: { $0.number < $1.number })
-      show.scenes.sort(by: { $0.number < $1.number })
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
-    }
-  }
+  //  func getAllObjects() {
+  //    show.lists = []
+  //    show.scenes = []
+  //    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDShowObjectEntity")
+  //    fetchRequest.predicate = NSPredicate(format: "showID == %@", chosenShowID)
+  //
+  //    do {
+  //      let results = try viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
+  //      for showObj in results {
+  //        switch showObj.objType {
+  //          case ShowObjectType.list.rawValue:
+  //            let newObj = ShowObject(
+  //              id: showObj.id!,
+  //              objType: .list,
+  //              number: showObj.number,
+  //              name: showObj.name,
+  //              objColor: showObj.objColor ?? "gray",
+  //              isOutlined: showObj.isOutlined
+  //            )
+  //            show.addList(newObj)
+  //          case ShowObjectType.scene.rawValue:
+  //            let newObj = ShowObject(
+  //              id: showObj.id!,
+  //              objType: .scene,
+  //              number: showObj.number,
+  //              name: showObj.name,
+  //              objColor: showObj.objColor ?? "green",
+  //              isOutlined: showObj.isOutlined
+  //            )
+  //            show.addScene(newObj)
+  //          default:
+  //            continue
+  //        }
+  //      }
+  //      show.lists.sort(by: { $0.number < $1.number })
+  //      show.scenes.sort(by: { $0.number < $1.number })
+  //    } catch {
+  //      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+  //    }
+  //  }
 }
 //struct PPPlayback_Previews: PreviewProvider {
 //    static var previews: some View {

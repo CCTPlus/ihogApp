@@ -34,9 +34,6 @@ struct SettingsView: View {
   /// MARK: Navigation
   let paywalls: [Paywall] = [.currentPaywall]
 
-  let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-  let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-
   var networkMonitor = NetworkMonitor.shared
 
   private var foundProducts: [Package] {
@@ -81,27 +78,22 @@ struct SettingsView: View {
               addShow()
             }
           }
-
-          if #available(iOS 17.0, *) {
-            ShowSelectionView()
-          } else {
-            ForEach(shows) { show in
-              NavigationLink(value: Routes.shows(show)) {
-                HStack {
-                  ZStack {
-                    Color.gray
-                      .frame(width: 30, height: 30)
-                      .cornerRadius(5)
-                    Image(systemName: show.icon ?? SFSymbol._folder.name)
-                      .foregroundColor(.white)
-                  }
-                  Text(show.name ?? "Name not found")
+          ForEach(shows) { show in
+            NavigationLink(value: Routes.shows(show)) {
+              HStack {
+                ZStack {
+                  Color.gray
+                    .frame(width: 30, height: 30)
+                    .cornerRadius(5)
+                  Image(systemName: show.icon ?? SFSymbol._folder.name)
+                    .foregroundColor(.white)
                 }
+                Text(show.name ?? "Name not found")
               }
             }
-            .onDelete { indexSet in
-              self.delete(at: indexSet)
-            }
+          }
+          .onDelete { indexSet in
+            self.delete(at: indexSet)
           }
         }
         // MARK: Settings
@@ -192,7 +184,7 @@ struct SettingsView: View {
         }
 
         VStack {
-          Text("App version: \(appVersion ?? "UNRELEASED") (\(appBuild ?? "UNRELEASED"))")
+          Text("App version: \(AppInfo.version) (\(AppInfo.build))")
           Text("Made with ☕ in 🌲🌲🌲")
         }
         .frame(maxWidth: .infinity)
@@ -202,7 +194,7 @@ struct SettingsView: View {
 
       }
       .listStyle(.insetGrouped)
-      .navigationTitle("iHog")
+      .navigationTitle(AppInfo.name)
     } detail: {
       switch user.navigation {
         case let .paywall(paywall):

@@ -21,7 +21,7 @@ struct OnboardingView: View {
   var body: some View {
     VStack(spacing: 40) {
       VStack {
-        Text(appName!)
+        Text(appName)
           .font(.largeTitle)
         OBProgressView(currentStep: currentStep)
       }
