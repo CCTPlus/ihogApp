@@ -14,11 +14,7 @@ let package = Package(
     ),
     .library(name: "DesignSystem", targets: ["DesignSystem"]),
     .library(name: "Router", targets: ["Router"]),
-    .library(
-      name: "AppEntry",
-      type: .dynamic,
-      targets: ["AppEntry"]
-    ),
+    .library(name: "AppEntry", targets: ["AppEntry"]),
   ],
   dependencies: [
     .package(path: "../Utilities"),
@@ -43,8 +39,12 @@ let package = Package(
       dependencies: [
         "DesignSystem",
         "Router",
+        "Settings",
         .product(name: "DataManager", package: "Models"),
       ]
+    ),
+    .target(
+      name: "Settings"
     ),
     .target(
       name: "Features"

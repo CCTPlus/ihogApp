@@ -105,6 +105,7 @@ public struct TabBarView: View {
       .clipShape(RoundedRectangle(cornerRadius: 24, style: .circular))
       .shadow(color: gradientStartColor, radius: 8, x: 0, y: 4)
     }
+    .frame(maxHeight: .infinity, alignment: .bottomTrailing)
   }
 }
 

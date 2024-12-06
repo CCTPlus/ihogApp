@@ -22,6 +22,7 @@ public enum AppTab: CaseIterable, Identifiable, Hashable, Sendable {
     self.hashValue
   }
 
+  /// Maps tab to SF Symbol
   public var icon: String {
     switch self {
       case .programming:
@@ -32,6 +33,19 @@ public enum AppTab: CaseIterable, Identifiable, Hashable, Sendable {
         "play"
       case .puntPage:
         "keyboard"
+    }
+  }
+
+  public var label: String {
+    switch self {
+      case .programming:
+        "Programming"
+      case .playback:
+        "Playback"
+      case .puntPage:
+        "Punt Page"
+      case .settings:
+        "Settings"
     }
   }
 

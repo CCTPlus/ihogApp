@@ -12,10 +12,20 @@ import SwiftData
 import SwiftUI
 
 public struct HeaderView: View {
+  @Environment(\.colorScheme) var colorScheme
   @Environment(Router.self) var router
   @Query private var shows: [ShowEntity]
 
   var isConnectedOSC: Bool
+
+  var menuIconColor: Color {
+    switch colorScheme {
+      case .dark:
+        .white
+      default:
+        .accentColor
+    }
+  }
 
   public init(isConnectedOSC: Bool) {
     self.isConnectedOSC = isConnectedOSC
@@ -42,6 +52,7 @@ public struct HeaderView: View {
     HeaderView(isConnectedOSC: false)
     Spacer()
   }
+  .background(Color.red)
   .environment(Router())
   .modelContainer(ShowEntity.preview)
 }
@@ -72,6 +83,7 @@ extension HeaderView {
       }
 
     }
+    .tint(menuIconColor)
   }
 
   @ViewBuilder var oscStatus: some View {
