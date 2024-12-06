@@ -10,19 +10,19 @@ import SwiftUI
 
 struct ProgrammingObjects: View {
   // MARK: Default values
-  @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
+  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
 
   // MARK: Palette defaults
-  @AppStorage(Settings.buttonColorPalette.rawValue) var buttonColorPalette = 2
-  @AppStorage(Settings.buttonSizePalette.rawValue) var buttonSizePalette = 0
-  @AppStorage(Settings.buttonsAcrossPalette.rawValue) var buttonsAcrossPallete = 3
-  @AppStorage(Settings.isButtonFilledPalette.rawValue) var isButtonFilledPalette = false
+  @AppStorage(AppStorageKey.buttonColorPalette.rawValue) var buttonColorPalette = 2
+  @AppStorage(AppStorageKey.buttonSizePalette.rawValue) var buttonSizePalette = 0
+  @AppStorage(AppStorageKey.buttonsAcrossPalette.rawValue) var buttonsAcrossPallete = 3
+  @AppStorage(AppStorageKey.isButtonFilledPalette.rawValue) var isButtonFilledPalette = false
 
   // MARK: Group defaults
-  @AppStorage(Settings.buttonColorGroup.rawValue) var buttonColorGroup = 0
-  @AppStorage(Settings.buttonSizeGroup.rawValue) var buttonSizeGroup = 0
-  @AppStorage(Settings.buttonsAcrossGroup.rawValue) var buttonsAcrossGroup = 3
-  @AppStorage(Settings.isButtonFilledGroup.rawValue) var isButtonFilledGroup = false
+  @AppStorage(AppStorageKey.buttonColorGroup.rawValue) var buttonColorGroup = 0
+  @AppStorage(AppStorageKey.buttonSizeGroup.rawValue) var buttonSizeGroup = 0
+  @AppStorage(AppStorageKey.buttonsAcrossGroup.rawValue) var buttonsAcrossGroup = 3
+  @AppStorage(AppStorageKey.isButtonFilledGroup.rawValue) var isButtonFilledGroup = false
 
   // MARK: Environment variables
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -259,8 +259,7 @@ struct ProgrammingObjects: View {
     }
   }
 
-  // Returns: Integer array of 2. First index is groups
-  //          Second index is palettes
+  /// Returns: Integer array of 2. First index is groups, Second index is palettes
   func getMaxButtonSize() -> [Int] {
     switch horizontalSizeClass {
       case .compact:

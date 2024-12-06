@@ -9,17 +9,17 @@ import CoreData
 import SwiftUI
 
 struct PlaybackObjects: View {
-  @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
+  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
   // MARK: LIST Default Values
-  @AppStorage(Settings.buttonColorList.rawValue) var buttonColorList = 0
-  @AppStorage(Settings.buttonSizeList.rawValue) var buttonSizeList = 0
-  @AppStorage(Settings.buttonsAcrossList.rawValue) var buttonsAcrossList = 3
-  @AppStorage(Settings.isButtonFilledList.rawValue) var buttonFilledList = false
+  @AppStorage(AppStorageKey.buttonColorList.rawValue) var buttonColorList = 0
+  @AppStorage(AppStorageKey.buttonSizeList.rawValue) var buttonSizeList = 0
+  @AppStorage(AppStorageKey.buttonsAcrossList.rawValue) var buttonsAcrossList = 3
+  @AppStorage(AppStorageKey.isButtonFilledList.rawValue) var buttonFilledList = false
   // MARK: SCENE Default Values
-  @AppStorage(Settings.buttonColorScene.rawValue) var buttonColorScene = 2
-  @AppStorage(Settings.buttonSizeScene.rawValue) var buttonSizeScene = 0
-  @AppStorage(Settings.buttonsAcrossScene.rawValue) var buttonsAcrossScene = 3
-  @AppStorage(Settings.isButtonFilledScene.rawValue) var buttonFilledScene = false
+  @AppStorage(AppStorageKey.buttonColorScene.rawValue) var buttonColorScene = 2
+  @AppStorage(AppStorageKey.buttonSizeScene.rawValue) var buttonSizeScene = 0
+  @AppStorage(AppStorageKey.buttonsAcrossScene.rawValue) var buttonsAcrossScene = 3
+  @AppStorage(AppStorageKey.isButtonFilledScene.rawValue) var buttonFilledScene = false
 
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass

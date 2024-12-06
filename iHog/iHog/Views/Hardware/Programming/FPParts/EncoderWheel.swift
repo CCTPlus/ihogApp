@@ -12,8 +12,8 @@ struct EncoderWheel: View {
   @EnvironmentObject var osc: OSCHelper
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
-  @AppStorage(Settings.encoderWheelPrecision.rawValue) var encoderWheelPrecision: Double = 2.00
-  @AppStorage(Settings.isHapticOn.rawValue) var isHapticOn: Bool = true
+  @AppStorage(AppStorageKey.encoderWheelPrecision.rawValue) var encoderWheelPrecision: Double = 2.00
+  @AppStorage(AppStorageKey.isHapticOn.rawValue) var isHapticOn: Bool = true
 
   @State private var engine: CHHapticEngine?
   @State private var yOffSet: CGFloat = 0

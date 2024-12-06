@@ -19,10 +19,6 @@ enum Links {
   static let privacy = "https://ihog.notion.site/Privacy-Policy-c9021d2f3517465791b9ce9835551e8a"
 }
 
-enum AppInfo {
-  static let appGroup = "group.com.appsbymw.hogosc"
-}
-
 // MARK: GENERAL
 let BASE_CORNER_RADIUS: CGFloat = 5
 let DOUBLE_CORNER_RADIUS: CGFloat = 10
@@ -72,51 +68,6 @@ enum SettingsNav: Hashable {
   case tipJar
   case oscLogView
   case userFeedbackView
-}
-
-// MARK: SETTING ENUMS
-enum Settings: String {
-  case timesLaunched
-  case showOnboarding
-
-  case chosenShowID
-
-  case consoleIP
-  case serverPort
-  case clientPort
-  case isOSCOn
-
-  case encoderWheelPrecision
-  case isEncoderFine
-  case isNanoModeOn
-  case isHapticOn
-
-  // MARK: Button Group
-  case buttonColorGroup
-  case buttonSizeGroup
-  case buttonsAcrossGroup
-  case isButtonFilledGroup
-
-  // MARK: Button Palette
-  case buttonColorPalette
-  case buttonSizePalette
-  case buttonsAcrossPalette
-  case isButtonFilledPalette
-
-  // MARK: Button List
-  case buttonColorList
-  case buttonSizeList
-  case buttonsAcrossList
-  case isButtonFilledList
-
-  // MARK: Button Scene
-  case buttonColorScene
-  case buttonSizeScene
-  case buttonsAcrossScene
-  case isButtonFilledScene
-
-  // MARK: Feature Unlocks
-  case puntPageIsEnabled
 }
 
 /// BUTTON NAME ENUMS

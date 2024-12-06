@@ -37,8 +37,8 @@ class ToastNotification: ObservableObject {
 
 @main
 struct iHogApp: App {
-  @AppStorage(Settings.timesLaunched.rawValue) var timesLaunched: Int = 0
-  @AppStorage(Settings.showOnboarding.rawValue) var showOnboarding: Bool = true
+  @AppStorage(AppStorageKey.timesLaunched.rawValue) var timesLaunched: Int = 0
+  @AppStorage(AppStorageKey.showOnboarding.rawValue) var showOnboarding: Bool = true
 
   @Environment(\.requestReview) var requestReview
 

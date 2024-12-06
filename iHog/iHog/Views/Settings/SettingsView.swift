@@ -34,9 +34,6 @@ struct SettingsView: View {
   /// MARK: Navigation
   let paywalls: [Paywall] = [.currentPaywall]
 
-  let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-  let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-
   var networkMonitor = NetworkMonitor.shared
 
   private var foundProducts: [Package] {
@@ -187,7 +184,7 @@ struct SettingsView: View {
         }
 
         VStack {
-          Text("App version: \(appVersion ?? "UNRELEASED") (\(appBuild ?? "UNRELEASED"))")
+          Text("App version: \(AppInfo.version) (\(AppInfo.build))")
           Text("Made with ☕ in 🌲🌲🌲")
         }
         .frame(maxWidth: .infinity)
@@ -197,7 +194,7 @@ struct SettingsView: View {
 
       }
       .listStyle(.insetGrouped)
-      .navigationTitle("iHog")
+      .navigationTitle(AppInfo.name)
     } detail: {
       switch user.navigation {
         case let .paywall(paywall):

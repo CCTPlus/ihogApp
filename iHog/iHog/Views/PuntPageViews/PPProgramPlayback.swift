@@ -12,7 +12,7 @@ struct PPProgramPlayback: View {
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
-  @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
+  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
 
   //    @State private var show.groups: [ShowObject] = []
   //    @State private var show.palettes: [ShowObject] = []
@@ -53,9 +53,6 @@ struct PPProgramPlayback: View {
             )
 
           }
-        }
-        .onAppear {
-          getAllObjects()
         }
       } else {
         HStack {
@@ -99,9 +96,6 @@ struct PPProgramPlayback: View {
               .transition(.move(edge: .bottom))
           }
         }
-        .onAppear {
-          getAllObjects()
-        }
 
       }
     } else {
@@ -137,9 +131,6 @@ struct PPProgramPlayback: View {
               .transition(.move(edge: .bottom))
           }
         }
-        .onAppear {
-          getAllObjects()
-        }
       } else {
         HStack {
           CompactFaders(mainPlaybackIsShowing: $mainPlaybackIsShowing)
@@ -172,91 +163,7 @@ struct PPProgramPlayback: View {
               .transition(.move(edge: .bottom))
           }
         }
-        .onAppear {
-          getAllObjects()
-        }
       }
-    }
-  }
-
-  func getAllObjects() {
-    show.groups = []
-    show.palettes = []
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObjectEntity")
-    fetchRequest.predicate = NSPredicate(format: "showID == %@", chosenShowID)
-
-    do {
-      let results = try viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
-      for showObj in results {
-        switch showObj.objType {
-          case ShowObjectType.group.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .group,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "red",
-              isOutlined: showObj.isOutlined
-            )
-            show.addGroup(newObj)
-          case ShowObjectType.intensity.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .intensity,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "blue",
-              isOutlined: showObj.isOutlined
-            )
-            show.addPalette(newObj)
-          case ShowObjectType.position.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .position,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "blue",
-              isOutlined: showObj.isOutlined
-            )
-            show.addPalette(newObj)
-          case ShowObjectType.color.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .color,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "blue",
-              isOutlined: showObj.isOutlined
-            )
-            show.addPalette(newObj)
-          case ShowObjectType.beam.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .beam,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "blue",
-              isOutlined: showObj.isOutlined
-            )
-            show.addPalette(newObj)
-          case ShowObjectType.effect.rawValue:
-            let newObj = ShowObject(
-              id: showObj.id!,
-              objType: .effect,
-              number: showObj.number,
-              name: showObj.name,
-              objColor: showObj.objColor ?? "blue",
-              isOutlined: showObj.isOutlined
-            )
-            show.addPalette(newObj)
-          default:
-            continue
-        }
-      }
-      show.groups.sort(by: { $0.number < $1.number })
-      show.palettes.sort(by: { $0.number < $1.number })
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
   }
 }

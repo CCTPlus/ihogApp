@@ -15,10 +15,10 @@ struct OSCSettings: View {
 
   @AppStorage("selectedInterfaceName") private var selectedInterfaceName: String = ""
 
-  @AppStorage(Settings.consoleIP.rawValue) var consoleIP: String = "172.31.0.1"
-  @AppStorage(Settings.serverPort.rawValue) var serverPort: String = "7001"
-  @AppStorage(Settings.clientPort.rawValue) var clientPort: String = "7002"
-  @AppStorage(Settings.isOSCOn.rawValue) var isOSCOn: Bool = false
+  @AppStorage(AppStorageKey.consoleIP.rawValue) var consoleIP: String = "172.31.0.1"
+  @AppStorage(AppStorageKey.serverPort.rawValue) var serverPort: String = "7001"
+  @AppStorage(AppStorageKey.clientPort.rawValue) var clientPort: String = "7002"
+  @AppStorage(AppStorageKey.isOSCOn.rawValue) var isOSCOn: Bool = false
 
   var body: some View {
     Form {

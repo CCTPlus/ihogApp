@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+/// TabView for the selected show
 struct ShowNavigation: View {
-  @AppStorage(Settings.chosenShowID.rawValue) var chosenShowID: String = ""
+  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
   @EnvironmentObject var user: UserState
 
   var selectedShow: CDShowEntity
