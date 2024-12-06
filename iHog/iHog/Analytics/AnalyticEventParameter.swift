@@ -11,6 +11,7 @@ enum AnalyticEventParameter: String {
   case errorLevel
   case purchaseState
   case purchaseAmount
+  case onboardingStep
 }
 
 enum PaywallSource: String {

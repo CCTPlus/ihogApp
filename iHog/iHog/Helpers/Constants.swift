@@ -19,10 +19,6 @@ enum Links {
   static let privacy = "https://ihog.notion.site/Privacy-Policy-c9021d2f3517465791b9ce9835551e8a"
 }
 
-enum AppInfo {
-  static let appGroup = "group.com.appsbymw.hogosc"
-}
-
 // MARK: GENERAL
 let BASE_CORNER_RADIUS: CGFloat = 5
 let DOUBLE_CORNER_RADIUS: CGFloat = 10

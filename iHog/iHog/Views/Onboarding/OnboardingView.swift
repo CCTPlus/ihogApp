@@ -14,9 +14,9 @@ struct OnboardingView: View {
   @State var currentStep = 1
   @Binding var setting: SettingsNav
 
-  let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-  let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-  let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+  let appVersion = AppInfo.version
+  let appBuild = AppInfo.build
+  let appName = AppInfo.name
 
   var body: some View {
     VStack(spacing: 40) {
@@ -30,24 +30,43 @@ struct OnboardingView: View {
           IntroToiHogView(currentStep: $currentStep)
             .opacity(currentStep == 1 ? 1 : 0)
             .animation(.easeInOut(duration: 2), value: currentStep)
+            .onAppear {
+              analyticsHookForViewingOnboardingStep()
+            }
         case 2:
           OBConsoleSettings(currentStep: $currentStep)
             .environmentObject(osc)
             .opacity(currentStep == 2 ? 1 : 0)
             .animation(.easeInOut(duration: 2), value: currentStep)
+            .onAppear {
+              analyticsHookForViewingOnboardingStep()
+            }
         case 3:
           OBIPAddress(setting: $setting, currentStep: $currentStep)
             .environmentObject(osc)
             .opacity(currentStep == 3 ? 1 : 0)
             .animation(.easeInOut(duration: 2), value: currentStep)
+            .onAppear {
+              analyticsHookForViewingOnboardingStep()
+            }
         default:
           Text("Onboarding is complete")
       }
       Button("Skip") {
-        print("goes to device settings")
+        Analytics.shared.logEvent(
+          with: .onboardingSkipTapped,
+          parameters: [.onboardingStep: currentStep]
+        )
         showOnboarding = false
       }
     }
+  }
+
+  func analyticsHookForViewingOnboardingStep() {
+    Analytics.shared.logEvent(
+      with: .onboardingStepViewed,
+      parameters: [.onboardingStep: currentStep]
+    )
   }
 }
 
