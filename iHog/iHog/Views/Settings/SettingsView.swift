@@ -55,6 +55,7 @@ struct SettingsView: View {
             Text("You're a pro!")
           }
         }
+        // MARK: Hardware views
         Section {
           NavigationLink(value: Routes.playback) {
             HStack {
@@ -70,6 +71,7 @@ struct SettingsView: View {
             }
           }
         }
+        // MARK: Shows
         Section {
           HStack {
             ListIcon(color: .gray, symbol: ._folderbadgeplus)
@@ -97,7 +99,7 @@ struct SettingsView: View {
             self.delete(at: indexSet)
           }
         }
-
+        // MARK: Settings
         Section {
           NavigationLink(value: Routes.osc) {
             HStack {
@@ -118,7 +120,7 @@ struct SettingsView: View {
             }
           }
         }
-
+        // MARK: Feedback
         Section {
           NavigationLink(value: Routes.appFeedback) {
             Label {
@@ -151,7 +153,7 @@ struct SettingsView: View {
             Text("Connect to the internet")
           }
         }
-
+        // MARK: Support
         Section {
           Button {
             let mailTo = "mailto:support@cctplus.dev?subject=iHog%20help%20needed?"
