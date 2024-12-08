@@ -54,6 +54,7 @@ struct SettingsSectionPaywall: View {
 
 #Preview {
   SettingsSectionPaywall()
+    .environmentObject(UserState())
 }
 
 extension SettingsSectionPaywall {

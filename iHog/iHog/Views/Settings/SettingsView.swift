@@ -30,6 +30,7 @@ struct SettingsView: View {
   @State private var isOSCExpanded = true
   @State private var showExportLog = false
   @State private var logURL: URL? = nil
+  @State private var showUserProfile = false
 
   /// MARK: Navigation
   let paywalls: [Paywall] = [.currentPaywall]
@@ -43,15 +44,6 @@ struct SettingsView: View {
   var body: some View {
     NavigationSplitView {
       List(selection: $user.navigation) {
-        if !user.isPro {
-          SettingsSectionPaywall()
-            .environmentObject(user)
-        } else {
-          HStack {
-            ListIcon(color: .accentColor, symbol: ._wandandrays)
-            Text("You're a pro!")
-          }
-        }
         // MARK: Hardware views
         Section {
           NavigationLink(value: Routes.playback) {
@@ -195,6 +187,20 @@ struct SettingsView: View {
       }
       .listStyle(.insetGrouped)
       .navigationTitle(AppInfo.name)
+      .toolbar {
+        ToolbarItem(placement: .topBarTrailing) {
+          Button {
+            showUserProfile.toggle()
+          } label: {
+            Image(symbol: ._person)
+          }
+          .sheet(isPresented: $showUserProfile) {
+            UserProfileView()
+              .presentationDetents([.medium, .large])
+              .presentationDragIndicator(.visible)
+          }
+        }
+      }
     } detail: {
       switch user.navigation {
         case let .paywall(paywall):

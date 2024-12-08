@@ -53,6 +53,7 @@ class Analytics {
     Task {
       var parameters = parameters
       parameters[.numberOfShows] = await getNumberOfShows()
+      parameters[.userIsSandBoxed] = AppInfo.isSandboxed
 
       // Convert to [String: String] for TelemetryDeck
       let stringParameters = parameters.reduce(into: [String: String]()) { result, pair in
@@ -76,7 +77,10 @@ class Analytics {
 
       TelemetryDeck.signal(event.rawValue, parameters: stringParameters)
       await MainActor.run {
-        PostHogSDK.shared.capture(event.rawValue, properties: anyParameters)
+        PostHogSDK.shared.capture(
+          event.rawValue,
+          properties: anyParameters
+        )
       }
       HogLogger.log(category: .analytics)
         .debug("🔦 Logged event: \(event.rawValue) | \(stringParameters)")
@@ -90,8 +94,8 @@ class Analytics {
       properties: ["ErrorID": error.localizedDescription, "errorLevel": level.rawValue]
     )
     TelemetryDeck.signal(
-      "TelemetryDeck.Error.occurred",
-      parameters: ["TelemetryDeck.Error.id": error.localizedDescription]
+      "iHog.Error.occurred",
+      parameters: ["iHog.Error.id": error.localizedDescription]
     )
   }
 
