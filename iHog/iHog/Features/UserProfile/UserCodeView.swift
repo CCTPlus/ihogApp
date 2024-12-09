@@ -16,6 +16,9 @@ struct UserCodeView: View {
   @State private var analyticsCode: String = ""
   @State private var showAlert = false
 
+  let sbUserCode = "IH241208SBU"
+  let internalTestingCode = "IH241208ID"
+
   var body: some View {
     Group {
       ForEach(codes) { code in
@@ -55,6 +58,13 @@ extension UserCodeView {
     if !codes.contains(where: { $0.code == analyticsCode }) {
       let newCode = UserCode(dateCreated: .now, code: analyticsCode)
       context.insert(newCode)
+      #if DEBUG
+        // Adds internal testing code to unlock options
+        if !codes.contains(where: { $0.code == internalTestingCode }) {
+          let internalTestingCode = UserCode(dateCreated: .now, code: internalTestingCode)
+          context.insert(internalTestingCode)
+        }
+      #endif
       try? context.save()
       HogLogger.log().info("Added new code: \(analyticsCode)")
     } else {
@@ -65,8 +75,8 @@ extension UserCodeView {
 
   func addTestflightCode() {
     let isSandboxed = AppInfo.isSandboxed
-    if isSandboxed && !codes.contains(where: { $0.code == "betaTester" }) {
-      let betaTesterCode = UserCode(dateCreated: .now, code: "betaTester")
+    if isSandboxed && !codes.contains(where: { $0.code == sbUserCode }) {
+      let betaTesterCode = UserCode(dateCreated: .now, code: sbUserCode)
       context.insert(betaTesterCode)
       do {
         try context.save()
