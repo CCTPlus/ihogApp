@@ -67,15 +67,6 @@ struct UserProfileView: View {
               "You'll only be entering codes here if you have received specific instruction to enter one or have ran the beta version of iHog."
             )
           }
-
-          // MARK: Experimental Features
-          Section {
-            Text("Feature...")
-          } header: {
-            Text("Experimental Features")
-          } footer: {
-            Text("Enabling these features may cause data loss or other issues.")
-          }
         } else {
           EmptyView()
         }
