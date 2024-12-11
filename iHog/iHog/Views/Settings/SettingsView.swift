@@ -205,14 +205,21 @@ struct SettingsView: View {
       .sheet(item: $router.selectedSheet) { sheet in
         switch sheet {
           case .userProfile:
-            UserProfileView()
-              .environment(\.managedObjectContext, viewContext)
-              .presentationDetents([.large])
-              .presentationDragIndicator(.visible)
+            NavigationStack {
+              UserProfileView()
+                .environment(\.managedObjectContext, viewContext)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+            }
           case .newShow:
-            Text("New show")
+            NavigationStack {
+              NewShowView()
+            }
           case .paywall:
-            Text("Paywall")
+            NavigationStack {
+              CurrentPaywallView(issue: 0, analyticsSource: .newShowView)
+                .environmentObject(user)
+            }
         }
       }
     } detail: {
@@ -284,9 +291,9 @@ struct SettingsView: View {
       user.setNavigation(to: .addView(.shows))
     } else {
       if shows.count >= 1 {
-        user.setNavigation(to: .paywall(.currentPaywall))
+        router.openSheet(.paywall)
       } else {
-        user.setNavigation(to: .addView(.shows))
+        router.openSheet(.newShow)
       }
     }
   }
