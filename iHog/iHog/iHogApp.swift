@@ -83,11 +83,19 @@ struct iHogApp: App {
               .environmentObject(osc)
               .environmentObject(user)
           } else {
-            SettingsView()
-              .environment(\.managedObjectContext, persistenceController.container.viewContext)
-              .environmentObject(osc)
-              .environmentObject(user)
-              .environmentObject(toastNotification)
+            if #available(iOS 17.0, *) {
+              SettingsView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(osc)
+                .environmentObject(user)
+                .environmentObject(toastNotification)
+            } else {
+              SettingsViewLegacy()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(osc)
+                .environmentObject(user)
+                .environmentObject(toastNotification)
+            }
           }
         }
       }

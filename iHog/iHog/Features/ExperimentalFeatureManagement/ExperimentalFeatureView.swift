@@ -19,12 +19,11 @@ struct ExperimentalFeatureView: View {
 
   var body: some View {
     Section {
-      if codes.contains(where: { $0.code == "IH241208SBU" })
-        || codes.contains(where: { $0.code == "IH241208ID" })
+      // Feature flags that are available to internal and external users
+      if codes.contains(where: { $0.code == "IH241208ID" })
+        || codes.contains(where: { $0.code == "IH241208SBU" })
       {
         Toggle(FeatureFlagKey.swiftdata.listLabel, isOn: $featureSwiftData)
-      } else {
-        Text("No experimental features available")
       }
     } header: {
       Text("Experimental Features")
