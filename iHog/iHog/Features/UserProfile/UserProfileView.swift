@@ -9,6 +9,7 @@ import SwiftUI
 
 /// Used to access a user's profile from the Settings view
 struct UserProfileView: View {
+  @Environment(\.managedObjectContext) var viewContext
   @EnvironmentObject var user: UserState
 
   var body: some View {
@@ -44,6 +45,13 @@ struct UserProfileView: View {
           }
         }
 
+        Section {
+          Button("Delete all shows", action: deleteAllShows)
+          Button("Delete all objects", action: deleteAllObjects)
+        } header: {
+          Text("Data management")
+        }
+
         // MARK: Stats
         // TODO: Implement
         //        Section {
@@ -73,6 +81,20 @@ struct UserProfileView: View {
         }
       }
     }
+  }
+
+  func deleteAllShows() {
+    let request = CDShowEntity.fetchRequest()
+    let shows = try? viewContext.fetch(request)
+    shows?.forEach { viewContext.delete($0) }
+    try? viewContext.save()
+  }
+
+  func deleteAllObjects() {
+    let request = CDShowObjectEntity.fetchRequest()
+    let objects = try? viewContext.fetch(request)
+    objects?.forEach { viewContext.delete($0) }
+    try? viewContext.save()
   }
 }
 

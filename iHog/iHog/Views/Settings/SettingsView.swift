@@ -196,7 +196,8 @@ struct SettingsView: View {
           }
           .sheet(isPresented: $showUserProfile) {
             UserProfileView()
-              .presentationDetents([.medium, .large])
+              .environment(\.managedObjectContext, viewContext)
+              .presentationDetents([.large])
               .presentationDragIndicator(.visible)
           }
         }
