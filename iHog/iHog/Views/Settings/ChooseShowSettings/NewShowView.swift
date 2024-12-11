@@ -9,6 +9,7 @@ import CoreData
 import SwiftUI
 
 struct NewShowView: View {
+  @Environment(\.dismiss) var dismiss
   @Environment(\.managedObjectContext) private var viewContext
   @EnvironmentObject var user: UserState
 
@@ -92,6 +93,9 @@ struct NewShowView: View {
       do {
         try viewContext.save()
         user.resetNavigation()
+        if #available(iOS 17, *) {
+          dismiss()
+        }
       } catch {
         Analytics.shared.logError(with: error, for: .coreData, level: .critical)
         let nsError = error as NSError

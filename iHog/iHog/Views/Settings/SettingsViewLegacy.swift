@@ -5,15 +5,13 @@
 //  Created by Jay Wilson on 9/16/20.
 //
 
-import AppRouter
 import CoreData
 import RevenueCat
 import StoreKit
 import SwiftUI
 
-/// iOS 17 + settings view
-@available(iOS 17.0, *)
-struct SettingsView: View {
+/// iOS 16 only Settings View. Bug fixes might be here, but not a lot.
+struct SettingsViewLegacy: View {
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
@@ -34,8 +32,6 @@ struct SettingsView: View {
   @State private var showExportLog = false
   @State private var logURL: URL? = nil
   @State private var showUserProfile = false
-
-  @State private var router = AppRouter()
 
   /// MARK: Navigation
   let paywalls: [Paywall] = [.currentPaywall]
@@ -195,31 +191,16 @@ struct SettingsView: View {
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
           Button {
-            router.openSheet(.userProfile)
-            Analytics.shared.logEvent(with: .userProfileTapped)
+            showUserProfile.toggle()
           } label: {
             Image(symbol: ._person)
           }
-        }
-      }
-      .sheet(item: $router.selectedSheet) { sheet in
-        switch sheet {
-          case .userProfile:
-            NavigationStack {
-              UserProfileView()
-                .environment(\.managedObjectContext, viewContext)
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
-            }
-          case .newShow:
-            NavigationStack {
-              NewShowView()
-            }
-          case .paywall:
-            NavigationStack {
-              CurrentPaywallView(issue: 0, analyticsSource: .newShowView)
-                .environmentObject(user)
-            }
+          .sheet(isPresented: $showUserProfile) {
+            UserProfileView()
+              .environment(\.managedObjectContext, viewContext)
+              .presentationDetents([.large])
+              .presentationDragIndicator(.visible)
+          }
         }
       }
     } detail: {
@@ -284,9 +265,9 @@ struct SettingsView: View {
       user.setNavigation(to: .addView(.shows))
     } else {
       if shows.count >= 1 {
-        router.openSheet(.paywall)
+        user.setNavigation(to: .paywall(.currentPaywall))
       } else {
-        router.openSheet(.newShow)
+        user.setNavigation(to: .addView(.shows))
       }
     }
   }
@@ -301,10 +282,9 @@ struct SettingsView: View {
 
 }
 
-@available(iOS 17, *)
-struct SettingsView_Previews: PreviewProvider {
+struct SettingsViewLegacy_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsView()
+    SettingsViewLegacy()
       .environmentObject(UserState())
       .environmentObject(OSCHelper(ip: "120.000.000.012", inputPort: 1234, outputPort: 1235))
   }

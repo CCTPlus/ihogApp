@@ -18,6 +18,7 @@
 		3769730C28A52743004D9BEF /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 3769730B28A52743004D9BEF /* RevenueCat */; };
 		377087D727AABFF000B0754A /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 377087D627AABFF000B0754A /* CoffeeToast */; };
 		37EAFA9027AF31530092C11E /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37EAFA8F27AF31530092C11E /* OSCKit */; };
+		692677A32D0943500006895D /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 692677A22D0943500006895D /* AppRouter */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		15DA2698251237D70063E236 /* iHogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogUITests.swift; sourceTree = "<group>"; };
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		692677A12D0943470006895D /* AppRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppRouter; path = ../Packages/AppRouter; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -89,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				692677A32D0943500006895D /* AppRouter in Frameworks */,
 				15E2D204253F14F900C7A453 /* CloudKit.framework in Frameworks */,
 				37EAFA9027AF31530092C11E /* OSCKit in Frameworks */,
 				3769730C28A52743004D9BEF /* RevenueCat in Frameworks */,
@@ -130,6 +133,7 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
+				692677A12D0943470006895D /* AppRouter */,
 				69666BD82CDD6CA0008A0057 /* iHog */,
 				15DA268C251237D70063E236 /* iHogTests */,
 				15DA2697251237D70063E236 /* iHogUITests */,
@@ -222,6 +226,7 @@
 				3769730B28A52743004D9BEF /* RevenueCat */,
 				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 				693137A32CE1579000562B73 /* PostHog */,
+				692677A22D0943500006895D /* AppRouter */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -829,6 +834,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37EAFA8E27AF31530092C11E /* XCRemoteSwiftPackageReference "OSCKit" */;
 			productName = OSCKit;
+		};
+		692677A22D0943500006895D /* AppRouter */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppRouter;
 		};
 		693137A32CE1579000562B73 /* PostHog */ = {
 			isa = XCSwiftPackageProductDependency;

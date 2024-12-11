@@ -15,7 +15,7 @@ enum AnalyticEvent: String {
   case disconnectFromConsoleTapped
   case onboardingSkipTapped
   case onboardingStepViewed
-  case userProfileViewed
+  case userProfileTapped
   case userCodeLoaded
   case featureFlagToggled
 }
