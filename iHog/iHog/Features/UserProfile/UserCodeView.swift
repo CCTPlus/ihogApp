@@ -58,13 +58,6 @@ extension UserCodeView {
     if !codes.contains(where: { $0.code == analyticsCode }) {
       let newCode = UserCode(dateCreated: .now, code: analyticsCode)
       context.insert(newCode)
-      #if DEBUG
-        // Adds internal testing code to unlock options
-        if !codes.contains(where: { $0.code == internalTestingCode }) {
-          let internalTestingCode = UserCode(dateCreated: .now, code: internalTestingCode)
-          context.insert(internalTestingCode)
-        }
-      #endif
       try? context.save()
       HogLogger.log().info("Added new code: \(analyticsCode)")
     } else {
@@ -78,6 +71,13 @@ extension UserCodeView {
     if isSandboxed && !codes.contains(where: { $0.code == sbUserCode }) {
       let betaTesterCode = UserCode(dateCreated: .now, code: sbUserCode)
       context.insert(betaTesterCode)
+      #if DEBUG
+        // Adds internal testing code to unlock options
+        if !codes.contains(where: { $0.code == internalTestingCode }) {
+          let internalTestingCode = UserCode(dateCreated: .now, code: internalTestingCode)
+          context.insert(internalTestingCode)
+        }
+      #endif
       do {
         try context.save()
       } catch {
@@ -87,5 +87,11 @@ extension UserCodeView {
       HogLogger.log()
         .info("User either is not sandboxed or already has the betaTester code so not adding it")
     }
+    addCodesToAnalytics()
+  }
+
+  func addCodesToAnalytics() {
+    let analyticsCodes: [String] = codes.compactMap({ $0.code })
+    Analytics.shared.logAnalyticsCodes(analyticsCodes)
   }
 }

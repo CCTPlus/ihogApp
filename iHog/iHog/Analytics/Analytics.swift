@@ -110,4 +110,27 @@ class Analytics {
       ]
     )
   }
+
+  func logAnalyticsCodes(_ codes: [String]) {
+    TelemetryDeck.signal(
+      "UserProperties.\(AnalyticEvent.userCodeLoaded.rawValue)",
+      parameters: ["userCodes": String(describing: codes)]
+    )
+    PostHogSDK.shared.capture(
+      AnalyticEvent.userCodeLoaded.rawValue,
+      userProperties: ["userCodes": codes]
+    )
+    HogLogger.log(category: .analytics)
+      .debug("🔦 Logged event: \(AnalyticEvent.userCodeLoaded.rawValue) | \(codes)")
+  }
+
+  func logFeatureFlagToggle(flag: FeatureFlagKey, value: Bool) {
+    logEvent(
+      with: .featureFlagToggled,
+      parameters: [
+        .featureFlagKey: flag.rawValue,
+        .featureFlagValue: value,
+      ]
+    )
+  }
 }
