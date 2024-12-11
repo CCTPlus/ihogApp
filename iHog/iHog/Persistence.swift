@@ -71,7 +71,13 @@ struct PersistenceController {
     container = NSPersistentCloudKitContainer(name: "iHog")
     if inMemory {
       container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-      return
+      container.loadPersistentStores { (_, error) in
+        if let error = error as NSError? {
+          fatalError("Unresolved error \(error), \(error.userInfo)")
+        }
+      }
+      container.viewContext.automaticallyMergesChangesFromParent = true
+      return  // Early return for preview mode
     }
 
     guard let description = container.persistentStoreDescriptions.first else {

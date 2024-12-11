@@ -5,6 +5,11 @@
 //  Created by Jay Wilson on 11/7/24.
 //
 
+enum UserProperty: String {
+  case isSandboxed
+  case isDev
+}
+
 enum AnalyticEventParameter: String {
   case numberOfShows
   case paywallSource
@@ -12,6 +17,9 @@ enum AnalyticEventParameter: String {
   case purchaseState
   case purchaseAmount
   case onboardingStep
+  case userIsSandBoxed = "user.isSandboxed"
+  case featureFlagValue = "featureFlag.value"
+  case featureFlagKey = "featureFlag.key"
 }
 
 enum PaywallSource: String {

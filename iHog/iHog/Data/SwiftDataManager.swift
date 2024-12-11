@@ -11,9 +11,15 @@ import SwiftData
 @available(iOS 17, *)
 struct SwiftDataManager {
   public static let modelContainer = {
-    let schema = Schema([
-      Item.self, ShowEntity.self, ShowObjectEntity.self, TipEntity.self,
-    ])
+    let schema = Schema(
+      [
+        Item.self,
+        ShowEntity.self,
+        ShowObjectEntity.self,
+        TipEntity.self,
+        UserCode.self,
+      ]
+    )
 
     guard
       let url = FileManager.default.containerURL(
@@ -39,9 +45,15 @@ struct SwiftDataManager {
   }()
 
   public static let previewContainer = {
-    let schema = Schema([
-      Item.self, ShowEntity.self, ShowObjectEntity.self, TipEntity.self,
-    ])
+    let schema = Schema(
+      [
+        Item.self,
+        ShowEntity.self,
+        ShowObjectEntity.self,
+        TipEntity.self,
+        UserCode.self,
+      ]
+    )
 
     guard
       let url = FileManager.default.containerURL(
