@@ -75,7 +75,7 @@ struct SettingsView: View {
               addShow()
             }
           }
-          ForEach(shows) { show in
+          ForEach(shows, id: \.objectID) { show in
             NavigationLink(value: Routes.shows(show)) {
               HStack {
                 ZStack {
@@ -269,17 +269,10 @@ struct SettingsView: View {
   func delete(at offsets: IndexSet) {
     let indexOfShow: Int = offsets.first ?? 0
 
-    let showID: NSUUID = shows[indexOfShow].id! as NSUUID
+    let show = shows[indexOfShow]
 
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(
-      entityName: "ShowEntity"
-    )
-    fetchRequest.predicate = NSPredicate(format: "id == %@", showID as CVarArg)
-    fetchRequest.fetchLimit = 1
     do {
-      let test = try viewContext.fetch(fetchRequest)
-      let showToDelete = test[0] as! NSManagedObject
-      viewContext.delete(showToDelete)
+      viewContext.delete(show)
       try viewContext.save()
     } catch {
       Analytics.shared.logError(with: error, for: .coreData, level: .critical)
