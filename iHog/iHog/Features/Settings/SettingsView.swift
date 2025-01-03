@@ -48,17 +48,17 @@ struct SettingsView: View {
 
   var body: some View {
     NavigationSplitView {
-      List(selection: $user.navigation) {
+      List(selection: $router.routerDestination) {
         // MARK: Hardware views
         Section {
-          NavigationLink(value: Routes.playback) {
+          NavigationLink(value: RouterDestination.playback) {
             HStack {
               ListIcon(color: .teal, symbol: ._slidervertical3)
               Text("Playback")
               Spacer()
             }
           }
-          NavigationLink(value: Routes.programmer) {
+          NavigationLink(value: RouterDestination.programmer) {
             HStack {
               ListIcon(color: .purple, symbol: ._cooktop)
               Text("Programmer")
@@ -75,39 +75,26 @@ struct SettingsView: View {
               addShow()
             }
           }
-          ForEach(shows, id: \.objectID) { show in
-            NavigationLink(value: Routes.shows(show)) {
-              HStack {
-                ZStack {
-                  Color.gray
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(5)
-                  Image(systemName: show.icon ?? SFSymbol._folder.name)
-                    .foregroundColor(.white)
-                }
-                Text(show.name ?? "Name not found")
-              }
-            }
-          }
-          .onDelete { indexSet in
-            self.delete(at: indexSet)
-          }
+          ShowSelectionView()
+            .environment(router)
+            .environment(\.managedObjectContext, viewContext)
+            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
         }
         // MARK: Settings
         Section {
-          NavigationLink(value: Routes.osc) {
+          NavigationLink(value: RouterDestination.osc) {
             HStack {
               ListIcon(color: .green, symbol: ._wifi)
               Text("Open Sound Control Settings")
             }
           }
-          NavigationLink(value: Routes.programmerSettings) {
+          NavigationLink(value: RouterDestination.programmerSettings) {
             HStack {
               ListIcon(color: .purple, symbol: ._cooktopfill)
               Text("Programmer Settings")
             }
           }
-          NavigationLink(value: Routes.showSettings) {
+          NavigationLink(value: RouterDestination.showSettings) {
             HStack {
               ListIcon(color: .gray, symbol: ._folderbadgegearshape)
               Text("Show Settings")
@@ -116,7 +103,7 @@ struct SettingsView: View {
         }
         // MARK: Feedback
         Section {
-          NavigationLink(value: Routes.appFeedback) {
+          NavigationLink(value: RouterDestination.appFeedback) {
             Label {
               Text("Send feedback")
             } icon: {
@@ -223,39 +210,28 @@ struct SettingsView: View {
         }
       }
     } detail: {
-      switch user.navigation {
-        case let .paywall(paywall):
-          PaywallView(analtycsSource: .settings, paywall: paywall)
-        case let .addView(addView):
-          AddViewController(viewToAdd: addView)
-        case let .shows(show):
-          if let showID = show.id {
-            ShowNavigation(
-              selectedShow: show,
-              chosenShow: ChosenShow(
-                showID: showID.uuidString,
-                persistence: PersistenceController.shared
-              )
+      switch router.routerDestination {
+        case .show(let showID):
+          ShowNavigation(
+            chosenShow: ChosenShow(
+              showID: showID.uuidString,
+              persistence: PersistenceController.shared
             )
-          } else {
-            Text("Something is wrong. Please send an email to support@cctplus.dev")
-          }
+          )
         case .osc:
           OSCSettings()
-            .navigationTitle("OSC Settings")
-            .navigationBarTitleDisplayMode(.inline)
-        case .programmerSettings:
-          ProgrammerSettings()
-        case .showSettings:
-          ShowSetting()
         case .programmer:
           FPProgrammer()
         case .playback:
           FPPlayback()
+        case .programmerSettings:
+          ProgrammerSettings()
+        case .showSettings:
+          ShowSetting()
         case .appFeedback:
           UserFeedbackView()
-        default:
-          Text("Choose from left")
+        case .none:
+          OSCSettings()
       }
     }
     .task {

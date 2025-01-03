@@ -212,7 +212,6 @@ struct SettingsViewLegacy: View {
         case let .shows(show):
           if let showID = show.id {
             ShowNavigation(
-              selectedShow: show,
               chosenShow: ChosenShow(
                 showID: showID.uuidString,
                 persistence: PersistenceController.shared

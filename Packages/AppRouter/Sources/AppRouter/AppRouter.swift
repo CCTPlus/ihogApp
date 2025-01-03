@@ -7,12 +7,25 @@ import Foundation
 @Observable
 public final class AppRouter {
   public var selectedSheet: SheetDestination?
+  public var routerDestination: RouterDestination?
+  public var showID: UUID?
 
-  public init(selectedSheet: SheetDestination? = nil) {
+  public init(selectedSheet: SheetDestination? = nil, showID: UUID? = nil) {
     self.selectedSheet = selectedSheet
+    if let showID {
+      routerDestination = .show(showID)
+    } else {
+      self.showID = showID
+      self.routerDestination = nil
+    }
   }
 
   public func openSheet(_ destination: SheetDestination) {
     selectedSheet = destination
+  }
+
+  public func changeShow(to showID: UUID) {
+    self.showID = showID
+    self.routerDestination = .show(showID)
   }
 }

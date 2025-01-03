@@ -143,9 +143,6 @@ struct ProgrammingObjects: View {
       }
     }
     .padding()
-    .onAppear {
-      //      getAllObjects()
-    }
   }
 
   // MARK: Add Group
@@ -158,8 +155,6 @@ struct ProgrammingObjects: View {
       isOutlined: isButtonFilledGroup
     )
 
-    show.addGroup(newGroup)
-
     let obj = CDShowObjectEntity(context: viewContext)
     obj.id = newGroup.id
     obj.isOutlined = newGroup.isOutlined
@@ -168,7 +163,9 @@ struct ProgrammingObjects: View {
     obj.objType = newGroup.objType.rawValue
     obj.showID = chosenShowID
     do {
+      HogLogger.log(category: .coreData).debug("🐛 Saving \(obj.number) group")
       try viewContext.save()
+      show.addGroup(newGroup)
     } catch {
       Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
@@ -210,53 +207,6 @@ struct ProgrammingObjects: View {
     osc.pushFrontPanelButton(button: ButtonFunctionNames.clear.rawValue)
 
     osc.releaseFrontPanelButton(button: ButtonFunctionNames.clear.rawValue)
-  }
-
-  // MARK: Get all objects
-  func getAllObjects() {
-    show.groups = []
-    show.palettes = []
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObjectEntity")
-    fetchRequest.predicate = NSPredicate(format: "showID == %@", chosenShowID)
-
-    do {
-      let results = try viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
-      for showObj in results {
-        var newObj = ShowObject(
-          id: showObj.id!,
-          objType: .group,
-          number: showObj.number,
-          name: showObj.name,
-          objColor: showObj.objColor ?? "red",
-          isOutlined: showObj.isOutlined
-        )
-        switch showObj.objType {
-          case ShowObjectType.group.rawValue:
-            show.addGroup(newObj)
-          case ShowObjectType.intensity.rawValue:
-            newObj.objType = .intensity
-            show.addPalette(newObj)
-          case ShowObjectType.position.rawValue:
-            newObj.objType = .position
-            show.addPalette(newObj)
-          case ShowObjectType.color.rawValue:
-            newObj.objType = .color
-            show.addPalette(newObj)
-          case ShowObjectType.beam.rawValue:
-            newObj.objType = .beam
-            show.addPalette(newObj)
-          case ShowObjectType.effect.rawValue:
-            newObj.objType = .effect
-            show.addPalette(newObj)
-          default:
-            continue
-        }
-      }
-      show.groups.sort(by: { $0.number < $1.number })
-      show.palettes.sort(by: { $0.number < $1.number })
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
-    }
   }
 
   /// Returns: Integer array of 2. First index is groups, Second index is palettes
