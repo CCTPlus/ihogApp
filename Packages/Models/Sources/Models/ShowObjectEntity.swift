@@ -10,17 +10,17 @@ import Foundation
 import SwiftData
 
 @available(iOS 17, *)
-@Model final class ShowObjectEntity {
-  var id: UUID?
-  var isOutlined: Bool?
-  var name: String?
-  var number: Double? = 0.0
-  var objColor: String?
-  var objType: String?
-  var showID: String?
-  var show: ShowEntity?
+@Model public final class ShowObjectEntity {
+  public var id: UUID?
+  public var isOutlined: Bool?
+  public var name: String?
+  public var number: Double? = 0.0
+  public var objColor: String?
+  public var objType: String?
+  public var showID: String?
+  public var show: ShowEntity?
 
-  init(
+  public init(
     id: UUID = UUID(),
     isOutlined: Bool? = nil,
     name: String? = nil,

@@ -9,20 +9,20 @@ import Foundation
 import SwiftData
 
 @available(iOS 17, *)
-@Model final class UserCode {
-  var dateCreated: Date?
-  var code: String?
+@Model public final class UserCode {
+  public var dateCreated: Date?
+  public var code: String?
 
-  init(dateCreated: Date?, code: String?) {
+  public init(dateCreated: Date?, code: String?) {
     self.dateCreated = dateCreated
     self.code = code
   }
 
-  var viewCode: String {
+  public var viewCode: String {
     code ?? ""
   }
 
-  var viewDate: Date {
+  public var viewDate: Date {
     dateCreated ?? .now
   }
 }

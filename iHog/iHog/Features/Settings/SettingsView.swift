@@ -216,7 +216,8 @@ struct SettingsView: View {
             chosenShow: ChosenShow(
               showID: showID.uuidString,
               persistence: PersistenceController.shared
-            )
+            ),
+            showRouter: ShowRouter(showID: showID)
           )
         case .osc:
           OSCSettings()

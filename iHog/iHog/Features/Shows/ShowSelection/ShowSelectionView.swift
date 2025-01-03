@@ -6,6 +6,7 @@
 //
 
 import AppRouter
+import Models
 import SwiftData
 import SwiftUI
 

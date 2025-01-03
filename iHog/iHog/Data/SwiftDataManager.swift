@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Models
 import SwiftData
 
 @available(iOS 17, *)
@@ -18,6 +19,7 @@ struct SwiftDataManager {
         ShowObjectEntity.self,
         TipEntity.self,
         UserCode.self,
+        ShowNote.self,
       ]
     )
 
@@ -52,6 +54,7 @@ struct SwiftDataManager {
         ShowObjectEntity.self,
         TipEntity.self,
         UserCode.self,
+        ShowNote.self,
       ]
     )
 

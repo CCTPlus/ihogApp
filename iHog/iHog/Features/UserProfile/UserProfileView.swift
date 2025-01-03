@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 12/6/24.
 //
 
+import Models
 import SwiftUI
 
 /// Used to access a user's profile from the Settings view

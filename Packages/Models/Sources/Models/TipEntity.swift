@@ -11,11 +11,11 @@ import SwiftData
 
 // This class is NO LONGER USED. The app is subscription model, so no lnoger asking for tips.
 @available(iOS 17, *)
-@Model final class TipEntity {
-  var amount: Double? = 0.0
-  var dateTipped: Date?
+@Model public final class TipEntity {
+  public var amount: Double? = 0.0
+  public var dateTipped: Date?
 
-  init(amount: Double? = nil, dateTipped: Date? = nil) {
+  public init(amount: Double? = nil, dateTipped: Date? = nil) {
     self.amount = amount
     self.dateTipped = dateTipped
   }
