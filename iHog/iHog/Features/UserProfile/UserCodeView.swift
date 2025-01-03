@@ -16,6 +16,9 @@ struct UserCodeView: View {
   @State private var analyticsCode: String = ""
   @State private var showAlert = false
 
+  /// Sandboxed User
+  ///
+  /// This should find testflight users
   let sbUserCode = "IH241208SBU"
   let internalTestingCode = "IH241208ID"
 
