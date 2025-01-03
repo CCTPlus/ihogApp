@@ -36,6 +36,7 @@ class ChosenShow: ObservableObject {
       .info(
         "Show \(showID) initialized with \(self.scenes.count) scenes, \(self.lists.count) lists, \(self.groups.count) groups, and \(self.palettes.count) palettes"
       )
+    // Needed so that show objects get added to the proper show since I'm not using relationships correctly
     UserDefaults.standard.set(showID, forKey: AppStorageKey.chosenShowID.rawValue)
   }
 
