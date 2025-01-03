@@ -7,7 +7,12 @@
 
 import Foundation
 
-public enum RouterDestination {
+public enum RouterDestination: Hashable {
   case show(UUID)
-
+  case osc
+  case programmer
+  case playback
+  case programmerSettings
+  case showSettings
+  case appFeedback
 }

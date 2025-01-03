@@ -17,6 +17,7 @@ enum LogCategory: String {
   case haptics
   case coreData
   case swiftData
+  case show
 }
 
 struct HogLogger {

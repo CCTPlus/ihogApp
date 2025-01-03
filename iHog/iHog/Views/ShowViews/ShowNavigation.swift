@@ -9,10 +9,7 @@ import SwiftUI
 
 /// TabView for the selected show
 struct ShowNavigation: View {
-  @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""
   @EnvironmentObject var user: UserState
-
-  var selectedShow: CDShowEntity
 
   @ObservedObject var chosenShow: ChosenShow
 
@@ -62,11 +59,8 @@ struct ShowNavigation: View {
           .tag(Views.puntPagePlayback)
       }
     }
-    .navigationBarTitle(selectedShow.name!)
+    .navigationBarTitle(chosenShow.showName)
     .navigationBarTitleDisplayMode(.inline)
-    .task {
-      chosenShowID = selectedShow.id!.uuidString
-    }
   }
 }
 

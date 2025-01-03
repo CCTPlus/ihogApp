@@ -13,6 +13,7 @@ class ChosenShow: ObservableObject {
   @Published var lists: [ShowObject]
   @Published var groups: [ShowObject]
   @Published var palettes: [ShowObject]
+  @Published var showName: String = ""
 
   var playbackObjects: [ShowObject] {
     return lists + scenes
@@ -28,15 +29,43 @@ class ChosenShow: ObservableObject {
     palettes = []
     self.persistence = persistence
     self.showID = showID
+    getShowInfo()
     getAllObjects()
+    HogLogger.log(category: .show)
+      .info(
+        "Show \(showID) initialized with \(self.scenes.count) scenes, \(self.lists.count) lists, \(self.groups.count) groups, and \(self.palettes.count) palettes"
+      )
+    // Needed so that show objects get added to the proper show since I'm not using relationships correctly
+    UserDefaults.standard.set(showID, forKey: AppStorageKey.chosenShowID.rawValue)
+  }
+
+  func getShowInfo() {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowEntity")
+    fetchRequest.predicate = NSPredicate(format: "id == %@", showID)
+    do {
+      let results =
+        try persistence.container.viewContext.fetch(fetchRequest) as? [CDShowEntity]
+      guard let show = results?.first else {
+        HogLogger.log(category: .show).error("No show found with ID \(self.showID)")
+        return
+      }
+      showName = show.name ?? "No name"
+    } catch {
+      HogLogger.log(category: .show).error("Error fetching show info: \(error)")
+    }
   }
 
   func getAllObjects() {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObjectEntity")
     fetchRequest.predicate = NSPredicate(format: "showID == %@", showID)
     do {
-      let results =
-        try persistence.container.viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
+      guard
+        let results =
+          try persistence.container.viewContext.fetch(fetchRequest) as? [CDShowObjectEntity]
+      else {
+        HogLogger.log(category: .coreData).error("🚨 \(#function) could not perform fetch")
+        return
+      }
       for showObj in results {
         var newObj = ShowObject(
           id: showObj.id!,
@@ -91,7 +120,6 @@ class ChosenShow: ObservableObject {
   }
 
   func updateScene(_ obj: ShowObject) {
-    print(obj)
     if obj.objType == .scene {
       let index = scenes.firstIndex { $0.id == obj.id }
       if index != nil {
@@ -139,6 +167,7 @@ class ChosenShow: ObservableObject {
 
   // MARK: Groups
   func addGroup(_ obj: ShowObject) {
+    HogLogger.log(category: .show).debug("🐛 Adding \(obj.number) group")
     if obj.objType == .group {
       groups.append(obj)
     }
