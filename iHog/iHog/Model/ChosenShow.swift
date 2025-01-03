@@ -7,7 +7,6 @@
 
 import CoreData
 import Foundation
-import SwiftUI
 
 class ChosenShow: ObservableObject {
   @Published var scenes: [ShowObject]
