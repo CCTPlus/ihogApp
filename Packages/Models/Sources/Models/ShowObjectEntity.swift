@@ -9,7 +9,6 @@
 import Foundation
 import SwiftData
 
-@available(iOS 17, *)
 @Model public final class ShowObjectEntity {
   public var id: UUID?
   public var isOutlined: Bool?

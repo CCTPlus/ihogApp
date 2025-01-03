@@ -10,7 +10,6 @@ import Models
 import SwiftData
 import SwiftUI
 
-@available(iOS 17, *)
 struct ShowSelectionView: View {
   @Environment(\.managedObjectContext) var viewContext
   @Environment(\.modelContext) var modelContext
@@ -71,7 +70,6 @@ struct ShowSelectionView: View {
   }
 }
 
-@available(iOS 17, *)
 #Preview {
   ShowSelectionView()
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
@@ -79,7 +77,6 @@ struct ShowSelectionView: View {
     .environment(AppRouter())
 }
 
-@available(iOS 17, *)
 extension ShowSelectionView {
   private func showRow(_ show: ShowEntity) -> some View {
     Button {

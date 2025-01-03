@@ -9,7 +9,6 @@ import Foundation
 import Models
 import SwiftData
 
-@available(iOS 17, *)
 extension UserCode {
   @MainActor static var preview: ModelContainer {
     let container = try! ModelContainer(

@@ -20,6 +20,13 @@ enum AnalyticEventParameter: String {
   case userIsSandBoxed = "user.isSandboxed"
   case featureFlagValue = "featureFlag.value"
   case featureFlagKey = "featureFlag.key"
+  case sheetName
+  /// Where anything happens
+  case source
+  /// Navigate from somewhere
+  case from
+  /// Navigate to somewhere
+  case to
 }
 
 enum PaywallSource: String {

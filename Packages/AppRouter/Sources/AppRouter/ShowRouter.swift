@@ -7,7 +7,6 @@
 
 import Foundation
 
-@available(iOS 17.0, *)
 @Observable
 public final class ShowRouter {
   public var selectedTab: ShowTab = .programmingObjects

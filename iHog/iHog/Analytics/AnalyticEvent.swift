@@ -29,4 +29,9 @@ enum AnalyticEvent: String {
   case userCodeLoaded
   /// Track when a feature flag is toggled
   case featureFlagToggled
+  /// Track what sheet is open and from where
+  case changeSheet
+  case closeSheet
+  /// Track that the user changed the tab somehow
+  case changeTab
 }

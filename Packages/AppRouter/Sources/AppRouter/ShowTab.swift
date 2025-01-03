@@ -36,7 +36,17 @@ public enum ShowTab: Hashable {
       case .puntPagePlayback:
         "slider.horizontal.below.square.filled.and.square"
       case .puntPageMix:
-        ""
+        "slider.horizontal.2.square"
+    }
+  }
+
+  public var analyticsName: String {
+    switch self {
+      case .programmingObjects: "Programming"
+      case .playbackObjects: "Playback"
+      case .puntPageMix: "Punt Page Mix"
+      case .puntPagePlayback: "Punt Page Playback"
+      case .puntPageProgramming: "Punt Page Programming"
     }
   }
 }

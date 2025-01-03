@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-@available(iOS 17.0, *)
 @Model public final class ShowNote {
   public var dateCreated: Date = Date.now
   public var dateLastModified: Date = Date.now
@@ -30,7 +29,6 @@ import SwiftData
   }
 }
 
-@available(iOS 17.0, *)
 extension ShowNote {
   /// Type of note the user has added
   public enum NoteType: String, CaseIterable, Codable {

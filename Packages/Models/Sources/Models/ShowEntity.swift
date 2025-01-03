@@ -9,7 +9,6 @@
 import Foundation
 import SwiftData
 
-@available(iOS 17, *)
 @Model public final class ShowEntity {
   public var dateCreated: Date?
   public var dateLastModified: Date?

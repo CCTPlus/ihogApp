@@ -9,7 +9,6 @@ import Foundation
 import Models
 import SwiftData
 
-@available(iOS 17, *)
 extension ShowEntity {
   @MainActor
   static var preview: ModelContainer {

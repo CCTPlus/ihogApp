@@ -9,7 +9,6 @@ import Models
 import SwiftData
 import SwiftUI
 
-@available(iOS 17, *)
 struct ExperimentalFeatureView: View {
   @Environment(\.modelContext) var context
 
@@ -31,16 +30,12 @@ struct ExperimentalFeatureView: View {
     } footer: {
       Text("Enabling these features may cause data loss.")
     }
-    .onChange(of: featureSwiftData) { newValue in
+    .onChange(of: featureSwiftData) { oldValue, newValue in
       Analytics.shared.logFeatureFlagToggle(flag: .swiftdata, value: newValue)
     }
   }
 }
 
 #Preview {
-  if #available(iOS 17, *) {
-    ExperimentalFeatureView()
-  } else {
-    // Fallback on earlier versions
-  }
+  ExperimentalFeatureView()
 }

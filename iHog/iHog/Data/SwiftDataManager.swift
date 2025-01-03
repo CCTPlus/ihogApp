@@ -9,7 +9,6 @@ import Foundation
 import Models
 import SwiftData
 
-@available(iOS 17, *)
 struct SwiftDataManager {
   public static let modelContainer = {
     let schema = Schema(

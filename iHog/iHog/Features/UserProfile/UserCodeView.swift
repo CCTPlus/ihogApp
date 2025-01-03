@@ -9,7 +9,6 @@ import Models
 import SwiftData
 import SwiftUI
 
-@available(iOS 17, *)
 struct UserCodeView: View {
   @Environment(\.modelContext) var context
   @Query(sort: \UserCode.dateCreated) var codes: [UserCode]
@@ -55,7 +54,6 @@ struct UserCodeView: View {
   }
 }
 
-@available(iOS 17, *)
 extension UserCodeView {
   func submit() {
     // Only want to add a code if the user doesn't have it

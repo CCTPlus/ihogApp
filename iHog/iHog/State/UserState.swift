@@ -49,14 +49,15 @@ class UserState: NSObject, ObservableObject {
   @Published var proSinceDate: Date? = nil
 
   var isPro: Bool {
-    if purchasedApp {
-      return true
-    } else if puntPageActive {
-      return true
-    } else if proSubscriptionActive {
-      return true
-    }
-    return false
+    //    if purchasedApp {
+    //      return true
+    //    } else if puntPageActive {
+    //      return true
+    //    } else if proSubscriptionActive {
+    //      return true
+    //    }
+    //    return false
+    return true
   }
 
   func unlockPro() {

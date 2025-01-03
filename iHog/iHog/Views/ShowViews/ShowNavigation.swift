@@ -9,13 +9,13 @@ import AppRouter
 import SwiftUI
 
 /// TabView for the selected show
-@available(iOS 17.0, *)
 struct ShowNavigation: View {
   @EnvironmentObject var user: UserState
 
   @ObservedObject var chosenShow: ChosenShow
 
   @State var showRouter: ShowRouter
+
   @State private var selectedView: Views = Views.programmingObjects
   @State private var showNotes = false
 
@@ -29,38 +29,38 @@ struct ShowNavigation: View {
   }
 
   var body: some View {
-    TabView(selection: $selectedView) {
+    TabView(selection: $showRouter.selectedTab) {
       ProgrammingObjects(show: chosenShow)
         .tabItem {
-          Text("Program")
-          Image(systemName: "paintpalette")
+          Text(ShowTab.programmingObjects.label)
+          Image(systemName: ShowTab.programmingObjects.systemName)
         }
-        .tag(Views.programmingObjects)
+        .tag(ShowTab.programmingObjects)
       PlaybackObjects(show: chosenShow)
         .tabItem {
-          Text("Playback")
-          Image(systemName: "play.rectangle")
+          Text(ShowTab.playbackObjects.label)
+          Image(systemName: ShowTab.playbackObjects.systemName)
         }
-        .tag(Views.playbackObjects)
+        .tag(ShowTab.playbackObjects)
       if user.isPro {
         PPPlayback(show: chosenShow)
           .tabItem {
-            Text("Punt 1")
-            Image(symbol: ._sliderhorizontalbelowsquareandsquarefilled)
+            Text(ShowTab.puntPagePlayback.label)
+            Image(systemName: ShowTab.puntPagePlayback.systemName)
           }
-          .tag(Views.puntPagePlayback)
+          .tag(ShowTab.puntPagePlayback)
         PPProgramPlayback(show: chosenShow)
           .tabItem {
-            Text("Punt 2")
-            Image(systemName: "esim")
+            Text(ShowTab.puntPageMix.label)
+            Image(systemName: ShowTab.puntPageMix.systemName)
           }
-          .tag(Views.puntPageProgPlay)
+          .tag(ShowTab.puntPageMix)
         PPProgramming(show: chosenShow)
           .tabItem {
-            Text("Punt 3")
-            Image(systemName: "paintbrush")
+            Text(ShowTab.puntPageProgramming.label)
+            Image(systemName: ShowTab.puntPageProgramming.systemName)
           }
-          .tag(Views.puntPageProgramming)
+          .tag(ShowTab.puntPageProgramming)
       } else {
         CurrentPaywallView(issue: 1, analyticsSource: .puntPage)
           .tabItem {
@@ -75,18 +75,50 @@ struct ShowNavigation: View {
       // Access to show notes
       ToolbarItem(placement: .topBarTrailing) {
         Button("Notes", systemImage: "pencil.and.list.clipboard") {
-          showNotes.toggle()
+          showRouter.showSheet = .showNotes
         }
       }
     }
-    .popover(isPresented: $showNotes) {
-      Text("Show Notes")
+    .popover(item: $showRouter.showSheet) { sheet in
+      switch sheet {
+        case .showNotes:
+          Text("Notes view goes here")
+      }
+    }
+    // Analytics hooks
+    .onChange(of: showRouter.showSheet) {
+      analyticsHookShowSheetChanges()
+    }
+    .onChange(of: showRouter.selectedTab) { oldValue, newValue in
+      analtyicsHookTabChanges(from: oldValue, to: newValue)
     }
   }
 }
 
+// TODO: MAKE THIS WORK AGAIN
 //struct ShowNavigation_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ShowNavigation(selectedShow: testShows[2])
 //    }
 //}
+
+extension ShowNavigation {
+  func analyticsHookShowSheetChanges() {
+    if let showSheet = showRouter.showSheet {
+      let sheetName = showSheet.analyticName
+      Analytics.shared.logEvent(
+        with: .changeSheet,
+        parameters: [.source: showRouter.selectedTab.analyticsName, .sheetName: sheetName]
+      )
+    } else {
+      Analytics.shared.logEvent(with: .closeSheet)
+    }
+  }
+
+  func analtyicsHookTabChanges(from: ShowTab, to: ShowTab) {
+    Analytics.shared.logEvent(
+      with: .changeTab,
+      parameters: [.source: "ShowNavigation", .from: from.analyticsName, .to: to.analyticsName]
+    )
+  }
+}
