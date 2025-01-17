@@ -80,11 +80,7 @@ struct ShowSelectionView: View {
 extension ShowSelectionView {
   private func showRow(_ show: ShowEntity) -> some View {
     Button {
-      guard let showID = show.id else {
-        HogLogger.log(category: .show).error("No show ID")
-        return
-      }
-      router.changeShow(to: showID)
+      router.changeShow(to: show.id)
     } label: {
       HStack {
         ZStack {

@@ -12,6 +12,7 @@
 import CoffeeToast
 import RevenueCat
 import StoreKit
+import SwiftData
 import SwiftUI
 
 class ToastNotification: ObservableObject {
@@ -48,6 +49,7 @@ struct iHogApp: App {
   let analtyics = Analytics.shared
 
   let persistenceController: PersistenceController
+  let modelContainer: ModelContainer
 
   init() {
     Purchases.logLevel = .debug
@@ -55,15 +57,14 @@ struct iHogApp: App {
       with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
         .build()
     )
-
-    if #available(iOS 17.0, *) {
-      _ = SwiftDataManager.modelContainer
-    }
     // Check if we're in preview mode
     if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
       persistenceController = PersistenceController.preview
+      modelContainer = SwiftDataManager.previewContainer
+
     } else {
       persistenceController = PersistenceController.shared
+      modelContainer = SwiftDataManager.modelContainer
     }
   }
 
@@ -80,10 +81,12 @@ struct iHogApp: App {
         ) {
           if showOnboarding {
             OnboardingView(setting: $settings)
+              .modelContainer(modelContainer)
               .environmentObject(osc)
               .environmentObject(user)
           } else {
             SettingsView()
+              .modelContainer(modelContainer)
               .environment(\.managedObjectContext, persistenceController.container.viewContext)
               .environmentObject(osc)
               .environmentObject(user)

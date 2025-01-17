@@ -12,6 +12,7 @@ import StoreKit
 import SwiftUI
 
 struct SettingsView: View {
+  @Environment(\.modelContext) private var modelContext
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
@@ -217,6 +218,7 @@ struct SettingsView: View {
             ),
             showRouter: ShowRouter(showID: showID)
           )
+          .environment(\.modelContext, modelContext)
         case .osc:
           OSCSettings()
         case .programmer:
@@ -256,7 +258,7 @@ struct SettingsView: View {
 
   func addShow() {
     if user.isPro {
-      user.setNavigation(to: .addView(.shows))
+      router.openSheet(.newShow)
     } else {
       if shows.count >= 1 {
         router.openSheet(.paywall)

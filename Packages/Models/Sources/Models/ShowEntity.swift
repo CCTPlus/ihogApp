@@ -13,14 +13,14 @@ import SwiftData
   public var dateCreated: Date?
   public var dateLastModified: Date?
   public var icon: String?
-  public var id: UUID?
+  public var id: UUID = UUID()
   public var name: String = "New Show"
   /// Depricated. Was never in use, but I have to keep due to cloudkit. If looking for show notes look at the property `notes`
   public var note: String?
 
   // MARK: Relationships
   public var objects: [ShowObjectEntity]?
-  public var notes: [ShowNote]?
+  @Relationship public var notes: [ShowNote]?
 
   public init(
     dateCreated: Date? = nil,

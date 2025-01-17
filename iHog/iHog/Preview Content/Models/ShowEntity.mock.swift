@@ -65,4 +65,30 @@ extension ShowEntity {
 
     return container
   }
+
+  @MainActor static var previewWithNotes: ModelContainer {
+    let schema = Schema([ShowEntity.self, ShowNote.self])
+    let container = try! ModelContainer(
+      for: schema,
+      configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+
+    let showEntity = ShowEntity(
+      dateCreated: Date(),
+      dateLastModified: Date(),
+      icon: "theatermasks",
+      id: UUID(),
+      name: "Broadway Nights",
+      notes: [
+        ShowNote(note: "Testing a note"),
+        ShowNote(note: "This is a task note", noteType: .action, status: .notCompleted),
+        ShowNote(note: "Completed action", noteType: .action, status: .completed),
+      ]
+    )
+
+    container.mainContext.insert(showEntity)
+    try! container.mainContext.save()
+
+    return container
+  }
 }

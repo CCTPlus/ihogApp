@@ -10,6 +10,7 @@ import SwiftUI
 
 /// TabView for the selected show
 struct ShowNavigation: View {
+  @Environment(\.modelContext) var modelContext
   @EnvironmentObject var user: UserState
 
   @ObservedObject var chosenShow: ChosenShow
@@ -82,7 +83,10 @@ struct ShowNavigation: View {
     .popover(item: $showRouter.showSheet) { sheet in
       switch sheet {
         case .showNotes:
-          Text("Notes view goes here")
+          NavigationStack {
+            ShowNotesView(showID: UUID(uuidString: chosenShow.showID)!)
+              .modelContext(modelContext)
+          }
       }
     }
     // Analytics hooks
