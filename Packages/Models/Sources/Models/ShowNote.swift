@@ -12,11 +12,11 @@ import SwiftData
   public var dateCreated: Date? = Date.now
   public var dateLastModified: Date? = Date.now
   public var dateCompleted: Date? = nil
-  public var note: String? = ""
+  public var body: String? = ""
   public var noteType: NoteType? = NoteType.info
   public var status: Status? = Status.noStatus
 
-  @Relationship(inverse: \ShowEntity.notes) public var show: ShowEntity?
+  public var show: ShowEntity?
 
   public init(
     dateCreated: Date = .now,
@@ -30,7 +30,7 @@ import SwiftData
     self.dateCreated = dateCreated
     self.dateLastModified = dateLastModified
     self.dateCompleted = dateCompleted
-    self.note = note
+    self.body = note
     self.noteType = noteType
     self.status = status
     self.show = show
@@ -39,7 +39,7 @@ import SwiftData
 
 extension ShowNote {
   /// Type of note the user has added
-  public enum NoteType: String, CaseIterable, Codable {
+  public enum NoteType: String, CaseIterable, Codable, Sendable {
     case info
     case action
 
@@ -52,9 +52,40 @@ extension ShowNote {
   }
 
   /// The status of the note
-  public enum Status: String, CaseIterable, Codable {
+  public enum Status: String, CaseIterable, Codable, Sendable {
     case completed
     case notCompleted
     case noStatus
+  }
+}
+
+/// A non managed object of ShowNote
+///
+/// Allows for show note data to cross contexts without worry
+public struct ShowNoteObject: Sendable {
+  public let showID: PersistentIdentifier
+  public let dateCreated: Date
+  public let dateLastModified: Date
+  public let note: String
+  public let noteType: ShowNote.NoteType
+  public let status: ShowNote.Status
+  public let dateCompleted: Date?
+
+  public init(
+    showID: PersistentIdentifier,
+    dateCreated: Date,
+    dateLastModified: Date,
+    note: String,
+    noteType: ShowNote.NoteType,
+    status: ShowNote.Status,
+    dateCompleted: Date? = nil
+  ) {
+    self.showID = showID
+    self.dateCreated = dateCreated
+    self.dateLastModified = dateLastModified
+    self.note = note
+    self.noteType = noteType
+    self.status = status
+    self.dateCompleted = dateCompleted
   }
 }

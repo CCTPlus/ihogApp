@@ -9,7 +9,6 @@ import Models
 import SwiftData
 import SwiftUI
 
-@MainActor
 struct NewNoteView: View {
   @Environment(\.modelContext) var modelContext
 
@@ -24,7 +23,7 @@ struct NewNoteView: View {
 
   @Binding var isPresented: Bool
 
-  var show: ShowEntity
+  var showID: PersistentIdentifier
 
   var body: some View {
     HStack(alignment: .firstTextBaseline) {
@@ -76,7 +75,7 @@ struct NewNoteView: View {
 
   NavigationStack {
     List {
-      NewNoteView(isPresented: .constant(true), show: shows.first!)
+      NewNoteView(isPresented: .constant(true), showID: shows.first!.persistentModelID)
     }
     .navigationTitle("Notes")
   }
@@ -84,21 +83,32 @@ struct NewNoteView: View {
 }
 
 extension NewNoteView {
-  @MainActor
   func saveNote() {
-    let newNote = ShowNote(
-      note: note,
+    // Make sure show exists for the ID
+    guard let showEntity: ShowEntity = modelContext.registeredModel(for: showID) else {
+      HogLogger.log(category: .swiftData)
+        .error("🚨 Cannot find show for the showID \(showID.id.hashValue)")
+      return
+    }
+
+    let body = note
+
+    let newNote = ShowNoteObject(
+      showID: showEntity.persistentModelID,
+      dateCreated: .now,
+      dateLastModified: .now,
+      note: body,
       noteType: noteType,
       status: noteType == .action ? .notCompleted : .noStatus
     )
-    modelContext.insert(newNote)
-    show.notes?.append(newNote)
-    do {
-      try modelContext.save()
-      isPresented = false
-    } catch {
-      Analytics.shared.logError(with: error, for: .show, level: .critical)
+
+    let container = modelContext.container
+
+    Task.detached(priority: .userInitiated) {
+      let manager = NoteManager(modelContainer: container)
+      await manager.addNote(newNote: newNote)
     }
+
     isPresented = false
   }
 }

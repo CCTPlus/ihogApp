@@ -37,7 +37,10 @@ struct SwiftDataManager {
     do {
       return try ModelContainer(
         for: schema,
-        configurations: [modelConfiguration, ModelConfiguration(url: url)]
+        configurations: [
+          modelConfiguration,
+          ModelConfiguration(url: url, cloudKitDatabase: .private("iCloud.appsbymw.iHog")),
+        ]
       )
     } catch {
       Analytics.shared.logError(with: error, for: .swiftData, level: .fatal)

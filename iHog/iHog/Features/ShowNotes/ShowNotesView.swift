@@ -14,27 +14,37 @@ import SwiftUI
 struct ShowNotesView: View {
   @Environment(\.modelContext) var modelContext
 
+  let showID: UUID
+
   @Query private var shows: [ShowEntity]
   @Query private var allShowNotes: [ShowNote]
 
   @State private var showNewNoteField: Bool = false
 
   init(showID: UUID) {
-    let filter = #Predicate<ShowEntity> { show in
+    self.showID = showID
+    let predicate = #Predicate<ShowEntity> { show in
       show.id == showID
     }
-
-    _shows = Query(filter: filter)
+    _shows = Query(filter: predicate, animation: .default)
   }
 
   // Return the found show notes
   var notes: [ShowNote] {
-    return shows.first?.notes ?? []
+    //    print("Accessing notes")
+    //    if let show = shows.first {
+    //      print("Found show: \(show.id)")
+    //      let notes = show.notes ?? []
+    //      print("Found \(notes.count) notes")
+    //      return notes
+    //    }
+    //    print("No show found")
+    return []
   }
 
   var body: some View {
     Group {
-      if notes.isEmpty && showNewNoteField == false {
+      if allShowNotes.isEmpty && showNewNoteField == false {
         ContentUnavailableView {
           Label("No Notes", systemImage: "pencil.and.list.clipboard")
         } description: {
@@ -52,16 +62,12 @@ struct ShowNotesView: View {
       } else {
         List {
           if showNewNoteField {
-            NewNoteView(isPresented: $showNewNoteField, show: shows.first!)
+            NewNoteView(isPresented: $showNewNoteField, showID: shows.first!.persistentModelID)
               .environment(\.modelContext, modelContext)
           }
-          ForEach(notes) { note in
+          ForEach(allShowNotes) { note in
             HStack(spacing: 16) {
-              if let noteText = note.note {
-                Text(noteText)
-              } else {
-                Text("No note text")
-              }
+              Text(note.body ?? "No note text")
             }
           }
         }
@@ -104,7 +110,7 @@ struct ShowNotesView: View {
     List {
       ForEach(shows) { show in
         HStack {
-          Text(show.name)
+          Text(show.name ?? "NO NAME")
           Text("Notes: \(show.notes?.count ?? 0)")
         }
       }

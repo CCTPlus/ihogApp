@@ -89,6 +89,7 @@ struct NewShowView: View {
       newShow.name = showName
       newShow.note = ""
       newShow.icon = selectedIcon.name
+      newShow.notes = []
 
       do {
         try viewContext.save()

@@ -81,12 +81,10 @@ struct iHogApp: App {
         ) {
           if showOnboarding {
             OnboardingView(setting: $settings)
-              .modelContainer(modelContainer)
               .environmentObject(osc)
               .environmentObject(user)
           } else {
             SettingsView()
-              .modelContainer(modelContainer)
               .environment(\.managedObjectContext, persistenceController.container.viewContext)
               .environmentObject(osc)
               .environmentObject(user)
@@ -111,6 +109,7 @@ struct iHogApp: App {
         }
       }
     }
+    .modelContainer(modelContainer)
   }
 }
 

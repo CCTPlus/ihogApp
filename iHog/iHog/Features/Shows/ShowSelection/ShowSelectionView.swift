@@ -11,7 +11,6 @@ import SwiftData
 import SwiftUI
 
 struct ShowSelectionView: View {
-  @Environment(\.managedObjectContext) var viewContext
   @Environment(\.modelContext) var modelContext
 
   @Environment(AppRouter.self) var router: AppRouter
@@ -29,43 +28,13 @@ struct ShowSelectionView: View {
   @Query(sort: \ShowEntity.dateLastModified) var shows: [ShowEntity]
 
   var body: some View {
-    Group {
-      if swiftDataEnabled {
-        ForEach(shows) { show in
-          showRow(show)
-            .contextMenu {
-              Button("Delete", systemImage: "trash") {
-                modelContext.delete(show)
-              }
-            }
-        }
-      } else {
-        ForEach(cdShows, id: \.objectID) { show in
-          Button {
-            guard let showID = show.id else {
-              HogLogger.log(category: .show).error("No show ID")
-              return
-            }
-            router.changeShow(to: showID)
-          } label: {
-            HStack {
-              ZStack {
-                Color.gray
-                  .frame(width: 30, height: 30)
-                  .cornerRadius(5)
-                Image(systemName: show.icon ?? SFSymbol._folder.name)
-                  .foregroundColor(.white)
-              }
-              Text(show.name ?? "Name not found")
-            }
-          }
-          .contextMenu {
-            Button("Delete", systemImage: "trash") {
-              viewContext.delete(show)
-            }
+    ForEach(shows) { show in
+      showRow(show)
+        .contextMenu {
+          Button("Delete", systemImage: "trash") {
+            modelContext.delete(show)
           }
         }
-      }
     }
   }
 }

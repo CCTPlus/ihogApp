@@ -34,12 +34,12 @@ struct UserCodeView: View {
       Button("Add code") {
         showAlert = true
       }
+      .task {
+        addTestflightCode()
+      }
       .alert("Enter Analytics Code You Received", isPresented: $showAlert) {
         TextField("Analytics Code", text: $analyticsCode)
         Button("OK", action: submit)
-      }
-      .task {
-        addTestflightCode()
       }
     }
   }

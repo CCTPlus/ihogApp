@@ -83,9 +83,11 @@ struct ShowNavigation: View {
     .popover(item: $showRouter.showSheet) { sheet in
       switch sheet {
         case .showNotes:
-          NavigationStack {
-            ShowNotesView(showID: UUID(uuidString: chosenShow.showID)!)
-              .modelContext(modelContext)
+          if let uuid = UUID(uuidString: chosenShow.showID) {
+            NavigationStack {
+              ShowNotesView(showID: uuid)
+            }
+            .environment(\.modelContext, modelContext)
           }
       }
     }

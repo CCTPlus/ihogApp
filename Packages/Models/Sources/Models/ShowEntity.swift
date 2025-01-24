@@ -20,14 +20,15 @@ import SwiftData
 
   // MARK: Relationships
   public var objects: [ShowObjectEntity]?
-  @Relationship public var notes: [ShowNote]?
+
+  @Relationship(inverse: \ShowNote.show) public var notes: [ShowNote]?
 
   public init(
     dateCreated: Date? = nil,
     dateLastModified: Date? = nil,
     icon: String? = nil,
     id: UUID = UUID(),
-    name: String,
+    name: String = "No show name",
     note: String? = nil,
     objects: [ShowObjectEntity]? = nil,
     notes: [ShowNote]? = nil
