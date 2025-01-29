@@ -67,7 +67,7 @@ struct UserProfileView: View {
           // MARK: Analytics
           Section {
             UserCodeView()
-              .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
+              .modelContext(SwiftDataManager.modelContainer.mainContext)
           } header: {
             Text("User codes")
           } footer: {
@@ -76,7 +76,7 @@ struct UserProfileView: View {
             )
           }
           ExperimentalFeatureView()
-            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
+            .modelContext(SwiftDataManager.modelContainer.mainContext)
         } else {
           EmptyView()
         }

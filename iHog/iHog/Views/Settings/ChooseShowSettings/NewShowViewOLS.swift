@@ -8,7 +8,7 @@
 import CoreData
 import SwiftUI
 
-struct NewShowView: View {
+struct NewShowViewOLD: View {
   @Environment(\.dismiss) var dismiss
   @Environment(\.managedObjectContext) private var viewContext
   @EnvironmentObject var user: UserState
@@ -108,7 +108,7 @@ struct NewShowView: View {
 
 struct NewShowView_Previews: PreviewProvider {
   static var previews: some View {
-    NewShowView()
+    NewShowViewOLD()
       .environmentObject(UserState())
   }
 }

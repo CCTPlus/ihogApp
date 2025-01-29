@@ -42,7 +42,7 @@ struct ShowSelectionView: View {
 #Preview {
   ShowSelectionView()
     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    .environment(\.modelContext, SwiftDataManager.previewContainer.mainContext)
+    .modelContext(SwiftDataManager.previewContainer.mainContext)
     .environment(AppRouter())
 }
 

@@ -31,6 +31,7 @@ struct ShowNotesView: View {
 
   // Return the found show notes
   var notes: [ShowNote] {
+    print("🏳️‍⚧️ \(shows.first?.name ?? "No Show found")")
     //    print("Accessing notes")
     //    if let show = shows.first {
     //      print("Found show: \(show.id)")
@@ -61,9 +62,8 @@ struct ShowNotesView: View {
         .background(Color.systemGroupedBackground)
       } else {
         List {
-          if showNewNoteField {
-            NewNoteView(isPresented: $showNewNoteField, showID: shows.first!.persistentModelID)
-              .environment(\.modelContext, modelContext)
+          if let persistentModelID = shows.first?.persistentModelID, showNewNoteField {
+            NewNoteView(isPresented: $showNewNoteField, showID: persistentModelID)
           }
           ForEach(allShowNotes) { note in
             HStack(spacing: 16) {

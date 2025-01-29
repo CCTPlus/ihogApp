@@ -87,7 +87,7 @@ struct ShowNavigation: View {
             NavigationStack {
               ShowNotesView(showID: uuid)
             }
-            .environment(\.modelContext, modelContext)
+            .modelContainer(modelContext.container)
           }
       }
     }

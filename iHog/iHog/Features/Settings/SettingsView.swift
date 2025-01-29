@@ -27,6 +27,8 @@ struct SettingsView: View {
   )
   private var shows: FetchedResults<CDShowEntity>
 
+  @State private var userManager = UserStateManager(isPro: true)
+
   @State private var isAddingShow: Bool = false
   @State var issueSubmitted: Bool? = false
   @State private var isOSCExpanded = true
@@ -76,7 +78,7 @@ struct SettingsView: View {
           }
           ShowSelectionView()
             .environment(router)
-            .environment(\.modelContext, modelContext)
+            .modelContext(modelContext)
         }
         // MARK: Settings
         Section {
@@ -199,6 +201,8 @@ struct SettingsView: View {
           case .newShow:
             NavigationStack {
               NewShowView()
+                .modelContext(modelContext)
+                .environment(userManager)
             }
           case .paywall:
             NavigationStack {
@@ -217,7 +221,7 @@ struct SettingsView: View {
             ),
             showRouter: ShowRouter(showID: showID)
           )
-          .environment(\.modelContext, modelContext)
+          .modelContext(modelContext)
         case .osc:
           OSCSettings()
         case .programmer:

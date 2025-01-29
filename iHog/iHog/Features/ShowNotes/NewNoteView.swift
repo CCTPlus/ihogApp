@@ -62,7 +62,7 @@ struct NewNoteView: View {
         }
       }
       .task {
-        // As soon as this shows make it in focus
+        // As soon as this shows make the keyboard show in focus
         focusField = .note
       }
     }
@@ -84,17 +84,10 @@ struct NewNoteView: View {
 
 extension NewNoteView {
   func saveNote() {
-    // Make sure show exists for the ID
-    guard let showEntity: ShowEntity = modelContext.registeredModel(for: showID) else {
-      HogLogger.log(category: .swiftData)
-        .error("🚨 Cannot find show for the showID \(showID.id.hashValue)")
-      return
-    }
-
     let body = note
 
     let newNote = ShowNoteObject(
-      showID: showEntity.persistentModelID,
+      showID: showID,
       dateCreated: .now,
       dateLastModified: .now,
       note: body,
