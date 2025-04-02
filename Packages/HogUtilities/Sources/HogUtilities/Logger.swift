@@ -1,14 +1,22 @@
 //
-//  Untitled.swift
-//  iHog
-//
-//  Created by Jay Wilson on 11/7/24.
+// -----------------------------------------------------------
+// Project: iHog
+// Created on 4/1/25 by @HeyJayWilson
+// -----------------------------------------------------------
+// Find HeyJayWilson on the web:
+// 🕸️ Website             https://heyjaywilson.com
+// 💻 Follow on GitHub:   https://github.com/heyjaywilson
+// 🧵 Follow on Threads:  https://threads.net/@heyjaywilson
+// 💭 Follow on Mastodon: https://iosdev.space/@heyjaywilson
+// ☕ Buy me a ko-fi:     https://ko-fi.com/heyjaywilson
+// -----------------------------------------------------------
+// Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
 import Foundation
 import OSLog
 
-enum LogCategory: String {
+public enum LogCategory: String {
   case `default`
   case analytics
   case error
@@ -17,17 +25,18 @@ enum LogCategory: String {
   case haptics
   case coreData
   case swiftData
+  case hogData
   case show
 }
 
-struct HogLogger {
-  static func log(category: LogCategory = .default) -> Logger {
+public struct HogLogger {
+  public static func log(category: LogCategory = .default) -> Logger {
     let bundleID =
       Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String ?? "com.appsbymw.hogosc"
     return Logger(subsystem: bundleID, category: category.rawValue)
   }
 
-  func getLogs() throws -> URL {
+  public func getLogs() throws -> URL {
     let store = try OSLogStore(scope: .currentProcessIdentifier)
     let position = store.position(timeIntervalSinceLatestBoot: 1)
 
@@ -50,7 +59,7 @@ struct HogLogger {
 }
 
 extension OSLogEntryLog.Level {
-  var description: String {
+  public var description: String {
     switch self {
       case .debug: return "DEBUG"
       case .info: return "INFO"
@@ -63,10 +72,10 @@ extension OSLogEntryLog.Level {
   }
 }
 
-enum HogLoggerError: Error {
+public enum HogLoggerError: Error {
   case notAbleToCreateFile
 
-  var localizedDescription: String {
+  public var localizedDescription: String {
     switch self {
       case .notAbleToCreateFile: return "Unable to create log file."
     }

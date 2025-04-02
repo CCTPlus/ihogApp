@@ -10,6 +10,8 @@
 //
 
 import CoffeeToast
+import HogData
+import HogUtilities
 import RevenueCat
 import StoreKit
 import SwiftUI
@@ -47,7 +49,7 @@ struct iHogApp: App {
 
   let analtyics = Analytics.shared
 
-  let persistenceController: PersistenceController
+  let persistenceController: HogPersistenceController
 
   init() {
     Purchases.logLevel = .debug
@@ -61,9 +63,9 @@ struct iHogApp: App {
     }
     // Check if we're in preview mode
     if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-      persistenceController = PersistenceController.preview
+      persistenceController = HogPersistenceController.preview
     } else {
-      persistenceController = PersistenceController.shared
+      persistenceController = HogPersistenceController.shared
     }
   }
 

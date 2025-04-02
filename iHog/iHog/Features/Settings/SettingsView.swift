@@ -7,6 +7,7 @@
 
 import AppRouter
 import CoreData
+import HogUtilities
 import RevenueCat
 import StoreKit
 import SwiftUI

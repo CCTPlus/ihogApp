@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HogUtilities
 import SwiftData
 
 @available(iOS 17, *)

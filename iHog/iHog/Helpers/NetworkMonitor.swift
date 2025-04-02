@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 9/21/22.
 //
 
+import HogUtilities
 import Network
 
 class NetworkMonitor {

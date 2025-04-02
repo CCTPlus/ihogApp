@@ -6,6 +6,8 @@
 //
 
 import CoreData
+import HogData
+import HogUtilities
 import RevenueCat
 import StoreKit
 import SwiftUI

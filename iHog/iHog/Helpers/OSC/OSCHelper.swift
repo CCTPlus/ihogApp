@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import HogUtilities
 import OSCKit
 import SwiftUI
 

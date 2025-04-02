@@ -1,51 +1,30 @@
 //
-//  Persistence.swift
-//  iHog
-//
-//  Created by Jay Wilson on 9/16/20.
+// -----------------------------------------------------------
+// Project: iHog
+// Created on 4/1/25 by @HeyJayWilson
+// -----------------------------------------------------------
+// Find HeyJayWilson on the web:
+// 🕸️ Website             https://heyjaywilson.com
+// 💻 Follow on GitHub:   https://github.com/heyjaywilson
+// 🧵 Follow on Threads:  https://threads.net/@heyjaywilson
+// 💭 Follow on Mastodon: https://iosdev.space/@heyjaywilson
+// ☕ Buy me a ko-fi:     https://ko-fi.com/heyjaywilson
+// -----------------------------------------------------------
+// Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
 import CoreData
+import Foundation
+import HogUtilities
 
-struct PersistenceController {
-  // app uses
-  static let shared = PersistenceController()
+public struct HogPersistenceController {
 
-  //preview uses
-  static var preview: PersistenceController = {
-    let result = PersistenceController(inMemory: true)
-    let viewContext = result.container.viewContext
-    for _ in 0..<10 {
-      let newItem = CDShowEntity(context: viewContext)
-      newItem.dateCreated = Date()
-      newItem.dateLastModified = Date()
-      newItem.name = "TEST SHOW 101"
-      newItem.id = UUID()
-      newItem.note = "Show notes go here"
+  @MainActor public static let shared = HogPersistenceController()
+  @MainActor public static let preview = HogPersistenceController(inMemory: true)
 
-      let newObject = CDShowObjectEntity(context: viewContext)
-      newObject.id = UUID()
-      newObject.number = 1.2
-      newObject.name = "All Stage Wash"
-      newObject.objColor = "red"
-      newObject.objType = "group"
-      newObject.isOutlined = true
-    }
-    do {
-      try viewContext.save()
-    } catch {
-      // Replace this implementation with code to handle the error appropriately.
-      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
-      let nsError = error as NSError
-      fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-    }
-    return result
-  }()
-
-  let container: NSPersistentCloudKitContainer
-
-  /// OLD default URL. Eventually this will be migrated from
+  /// Container for persistence
+  public let container: NSPersistentCloudKitContainer
+  /// Old default URL
   var oldStoreURL: URL {
     let appSupport = FileManager.default
       .urls(
@@ -57,7 +36,6 @@ struct PersistenceController {
     HogLogger.log(category: .coreData).debug("Default Store URL: \(storeURL.absoluteString)")
     return storeURL
   }
-
   /// App Groups URL
   var sharedStoreURL: URL {
     let id = AppInfo.appGroup
@@ -67,10 +45,24 @@ struct PersistenceController {
     return storeURL
   }
 
-  init(inMemory: Bool = false) {
-    container = NSPersistentCloudKitContainer(name: "iHog")
+  public init(inMemory: Bool = false, inTesting: Bool = false) {
+
+    container = NSPersistentCloudKitContainer(
+      name: "iHog",
+      managedObjectModel: HogData.model  // This should trigger our debug prints in HogData
+    )
+
+    guard let description = container.persistentStoreDescriptions.first else {
+      HogLogger.log(category: .error).error("Could not get persistent store description")
+      fatalError()
+    }
+
+    if inTesting {
+      description.cloudKitContainerOptions = nil
+    }
+
     if inMemory {
-      container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+      description.url = URL(fileURLWithPath: "/dev/null")
       container.loadPersistentStores { (_, error) in
         if let error = error as NSError? {
           fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -78,12 +70,6 @@ struct PersistenceController {
       }
       container.viewContext.automaticallyMergesChangesFromParent = true
       return  // Early return for preview mode
-    }
-
-    guard let description = container.persistentStoreDescriptions.first else {
-      HogLogger.log(category: .error).error("Could not get persistent store description")
-      Analytics.shared.logError(with: HogOSCError.notAbleToLoadStore, for: .coreData, level: .fatal)
-      fatalError()
     }
 
     HogLogger.log(category: .coreData)
@@ -109,7 +95,6 @@ struct PersistenceController {
       HogLogger.log(category: .coreData)
         .info("Store loaded at:\(storeDescription.url?.absoluteString ?? "NO STORE FOUND")")
       if let error = error as NSError? {
-        Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     }
@@ -125,7 +110,6 @@ struct PersistenceController {
   ) {
     let coordinator = container.persistentStoreCoordinator
     guard let storeDescription = container.persistentStoreDescriptions.first else {
-      Analytics.shared.logError(with: HogOSCError.notAbleToLoadStore, for: .coreData, level: .fatal)
       HogLogger.log(category: .coreData)
         .error("Could not load store descriptions during migration from default to app groups")
       fatalError()
@@ -143,7 +127,6 @@ struct PersistenceController {
         type: .sqlite
       )
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
       HogLogger.log(category: .coreData)
         .error("Something went wrong during migration of the store: \(error, privacy: .public)")
       fatalError("Something went wrong during migration of the store \(error)")
@@ -153,7 +136,6 @@ struct PersistenceController {
     do {
       try coordinator.destroyPersistentStore(at: oldStoreURL, type: .sqlite)
     } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .fatal)
       HogLogger.log(category: .coreData)
         .log("Something went wrong deleting the old store: \(error)")
       fatalError("Something went wrong deleting the old store: \(error)")

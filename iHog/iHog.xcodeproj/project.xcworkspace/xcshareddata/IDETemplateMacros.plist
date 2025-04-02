@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>FILEHEADER</key>
+    <string>
+// -----------------------------------------------------------
+// Project: iHog
+// Created on ___DATE___ by @HeyJayWilson
+// -----------------------------------------------------------
+// Find HeyJayWilson on the web:
+// 🕸️ Website             https://heyjaywilson.com
+// 💻 Follow on GitHub:   https://github.com/heyjaywilson
+// 🧵 Follow on Threads:  https://threads.net/@heyjaywilson
+// 💭 Follow on Mastodon: https://iosdev.space/@heyjaywilson
+// ☕ Buy me a ko-fi:     https://ko-fi.com/heyjaywilson
+// -----------------------------------------------------------
+// Copyright© ___YEAR___ CCT Plus LLC. All rights reserved.
+//</string>
+</dict>
+</plist>

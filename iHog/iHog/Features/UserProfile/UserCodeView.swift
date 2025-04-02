@@ -5,6 +5,7 @@
 //  Created by Jay Wilson on 12/7/24.
 //
 
+import HogUtilities
 import SwiftData
 import SwiftUI
 

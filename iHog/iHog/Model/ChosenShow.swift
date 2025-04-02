@@ -7,6 +7,7 @@
 
 import CoreData
 import Foundation
+import HogUtilities
 
 class ChosenShow: ObservableObject {
   @Published var scenes: [ShowObject]

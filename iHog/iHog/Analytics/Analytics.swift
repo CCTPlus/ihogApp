@@ -6,6 +6,8 @@
 //
 
 import CoreData
+import HogData
+import HogUtilities
 import PostHog
 import StoreKit  // I don't like this but it's necessary for logging strekit transactions
 import TelemetryDeck
@@ -53,8 +55,6 @@ class Analytics {
     Task {
       var parameters = parameters
       parameters[.numberOfShows] = await getNumberOfShows()
-      parameters[.userIsSandBoxed] = AppInfo.isSandboxed
-
       // Convert to [String: String] for TelemetryDeck
       let stringParameters = parameters.reduce(into: [String: String]()) { result, pair in
         let value = pair.value

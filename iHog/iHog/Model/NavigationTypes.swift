@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HogData
 
 enum Paywall: Hashable {
   case currentPaywall

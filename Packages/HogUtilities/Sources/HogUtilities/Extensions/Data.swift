@@ -1,8 +1,16 @@
 //
-//  Data.swift
-//  iHog
-//
-//  Created by Jay Wilson on 11/15/24.
+// -----------------------------------------------------------
+// Project: iHog
+// Created on 4/1/25 by @HeyJayWilson
+// -----------------------------------------------------------
+// Find HeyJayWilson on the web:
+// 🕸️ Website             https://heyjaywilson.com
+// 💻 Follow on GitHub:   https://github.com/heyjaywilson
+// 🧵 Follow on Threads:  https://threads.net/@heyjaywilson
+// 💭 Follow on Mastodon: https://iosdev.space/@heyjaywilson
+// ☕ Buy me a ko-fi:     https://ko-fi.com/heyjaywilson
+// -----------------------------------------------------------
+// Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +19,7 @@ extension Data {
   /// Saves the data to a file in the Documents Directory
   /// - Parameter fileName: the name of the file
   /// - Returns: the URL of newly created file. Will throw if it can't create the file.
-  func dataToFile(fileName: String) throws -> URL? {
+  public func dataToFile(fileName: String) throws -> URL? {
     let data = self
 
     do {

@@ -21,6 +21,8 @@
 		692677A32D0943500006895D /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 692677A22D0943500006895D /* AppRouter */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
+		69A4D80A2D9CF8C9002FB567 /* HogData in Frameworks */ = {isa = PBXBuildFile; productRef = 69A4D8092D9CF8C9002FB567 /* HogData */; };
+		69E69F842D9CF4FD00BE3143 /* HogUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 69E69F832D9CF4FD00BE3143 /* HogUtilities */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		692677A12D0943470006895D /* AppRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppRouter; path = ../Packages/AppRouter; sourceTree = SOURCE_ROOT; };
+		69A6773A2D9CF14C00B31B37 /* HogData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogData; path = ../Packages/HogData; sourceTree = SOURCE_ROOT; };
+		69A6773B2D9CF43800B31B37 /* HogUtilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogUtilities; path = ../Packages/HogUtilities; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -97,9 +101,11 @@
 				3769730C28A52743004D9BEF /* RevenueCat in Frameworks */,
 				693137A42CE1579000562B73 /* PostHog in Frameworks */,
 				3730E00D27A17B27006FCA5E /* OctoKit in Frameworks */,
+				69E69F842D9CF4FD00BE3143 /* HogUtilities in Frameworks */,
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
 				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
+				69A4D80A2D9CF8C9002FB567 /* HogData in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +139,8 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
+				69A6773A2D9CF14C00B31B37 /* HogData */,
+				69A6773B2D9CF43800B31B37 /* HogUtilities */,
 				692677A12D0943470006895D /* AppRouter */,
 				69666BD82CDD6CA0008A0057 /* iHog */,
 				15DA268C251237D70063E236 /* iHogTests */,
@@ -227,6 +235,8 @@
 				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 				693137A32CE1579000562B73 /* PostHog */,
 				692677A22D0943500006895D /* AppRouter */,
+				69E69F832D9CF4FD00BE3143 /* HogUtilities */,
+				69A4D8092D9CF8C9002FB567 /* HogData */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -583,7 +593,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iHog/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,7 +623,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iHog/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iHog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -842,6 +852,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
 			productName = TelemetryDeck;
+		};
+		69A4D8092D9CF8C9002FB567 /* HogData */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HogData;
+		};
+		69E69F832D9CF4FD00BE3143 /* HogUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HogUtilities;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
