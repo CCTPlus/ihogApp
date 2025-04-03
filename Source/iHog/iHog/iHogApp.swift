@@ -57,10 +57,6 @@ struct iHogApp: App {
       with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
         .build()
     )
-
-    if #available(iOS 17.0, *) {
-      _ = SwiftDataManager.modelContainer
-    }
     // Check if we're in preview mode
     if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
       persistenceController = HogPersistenceController.preview

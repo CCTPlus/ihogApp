@@ -48,17 +48,8 @@ public struct ShowCoreDataRespository: ShowRepository {
   /// - Returns: The Show object if found
   public func getShow(id: UUID) async throws -> Show {
     let context = persistenceController.container.newBackgroundContext()
-    let fetchRequest = CDShowEntity.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
 
-    var fetchedShow: CDShowEntity?
-    try await context.perform {
-      fetchedShow = try context.fetch(fetchRequest).first
-    }
-
-    guard let show = fetchedShow else {
-      throw ShowError.notFound
-    }
+    let show = try await getShowEntity(context: context, id: id)
 
     return Show(cdEntity: show)
   }
@@ -84,6 +75,17 @@ public struct ShowCoreDataRespository: ShowRepository {
     }
 
     return Show(cdEntity: show)
+  }
+
+  public func updateLastOpenedDate(id: UUID) async throws -> Show {
+    let context = persistenceController.container.newBackgroundContext()
+    let showEntity = try await getShowEntity(context: context, id: id)
+    showEntity.dateLastOpened = Date()
+    try await context.perform {
+      try context.save()
+    }
+
+    return Show(cdEntity: showEntity)
   }
 
   /// Deletes a show with the specified ID
@@ -112,12 +114,36 @@ public struct ShowCoreDataRespository: ShowRepository {
     let context = persistenceController.container.newBackgroundContext()
     let fetchRequest = CDShowEntity.fetchRequest()
 
+    let sortDescriptor = NSSortDescriptor(
+      key: "dateLastOpened",
+      ascending: false,
+      selector: #selector(NSDate.compare(_:))
+    )
+    fetchRequest.sortDescriptors = [sortDescriptor]
+
     var fetchedShows: [CDShowEntity] = []
     try await context.perform {
       fetchedShows = try context.fetch(fetchRequest)
     }
 
     return fetchedShows.map({ Show(cdEntity: $0) })
+  }
+
+  private func getShowEntity(context: NSManagedObjectContext, id: UUID) async throws -> CDShowEntity
+  {
+    let fetchRequest = CDShowEntity.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+    var fetchedShow: CDShowEntity?
+    try await context.perform {
+      fetchedShow = try context.fetch(fetchRequest).first
+    }
+
+    guard let showEntity = fetchedShow else {
+      throw ShowError.notFound
+    }
+
+    return showEntity
   }
 }
 

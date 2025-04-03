@@ -19,17 +19,20 @@ public struct Show: Identifiable {
   public let id: UUID
   public var icon: String
   public var name: String
+  public var dateLastOpened: Date
 
-  public init(id: UUID, icon: String, name: String) {
+  public init(id: UUID, icon: String, name: String, dateLastOpened: Date = .now) {
     self.id = id
     self.icon = icon
     self.name = name
+    self.dateLastOpened = dateLastOpened
   }
 
   init(cdEntity: CDShowEntity) {
     self.id = cdEntity.id ?? UUID()
     self.icon = cdEntity.icon ?? ""
     self.name = cdEntity.name ?? ""
+    self.dateLastOpened = cdEntity.dateLastOpened ?? .now
     // The other properties are not necessary
   }
 }

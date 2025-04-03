@@ -6,6 +6,7 @@
     <entity name="ShowEntity" representedClassName="CDShowEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateLastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateLastOpened" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString="New Show"/>

@@ -89,4 +89,29 @@ class ShowCoreDataReposityTests {
     #expect(foundShow.name == "Test Show")
     #expect(foundShow.id == createdShow.id)
   }
+
+  @Test("Ability to update the date last opened")
+  func updateDateLastOpened() async throws {
+    let repo = ShowCoreDataRespository(persistenceController: persistenceController)
+    // Create initial show
+    let createdShow = try await repo.createShow(name: "Test Show", icon: "folder")
+
+    // Get initial show and capture its date
+    let initialShow = try await repo.getShow(id: createdShow.id)
+    let initialDate = initialShow.dateLastOpened
+
+    // Small delay to ensure time difference
+    try await Task.sleep(nanoseconds: 1_000_000_000)  // 1 second
+
+    // Update the last opened date
+    let updatedShow = try await repo.updateLastOpenedDate(id: createdShow.id)
+
+    // Verify date was updated and is newer
+    #expect(updatedShow.dateLastOpened > initialDate)
+    #expect(updatedShow.dateLastOpened.timeIntervalSinceNow > -5)  // Within last 5 seconds
+
+    // Verify by fetching fresh
+    let fetchedShow = try await repo.getShow(id: createdShow.id)
+    #expect(fetchedShow.dateLastOpened == updatedShow.dateLastOpened)
+  }
 }

@@ -37,6 +37,11 @@ protocol ShowRepository {
   /// - Returns: The updated Show
   func changeName(newName: String) async throws -> Show
 
+  /// Update the last opened date of a Show
+  /// - Parameter showId: UUID of the show to update
+  /// - Returns: The updated Show
+  func updateLastOpenedDate(id: UUID) async throws -> Show
+
   /// Deletes a show with the specified ID
   /// - Parameter id: UUID of the show to delete
   func deleteShow(id: UUID) async throws
