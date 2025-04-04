@@ -45,12 +45,14 @@ struct OpenSoundControlConfigView: View {
         interfaceSelection
         buttons
       }
-      .padding()
-      .background(.ultraThickMaterial)
-      .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-      .padding(.vertical, 4)
+      .sectionDesign()
     }
     .padding()
+    .onChange(of: viewModel.availableInterfaces) { oldValue, newValue in
+      if let firstInterface = newValue.first {
+        selectedInterfaceName = firstInterface.name
+      }
+    }
   }
 
   @ViewBuilder
@@ -63,14 +65,13 @@ struct OpenSoundControlConfigView: View {
           ForEach(viewModel.availableInterfaces) { interface in
             Text(interface.displayName)
               .tag(interface.name)
+
           }
         }
         .pickerStyle(.menu)
       }
       .task {
-        if let firstInterface = viewModel.availableInterfaces.first {
-          selectedInterfaceName = firstInterface.name
-        }
+        viewModel.getInterfaces()
       }
     }
   }
@@ -148,10 +149,7 @@ struct OpenSoundControlConfigView: View {
   }
 }
 
-#Preview("No interfaces") {
-  OpenSoundControlConfigView()
-}
-#Preview("Has interfaces") {
+#Preview {
   OpenSoundControlConfigView(
     viewModel: OpenSoundControlConfigViewModel(
       availableInterfaces: NetworkInterface.mockInterfaces

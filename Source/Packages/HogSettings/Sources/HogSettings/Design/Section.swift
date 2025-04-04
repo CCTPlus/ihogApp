@@ -13,19 +13,20 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import Foundation
-import Network
+import SwiftUI
 
-@Observable
-@MainActor
-class OpenSoundControlConfigViewModel {
-  var availableInterfaces: [NetworkInterface]
-
-  init(availableInterfaces: [NetworkInterface] = []) {
-    self.availableInterfaces = availableInterfaces
+struct SectionDesign: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .padding()
+      .background(.ultraThickMaterial)
+      .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+      .padding(.vertical, 4)
   }
+}
 
-  func getInterfaces() {
-    availableInterfaces = NetworkInterface.getAllInterfaces()
+extension View {
+  func sectionDesign() -> some View {
+    modifier(SectionDesign())
   }
 }

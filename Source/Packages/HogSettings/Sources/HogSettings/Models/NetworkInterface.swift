@@ -15,7 +15,7 @@
 
 import Foundation
 
-struct NetworkInterface: Identifiable {
+struct NetworkInterface: Identifiable, Equatable, Hashable {
   let id = UUID()
   let name: String  // "en0" or "en1"
   let displayName: String  // "Wi-Fi" or "Ethernet"
