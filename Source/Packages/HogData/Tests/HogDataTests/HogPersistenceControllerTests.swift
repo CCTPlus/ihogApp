@@ -10,7 +10,7 @@
 // 💭 Follow on Mastodon: https://iosdev.space/@heyjaywilson
 // ☕ Buy me a ko-fi:     https://ko-fi.com/heyjaywilson
 // -----------------------------------------------------------
-// Copyright© 2025 CCT Plus LLC. All rights reserved.
+// Copyright©t 2025 CCT Plus LLC. All rights reserved.
 //
 
 import CoreData
@@ -34,29 +34,55 @@ class HogPersistenceControllerTests {
     return appSupport.appendingPathComponent("iHog.sqlite")
   }
 
+  /// Shared store URL for tests
+  var sharedStoreURL: URL {
+    let id = AppInfo.appGroup
+    let containerURL = FileManager.default.containerURL(
+      forSecurityApplicationGroupIdentifier: id
+    )!
+    return containerURL.appendingPathComponent("iHog.sqlite")
+  }
+
   init() {
     self.fileManager = .default
+    // Clean up any leftover files from previous test runs
+    cleanup()
   }
 
   deinit {
-    // Clean up test files
+    cleanup()
+  }
+
+  private func cleanup() {
     try? fileManager.removeItem(at: testOldStoreURL)
-    var sharedStoreURL: URL {
-      let id = AppInfo.appGroup
-      let containerURL = FileManager.default.containerURL(
-        forSecurityApplicationGroupIdentifier: id
-      )!
-      let storeURL = containerURL.appendingPathComponent("iHog.sqlite")
-      HogLogger.log(category: .coreData).debug("App Group URL: \(storeURL.absoluteString)")
-      return storeURL
-    }
     try? fileManager.removeItem(at: sharedStoreURL)
+
+    // Also clean up auxiliary files
+    try? fileManager.removeItem(
+      at: testOldStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("iHog.sqlite-shm")
+    )
+    try? fileManager.removeItem(
+      at: testOldStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("iHog.sqlite-wal")
+    )
+    try? fileManager.removeItem(
+      at: sharedStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("iHog.sqlite-shm")
+    )
+    try? fileManager.removeItem(
+      at: sharedStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("iHog.sqlite-wal")
+    )
   }
 
   @Test("Verifies store migration from old location to app groups")
   func testStoreMigration() async throws {
     // Create store at old location
     let storeDescription = NSPersistentStoreDescription(url: testOldStoreURL)
+    // Enable history tracking to match production configuration
+    storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
     let container = NSPersistentContainer(
       name: "iHog",
       managedObjectModel: HogData.model
@@ -77,17 +103,16 @@ class HogPersistenceControllerTests {
     // Create controller with testing flag
     let controller = HogPersistenceController(inTesting: true)
 
-    // Check migration
+    // Get the actual shared store URL from the controller
+    let foundSharedStoreURL = controller.sharedStoreURL
+
     #expect(
       !fileManager.fileExists(atPath: testOldStoreURL.path),
       "Old store should be deleted after migration"
     )
-
-    // Get the actual shared store URL from the controller
-    let sharedStoreURL = controller.sharedStoreURL
     #expect(
-      fileManager.fileExists(atPath: sharedStoreURL.path),
-      "New store should exist after migration"
+      foundSharedStoreURL.path == sharedStoreURL.path,
+      "Store should be using app group URL"
     )
 
     // Check store configuration

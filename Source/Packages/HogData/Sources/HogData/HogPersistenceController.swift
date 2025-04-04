@@ -100,6 +100,9 @@ public final class HogPersistenceController: @unchecked Sendable {
     HogLogger.log(category: .coreData)
       .debug("CloudKit options: \(String(describing: description.cloudKitContainerOptions))")
 
+    description
+      .setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
     // Load persistent store first
     container.loadPersistentStores { (storeDescription, error) in
       HogLogger.log(category: .coreData)
