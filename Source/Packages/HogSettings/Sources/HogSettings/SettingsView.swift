@@ -31,6 +31,7 @@ public struct SettingsView: View {
   public var body: some View {
     VStack {
       HStack {
+        Text("User Settings")
         Text("Programmer settings")
           .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 0)
         OpenSoundControlConfigView()

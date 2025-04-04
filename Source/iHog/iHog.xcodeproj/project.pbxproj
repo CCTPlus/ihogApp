@@ -18,7 +18,6 @@
 		3769730C28A52743004D9BEF /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 3769730B28A52743004D9BEF /* RevenueCat */; };
 		377087D727AABFF000B0754A /* CoffeeToast in Frameworks */ = {isa = PBXBuildFile; productRef = 377087D627AABFF000B0754A /* CoffeeToast */; };
 		37EAFA9027AF31530092C11E /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37EAFA8F27AF31530092C11E /* OSCKit */; };
-		692677A32D0943500006895D /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 692677A22D0943500006895D /* AppRouter */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
 		69731BC12D9F5A8F0084BBD4 /* HogSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 69731BC02D9F5A8F0084BBD4 /* HogSettings */; };
@@ -98,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				692677A32D0943500006895D /* AppRouter in Frameworks */,
 				15E2D204253F14F900C7A453 /* CloudKit.framework in Frameworks */,
 				37EAFA9027AF31530092C11E /* OSCKit in Frameworks */,
 				3769730C28A52743004D9BEF /* RevenueCat in Frameworks */,
@@ -240,7 +238,6 @@
 				3769730B28A52743004D9BEF /* RevenueCat */,
 				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 				693137A32CE1579000562B73 /* PostHog */,
-				692677A22D0943500006895D /* AppRouter */,
 				69E69F832D9CF4FD00BE3143 /* HogUtilities */,
 				69A4D8092D9CF8C9002FB567 /* HogData */,
 				69731BC02D9F5A8F0084BBD4 /* HogSettings */,
@@ -845,10 +842,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37EAFA8E27AF31530092C11E /* XCRemoteSwiftPackageReference "OSCKit" */;
 			productName = OSCKit;
-		};
-		692677A22D0943500006895D /* AppRouter */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppRouter;
 		};
 		693137A32CE1579000562B73 /* PostHog */ = {
 			isa = XCSwiftPackageProductDependency;

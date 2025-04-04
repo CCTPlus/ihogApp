@@ -73,8 +73,10 @@ public final class HogPersistenceController: @unchecked Sendable {
       return  // Early return for preview mode
     }
 
+    description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
     HogLogger.log(category: .coreData)
-      .debug(" Core Data store found at \(description.url?.absoluteString ?? "NO STORE FOUND")")
+      .debug("Core Data store found at \(description.url?.absoluteString ?? "NO STORE FOUND")")
 
     let originalCloudKitOptions = description.cloudKitContainerOptions
 
@@ -85,17 +87,29 @@ public final class HogPersistenceController: @unchecked Sendable {
       HogLogger.log(category: .coreData).info("Migration to AppGroups is not needed")
       description.url = sharedStoreURL
     } else {
-      // since the old url exists, turn off cloudkit to avoid duplicates
+      // Turn off cloudkit to avoid duplicates
       description.cloudKitContainerOptions = nil
-      HogLogger.log(category: .coreData).info(" Migration to AppGroups is needed")
+      HogLogger.log(category: .coreData).info("Migration to AppGroups is needed")
     }
 
-    // Load persistent store to start migrations
+    HogLogger.log(category: .coreData).debug("Store description before loading:")
+    HogLogger.log(category: .coreData).debug("URL: \(description.url?.absoluteString ?? "none")")
+    HogLogger.log(category: .coreData).debug("Options: \(description.options)")
+    HogLogger.log(category: .coreData)
+      .debug("Configuration: \(description.configuration ?? "none")")
+    HogLogger.log(category: .coreData)
+      .debug("CloudKit options: \(String(describing: description.cloudKitContainerOptions))")
 
+    // Load persistent store first
     container.loadPersistentStores { (storeDescription, error) in
       HogLogger.log(category: .coreData)
         .info("Store loaded at:\(storeDescription.url?.absoluteString ?? "NO STORE FOUND")")
       if let error = error as NSError? {
+        HogLogger.log(category: .coreData)
+          .error("Failed to load store: \(error.localizedDescription)")
+        HogLogger.log(category: .coreData).error("Error domain: \(error.domain)")
+        HogLogger.log(category: .coreData).error("Error code: \(error.code)")
+        HogLogger.log(category: .coreData).error("User info: \(error.userInfo)")
         fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     }
@@ -115,62 +129,53 @@ public final class HogPersistenceController: @unchecked Sendable {
         .error("Could not load store descriptions during migration from default to app groups")
       fatalError()
     }
+
     // check again to see if migration is needed
     guard coordinator.persistentStore(for: oldStoreURL) != nil else {
       HogLogger.log(category: .coreData).info("Migration not needed")
       return
     }
-    // Replace persistent stores
-    do {
-      try coordinator.replacePersistentStore(
-        at: sharedStoreURL,
-        withPersistentStoreFrom: oldStoreURL,
-        type: .sqlite
-      )
-    } catch {
-      HogLogger.log(category: .coreData)
-        .error("Something went wrong during migration of the store: \(error, privacy: .public)")
-      fatalError("Something went wrong during migration of the store \(error)")
-    }
 
-    // Delete the old store. Can delete safely since if there's an error, the app fatal errors and crashes
-    do {
-      try coordinator.destroyPersistentStore(at: oldStoreURL, type: .sqlite)
-    } catch {
-      HogLogger.log(category: .coreData)
-        .log("Something went wrong deleting the old store: \(error)")
-      fatalError("Something went wrong deleting the old store: \(error)")
-    }
-
-    NSFileCoordinator(filePresenter: nil)
-      .coordinate(
-        writingItemAt: oldStoreURL.deletingLastPathComponent(),
-        options: .forDeleting,
-        error: nil
-      ) { url in
-        try? FileManager.default.removeItem(at: oldStoreURL)
-        try? FileManager.default.removeItem(
-          at: oldStoreURL.deletingLastPathComponent()
-            .appendingPathComponent("\(container.name).sqlite-shm")
-        )
-        try? FileManager.default.removeItem(
-          at: oldStoreURL.deletingLastPathComponent()
-            .appendingPathComponent("\(container.name).sqlite-wal")
-        )
-        try? FileManager.default.removeItem(
-          at: oldStoreURL.deletingLastPathComponent().appendingPathComponent("ckAssetFiles")
-        )
-      }
-
-    // unload the store and load it asgain with the new stuff
-    if let persistentStore = container.persistentStoreCoordinator.persistentStores.first {
+    // First unload the current store
+    if let persistentStore = coordinator.persistentStore(for: oldStoreURL) {
       do {
-        try container.persistentStoreCoordinator.remove(persistentStore)
+        try coordinator.remove(persistentStore)
       } catch {
         HogLogger.log(category: .coreData).error("Failed to unload persistent store: \(error)")
+        return
       }
     }
 
+    // Now try to move the files
+    do {
+      if FileManager.default.fileExists(atPath: sharedStoreURL.path) {
+        try FileManager.default.removeItem(at: sharedStoreURL)
+      }
+      try FileManager.default.moveItem(at: oldStoreURL, to: sharedStoreURL)
+
+      // Also move WAL and SHM files if they exist
+      let oldSHM = oldStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("\(container.name).sqlite-shm")
+      let oldWAL = oldStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("\(container.name).sqlite-wal")
+      let newSHM = sharedStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("\(container.name).sqlite-shm")
+      let newWAL = sharedStoreURL.deletingLastPathComponent()
+        .appendingPathComponent("\(container.name).sqlite-wal")
+
+      if FileManager.default.fileExists(atPath: oldSHM.path) {
+        try? FileManager.default.moveItem(at: oldSHM, to: newSHM)
+      }
+      if FileManager.default.fileExists(atPath: oldWAL.path) {
+        try? FileManager.default.moveItem(at: oldWAL, to: newWAL)
+      }
+    } catch {
+      HogLogger.log(category: .coreData)
+        .error("Failed to move store files: \(error)")
+      return
+    }
+
+    // Load the store at the new location
     storeDescription.url = sharedStoreURL
     storeDescription.cloudKitContainerOptions = originalCloudKitOptions
     container.loadPersistentStores { storeDescription, error in
@@ -180,6 +185,6 @@ public final class HogPersistenceController: @unchecked Sendable {
       }
     }
 
-    HogLogger.log(category: .coreData).info("Successfully migrated store ")
+    HogLogger.log(category: .coreData).info("Successfully migrated store")
   }
 }
