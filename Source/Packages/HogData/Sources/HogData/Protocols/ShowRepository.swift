@@ -16,7 +16,7 @@
 import Foundation
 
 /// Repository protocol defining the contract for Show data management
-protocol ShowRepository {
+public protocol ShowRepository: Sendable {
   /// Creates a new show with given name and icon
   /// - Parameters:
   ///   - name: Name of the show

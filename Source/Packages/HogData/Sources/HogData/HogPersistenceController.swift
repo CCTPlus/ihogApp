@@ -17,10 +17,11 @@ import CoreData
 import Foundation
 import HogUtilities
 
-public struct HogPersistenceController {
+/// A controller that manages Core Data persistence and CloudKit synchronization
+public final class HogPersistenceController: @unchecked Sendable {
 
-  @MainActor public static let shared = HogPersistenceController()
-  @MainActor public static let preview = HogPersistenceController(inMemory: true)
+  /// Preview instance for SwiftUI previews
+  public static let preview = HogPersistenceController(inMemory: true)
 
   /// Container for persistence
   public let container: NSPersistentCloudKitContainer
@@ -73,7 +74,7 @@ public struct HogPersistenceController {
     }
 
     HogLogger.log(category: .coreData)
-      .debug("✅ Core Data store found at \(description.url?.absoluteString ?? "NO STORE FOUND")")
+      .debug(" Core Data store found at \(description.url?.absoluteString ?? "NO STORE FOUND")")
 
     let originalCloudKitOptions = description.cloudKitContainerOptions
 
@@ -86,7 +87,7 @@ public struct HogPersistenceController {
     } else {
       // since the old url exists, turn off cloudkit to avoid duplicates
       description.cloudKitContainerOptions = nil
-      HogLogger.log(category: .coreData).info("⚠️ Migration to AppGroups is needed")
+      HogLogger.log(category: .coreData).info(" Migration to AppGroups is needed")
     }
 
     // Load persistent store to start migrations
@@ -179,6 +180,6 @@ public struct HogPersistenceController {
       }
     }
 
-    HogLogger.log(category: .coreData).info("Successfully migrated store 🎉")
+    HogLogger.log(category: .coreData).info("Successfully migrated store ")
   }
 }

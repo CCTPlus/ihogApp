@@ -11,6 +11,7 @@
 
 import CoffeeToast
 import HogData
+import HogSettings
 import HogUtilities
 import RevenueCat
 import StoreKit
@@ -42,6 +43,7 @@ struct iHogApp: App {
   @AppStorage(AppStorageKey.timesLaunched.rawValue) var timesLaunched: Int = 0
   @AppStorage(AppStorageKey.showOnboarding.rawValue) var showOnboarding: Bool = true
 
+  @Environment(\.persistenceController) var persistenceController
   @Environment(\.requestReview) var requestReview
 
   @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
@@ -49,20 +51,12 @@ struct iHogApp: App {
 
   let analtyics = Analytics.shared
 
-  let persistenceController: HogPersistenceController
-
   init() {
     Purchases.logLevel = .debug
     Purchases.configure(
       with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
         .build()
     )
-    // Check if we're in preview mode
-    if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-      persistenceController = HogPersistenceController.preview
-    } else {
-      persistenceController = HogPersistenceController.shared
-    }
   }
 
   @StateObject private var toastNotification = ToastNotification()
@@ -81,19 +75,7 @@ struct iHogApp: App {
               .environmentObject(osc)
               .environmentObject(user)
           } else {
-            if #available(iOS 17.0, *) {
-              SettingsView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(osc)
-                .environmentObject(user)
-                .environmentObject(toastNotification)
-            } else {
-              SettingsViewLegacy()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(osc)
-                .environmentObject(user)
-                .environmentObject(toastNotification)
-            }
+            SettingsView()
           }
         }
       }

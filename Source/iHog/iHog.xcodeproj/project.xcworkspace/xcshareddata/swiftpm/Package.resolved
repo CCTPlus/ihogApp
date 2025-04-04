@@ -1,5 +1,5 @@
 {
-  "originHash" : "8c3679f60ab478d8a0179d07bc4403c63f88dd1def0d37f6f3f683fe91d99bd9",
+  "originHash" : "2ac691b2b01575b6668238ac529f9296e745e72cd07eaba312b635a3cd91d421",
   "pins" : [
     {
       "identity" : "cocoaasyncsocket",
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TelemetryDeck/SwiftSDK",
       "state" : {
-        "revision" : "06bd6c3005da9113ae3766f8e23bb0fd07f8852f",
-        "version" : "2.5.0"
+        "revision" : "5cb2982470dc4830c4e7de5da4a5af1c50c304b4",
+        "version" : "2.9.2"
       }
     }
   ],

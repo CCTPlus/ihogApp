@@ -36,6 +36,8 @@ public struct HogLogger {
     return Logger(subsystem: bundleID, category: category.rawValue)
   }
 
+  public init() {}
+
   public func getLogs() throws -> URL {
     let store = try OSLogStore(scope: .currentProcessIdentifier)
     let position = store.position(timeIntervalSinceLatestBoot: 1)

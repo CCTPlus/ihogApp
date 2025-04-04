@@ -21,6 +21,7 @@
 		692677A32D0943500006895D /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 692677A22D0943500006895D /* AppRouter */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
+		69731BC12D9F5A8F0084BBD4 /* HogSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 69731BC02D9F5A8F0084BBD4 /* HogSettings */; };
 		69A4D80A2D9CF8C9002FB567 /* HogData in Frameworks */ = {isa = PBXBuildFile; productRef = 69A4D8092D9CF8C9002FB567 /* HogData */; };
 		69E69F842D9CF4FD00BE3143 /* HogUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 69E69F832D9CF4FD00BE3143 /* HogUtilities */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,8 @@
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		692677A12D0943470006895D /* AppRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppRouter; path = ../Packages/AppRouter; sourceTree = SOURCE_ROOT; };
+		69731BBF2D9EC07C0084BBD4 /* HogSettings */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogSettings; path = ../Packages/HogSettings; sourceTree = SOURCE_ROOT; };
+		69731BC22D9F5B4B0084BBD4 /* HogAnalytics */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HogAnalytics; sourceTree = "<group>"; };
 		69A6773A2D9CF14C00B31B37 /* HogData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogData; path = ../Packages/HogData; sourceTree = SOURCE_ROOT; };
 		69A6773B2D9CF43800B31B37 /* HogUtilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogUtilities; path = ../Packages/HogUtilities; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -105,6 +108,7 @@
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
 				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
+				69731BC12D9F5A8F0084BBD4 /* HogSettings in Frameworks */,
 				69A4D80A2D9CF8C9002FB567 /* HogData in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,9 +143,11 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
+				692677A12D0943470006895D /* AppRouter */,
+				69731BBF2D9EC07C0084BBD4 /* HogSettings */,
 				69A6773A2D9CF14C00B31B37 /* HogData */,
 				69A6773B2D9CF43800B31B37 /* HogUtilities */,
-				692677A12D0943470006895D /* AppRouter */,
+				69731BC22D9F5B4B0084BBD4 /* HogAnalytics */,
 				69666BD82CDD6CA0008A0057 /* iHog */,
 				15DA268C251237D70063E236 /* iHogTests */,
 				15DA2697251237D70063E236 /* iHogUITests */,
@@ -237,6 +243,7 @@
 				692677A22D0943500006895D /* AppRouter */,
 				69E69F832D9CF4FD00BE3143 /* HogUtilities */,
 				69A4D8092D9CF8C9002FB567 /* HogData */,
+				69731BC02D9F5A8F0084BBD4 /* HogSettings */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -852,6 +859,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
 			productName = TelemetryDeck;
+		};
+		69731BC02D9F5A8F0084BBD4 /* HogSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HogSettings;
 		};
 		69A4D8092D9CF8C9002FB567 /* HogData */ = {
 			isa = XCSwiftPackageProductDependency;

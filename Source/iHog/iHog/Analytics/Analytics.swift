@@ -39,22 +39,22 @@ class Analytics {
     PostHogSDK.shared.identify(userID)
   }
 
-  private func getNumberOfShows() async -> Int {
-    let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
-    let numberOfShows: Int? = try? await backgroundContext.perform {
-      let fetchRequest: NSFetchRequest<CDShowEntity> = CDShowEntity.fetchRequest()
-      let count = try backgroundContext.count(for: fetchRequest)
-      return count
-    }
-    return numberOfShows ?? 0
-  }
+  //  private func getNumberOfShows() async -> Int {
+  //    let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
+  //    let numberOfShows: Int? = try? await backgroundContext.perform {
+  //      let fetchRequest: NSFetchRequest<CDShowEntity> = CDShowEntity.fetchRequest()
+  //      let count = try backgroundContext.count(for: fetchRequest)
+  //      return count
+  //    }
+  //    return numberOfShows ?? 0
+  //  }
 
   func logEvent(with event: AnalyticEvent, parameters: [AnalyticEventParameter: Any] = [:]) {
     // Make sure the user has the right user ID
     identifyUser(with: userID)
     Task {
       var parameters = parameters
-      parameters[.numberOfShows] = await getNumberOfShows()
+      //      parameters[.numberOfShows] = await getNumberOfShows()
       // Convert to [String: String] for TelemetryDeck
       let stringParameters = parameters.reduce(into: [String: String]()) { result, pair in
         let value = pair.value

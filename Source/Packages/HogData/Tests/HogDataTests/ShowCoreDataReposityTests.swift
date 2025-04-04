@@ -98,7 +98,7 @@ class ShowCoreDataReposityTests {
 
     // Get initial show and capture its date
     let initialShow = try await repo.getShow(id: createdShow.id)
-    let initialDate = initialShow.dateLastOpened
+    let initialDate = initialShow.dateLastOpened ?? .now
 
     // Small delay to ensure time difference
     try await Task.sleep(nanoseconds: 1_000_000_000)  // 1 second
@@ -107,8 +107,8 @@ class ShowCoreDataReposityTests {
     let updatedShow = try await repo.updateLastOpenedDate(id: createdShow.id)
 
     // Verify date was updated and is newer
-    #expect(updatedShow.dateLastOpened > initialDate)
-    #expect(updatedShow.dateLastOpened.timeIntervalSinceNow > -5)  // Within last 5 seconds
+    #expect(updatedShow.dateLastOpened ?? .now > initialDate)
+    #expect(updatedShow.dateLastOpened?.timeIntervalSinceNow ?? 0 > -5)  // Within last 5 seconds
 
     // Verify by fetching fresh
     let fetchedShow = try await repo.getShow(id: createdShow.id)
