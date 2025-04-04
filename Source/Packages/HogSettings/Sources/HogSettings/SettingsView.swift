@@ -15,17 +15,38 @@
 
 import HogAnalytics
 import HogData
+import HogEnvironment
 import HogRouter
 import HogUtilities
 import SwiftUI
 
 public struct SettingsView: View {
-  public init() {}
+  let showRepository: ShowRepository?
+
+  public init(showRepository: ShowRepository? = nil) {
+    self.showRepository = showRepository
+  }
+
+  // TODO: Think about iphone layout more
   public var body: some View {
-    Text("Hello, World!")
+    VStack {
+      HStack {
+        Text("Programmer settings")
+          .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 0)
+        OpenSoundControlConfigView()
+          .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 0)
+      }
+      ShowSelectionView(repository: showRepository)
+    }
   }
 }
 
 #Preview {
-  SettingsView()
+  @Previewable @State var hogRouter = HogRouter()
+
+  SettingsView(
+    showRepository: ShowMockRespository(preloadedShows: Show.mockShows)
+  )
+  .withPreviewEnvironment()
+  .environment(hogRouter)
 }

@@ -9,9 +9,9 @@
 //  MikaelaCaron - 2022-09-21
 //
 
-import CoffeeToast
 import HogAnalytics
 import HogData
+import HogEnvironment
 import HogRouter
 import HogSettings
 import HogUtilities
@@ -19,37 +19,16 @@ import RevenueCat
 import StoreKit
 import SwiftUI
 
-class ToastNotification: ObservableObject {
-  @Published var isShown = false
-  var color = Color.clear
-  var text = ""
-
-  let ms = 1_000_000
-
-  func animateIn(text: String, color: Color) {
-    self.text = text
-    self.color = color
-
-    DispatchQueue.main.async {
-      self.isShown = true
-    }
-
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-      self.isShown = false
-    }
-  }
-}
-
 @main
 struct iHogApp: App {
-  @AppStorage(AppStorageKey.timesLaunched.rawValue) var timesLaunched: Int = 0
-  @AppStorage(AppStorageKey.showOnboarding.rawValue) var showOnboarding: Bool = true
+  @AppStorage(AppSetting.timesLaunched.rawValue) var timesLaunched: Int = 0
+  @AppStorage(AppSetting.showOnboarding.rawValue) var showOnboarding: Bool = true
 
   @Environment(\.requestReview) var requestReview
   @Environment(\.analytics) var analytics
 
-  @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
-  @StateObject var user = UserState()
+  //  @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
+  //  @StateObject var user = UserState()
 
   @State private var hogRouter = HogRouter()
 
@@ -64,8 +43,9 @@ struct iHogApp: App {
   var body: some Scene {
     WindowGroup {
       SettingsView()
-        .environment(hogRouter)
+        .withHogEnvironment()
     }
+    .environment(hogRouter)
   }
 }
 
@@ -79,7 +59,32 @@ extension iHogApp {
   }
 
   func getCustomerInfo() async throws {
-    user.customerInfo = try await Purchases.shared.restorePurchases()
     analytics.identifyUser(with: Purchases.shared.appUserID)
+  }
+}
+
+struct RCConstants {
+  static let apiKey = "appl_iuNkLloJrdhvmSrVYSoZPrfJcOp"
+
+  enum Entitlements: String {
+    case pro
+    case puntPage = "punt-page"
+
+    var name: String { return rawValue }
+  }
+
+  enum Offerings: String {
+    case puntPage = "punt-page-default"
+    case tipping = "tipping-default"
+    case normal = "default"
+    case year = "year"
+
+    var name: String { return rawValue }
+  }
+
+  func getConvertedToSubscriptionDate() -> Date? {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy/MM/dd"
+    return formatter.date(from: "2022/09/17")
   }
 }

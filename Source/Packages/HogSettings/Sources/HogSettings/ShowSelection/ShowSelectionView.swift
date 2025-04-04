@@ -29,6 +29,11 @@ struct ShowSelectionView: View {
   // Mainly for passing in a repository for testing purposes.
   var repository: ShowRepository? = nil
 
+  let columns = Array(
+    repeating: GridItem(.flexible(), spacing: 16, alignment: .top),
+    count: 3
+  )
+
   var body: some View {
     if viewModel.repository == nil {
       ProgressView()
@@ -42,21 +47,36 @@ struct ShowSelectionView: View {
 
   @ViewBuilder
   var content: some View {
-    ForEach(viewModel.shows) { show in
-      Button {
-        change(to: show)
-      } label: {
-        buttonLabel(icon: show.icon, name: show.name)
+    LazyVGrid(columns: columns, spacing: 24) {
+      ForEach(viewModel.shows) { show in
+        Button {
+          change(to: show)
+        } label: {
+          buttonLabel(icon: show.icon, name: show.name)
+        }
       }
+      Button {
+        //TODO: IMPLEMENT CREATE SHOW
+        fatalError("Implement")
+      } label: {
+        buttonLabel(icon: "folder.badge.plus.fill", name: "New Show")
+      }
+      .tint(.green)
     }
+    .padding()
   }
 
   @ViewBuilder
   func buttonLabel(icon: String, name: String) -> some View {
-    HStack {
+    VStack(spacing: 12) {
       Image(systemName: icon)
+        .font(.largeTitle)
+        .bold()
       Text(name)
+        .font(.headline)
+        .tint(.primary)
     }
+    .frame(maxWidth: 100)
   }
 
   func setupView() async {
@@ -80,7 +100,7 @@ struct ShowSelectionView: View {
 }
 
 #Preview {
-  List {
+  VStack {
     ShowSelectionView(
       repository: ShowMockRespository(preloadedShows: Show.mockShows)
     )
