@@ -13,10 +13,10 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import AppRouter
 import Foundation
 import HogAnalytics
 import HogData
+import HogRouter
 import HogUtilities
 
 @Observable
@@ -24,7 +24,7 @@ import HogUtilities
 final class ShowSelectionViewModel {
   var persistenceController: HogPersistenceController?
   var repository: ShowRepository?
-  var appRouter: AppRouter?
+  var hogRouter: HogRouter?
   var analytics: HogAnalytics?
   var shows: [Show] = []
 
@@ -32,12 +32,12 @@ final class ShowSelectionViewModel {
 
   func setup(
     persistenceController: HogPersistenceController,
-    appRouter: AppRouter,
+    hogRouter: HogRouter,
     repository: ShowRepository? = nil,
     analytics: HogAnalytics
   ) {
     self.persistenceController = persistenceController
-    self.appRouter = appRouter
+    self.hogRouter = hogRouter
     self.analytics = analytics
     if let repository {
       self.repository = repository
@@ -74,7 +74,7 @@ final class ShowSelectionViewModel {
           "Opened show \(updatedShow.name) at \(updatedShow.dateLastOpened?.formatted() ?? "NO OPENED DATE SET")"
         )
     }
-    appRouter?.changeShow(to: show.id)
+    hogRouter?.changeShow(to: show.id)
   }
 
   @MainActor

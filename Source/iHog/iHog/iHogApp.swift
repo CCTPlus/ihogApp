@@ -10,7 +10,9 @@
 //
 
 import CoffeeToast
+import HogAnalytics
 import HogData
+import HogRouter
 import HogSettings
 import HogUtilities
 import RevenueCat
@@ -43,13 +45,13 @@ struct iHogApp: App {
   @AppStorage(AppStorageKey.timesLaunched.rawValue) var timesLaunched: Int = 0
   @AppStorage(AppStorageKey.showOnboarding.rawValue) var showOnboarding: Bool = true
 
-  @Environment(\.persistenceController) var persistenceController
   @Environment(\.requestReview) var requestReview
+  @Environment(\.analytics) var analytics
 
   @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
   @StateObject var user = UserState()
 
-  let analtyics = Analytics.shared
+  @State private var hogRouter = HogRouter()
 
   init() {
     Purchases.logLevel = .debug
@@ -59,49 +61,17 @@ struct iHogApp: App {
     )
   }
 
-  @StateObject private var toastNotification = ToastNotification()
-  @State private var settings = SettingsNav.device
-
   var body: some Scene {
     WindowGroup {
-      Group {
-        Toast(
-          toastNotification.text,
-          backgroundColor: toastNotification.color,
-          isShown: $toastNotification.isShown
-        ) {
-          if showOnboarding {
-            OnboardingView(setting: $settings)
-              .environmentObject(osc)
-              .environmentObject(user)
-          } else {
-            SettingsView()
-          }
-        }
-      }
-      .task {
-        analtyics.logEvent(with: .appLaunched)
-        increaseTimesLaunchedAndAskReview()
-        do {
-          try await getCustomerInfo()
-          user.offerings = try await Purchases.shared.offerings()
-          for await customerInfo in Purchases.shared.customerInfoStream {
-            for _ in customerInfo.activeSubscriptions {
-              HogLogger.log(category: .purchases).debug("🐛 \(customerInfo.activeSubscriptions)")
-            }
-            user.customerInfo = customerInfo
-          }
-        } catch {
-          Analytics.shared.logError(with: error, for: .purchases, level: .critical)
-        }
-      }
+      SettingsView()
+        .environment(hogRouter)
     }
   }
 }
 
 extension iHogApp {
   func increaseTimesLaunchedAndAskReview() {
-    HogLogger.log().debug("🐛 App launched times: \(timesLaunched)")
+    HogLogger.log().info("App launched times: \(timesLaunched)")
     timesLaunched += 1
     if timesLaunched >= 10 {
       requestReview()
@@ -110,6 +80,6 @@ extension iHogApp {
 
   func getCustomerInfo() async throws {
     user.customerInfo = try await Purchases.shared.restorePurchases()
-    analtyics.identifyUser(with: Purchases.shared.appUserID)
+    analytics.identifyUser(with: Purchases.shared.appUserID)
   }
 }

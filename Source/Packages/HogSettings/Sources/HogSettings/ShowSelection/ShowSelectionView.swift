@@ -13,16 +13,16 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import AppRouter
 import HogAnalytics
 import HogData
+import HogRouter
 import HogUtilities
 import SwiftUI
 
 struct ShowSelectionView: View {
   @Environment(\.persistenceController) var persistenceController
   @Environment(\.analytics) var analytics
-  @Environment(AppRouter.self) var appRouter
+  @Environment(HogRouter.self) var hogRouter
 
   @State private var viewModel = ShowSelectionViewModel()
 
@@ -63,7 +63,7 @@ struct ShowSelectionView: View {
     viewModel
       .setup(
         persistenceController: persistenceController,
-        appRouter: appRouter,
+        hogRouter: hogRouter,
         repository: repository,
         analytics: analytics
       )
@@ -85,7 +85,7 @@ struct ShowSelectionView: View {
       repository: ShowMockRespository(preloadedShows: Show.mockShows)
     )
   }
-  .environment(AppRouter())
+  .environment(HogRouter())
   .environment(\.persistenceController, HogPersistenceController(inMemory: true))
   //  .environment(\.analytics, HogAnalytics())
 }

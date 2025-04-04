@@ -1,7 +1,7 @@
 //
 // -----------------------------------------------------------
 // Project: iHog
-// Created on 4/3/25 by @HeyJayWilson
+// Created on 4/4/25 by @HeyJayWilson
 // -----------------------------------------------------------
 // Find HeyJayWilson on the web:
 // 🕸️ Website             https://heyjaywilson.com
@@ -13,19 +13,14 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import HogAnalytics
-import HogData
-import HogRouter
-import HogUtilities
-import SwiftUI
+import Foundation
 
-public struct SettingsView: View {
-  public init() {}
-  public var body: some View {
-    Text("Hello, World!")
-  }
-}
-
-#Preview {
-  SettingsView()
+public enum RouterDestination: Hashable, Sendable {
+  case show(UUID)
+  case osc
+  case programmer
+  case playback
+  case programmerSettings
+  case showSettings
+  case appFeedback
 }

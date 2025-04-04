@@ -17,14 +17,14 @@ let package = Package(
     .package(name: "HogUtilities", path: "../HogUtilities"),
     .package(name: "HogData", path: "../HogData"),
     .package(name: "HogAnalytics", path: "../HogAnalytics"),
-    .package(name: "AppRouter", path: "../AppRouter"),
+    .package(name: "HogRouter", path: "../HogRouter"),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
     .target(
       name: "HogSettings",
-      dependencies: ["AppRouter", "HogUtilities", "HogData", "HogAnalytics"]
+      dependencies: ["HogRouter", "HogUtilities", "HogData", "HogAnalytics"]
     ),
     .testTarget(
       name: "HogSettingsTests",

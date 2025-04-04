@@ -80,7 +80,7 @@ public struct HogAnalytics: Sendable {
     ]
 
     if let identifiableError = error as? IdentifiableError {
-      var stringParameters = processParameters(parameters: eventParameters)
+      let stringParameters = processParameters(parameters: eventParameters)
       // Use simplified error logging for IdentifiableError
       TelemetryDeck
         .errorOccurred(
@@ -89,7 +89,7 @@ public struct HogAnalytics: Sendable {
         )
     } else {
       eventParameters[.error] = error.localizedDescription
-      var stringParameters = processParameters(parameters: eventParameters)
+      let stringParameters = processParameters(parameters: eventParameters)
       // Use full syntax for other errors
       TelemetryDeck
         .signal(AnalyticEvent.error.rawValue, parameters: stringParameters)

@@ -65,7 +65,7 @@
 		15DA2698251237D70063E236 /* iHogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogUITests.swift; sourceTree = "<group>"; };
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		692677A12D0943470006895D /* AppRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppRouter; path = ../Packages/AppRouter; sourceTree = SOURCE_ROOT; };
+		6962C8652DA02AC7002BB43E /* HogRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogRouter; path = ../Packages/HogRouter; sourceTree = SOURCE_ROOT; };
 		69731BBF2D9EC07C0084BBD4 /* HogSettings */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogSettings; path = ../Packages/HogSettings; sourceTree = SOURCE_ROOT; };
 		69731BC22D9F5B4B0084BBD4 /* HogAnalytics */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HogAnalytics; sourceTree = "<group>"; };
 		69A6773A2D9CF14C00B31B37 /* HogData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogData; path = ../Packages/HogData; sourceTree = SOURCE_ROOT; };
@@ -143,7 +143,7 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
-				692677A12D0943470006895D /* AppRouter */,
+				6962C8652DA02AC7002BB43E /* HogRouter */,
 				69731BBF2D9EC07C0084BBD4 /* HogSettings */,
 				69A6773A2D9CF14C00B31B37 /* HogData */,
 				69A6773B2D9CF43800B31B37 /* HogUtilities */,

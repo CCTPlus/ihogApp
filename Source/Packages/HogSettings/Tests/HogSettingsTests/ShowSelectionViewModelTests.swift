@@ -13,9 +13,9 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import AppRouter
 import HogAnalytics
 import HogData
+import HogRouter
 import Testing
 
 @testable import HogSettings
@@ -37,7 +37,7 @@ class ShowSelectionViewModelTests {
     await viewModel
       .setup(
         persistenceController: testPersistenceController,
-        appRouter: AppRouter(),
+        hogRouter: HogRouter(),
         analytics: HogAnalytics()
       )
 
@@ -51,7 +51,7 @@ class ShowSelectionViewModelTests {
     await viewModel
       .setup(
         persistenceController: testPersistenceController,
-        appRouter: AppRouter(),
+        hogRouter: HogRouter(),
         repository: mockRepository,
         analytics: HogAnalytics()
       )
@@ -67,7 +67,7 @@ class ShowSelectionViewModelTests {
     await viewModel
       .setup(
         persistenceController: testPersistenceController,
-        appRouter: AppRouter(),
+        hogRouter: HogRouter(),
         repository: mockRepository,
         analytics: HogAnalytics()
       )
@@ -81,17 +81,19 @@ class ShowSelectionViewModelTests {
       preloadedShows: Show.mockShows
     )
     let viewModel = await ShowSelectionViewModel()
-    let appRouter = await AppRouter()
+    let hogRouter = await HogRouter()
     await viewModel
       .setup(
         persistenceController: testPersistenceController,
-        appRouter: appRouter,
+        hogRouter: hogRouter,
         repository: mockRepository,
         analytics: HogAnalytics()
       )
     await viewModel.fetchShows()
     let chosenShow = await viewModel.shows.first!
     try await viewModel.changeShow(show: chosenShow)
-    await #expect(appRouter.showID == chosenShow.id)
+    await #expect(
+      hogRouter.routerDestination == RouterDestination.show(chosenShow.id)
+    )
   }
 }
