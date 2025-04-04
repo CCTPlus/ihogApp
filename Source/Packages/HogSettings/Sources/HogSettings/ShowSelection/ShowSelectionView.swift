@@ -47,23 +47,25 @@ struct ShowSelectionView: View {
 
   @ViewBuilder
   var content: some View {
-    LazyVGrid(columns: columns, spacing: 24) {
-      ForEach(viewModel.shows) { show in
-        Button {
-          change(to: show)
-        } label: {
-          buttonLabel(icon: show.icon, name: show.name)
+    ScrollView {
+      LazyVGrid(columns: columns, spacing: 24) {
+        ForEach(viewModel.shows) { show in
+          Button {
+            change(to: show)
+          } label: {
+            buttonLabel(icon: show.icon, name: show.name)
+          }
         }
+        Button {
+          //TODO: IMPLEMENT CREATE SHOW
+          fatalError("Implement")
+        } label: {
+          buttonLabel(icon: "folder.badge.plus.fill", name: "New Show")
+        }
+        .tint(.green)
       }
-      Button {
-        //TODO: IMPLEMENT CREATE SHOW
-        fatalError("Implement")
-      } label: {
-        buttonLabel(icon: "folder.badge.plus.fill", name: "New Show")
-      }
-      .tint(.green)
     }
-    .padding()
+    .scrollBounceBehavior(.basedOnSize)
   }
 
   @ViewBuilder

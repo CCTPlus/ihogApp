@@ -43,6 +43,7 @@ public struct SettingsView: View {
           .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 0)
       }
       ShowSelectionView(repository: showRepository)
+        .frame(maxHeight: 300)
     }
   }
 }
