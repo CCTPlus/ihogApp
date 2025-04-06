@@ -22,6 +22,7 @@
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
 		69731BC12D9F5A8F0084BBD4 /* HogSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 69731BC02D9F5A8F0084BBD4 /* HogSettings */; };
 		69A4D80A2D9CF8C9002FB567 /* HogData in Frameworks */ = {isa = PBXBuildFile; productRef = 69A4D8092D9CF8C9002FB567 /* HogData */; };
+		69D14BB42DA1BDE3002D721F /* HogShow in Frameworks */ = {isa = PBXBuildFile; productRef = 69D14BB32DA1BDE3002D721F /* HogShow */; };
 		69E69F842D9CF4FD00BE3143 /* HogUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 69E69F832D9CF4FD00BE3143 /* HogUtilities */; };
 /* End PBXBuildFile section */
 
@@ -64,11 +65,13 @@
 		15DA2698251237D70063E236 /* iHogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogUITests.swift; sourceTree = "<group>"; };
 		15DA269A251237D70063E236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15E2D203253F14F900C7A453 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		6928F3952DA089F300FD03C2 /* HogShow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogShow; path = ../Packages/HogShow; sourceTree = SOURCE_ROOT; };
 		6962C8652DA02AC7002BB43E /* HogRouter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogRouter; path = ../Packages/HogRouter; sourceTree = SOURCE_ROOT; };
 		69731BBF2D9EC07C0084BBD4 /* HogSettings */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogSettings; path = ../Packages/HogSettings; sourceTree = SOURCE_ROOT; };
 		69731BC22D9F5B4B0084BBD4 /* HogAnalytics */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HogAnalytics; sourceTree = "<group>"; };
 		69A6773A2D9CF14C00B31B37 /* HogData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogData; path = ../Packages/HogData; sourceTree = SOURCE_ROOT; };
 		69A6773B2D9CF43800B31B37 /* HogUtilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogUtilities; path = ../Packages/HogUtilities; sourceTree = SOURCE_ROOT; };
+		69C271A42DA0875900057FA6 /* HogEnvironment */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HogEnvironment; path = ../Packages/HogEnvironment; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -103,6 +106,7 @@
 				693137A42CE1579000562B73 /* PostHog in Frameworks */,
 				3730E00D27A17B27006FCA5E /* OctoKit in Frameworks */,
 				69E69F842D9CF4FD00BE3143 /* HogUtilities in Frameworks */,
+				69D14BB42DA1BDE3002D721F /* HogShow in Frameworks */,
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
 				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
@@ -141,8 +145,10 @@
 		15DA266A251237D60063E236 = {
 			isa = PBXGroup;
 			children = (
-				6962C8652DA02AC7002BB43E /* HogRouter */,
 				69731BBF2D9EC07C0084BBD4 /* HogSettings */,
+				6928F3952DA089F300FD03C2 /* HogShow */,
+				69C271A42DA0875900057FA6 /* HogEnvironment */,
+				6962C8652DA02AC7002BB43E /* HogRouter */,
 				69A6773A2D9CF14C00B31B37 /* HogData */,
 				69A6773B2D9CF43800B31B37 /* HogUtilities */,
 				69731BC22D9F5B4B0084BBD4 /* HogAnalytics */,
@@ -241,6 +247,7 @@
 				69E69F832D9CF4FD00BE3143 /* HogUtilities */,
 				69A4D8092D9CF8C9002FB567 /* HogData */,
 				69731BC02D9F5A8F0084BBD4 /* HogSettings */,
+				69D14BB32DA1BDE3002D721F /* HogShow */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -860,6 +867,10 @@
 		69A4D8092D9CF8C9002FB567 /* HogData */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HogData;
+		};
+		69D14BB32DA1BDE3002D721F /* HogShow */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HogShow;
 		};
 		69E69F832D9CF4FD00BE3143 /* HogUtilities */ = {
 			isa = XCSwiftPackageProductDependency;

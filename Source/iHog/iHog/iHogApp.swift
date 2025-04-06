@@ -14,6 +14,7 @@ import HogData
 import HogEnvironment
 import HogRouter
 import HogSettings
+import HogShow
 import HogUtilities
 import RevenueCat
 import StoreKit
@@ -26,9 +27,7 @@ struct iHogApp: App {
 
   @Environment(\.requestReview) var requestReview
   @Environment(\.analytics) var analytics
-
-  //  @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
-  //  @StateObject var user = UserState()
+  @Environment(\.persistenceController) var persistenceController
 
   @State private var hogRouter = HogRouter()
 
@@ -42,8 +41,18 @@ struct iHogApp: App {
 
   var body: some Scene {
     WindowGroup {
-      SettingsView()
-        .withHogEnvironment()
+      ZStack {
+        SettingsView()
+          .withHogEnvironment()
+        if case .show(let showID) = hogRouter.routerDestination {
+          HogShowView(
+            viewModel: HogShowViewModel(
+              persistenceController: persistenceController,
+              showID: showID
+            )
+          )
+        }
+      }
     }
     .environment(hogRouter)
   }
