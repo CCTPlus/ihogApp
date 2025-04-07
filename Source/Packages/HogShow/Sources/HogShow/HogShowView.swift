@@ -13,6 +13,7 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
+import HogAnalytics
 import HogData
 import HogEnvironment
 import HogRouter
@@ -23,6 +24,8 @@ import SwiftUI
 public final class HogShowViewModel {
   var repository: ShowObjectRepository
   let showID: UUID
+
+  var groupObjects: [ShowObject] = []
 
   public init(
     repository: ShowObjectRepository? = nil,
@@ -35,6 +38,18 @@ public final class HogShowViewModel {
     } else {
       //TODO: IMPLEMENT ShowObjectCoreDataRepository and handle it here
       self.repository = ShowObjectMockRepository(preloadedObjects: ShowObject.mockShowObjects)
+    }
+  }
+
+  func getGroups() async throws {
+    let foundGroups = try await repository.getShowObjects(for: showID, of: .group)
+    // Do filtering work off the main actor
+    let existingObjects = Set(groupObjects)
+    let newObjects = foundGroups.filter { !existingObjects.contains($0) }
+
+    // Only switch to main actor for the final update
+    await MainActor.run {
+      groupObjects.append(contentsOf: newObjects)
     }
   }
 }
@@ -51,10 +66,17 @@ public struct HogShowView: View {
     ZStack(alignment: .top) {
       Color.primary.colorInvert()
         .ignoresSafeArea()
+        .task {
+          do {
+            try await viewModel.getGroups()
+          } catch {
+            print("Error: \(error)")
+          }
+        }
       VStack {
         toolbar
         TabView {
-          Text("Programming")
+          ShowObjectGridView(showObjects: viewModel.groupObjects)
             .tabItem {
               Image(systemName: "paintpalette")
             }

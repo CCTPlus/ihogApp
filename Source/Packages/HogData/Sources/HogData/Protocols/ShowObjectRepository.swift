@@ -15,7 +15,7 @@
 
 import Foundation
 
-public protocol ShowObjectRepository {
+public protocol ShowObjectRepository: Sendable {
   /// Fetches all show objects belonging to a show
   func getShowObjects(for showID: UUID) async throws -> [ShowObject]
   /// Fetches all show objects for a show with a specific type
