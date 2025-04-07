@@ -51,6 +51,7 @@ struct iHogApp: App {
               showID: showID
             )
           )
+          .withHogEnvironment()
         }
       }
     }

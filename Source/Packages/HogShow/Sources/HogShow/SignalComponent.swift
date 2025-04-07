@@ -1,7 +1,7 @@
 //
 // -----------------------------------------------------------
 // Project: iHog
-// Created on 4/4/25 by @HeyJayWilson
+// Created on 4/6/25 by @HeyJayWilson
 // -----------------------------------------------------------
 // Find HeyJayWilson on the web:
 // 🕸️ Website             https://heyjaywilson.com
@@ -13,22 +13,33 @@
 // Copyright© 2025 CCT Plus LLC. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
-@Observable
-@MainActor
-public final class HogRouter {
-  public var routerDestination: RouterDestination?
-
-  public init(routerDestination: RouterDestination? = nil) {
-    self.routerDestination = routerDestination
+struct SignalComponent: View {
+  var body: some View {
+    HStack {
+      Circle()
+        .fill(.gray)
+        .frame(width: 24)
+      Text("IN")
+        .font(.caption)
+        .monospaced()
+        .padding(.trailing, 24)
+      Text("OUT")
+        .font(.caption)
+        .monospaced()
+      Circle()
+        .fill(.gray)
+        .frame(width: 24)
+    }
+    .padding(8)
+    .background {
+      Capsule(style: .continuous)
+        .fill(.ultraThickMaterial)
+    }
   }
+}
 
-  public func changeShow(to showID: UUID) {
-    self.routerDestination = .show(showID)
-  }
-
-  public func closeShow() {
-    self.routerDestination = nil
-  }
+#Preview {
+  SignalComponent()
 }

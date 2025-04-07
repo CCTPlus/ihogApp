@@ -20,8 +20,8 @@ public struct ShowObject: Identifiable, Equatable, Hashable, Sendable {
   public var isOutlined: Bool
   public var name: String
   public var number: Double
+  public var type: ObjectType
   var color: String
-  var type: ObjectType
   var showID: UUID
 
   public init(
@@ -78,6 +78,10 @@ public enum ObjectType: String, Sendable {
   case macro
   case plot
   case page
+
+  public var paletteLetter: String {
+    self.rawValue.uppercased().first.map { String($0) } ?? ""
+  }
 }
 
 // MOCKS

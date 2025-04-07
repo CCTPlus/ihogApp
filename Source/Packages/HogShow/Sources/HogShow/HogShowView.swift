@@ -14,13 +14,15 @@
 //
 
 import HogData
+import HogEnvironment
+import HogRouter
 import SwiftUI
 
 @Observable
 @MainActor
 public final class HogShowViewModel {
   var repository: ShowObjectRepository
-  var showID: UUID
+  let showID: UUID
 
   public init(
     repository: ShowObjectRepository? = nil,
@@ -32,12 +34,13 @@ public final class HogShowViewModel {
       self.repository = repository
     } else {
       //TODO: IMPLEMENT ShowObjectCoreDataRepository and handle it here
-      fatalError("Implement")
+      self.repository = ShowObjectMockRepository(preloadedObjects: ShowObject.mockShowObjects)
     }
   }
 }
 
 public struct HogShowView: View {
+  @Environment(HogRouter.self) var hogRouter
   @State private var viewModel: HogShowViewModel
 
   public init(viewModel: HogShowViewModel) {
@@ -45,13 +48,82 @@ public struct HogShowView: View {
   }
 
   public var body: some View {
-    VStack {
-      Text("Show loaded")
+    ZStack(alignment: .top) {
+      Color.primary.colorInvert()
+        .ignoresSafeArea()
+      VStack {
+        toolbar
+        TabView {
+          Text("Programming")
+            .tabItem {
+              Image(systemName: "paintpalette")
+            }
+            .tag(1)
+          Text("Playback")
+            .tabItem {
+              Image(systemName: "play.rectangle.fill")
+            }
+            .tag(2)
+          Text("Punt 1")
+            .tabItem {
+              Image(systemName: "slider.horizontal.below.square.and.square.filled")
+            }
+            .tag(3)
+          Text("Punt 2")
+            .tabItem {
+              Image(systemName: "esim")
+            }
+            .tag(4)
+          Text("Punt 3")
+            .tabItem {
+              Image(systemName: "paintbrush")
+            }
+            .tag(5)
+        }
+      }
+    }
+  }
+
+  @ViewBuilder
+  var toolbar: some View {
+    ZStack {
+      HStack(spacing: 16) {
+        Button {
+          print("Open prog hardwar")
+        } label: {
+          Image(systemName: "cooktop")
+        }
+        .buttonStyle(.borderedProminent)
+        Button {
+          print("Open prog hardwar")
+        } label: {
+          Image(systemName: "slider.vertical.3")
+        }
+        .buttonStyle(.borderedProminent)
+        Spacer()
+        // This is for the height. Is there a better way to do this?
+        SignalComponent()
+          .opacity(0)
+        Button("Quit") {
+          hogRouter.closeShow()
+        }
+        .buttonStyle(.borderedProminent)
+      }
+      .padding(.horizontal)
+      HStack {
+        Spacer()
+        SignalComponent()
+        Spacer()
+      }
     }
   }
 }
 
 #Preview {
+  @Previewable @State var hogRouter = HogRouter(
+    routerDestination: .show(Show.mockShow.id)
+  )
+
   HogShowView(
     viewModel: HogShowViewModel(
       repository: ShowObjectMockRepository(
@@ -63,4 +135,6 @@ public struct HogShowView: View {
       showID: Show.mockShow.id
     )
   )
+  .withPreviewEnvironment()
+  .environment(hogRouter)
 }

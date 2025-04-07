@@ -18,6 +18,7 @@ let package = Package(
     .package(name: "HogData", path: "../HogData"),
     .package(name: "HogAnalytics", path: "../HogAnalytics"),
     .package(name: "HogRouter", path: "../HogRouter"),
+    .package(name: "HogEnvironment", path: "../HogEnvironment"),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -25,7 +26,7 @@ let package = Package(
     .target(
       name: "HogShow",
       dependencies: [
-        "HogUtilities", "HogRouter", "HogData", "HogAnalytics",
+        "HogUtilities", "HogRouter", "HogData", "HogAnalytics", "HogEnvironment",
       ]
     ),
     .testTarget(
