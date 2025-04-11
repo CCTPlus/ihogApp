@@ -8,7 +8,6 @@
 import SwiftData
 import SwiftUI
 
-@available(iOS 17, *)
 struct ExperimentalFeatureView: View {
   @Environment(\.modelContext) var context
 

@@ -12,7 +12,6 @@ import StoreKit
 import SwiftUI
 
 /// iOS 17 + settings view
-@available(iOS 17.0, *)
 struct SettingsView: View {
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -277,7 +276,6 @@ struct SettingsView: View {
 
 }
 
-@available(iOS 17, *)
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsView()
