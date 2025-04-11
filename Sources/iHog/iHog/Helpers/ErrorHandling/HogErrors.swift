@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import TelemetryDeck
 
 public enum OSCErrors: String, Error {
   case FailedToCreateMessage = "Message was not created"
@@ -30,4 +31,15 @@ enum HogOSCError: Error {
         "Could not load a persistent store"
     }
   }
+}
+
+enum HogError: IdentifiableError, Error {
+  var id: String {
+    switch self {
+      case .showNotFound:
+        "ShowNotFound"
+    }
+  }
+
+  case showNotFound
 }
