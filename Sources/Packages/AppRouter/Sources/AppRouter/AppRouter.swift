@@ -3,7 +3,6 @@
 
 import Foundation
 
-@available(iOS 17.0, *)
 @Observable
 public final class AppRouter {
   public var selectedSheet: SheetDestination?

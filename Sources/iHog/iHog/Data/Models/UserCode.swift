@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-@available(iOS 17, *)
 @Model final class UserCode {
   var dateCreated: Date?
   var code: String?
