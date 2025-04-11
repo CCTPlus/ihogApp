@@ -76,7 +76,6 @@ struct SettingsView: View {
           }
           ShowSelectionView()
             .environment(router)
-            .environment(\.managedObjectContext, viewContext)
             .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
         }
         // MARK: Settings
