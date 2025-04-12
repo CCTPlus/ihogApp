@@ -17,3 +17,9 @@ protocol ShowRepository {
   /// Delete a show for a given ID
   func deleteShow(by id: UUID) async throws
 }
+
+extension ShowRepository {
+  func notifyCreatedShow(show: Show) {
+    NotificationCenter.default.post(name: .didSaveShow, object: show)
+  }
+}

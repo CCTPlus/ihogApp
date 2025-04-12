@@ -29,7 +29,7 @@ struct ExperimentalFeatureView: View {
     } footer: {
       Text("Enabling these features may cause data loss.")
     }
-    .onChange(of: featureSwiftData) { newValue in
+    .onChange(of: featureSwiftData) { _, newValue in
       Analytics.shared.logFeatureFlagToggle(flag: .swiftdata, value: newValue)
     }
   }

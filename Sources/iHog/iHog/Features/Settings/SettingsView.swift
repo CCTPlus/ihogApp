@@ -11,8 +11,8 @@ import RevenueCat
 import StoreKit
 import SwiftUI
 
-/// iOS 17 + settings view
 struct SettingsView: View {
+  @Environment(\.modelContext) var modelContext
   @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
@@ -20,7 +20,9 @@ struct SettingsView: View {
   @EnvironmentObject var osc: OSCHelper
   @EnvironmentObject var toast: ToastNotification
 
-  // Gets shows
+  @State private var notificationTask: Task<Void, Never>? = nil
+
+  // TODO: Remove this 2025-04-11
   @FetchRequest(
     sortDescriptors: [NSSortDescriptor(keyPath: \CDShowEntity.dateLastModified, ascending: true)],
     animation: .default
@@ -76,7 +78,7 @@ struct SettingsView: View {
           }
           ShowSelectionView()
             .environment(router)
-            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
+            .environment(\.modelContext, modelContext)
         }
         // MARK: Settings
         Section {
@@ -199,6 +201,7 @@ struct SettingsView: View {
           case .newShow:
             NavigationStack {
               NewShowView()
+                .environment(\.modelContext, modelContext)
             }
           case .paywall:
             NavigationStack {
@@ -233,11 +236,32 @@ struct SettingsView: View {
       }
     }
     .task {
-      networkMonitor.startMonitoring()
+      notificationTask = Task {
+        await listenForShowCreated()
+      }
     }
     .onDisappear {
       networkMonitor.stopMonitoring()
+      notificationTask?.cancel()
     }
+  }
+
+  func listenForShowCreated() async {
+    await Task.detached {
+      for await notification in NotificationCenter.default.notifications(named: .didSaveShow) {
+        guard let show = notification.object as? Show else {
+          HogLogger
+            .log(category: .show)
+            .error("🔔 Saved show notification could not find Show object")
+          continue
+        }
+        await MainActor.run {
+          HogLogger.log(category: .show).info("🔔 Saved show notification fired")
+          router.changeShow(to: show.id)
+        }
+      }
+    }
+    .value
   }
 
   func delete(at offsets: IndexSet) {

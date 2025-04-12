@@ -11,9 +11,17 @@ import SwiftData
 @ModelActor
 actor ShowSwiftDataRepository: ShowRepository {
   func createShow(name: String, icon: String) async throws -> Show {
-    let newShowEntity = ShowEntity(icon: icon, name: name)
+    let newShowEntity = ShowEntity(icon: icon, id: UUID(), name: name)
+    modelContext.insert(newShowEntity)
     try modelContext.save()
-    return Show(from: newShowEntity)
+    let createdShow = Show(from: newShowEntity)
+    HogLogger
+      .log(category: .show)
+      .debug(
+        "Show created with entity ID: \(newShowEntity.id?.uuidString ?? "No ID") | Non managed ID: \(createdShow.id.uuidString)"
+      )
+    notifyCreatedShow(show: createdShow)
+    return createdShow
   }
 
   func getAllShows() async throws -> [Show] {
