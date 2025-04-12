@@ -29,7 +29,8 @@ struct ShowSelectionView: View {
           }
       }
     } else {
-      ProgressView()
+      Text("You have no shows.\nPress the \(Image(systemName: "plus.circle")) to add a new show.")
+        .foregroundStyle(.secondary)
         .task {
           await getShows()
         }
@@ -76,16 +77,14 @@ extension ShowSelectionView {
   }
 
   private func getShows() async {
-    print("Ran task")
     let repo = showRespository ?? ShowSwiftDataRepository(modelContainer: modelContext.container)
     do {
       let foundShows = try await repo.getAllShows()
       await MainActor.run {
         self.shows = foundShows
       }
-      print("Found \(shows.count)")
+      HogLogger.log(category: .show).info("Found \(foundShows.count) shows")
     } catch {
-      print("Failed")
       HogLogger.log(category: .show).error("Failed to fetch shows: \(error)")
     }
 
