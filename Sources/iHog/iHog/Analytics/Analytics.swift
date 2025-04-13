@@ -89,14 +89,30 @@ class Analytics {
 
   func logError(with error: Error, for logCategory: LogCategory, level: ErrorLevel) {
     HogLogger.log(category: logCategory).error("🚨 Error: \(error)")
-    PostHogSDK.shared.capture(
-      AnalyticEvent.error.rawValue,
-      properties: ["ErrorID": error.localizedDescription, "errorLevel": level.rawValue]
-    )
     TelemetryDeck.signal(
       "iHog.Error.occurred",
       parameters: ["iHog.Error.id": error.localizedDescription]
     )
+    if let error = error as? IdentifiableError {
+      TelemetryDeck
+        .errorOccurred(
+          identifiableError: error,
+          parameters: [
+            "error.level": level.rawValue,
+            "error.category": logCategory.rawValue,
+          ]
+        )
+    } else {
+      TelemetryDeck
+        .errorOccurred(
+          id: logCategory.rawValue,
+          message: error.localizedDescription,
+          parameters: [
+            "error.level": level.rawValue,
+            "error.category": logCategory.rawValue,
+          ]
+        )
+    }
   }
 
   func logPurchase(transacion: Transaction) {

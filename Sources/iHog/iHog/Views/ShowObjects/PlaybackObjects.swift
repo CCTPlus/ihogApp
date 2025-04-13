@@ -116,29 +116,15 @@ struct PlaybackObjects: View {
 
   // MARK: add List
   func addList() {
-    let newList = ShowObject(
-      id: UUID(),
-      objType: .list,
-      number: Double(show.lists.count + 1),
-      objColor: OBJ_COLORS[buttonColorList].description,
-      isOutlined: !buttonFilledList
-    )
-
-    show.addList(newList)
-
-    let obj = CDShowObjectEntity(context: viewContext)
-    obj.id = newList.id
-    obj.isOutlined = newList.isOutlined
-    obj.number = newList.number
-    obj.objColor = newList.objColor
-    obj.objType = newList.objType.rawValue
-    obj.showID = chosenShowID
-
-    do {
-      print("Save")
-      try viewContext.save()
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+    Task {
+      let color = OBJ_COLORS[buttonColorList].description
+      let isOutlined = !buttonFilledList
+      do {
+        try await show
+          .createObject(color: color, type: .list, isOutlined: isOutlined)
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+      }
     }
   }
 

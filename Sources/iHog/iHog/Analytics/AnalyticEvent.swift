@@ -11,8 +11,6 @@ enum AnalyticEvent: String {
   case appLaunched
   /// Track when the subscribe button is tapped
   case subscribeButtonTapped
-  /// Track when an error occurs
-  case error
   /// Track when a purchase is made
   case purchase
   /// Track when the connect to console button is tapped
@@ -29,4 +27,18 @@ enum AnalyticEvent: String {
   case userCodeLoaded
   /// Track when a feature flag is toggled
   case featureFlagToggled
+  /// Show was actually deleted
+  case showDeleted
+  /// Button to delete show was tapped
+  case showDeleteTapped
+
+  /// Hyphen separated
+  var value: String {
+    switch self {
+      default:
+        String(describing: self)
+          .replacingOccurrences(of: "([A-Z])", with: "-$1", options: .regularExpression)
+          .lowercased()
+    }
+  }
 }

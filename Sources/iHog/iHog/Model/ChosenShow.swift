@@ -19,16 +19,22 @@ class ChosenShow: ObservableObject {
     return lists + scenes
   }
 
-  var persistence: PersistenceController
-  var showID: String
+  var showID: UUID
+  var showObjectRepository: ShowObjectRepository
+  var showRepository: ShowRepository
 
-  init(showID: String, persistence: PersistenceController) {
+  init(
+    showID: UUID,
+    showObjectRepository: ShowObjectRepository,
+    showRepository: ShowRepository
+  ) {
     scenes = []
     lists = []
     groups = []
     palettes = []
-    self.persistence = persistence
     self.showID = showID
+    self.showObjectRepository = showObjectRepository
+    self.showRepository = showRepository
     getShowInfo()
     getAllObjects()
     HogLogger.log(category: .show)
@@ -36,79 +42,124 @@ class ChosenShow: ObservableObject {
         "Show \(showID) initialized with \(self.scenes.count) scenes, \(self.lists.count) lists, \(self.groups.count) groups, and \(self.palettes.count) palettes"
       )
     // Needed so that show objects get added to the proper show since I'm not using relationships correctly
-    UserDefaults.standard.set(showID, forKey: AppStorageKey.chosenShowID.rawValue)
+    UserDefaults.standard
+      .set(showID.uuidString, forKey: AppStorageKey.chosenShowID.rawValue)
   }
 
   func getShowInfo() {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowEntity")
-    fetchRequest.predicate = NSPredicate(format: "id == %@", showID)
-    do {
-      let results =
-        try persistence.container.viewContext.fetch(fetchRequest) as? [CDShowEntity]
-      guard let show = results?.first else {
-        HogLogger.log(category: .show).error("No show found with ID \(self.showID)")
-        return
+    Task {
+      do {
+        let show = try await showRepository.getShow(by: showID)
+        await MainActor.run {
+          self.showName = show.name
+        }
+      } catch {
+        Analytics.shared.logError(with: error, for: .show, level: .warning)
       }
-      showName = show.name ?? "No name"
-    } catch {
-      HogLogger.log(category: .show).error("Error fetching show info: \(error)")
     }
   }
 
   func getAllObjects() {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObjectEntity")
-    fetchRequest.predicate = NSPredicate(format: "showID == %@", showID)
-    do {
-      guard
-        let results =
-          try persistence.container.viewContext.fetch(fetchRequest) as? [CDShowObjectEntity]
-      else {
-        HogLogger.log(category: .coreData).error("🚨 \(#function) could not perform fetch")
-        return
-      }
-      for showObj in results {
-        var newObj = ShowObject(
-          id: showObj.id!,
-          objType: .group,
-          number: showObj.number,
-          name: showObj.name,
-          objColor: showObj.objColor ?? "red",
-          isOutlined: showObj.isOutlined
+    Task {
+      do {
+        async let foundScenes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .scene
         )
-        switch showObj.objType {
-          case ShowObjectType.group.rawValue:
-            addGroup(newObj)
-          case ShowObjectType.intensity.rawValue:
-            newObj.objType = .intensity
-            addPalette(newObj)
-          case ShowObjectType.position.rawValue:
-            newObj.objType = .position
-            addPalette(newObj)
-          case ShowObjectType.color.rawValue:
-            newObj.objType = .color
-            addPalette(newObj)
-          case ShowObjectType.beam.rawValue:
-            newObj.objType = .beam
-            addPalette(newObj)
-          case ShowObjectType.effect.rawValue:
-            newObj.objType = .effect
-            addPalette(newObj)
-          case ShowObjectType.list.rawValue:
-            newObj.objType = .list
-            addList(newObj)
-          case ShowObjectType.scene.rawValue:
-            newObj.objType = .scene
-            addScene(newObj)
-          default:
-            continue
+        async let foundLists = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .list
+        )
+        async let foundGroups = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .group
+        )
+        async let foundIntPalettes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .intensity
+        )
+        async let foundColorPalettes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .color
+        )
+        async let foundPositionPalettes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .position
+        )
+        async let foundBeamPalettes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .beam
+        )
+        async let foundEffectPalettes = try showObjectRepository.getAllObjects(
+          from: showID,
+          of: .effect
+        )
+
+        try await foundLists.forEach { obj in
+          addList(obj)
         }
+
+        try await foundScenes.forEach { obj in
+          addScene(obj)
+        }
+
+        try await foundGroups.forEach { obj in
+          addGroup(obj)
+        }
+
+        try await foundIntPalettes.forEach { obj in
+          addPalette(obj)
+        }
+
+        try await foundBeamPalettes.forEach { obj in
+          addPalette(obj)
+        }
+
+        try await foundColorPalettes.forEach { obj in
+          addPalette(obj)
+        }
+
+        try await foundPositionPalettes.forEach { obj in
+          addPalette(obj)
+        }
+
+        try await foundEffectPalettes.forEach { obj in
+          addPalette(obj)
+        }
+      } catch {
+        Analytics.shared.logError(with: error, for: .show, level: .warning)
       }
-      groups.sort(by: { $0.number < $1.number })
-      palettes.sort(by: { $0.number < $1.number })
-      lists.sort(by: { $0.number < $1.number })
-      scenes.sort(by: { $0.number < $1.number })
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+    }
+  }
+
+  func createObject(color: String, type: ShowObjectType, isOutlined: Bool) async throws {
+    let newObject =
+      try await showObjectRepository
+      .createObject(
+        for: showID,
+        name: nil,
+        type: type,
+        color: color,
+        isOutlined: isOutlined
+      )
+    await MainActor.run {
+      switch type {
+        case .group:
+          addGroup(newObject)
+        case .intensity, .position, .color, .beam, .effect:
+          addPalette(newObject)
+        case .list:
+          addList(newObject)
+        case .scene:
+          addScene(newObject)
+        default:
+          Analytics.shared
+            .logError(
+              with: HogError.objectTypeNotFound,
+              for: .show,
+              level: .warning
+            )
+      }
     }
   }
 
@@ -138,6 +189,7 @@ class ChosenShow: ObservableObject {
       scenes.removeAll { $0.id == obj.id }
     }
   }
+
   // MARK: Lists
   func addList(_ obj: ShowObject) {
     if obj.objType == .list {
@@ -167,7 +219,6 @@ class ChosenShow: ObservableObject {
 
   // MARK: Groups
   func addGroup(_ obj: ShowObject) {
-    HogLogger.log(category: .show).debug("🐛 Adding \(obj.number) group")
     if obj.objType == .group {
       groups.append(obj)
     }

@@ -65,13 +65,15 @@ extension ShowSelectionView {
   }
 
   private func deleteShow(by id: UUID) {
+    Analytics.shared.logEvent(with: .showDeleteTapped)
     Task {
       let repo = showRespository ?? ShowSwiftDataRepository(modelContainer: modelContext.container)
       do {
         try await repo.deleteShow(by: id)
+        Analytics.shared.logEvent(with: .showDeleted)
         await getShows()
       } catch {
-        HogLogger.log(category: .show).error("Failed to delete show: \(error)")
+        Analytics.shared.logError(with: error, for: .show, level: .critical)
       }
     }
   }
@@ -85,7 +87,7 @@ extension ShowSelectionView {
       }
       HogLogger.log(category: .show).info("Found \(foundShows.count) shows")
     } catch {
-      HogLogger.log(category: .show).error("Failed to fetch shows: \(error)")
+      Analytics.shared.logError(with: error, for: .show, level: .critical)
     }
 
   }

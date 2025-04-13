@@ -215,8 +215,11 @@ struct SettingsView: View {
         case .show(let showID):
           ShowNavigation(
             chosenShow: ChosenShow(
-              showID: showID.uuidString,
-              persistence: PersistenceController.shared
+              showID: showID,
+              showObjectRepository: ShowObjectSwiftDataRepository(
+                modelContainer: modelContext.container
+              ),
+              showRepository: ShowSwiftDataRepository(modelContainer: modelContext.container)
             )
           )
         case .osc:

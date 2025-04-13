@@ -26,6 +26,10 @@ class ShowMockRespository: ShowRepository {
     return newShow
   }
 
+  func getShow(by id: UUID) async throws -> Show {
+    return shows.first(where: { $0.id == id })!
+  }
+
   func getAllShows() async throws -> [Show] {
     print(shows.count)
     return shows.sorted(by: { $0.dateLastModified > $1.dateLastModified })
