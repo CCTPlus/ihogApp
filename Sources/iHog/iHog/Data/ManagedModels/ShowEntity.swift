@@ -16,6 +16,8 @@ import SwiftData
   var id: UUID?
   var name: String = "New Show"
   var note: String?
+
+  @Relationship(deleteRule: .cascade, inverse: \ShowObjectEntity.show)
   var objects: [ShowObjectEntity]?
 
   init(

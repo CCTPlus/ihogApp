@@ -91,6 +91,7 @@ struct NewShowView: View {
         let name = showName
         let icon = selectedIcon.name
         let createdShow = try await repository.createShow(name: name, icon: icon)
+        HogLogger.log(category: .show).info("Created show \(createdShow.name)")
         await MainActor.run {
           self.user.resetNavigation()
           dismiss()

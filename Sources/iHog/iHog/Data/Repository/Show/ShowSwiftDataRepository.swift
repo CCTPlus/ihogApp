@@ -24,6 +24,15 @@ actor ShowSwiftDataRepository: ShowRepository {
     return createdShow
   }
 
+  func getShow(by id: UUID) async throws -> Show {
+    let descriptor = FetchDescriptor<ShowEntity>(predicate: #Predicate { $0.id == id })
+    guard let show = try modelContext.fetch(descriptor).first else {
+      throw HogError.showNotFound
+    }
+
+    return Show(from: show)
+  }
+
   func getAllShows() async throws -> [Show] {
     let descriptor = FetchDescriptor<ShowEntity>(
       sortBy: [SortDescriptor(\.dateLastModified, order: .reverse)]

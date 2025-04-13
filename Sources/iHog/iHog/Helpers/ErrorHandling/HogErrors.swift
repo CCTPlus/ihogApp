@@ -36,10 +36,13 @@ enum HogOSCError: Error {
 enum HogError: IdentifiableError, Error {
   var id: String {
     switch self {
-      case .showNotFound:
-        "ShowNotFound"
+      default:
+        String(describing: self)
+          .replacingOccurrences(of: "([A-Z])", with: "-$1", options: .regularExpression)
+          .lowercased()
     }
   }
 
   case showNotFound
+  case objectTypeNotFound
 }

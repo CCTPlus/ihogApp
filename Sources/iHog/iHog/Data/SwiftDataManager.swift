@@ -30,12 +30,17 @@ struct SwiftDataManager {
       fatalError(HogOSCError.noAppGroupURL.localizedDescription)
     }
 
-    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+    let configuration = ModelConfiguration(
+      schema: schema,
+      url: url,
+      allowsSave: true,
+      cloudKitDatabase: .automatic
+    )
 
     do {
       return try ModelContainer(
         for: schema,
-        configurations: [modelConfiguration, ModelConfiguration(url: url)]
+        configurations: [configuration]
       )
     } catch {
       Analytics.shared.logError(with: error, for: .swiftData, level: .fatal)

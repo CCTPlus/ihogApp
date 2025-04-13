@@ -28,12 +28,37 @@ public enum ShowObjectType: String {
 
 /// An object in the show that is used for programming or playback.
 struct ShowObject: Identifiable, Hashable {
-  var id: UUID = UUID()
+  var id: UUID
   var objType: ShowObjectType
   var number: Double
   var name: String?
   var objColor: String
-  var isOutlined: Bool = true
+  var isOutlined: Bool
+
+  init(
+    id: UUID = UUID(),
+    objType: ShowObjectType,
+    number: Double,
+    name: String? = nil,
+    objColor: String,
+    isOutlined: Bool = true
+  ) {
+    self.id = id
+    self.objType = objType
+    self.number = number
+    self.name = name
+    self.objColor = objColor
+    self.isOutlined = isOutlined
+  }
+
+  init(from entity: ShowObjectEntity) {
+    self.objType = ShowObjectType(rawValue: entity.objType ?? "") ?? .group
+    self.id = entity.id ?? UUID()
+    self.number = entity.number ?? 0
+    self.name = entity.name
+    self.objColor = entity.objColor ?? "red"
+    self.isOutlined = entity.isOutlined ?? true
+  }
 
   // Adjust values
   mutating func setName(_ newName: String?) {
@@ -97,6 +122,12 @@ struct ShowObject: Identifiable, Hashable {
         return "S"
       default:
         // NO TYPE FOUND
+        Analytics.shared
+          .logError(
+            with: HogError.objectTypeNotFound,
+            for: .show,
+            level: .warning
+          )
         return "NTF"
     }
   }
