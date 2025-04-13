@@ -25,9 +25,6 @@ struct PlaybackObjects: View {
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
 
-  @State private var listObjects: [ShowObject] = []
-  @State private var sceneObjects: [ShowObject] = []
-
   @ObservedObject var show: ChosenShow
 
   // Size selections
@@ -109,9 +106,6 @@ struct PlaybackObjects: View {
       }
     }
     .padding()
-    .onAppear {
-      //      getAllObjects()
-    }
   }
 
   // MARK: add List
@@ -130,28 +124,15 @@ struct PlaybackObjects: View {
 
   // MARK: add Scene
   func addScene() {
-    let newScene = ShowObject(
-      id: UUID(),
-      objType: .scene,
-      number: Double(show.scenes.count + 1),
-      objColor: OBJ_COLORS[buttonColorScene].description,
-      isOutlined: !buttonFilledScene
-    )
-
-    show.addScene(newScene)
-
-    let obj = CDShowObjectEntity(context: viewContext)
-    obj.id = newScene.id
-    obj.isOutlined = newScene.isOutlined
-    obj.number = newScene.number
-    obj.objColor = newScene.objColor
-    obj.objType = newScene.objType.rawValue
-    obj.showID = chosenShowID
-
-    do {
-      try viewContext.save()
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+    Task {
+      let color = OBJ_COLORS[buttonColorScene].description
+      let isOutlined = !buttonFilledList
+      do {
+        try await show
+          .createObject(color: color, type: .scene, isOutlined: isOutlined)
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+      }
     }
   }
 
@@ -159,45 +140,6 @@ struct PlaybackObjects: View {
   // TODO: Add OSC
   func releaseAll() {
     print("Release all")
-  }
-
-  // MARK: Get all objects
-  func getAllObjects() {
-    show.lists = []
-    show.scenes = []
-
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShowObjectEntity")
-    fetchRequest.predicate = NSPredicate(format: "showID == %@", chosenShowID)
-
-    do {
-      let results = try viewContext.fetch(fetchRequest) as! [CDShowObjectEntity]
-      for showObj in results {
-        // create temp object
-        var tempOBJ = ShowObject(
-          id: showObj.id!,
-          objType: .list,
-          number: showObj.number,
-          name: showObj.name,
-          objColor: showObj.objColor ?? "gray",
-          isOutlined: showObj.isOutlined
-        )
-        // determine object type and add to proper list
-        switch showObj.objType {
-          case ShowObjectType.list.rawValue:
-            tempOBJ.objType = .list
-            show.addList(tempOBJ)
-          case ShowObjectType.scene.rawValue:
-            tempOBJ.objType = .scene
-            show.addScene(tempOBJ)
-          default:
-            continue
-        }
-      }
-      show.lists.sort(by: { $0.number < $1.number })
-      show.scenes.sort(by: { $0.number < $1.number })
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
-    }
   }
 
   /// Sets a max button size
