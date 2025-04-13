@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1521CA8E26700E1D00014B34 /* ShowObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521CA8D26700E1D00014B34 /* ShowObjectTests.swift */; };
-		15893A2C2671734000780B31 /* ChosenShowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893A2B2671734000780B31 /* ChosenShowTests.swift */; };
 		15BE2E5B25C88F35009D8E77 /* iHogUITestsScreenShots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BE2E5A25C88F35009D8E77 /* iHogUITestsScreenShots.swift */; };
 		15BE2E6725C88FC7009D8E77 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BE2E6625C88FC7009D8E77 /* SnapshotHelper.swift */; };
 		15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C8285025FA4B83003FAEFA /* StoreKit.framework */; };
@@ -48,8 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1521CA8D26700E1D00014B34 /* ShowObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowObjectTests.swift; sourceTree = "<group>"; };
-		15893A2B2671734000780B31 /* ChosenShowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenShowTests.swift; sourceTree = "<group>"; };
 		15BE2E5825C88F35009D8E77 /* iHogUITestsScreenShots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iHogUITestsScreenShots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BE2E5A25C88F35009D8E77 /* iHogUITestsScreenShots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iHogUITestsScreenShots.swift; sourceTree = "<group>"; };
 		15BE2E5C25C88F35009D8E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,8 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				15DA268F251237D70063E236 /* Info.plist */,
-				1521CA8D26700E1D00014B34 /* ShowObjectTests.swift */,
-				15893A2B2671734000780B31 /* ChosenShowTests.swift */,
 			);
 			path = iHogTests;
 			sourceTree = "<group>";
@@ -376,8 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1521CA8E26700E1D00014B34 /* ShowObjectTests.swift in Sources */,
-				15893A2C2671734000780B31 /* ChosenShowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
