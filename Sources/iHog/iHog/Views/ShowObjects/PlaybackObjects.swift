@@ -126,7 +126,7 @@ struct PlaybackObjects: View {
   func addScene() {
     Task {
       let color = OBJ_COLORS[buttonColorScene].description
-      let isOutlined = !buttonFilledList
+      let isOutlined = !buttonFilledScene
       do {
         try await show
           .createObject(color: color, type: .scene, isOutlined: isOutlined)
