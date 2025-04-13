@@ -147,59 +147,33 @@ struct ProgrammingObjects: View {
 
   // MARK: Add Group
   func addGroup() {
-    let newGroup = ShowObject(
-      id: UUID(),
-      objType: .group,
-      number: (Double((show.groups.count + 1))),
-      objColor: OBJ_COLORS[buttonColorGroup].description,
-      isOutlined: isButtonFilledGroup
-    )
-
-    let obj = CDShowObjectEntity(context: viewContext)
-    obj.id = newGroup.id
-    obj.isOutlined = newGroup.isOutlined
-    obj.number = newGroup.number
-    obj.objColor = newGroup.objColor
-    obj.objType = newGroup.objType.rawValue
-    obj.showID = chosenShowID
-    do {
-      HogLogger.log(category: .coreData).debug("🐛 Saving \(obj.number) group")
-      try viewContext.save()
-      show.addGroup(newGroup)
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+    Task {
+      let color = OBJ_COLORS[buttonColorGroup].description
+      let isOutlined = !isButtonFilledGroup
+      do {
+        try await show
+          .createObject(color: color, type: .group, isOutlined: isOutlined)
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+      }
     }
   }
 
   // MARK: Add Palette
   func addPalette() {
-    let newPalette = ShowObject(
-      id: UUID(),
-      objType: paletteTypes[chosenPaletteType],
-      number: Double(
-        (show.palettes
-          .filter({ obj in
-            return obj.objType == paletteTypes[chosenPaletteType]
-          })
-          .count) + 1
-      ),
-      objColor: OBJ_COLORS[buttonColorPalette].description,
-      isOutlined: isButtonFilledPalette
-    )
-
-    show.addPalette(newPalette)
-
-    let obj = CDShowObjectEntity(context: viewContext)
-    obj.id = newPalette.id
-    obj.isOutlined = newPalette.isOutlined
-    obj.number = newPalette.number
-    obj.objColor = newPalette.objColor
-    obj.objType = newPalette.objType.rawValue
-    obj.showID = chosenShowID
-    do {
-      try viewContext.save()
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+    Task {
+      let color = OBJ_COLORS[buttonColorPalette].description
+      let isOutlined = !isButtonFilledPalette
+      do {
+        try await show
+          .createObject(
+            color: color,
+            type: paletteTypes[chosenPaletteType],
+            isOutlined: isButtonFilledPalette
+          )
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
+      }
     }
   }
 
