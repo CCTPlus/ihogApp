@@ -120,4 +120,11 @@ actor ShowObjectSwiftDataRepository: ShowObjectRepository {
     try modelContext.save()
     return ShowObject(from: foundObject)
   }
+
+  func deleteAll() async throws {
+    let descriptor = FetchDescriptor<ShowObjectEntity>()
+    let objects = try modelContext.fetch(descriptor)
+    objects.forEach { modelContext.delete($0) }
+    try modelContext.save()
+  }
 }

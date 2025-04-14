@@ -38,13 +38,17 @@ class Analytics {
   }
 
   private func getNumberOfShows() async -> Int {
-    let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
-    let numberOfShows: Int? = try? await backgroundContext.perform {
-      let fetchRequest: NSFetchRequest<CDShowEntity> = CDShowEntity.fetchRequest()
-      let count = try backgroundContext.count(for: fetchRequest)
+    //TODO: IMPLEMENT Use SwiftData instead
+    let showRepository = ShowSwiftDataRepository(
+      modelContainer: SwiftDataManager.modelContainer
+    )
+    do {
+      let count = try await showRepository.getCountOfShows()
       return count
+    } catch {
+      logError(with: error, for: .analytics, level: .fatal)
+      fatalError()
     }
-    return numberOfShows ?? 0
   }
 
   func logEvent(with event: AnalyticEvent, parameters: [AnalyticEventParameter: Any] = [:]) {
@@ -89,10 +93,6 @@ class Analytics {
 
   func logError(with error: Error, for logCategory: LogCategory, level: ErrorLevel) {
     HogLogger.log(category: logCategory).error("🚨 Error: \(error)")
-    TelemetryDeck.signal(
-      "iHog.Error.occurred",
-      parameters: ["iHog.Error.id": error.localizedDescription]
-    )
     if let error = error as? IdentifiableError {
       TelemetryDeck
         .errorOccurred(

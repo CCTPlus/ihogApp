@@ -9,7 +9,6 @@ import CoreData
 import SwiftUI
 
 struct PPPlayback: View {
-  @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
   @AppStorage(AppStorageKey.chosenShowID.rawValue) var chosenShowID: String = ""

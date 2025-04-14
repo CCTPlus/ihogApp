@@ -13,7 +13,6 @@ import SwiftUI
 
 struct SettingsView: View {
   @Environment(\.modelContext) var modelContext
-  @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
   @EnvironmentObject var user: UserState
@@ -21,13 +20,6 @@ struct SettingsView: View {
   @EnvironmentObject var toast: ToastNotification
 
   @State private var notificationTask: Task<Void, Never>? = nil
-
-  // TODO: Remove this 2025-04-11
-  @FetchRequest(
-    sortDescriptors: [NSSortDescriptor(keyPath: \CDShowEntity.dateLastModified, ascending: true)],
-    animation: .default
-  )
-  private var shows: FetchedResults<CDShowEntity>
 
   @State private var isAddingShow: Bool = false
   @State var issueSubmitted: Bool? = false
@@ -46,6 +38,8 @@ struct SettingsView: View {
   private var foundProducts: [Package] {
     return user.offerings?[RCConstants.Offerings.year.name]?.availablePackages ?? []
   }
+
+  var showRepository: ShowRepository? = nil
 
   var body: some View {
     NavigationSplitView {
@@ -193,10 +187,14 @@ struct SettingsView: View {
         switch sheet {
           case .userProfile:
             NavigationStack {
-              UserProfileView()
-                .environment(\.managedObjectContext, viewContext)
-                .presentationDetents([.large])
-                .presentationDragIndicator(.visible)
+              UserProfileView(
+                showRepository: ShowSwiftDataRepository(modelContainer: modelContext.container),
+                showObjectRepository: ShowObjectSwiftDataRepository(
+                  modelContainer: modelContext.container
+                )
+              )
+              .presentationDetents([.large])
+              .presentationDragIndicator(.visible)
             }
           case .newShow:
             NavigationStack {
@@ -267,27 +265,22 @@ struct SettingsView: View {
     .value
   }
 
-  func delete(at offsets: IndexSet) {
-    let indexOfShow: Int = offsets.first ?? 0
-
-    let show = shows[indexOfShow]
-
-    do {
-      viewContext.delete(show)
-      try viewContext.save()
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
-    }
-  }
-
   func addShow() {
     if user.isPro {
       user.setNavigation(to: .addView(.shows))
     } else {
-      if shows.count >= 1 {
-        router.openSheet(.paywall)
-      } else {
-        router.openSheet(.newShow)
+      Task {
+        let showRepository =
+          self.showRepository
+          ?? ShowSwiftDataRepository(
+            modelContainer: modelContext.container
+          )
+        let showsCount: Int = (try? await showRepository.getCountOfShows()) ?? 0
+        if showsCount >= 1 {
+          router.openSheet(.paywall)
+        } else {
+          router.openSheet(.newShow)
+        }
       }
     }
   }

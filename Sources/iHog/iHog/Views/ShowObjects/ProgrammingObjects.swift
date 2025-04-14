@@ -27,7 +27,6 @@ struct ProgrammingObjects: View {
   // MARK: Environment variables
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
-  @Environment(\.managedObjectContext) private var viewContext
   @EnvironmentObject var osc: OSCHelper
 
   // MARK: State

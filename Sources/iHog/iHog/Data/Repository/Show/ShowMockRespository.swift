@@ -8,6 +8,10 @@
 import Foundation
 
 class ShowMockRespository: ShowRepository {
+  func getCountOfShows() async throws -> Int {
+    return shows.count
+  }
+
   var shows: [Show]
 
   init(shows: [Show]) {
@@ -37,6 +41,10 @@ class ShowMockRespository: ShowRepository {
 
   func deleteShow(by id: UUID) async throws {
     shows.removeAll(where: { $0.id == id })
+  }
+
+  func deleteAll() async throws {
+    shows = []
   }
 }
 
