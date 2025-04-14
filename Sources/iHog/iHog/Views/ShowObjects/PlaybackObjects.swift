@@ -21,7 +21,6 @@ struct PlaybackObjects: View {
   @AppStorage(AppStorageKey.buttonsAcrossScene.rawValue) var buttonsAcrossScene = 3
   @AppStorage(AppStorageKey.isButtonFilledScene.rawValue) var buttonFilledScene = false
 
-  @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
   @Environment(\.verticalSizeClass) var verticalSizeClass
 

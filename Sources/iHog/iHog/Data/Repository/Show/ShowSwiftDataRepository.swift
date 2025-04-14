@@ -50,4 +50,17 @@ actor ShowSwiftDataRepository: ShowRepository {
     modelContext.delete(show)
     try modelContext.save()
   }
+
+  func getCountOfShows() async throws -> Int {
+    let descriptor = FetchDescriptor<ShowEntity>()
+    return try modelContext.fetchCount(descriptor)
+  }
+
+  func deleteAll() async throws {
+    let descriptor = FetchDescriptor<ShowEntity>()
+    let shows = try modelContext.fetch(descriptor)
+    shows.forEach { modelContext.delete($0) }
+    try modelContext.save()
+  }
+
 }

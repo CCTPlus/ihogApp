@@ -18,6 +18,10 @@ protocol ShowRepository {
   func getAllShows() async throws -> [Show]
   /// Delete a show for a given ID
   func deleteShow(by id: UUID) async throws
+  /// Deletes all shows
+  func deleteAll() async throws
+  /// Returns the number of shows a user has
+  func getCountOfShows() async throws -> Int
 }
 
 extension ShowRepository {

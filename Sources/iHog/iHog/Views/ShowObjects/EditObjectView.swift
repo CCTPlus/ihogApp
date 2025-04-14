@@ -9,7 +9,6 @@ import CoreData
 import SwiftUI
 
 struct EditObjectView: View {
-  @Environment(\.managedObjectContext) private var viewContext
   @Environment(\.presentationMode) private var presentationMode
 
   @ObservedObject var show: ChosenShow

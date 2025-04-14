@@ -5,12 +5,15 @@
 //  Created by Jay Wilson on 12/6/24.
 //
 
+import SwiftData
 import SwiftUI
 
 /// Used to access a user's profile from the Settings view
 struct UserProfileView: View {
-  @Environment(\.managedObjectContext) var viewContext
   @EnvironmentObject var user: UserState
+
+  var showRepository: ShowRepository
+  var showObjectRepository: ShowObjectRepository
 
   var body: some View {
     NavigationStack {
@@ -51,55 +54,52 @@ struct UserProfileView: View {
         } header: {
           Text("Data management")
         }
-
-        // MARK: Stats
-        // TODO: Implement
-        //        Section {
-        //          Text("How many shows made")
-        //          Text("How many objects made")
-        //        } header: {
-        //          Text("Stats")
-        //        }
-
-        // The user must be on iOS 17 or newer to use new features and associate analytics.
-        if #available(iOS 17.0, *) {
-          // MARK: Analytics
-          Section {
-            UserCodeView()
-              .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
-          } header: {
-            Text("User codes")
-          } footer: {
-            Text(
-              "You'll only be entering codes here if you have received specific instruction to enter one or have ran the beta version of iHog."
-            )
-          }
-          ExperimentalFeatureView()
-            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
-        } else {
-          EmptyView()
+        // MARK: Analytics
+        Section {
+          UserCodeView()
+          //              .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
+        } header: {
+          Text("User codes")
+        } footer: {
+          Text(
+            "You'll only be entering codes here if you have received specific instruction to enter one or have ran the beta version of iHog."
+          )
         }
+        ExperimentalFeatureView()
+        //            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
       }
     }
   }
 
   func deleteAllShows() {
-    let request = CDShowEntity.fetchRequest()
-    let shows = try? viewContext.fetch(request)
-    shows?.forEach { viewContext.delete($0) }
-    try? viewContext.save()
+    Task {
+      do {
+        try await showRepository.deleteAll()
+      } catch {
+        Analytics.shared
+          .logError(with: error, for: .userProfile, level: .critical)
+      }
+    }
   }
 
   func deleteAllObjects() {
-    let request = CDShowObjectEntity.fetchRequest()
-    let objects = try? viewContext.fetch(request)
-    objects?.forEach { viewContext.delete($0) }
-    try? viewContext.save()
+    Task {
+      do {
+        try await showObjectRepository.deleteAll()
+      } catch {
+        Analytics.shared
+          .logError(with: error, for: .userProfile, level: .critical)
+      }
+    }
   }
 }
 
-#Preview {
-  UserProfileView()
-    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    .environmentObject(UserState())
-}
+//#Preview {
+//  UserProfileView(
+//    showRepository: ShowMockRespository.previewWithShows,
+//    showObjectRepository: ShowObjectSwiftDataRepository(
+//      modelContainer: SwiftDataManager.previewContainer
+//    )
+//  )
+//    .environmentObject(UserState())
+//}
