@@ -89,33 +89,15 @@ struct ShowObjectView: View {
   }
 
   func deleteObject() {
-    let objID: NSUUID = obj.id as NSUUID
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(
-      entityName: "ShowObjectEntity"
-    )
-    fetchRequest.predicate = NSPredicate(format: "id == %@", objID as CVarArg)
-    fetchRequest.fetchLimit = 1
-    do {
-      let test = try viewContext.fetch(fetchRequest)
-      let objectToDelete = test[0] as! NSManagedObject
-      viewContext.delete(objectToDelete)
-      try viewContext.save()
-      switch obj.objType {
-        case .scene:
-          show.removeScene(obj)
-        case .list:
-          show.removeList(obj)
-        case .group:
-          show.removeGroup(obj)
-        case .intensity, .position, .color, .beam, .effect:
-          show.removePalette(obj)
-        default:
-          print("DOESN'T GET ADDED TO ANYTHING")
+    Task {
+      let objectID = obj.id
+      let objectType = obj.objType
+      do {
+        try await show.deleteObject(by: objectID, objType: objectType)
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
       }
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
-
   }
 
   func sendOSC() {
