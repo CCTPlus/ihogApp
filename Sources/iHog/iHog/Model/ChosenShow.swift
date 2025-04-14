@@ -186,6 +186,29 @@ class ChosenShow: ObservableObject {
     }
   }
 
+  func updateObject(_ obj: ShowObject) async throws {
+    let updatedObj = try await showObjectRepository.update(object: obj)
+    await MainActor.run {
+      switch obj.objType {
+        case .scene:
+          updateScene(updatedObj)
+        case .list:
+          updateList(updatedObj)
+        case .group:
+          updateGroup(updatedObj)
+        case .intensity, .position, .color, .beam, .effect:
+          updatePalette(updatedObj)
+        case .batch, .macro, .plot:
+          Analytics.shared
+            .logError(
+              with: HogError.objectTypeNoteFoundEditing,
+              for: .show,
+              level: .warning
+            )
+      }
+    }
+  }
+
   // MARK: Scenes
   func addScene(_ obj: ShowObject) {
     if obj.objType == .scene {
@@ -202,7 +225,7 @@ class ChosenShow: ObservableObject {
         scenes[index!].setColor(obj.getColorString())
         scenes[index!].setOutline(obj.getOutlineState())
       } else {
-        print("UPDATE SHOULD NOT HAVE BEEN CALLED")
+        HogLogger.log(category: .show).error("Update shouldn't have been called")
       }
     }
   }

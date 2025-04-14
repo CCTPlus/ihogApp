@@ -65,5 +65,6 @@ enum HogError: IdentifiableError, Error {
   case objectTypeNotFound
   case objectTypeNoteFoundDeleting
   case objectTypeNoteFoundCreating
+  case objectTypeNoteFoundEditing
   case objectNotFound
 }

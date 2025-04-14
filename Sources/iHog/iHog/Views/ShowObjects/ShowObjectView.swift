@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ShowObjectView: View {
   @EnvironmentObject var osc: OSCHelper
-  @Environment(\.managedObjectContext) private var viewContext
 
   @State private var showEditWindow: Bool = false
   @ObservedObject var show: ChosenShow

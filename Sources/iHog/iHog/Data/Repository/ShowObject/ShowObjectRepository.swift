@@ -18,4 +18,5 @@ protocol ShowObjectRepository {
   func getAllObjects(for showID: UUID) async throws -> [ShowObject]
   func getAllObjects(from showID: UUID, of objectType: ShowObjectType) async throws -> [ShowObject]
   func delete(by id: UUID) async throws
+  func update(object: ShowObject) async throws -> ShowObject
 }
