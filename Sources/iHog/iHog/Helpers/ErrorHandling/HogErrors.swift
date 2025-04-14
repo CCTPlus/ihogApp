@@ -8,20 +8,38 @@
 import Foundation
 import TelemetryDeck
 
-public enum OSCErrors: String, Error {
-  case FailedToCreateMessage = "Message was not created"
-  case UDPFailedToSend = "UDP didn't send message"
-  case TCPFailedToSend = "TCP didn't send message"
-  case UDPClientNotConnect
-  case TCPClientNotConnect
-  case UDPServerNotSet
-  case UDPServerNotConnect
-  case TCPServerNotConnect
+enum OSCErrors: String, Error, IdentifiableError {
+  case failedToCreatMessage
+  case udpFailedToSend
+  case tcpFailedToSend
+  case udpClientNotConnect
+  case tcpClientNotConnect
+  case udpServerNotSet
+  case udpServerNotConnect
+  case tcpServerNotConnect
+
+  var id: String {
+    switch self {
+      default:
+        String(describing: self)
+          .replacingOccurrences(of: "([A-Z])", with: "-$1", options: .regularExpression)
+          .lowercased()
+    }
+  }
 }
 
-enum HogOSCError: Error {
+enum HogOSCError: Error, IdentifiableError {
   case noAppGroupURL
   case notAbleToLoadStore
+
+  var id: String {
+    switch self {
+      default:
+        String(describing: self)
+          .replacingOccurrences(of: "([A-Z])", with: "-$1", options: .regularExpression)
+          .lowercased()
+    }
+  }
 
   var localizedDescription: String {
     switch self {
