@@ -43,8 +43,12 @@ struct EditObjectView: View {
       .padding(.vertical)
       Form {
         TextField("Name", text: $name)
+          .multilineTextAlignment(.leading)
+          .frame(alignment: .leading)
         TextField("Number", text: $number)
           .keyboardType(.decimalPad)
+          .multilineTextAlignment(.leading)
+          .frame(alignment: .leading)
         Toggle("Is Outlined", isOn: $isOutlined)
         Picker("Color", selection: $objColor) {
           ForEach(0..<OBJ_COLORS.count, id: \.self) {
@@ -79,7 +83,6 @@ struct EditObjectView: View {
 
   func saveValues() {
     let num = Double(number) ?? obj.number
-    //        let updatedOBJ = ShowObject(id: obj.id, objType: obj.objType, number: num, name: name, objColor: OBJ_COLORS[objColor].description, isOutlined: isOutlined)
     if obj.getName() != name {
       obj.setName(name)
     }
@@ -88,43 +91,14 @@ struct EditObjectView: View {
     obj.setColor(OBJ_COLORS[objColor].description)
     obj.setOutline(isOutlined)
 
-    let savedOBJID: NSUUID = obj.id as NSUUID
-
-    // Gets the object from coredata/cloudkit
-    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(
-      entityName: "ShowObjectEntity"
-    )
-    fetchRequest.predicate = NSPredicate(format: "id == %@", savedOBJID as CVarArg)
-    fetchRequest.fetchLimit = 1
-
-    // Updates objects in Core data/Cloud Kit
-    do {
-      let test = try viewContext.fetch(fetchRequest)
-      let objectToUpdate = test[0] as! NSManagedObject
-      objectToUpdate.setValue(obj.name, forKey: "name")
-      objectToUpdate.setValue(num, forKey: "number")
-      objectToUpdate.setValue(OBJ_COLORS[objColor].description, forKey: "objColor")
-      objectToUpdate.setValue(isOutlined, forKey: "isOutlined")
-      try viewContext.save()
-      //            allObjects.removeAll{$0.id == obj.id}
-      //            allObjects.append(obj)
-      //            allObjects.sort(by: {$0.number  < $1.number})
-      switch obj.objType {
-        case .scene:
-          show.updateScene(obj)
-        case .list:
-          show.updateList(obj)
-        case .group:
-          show.updateGroup(obj)
-        case .intensity, .position, .color, .beam, .effect:
-          show.updatePalette(obj)
-        default:
-          print("DOESN'T GET ADDED TO ANYTHING")
+    Task {
+      let updatedObject = obj
+      do {
+        try await show.updateObject(updatedObject)
+      } catch {
+        Analytics.shared.logError(with: error, for: .coreData, level: .critical)
       }
-    } catch {
-      Analytics.shared.logError(with: error, for: .coreData, level: .critical)
     }
-
   }
 }
 

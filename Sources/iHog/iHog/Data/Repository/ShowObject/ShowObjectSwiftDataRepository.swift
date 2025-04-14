@@ -103,4 +103,21 @@ actor ShowObjectSwiftDataRepository: ShowObjectRepository {
     modelContext.delete(object)
     try modelContext.save()
   }
+
+  func update(object: ShowObject) async throws -> ShowObject {
+    let objectID = object.id
+    let descriptor = FetchDescriptor<ShowObjectEntity>(
+      predicate: #Predicate<ShowObjectEntity> { $0.id == objectID }
+    )
+
+    guard let foundObject = try modelContext.fetch(descriptor).first else {
+      throw HogError.objectNotFound
+    }
+    foundObject.name = object.name
+    foundObject.number = object.number
+    foundObject.isOutlined = object.isOutlined
+    foundObject.objColor = object.objColor
+    try modelContext.save()
+    return ShowObject(from: foundObject)
+  }
 }
