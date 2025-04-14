@@ -95,37 +95,48 @@ class ChosenShow: ObservableObject {
           of: .effect
         )
 
-        try await foundLists.forEach { obj in
-          addList(obj)
-        }
+          let allLists = try await foundLists
+          let allScenes = try await foundScenes
+          let allGroups = try await foundGroups
+          let allIntPalettes = try await foundIntPalettes
+          let allBeamPalettes = try await foundBeamPalettes
+          let allColorPalettes = try await foundColorPalettes
+          let allPositionPalettes = try await foundPositionPalettes
+          let allEffectPalettes = try await foundEffectPalettes
 
-        try await foundScenes.forEach { obj in
-          addScene(obj)
-        }
+          await MainActor.run {
+              allLists.forEach { obj in
+                  addList(obj)
+              }
 
-        try await foundGroups.forEach { obj in
-          addGroup(obj)
-        }
+              allScenes.forEach { obj in
+                  addScene(obj)
+              }
 
-        try await foundIntPalettes.forEach { obj in
-          addPalette(obj)
-        }
+              allGroups.forEach { obj in
+                  addGroup(obj)
+              }
 
-        try await foundBeamPalettes.forEach { obj in
-          addPalette(obj)
-        }
+              allIntPalettes.forEach { obj in
+                  addPalette(obj)
+              }
 
-        try await foundColorPalettes.forEach { obj in
-          addPalette(obj)
-        }
+              allBeamPalettes.forEach { obj in
+                  addPalette(obj)
+              }
 
-        try await foundPositionPalettes.forEach { obj in
-          addPalette(obj)
-        }
+              allColorPalettes.forEach { obj in
+                  addPalette(obj)
+              }
 
-        try await foundEffectPalettes.forEach { obj in
-          addPalette(obj)
-        }
+              allPositionPalettes.forEach { obj in
+                  addPalette(obj)
+              }
+
+              allEffectPalettes.forEach { obj in
+                  addPalette(obj)
+              }
+          }
       } catch {
         Analytics.shared.logError(with: error, for: .show, level: .warning)
       }
