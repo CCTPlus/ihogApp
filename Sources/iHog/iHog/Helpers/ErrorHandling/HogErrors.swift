@@ -45,4 +45,7 @@ enum HogError: IdentifiableError, Error {
 
   case showNotFound
   case objectTypeNotFound
+  case objectTypeNoteFoundDeleting
+  case objectTypeNoteFoundCreating
+  case objectNotFound
 }

@@ -155,7 +155,30 @@ class ChosenShow: ObservableObject {
         default:
           Analytics.shared
             .logError(
-              with: HogError.objectTypeNotFound,
+              with: HogError.objectTypeNoteFoundCreating,
+              for: .show,
+              level: .warning
+            )
+      }
+    }
+  }
+
+  func deleteObject(by id: UUID, objType: ShowObjectType) async throws {
+    try await showObjectRepository.delete(by: id)
+    await MainActor.run {
+      switch objType {
+        case .group:
+          groups.removeAll(where: { $0.id == id })
+        case .intensity, .position, .color, .beam, .effect:
+          palettes.removeAll(where: { $0.id == id })
+        case .list:
+          lists.removeAll(where: { $0.id == id })
+        case .scene:
+          lists.removeAll(where: { $0.id == id })
+        case .batch, .macro, .plot:
+          Analytics.shared
+            .logError(
+              with: HogError.objectTypeNoteFoundDeleting,
               for: .show,
               level: .warning
             )
@@ -184,12 +207,6 @@ class ChosenShow: ObservableObject {
     }
   }
 
-  func removeScene(_ obj: ShowObject) {
-    if obj.objType == .scene {
-      scenes.removeAll { $0.id == obj.id }
-    }
-  }
-
   // MARK: Lists
   func addList(_ obj: ShowObject) {
     if obj.objType == .list {
@@ -211,12 +228,6 @@ class ChosenShow: ObservableObject {
     }
   }
 
-  func removeList(_ obj: ShowObject) {
-    if obj.objType == .list {
-      lists.removeAll { $0.id == obj.id }
-    }
-  }
-
   // MARK: Groups
   func addGroup(_ obj: ShowObject) {
     if obj.objType == .group {
@@ -235,12 +246,6 @@ class ChosenShow: ObservableObject {
       } else {
         print("UPDATE SHOULD NOT HAVE BEEN CALLED")
       }
-    }
-  }
-
-  func removeGroup(_ obj: ShowObject) {
-    if obj.objType == .group {
-      groups.removeAll { $0.id == obj.id }
     }
   }
 
@@ -266,15 +271,6 @@ class ChosenShow: ObservableObject {
         } else {
           print("UPDATE SHOULD NOT HAVE BEEN CALLED")
         }
-      default:
-        break
-    }
-  }
-
-  func removePalette(_ obj: ShowObject) {
-    switch obj.objType {
-      case .intensity, .color, .position, .effect, .beam:
-        palettes.removeAll { $0.id == obj.id }
       default:
         break
     }
