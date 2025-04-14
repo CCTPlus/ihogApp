@@ -169,7 +169,7 @@ struct ProgrammingObjects: View {
           .createObject(
             color: color,
             type: paletteTypes[chosenPaletteType],
-            isOutlined: isButtonFilledPalette
+            isOutlined: isOutlined
           )
       } catch {
         Analytics.shared.logError(with: error, for: .coreData, level: .critical)

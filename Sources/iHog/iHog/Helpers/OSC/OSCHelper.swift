@@ -320,7 +320,7 @@ class OSCHelper: ObservableObject {
 
   func startUDPServer() throws {
     guard let udpServer = udpServer else {
-      throw OSCErrors.UDPServerNotSet
+      throw OSCErrors.udpServerNotSet
     }
 
     return try udpServer.startListening()
@@ -376,7 +376,7 @@ class OSCHelper: ObservableObject {
     do {
       return try OSCMessage(with: message, arguments: arguments)
     } catch {
-      throw OSCErrors.FailedToCreateMessage
+      throw OSCErrors.failedToCreatMessage
     }
   }
 
@@ -390,12 +390,12 @@ class OSCHelper: ObservableObject {
     // create message
     do {
       message = try createOSCMessage(with: stringMessage, arguments: arguments)
-    } catch OSCErrors.FailedToCreateMessage {
+    } catch OSCErrors.failedToCreatMessage {
       HogLogger.log(category: .osc)
         .error(
           "🚨: Message is not right. Unable to make message using: \(stringMessage, privacy: .public) \(arguments, privacy: .public)"
         )
-      Analytics.shared.logError(with: OSCErrors.FailedToCreateMessage, for: .osc, level: .critical)
+      Analytics.shared.logError(with: OSCErrors.failedToCreatMessage, for: .osc, level: .critical)
     } catch {
       Analytics.shared.logError(with: error, for: .osc, level: .critical)
     }
@@ -412,8 +412,8 @@ class OSCHelper: ObservableObject {
           return
         }
         try udpClient.send(oscMessage)
-      } catch OSCErrors.UDPFailedToSend {
-        Analytics.shared.logError(with: OSCErrors.UDPFailedToSend, for: .osc, level: .critical)
+      } catch OSCErrors.udpFailedToSend {
+        Analytics.shared.logError(with: OSCErrors.udpFailedToSend, for: .osc, level: .critical)
       } catch {
         Analytics.shared.logError(with: error, for: .osc, level: .critical)
       }
@@ -423,9 +423,9 @@ class OSCHelper: ObservableObject {
     // runs if using TCP
     do {
       try tcpClient.send(oscMessage)
-    } catch OSCErrors.TCPFailedToSend {
+    } catch OSCErrors.tcpFailedToSend {
       HogLogger.log(category: .osc).error("Unable to send message on TCP")
-      Analytics.shared.logError(with: OSCErrors.TCPFailedToSend, for: .osc, level: .critical)
+      Analytics.shared.logError(with: OSCErrors.tcpFailedToSend, for: .osc, level: .critical)
     } catch {
       Analytics.shared.logError(with: error, for: .osc, level: .critical)
     }
