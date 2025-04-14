@@ -19,7 +19,6 @@ enum AddView: Hashable {
 enum Routes: Hashable {
   case paywall(Paywall)
   case addView(AddView)
-  case shows(CDShowEntity)
   case programmerSettings
   case showSettings
   case osc
