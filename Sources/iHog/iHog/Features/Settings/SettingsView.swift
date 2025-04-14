@@ -266,8 +266,9 @@ struct SettingsView: View {
   }
 
   func addShow() {
+      Analytics.shared.logEvent(with: .addShowTapped)
     if user.isPro {
-      user.setNavigation(to: .addView(.shows))
+        router.openSheet(.newShow)
     } else {
       Task {
         let showRepository =
@@ -276,11 +277,13 @@ struct SettingsView: View {
             modelContainer: modelContext.container
           )
         let showsCount: Int = (try? await showRepository.getCountOfShows()) ?? 0
-        if showsCount >= 1 {
-          router.openSheet(.paywall)
-        } else {
-          router.openSheet(.newShow)
-        }
+          await MainActor.run {
+              if showsCount >= 1 {
+                router.openSheet(.paywall)
+              } else {
+                router.openSheet(.newShow)
+              }
+          }
       }
     }
   }

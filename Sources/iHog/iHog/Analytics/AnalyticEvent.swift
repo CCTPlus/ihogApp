@@ -31,6 +31,8 @@ enum AnalyticEvent: String {
   case showDeleted
   /// Button to delete show was tapped
   case showDeleteTapped
+    /// Add show button tapped
+case addShowTapped
 
   /// Hyphen separated
   var value: String {
