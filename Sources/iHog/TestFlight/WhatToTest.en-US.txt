@@ -1,4 +1,8 @@
-- Make sure you can navigate to punt page options if you are a pro user
-- Check that your shows and objects are still around after this update
-- Check that you can still Add a show since the button changed locations
-- Collect and share logs from app. You can email them to support@cctplus.dev or just save to your device and delete later
+This release is going to touch critical parts of iHog and your shows should still be availble. Please try the following:
+
+- Creating a show
+- Opening a show
+- Deleting a show
+- Adding show objects
+- Deleting show objects
+- Editing show objects
