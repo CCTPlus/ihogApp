@@ -2,7 +2,7 @@ import CoreGraphics
 import Foundation
 
 class BoardMockRepository: BoardRepository {
-  private var boards: [Board]
+  var boards: [Board]
 
   init(boards: [Board] = []) {
     self.boards = boards
@@ -60,16 +60,14 @@ extension BoardMockRepository {
   static let previewWithBoards = BoardMockRepository(
     boards: [
       Board(
-        id: UUID(),
         name: "Main Board",
-        showID: UUID(),
+        showID: ShowMockRepository.previewWithShows.shows[0].id,,
         lastPanOffset: .zero,
         lastZoomScale: 1.0
       ),
       Board(
-        id: UUID(),
         name: "Secondary Board",
-        showID: UUID(),
+        showID: ShowMockRepository.previewWithShows.shows[0].id,
         lastPanOffset: .zero,
         lastZoomScale: 1.0
       ),

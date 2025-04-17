@@ -1,5 +1,5 @@
 //
-//  ShowMockRespository.swift
+//  ShowMockRepository.swift
 //  iHog
 //
 //  Created by Jay Wilson on 4/11/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ShowMockRespository: ShowRepository {
+class ShowMockRepository: ShowRepository {
   func getCountOfShows() async throws -> Int {
     return shows.count
   }
@@ -23,7 +23,6 @@ class ShowMockRespository: ShowRepository {
       dateCreated: .now,
       dateLastModified: .now,
       icon: icon,
-      id: UUID(),
       name: name
     )
     shows.append(newShow)
@@ -48,14 +47,13 @@ class ShowMockRespository: ShowRepository {
   }
 }
 
-extension ShowMockRespository {
-  static let previewWithShows = ShowMockRespository(
+extension ShowMockRepository {
+  static let previewWithShows = ShowMockRepository(
     shows: [
       Show(
         dateCreated: .now,
         dateLastModified: .now,
         icon: "theatermasks",
-        id: .init(),
         name: "Broadway Nights"
       ),
       Show(

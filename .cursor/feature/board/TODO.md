@@ -9,17 +9,16 @@ The purpose of this document is to give an AI agent a step by step guide on how 
      - Views/
      - Components/
 
-2. [ ] Setup Data Layer Dependencies
+2. [x] Setup Data Layer Dependencies
    - Data/Repository/BoardItem/
-     - [ ] BoardItemRepository.swift (protocol)
+     - [x] BoardItemRepository.swift (protocol)
        - Define async protocol
-       - Conform to Repository protocol
        - Will contain operations for managing board items (specific operations added as features are implemented)
-     - [ ] BoardItemSwiftDataRepository.swift
+     - [x] BoardItemSwiftDataRepository.swift
        - Implement SwiftData-backed repository
        - Use ModelActor for all data operations
        - Handle entity <-> model conversion
-     - [ ] BoardItemMockRepository.swift
+     - [x] BoardItemMockRepository.swift
        - Implement in-memory repository for previews
        - Add sample data matching real data patterns
        - Mirror SwiftData implementation behavior

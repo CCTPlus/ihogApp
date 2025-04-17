@@ -73,4 +73,10 @@ enum HogError: IdentifiableError, Error {
   case boardNotFoundForShow
   case boardFailedToCreate
   case boardFailedToDelete
+
+  // Board Item specific errors
+  case boardItemNotFound
+  case boardItemFailedToCreate
+  case boardItemFailedToUpdate
+  case boardItemFailedToDelete
 }
