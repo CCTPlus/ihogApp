@@ -19,6 +19,8 @@ import SwiftData
 
   @Relationship(deleteRule: .cascade, inverse: \ShowObjectEntity.show)
   var objects: [ShowObjectEntity]?
+  @Relationship(deleteRule: .cascade, inverse: \BoardEntity.show)
+  var boards: [BoardEntity]?
 
   init(
     dateCreated: Date? = nil,
@@ -27,7 +29,8 @@ import SwiftData
     id: UUID = UUID(),
     name: String,
     note: String? = nil,
-    objects: [ShowObjectEntity]? = nil
+    objects: [ShowObjectEntity]? = nil,
+    boards: [BoardEntity]? = nil
   ) {
     self.dateCreated = dateCreated
     self.dateLastModified = dateLastModified
@@ -36,5 +39,6 @@ import SwiftData
     self.name = name
     self.note = note
     self.objects = objects
+    self.boards = boards
   }
 }

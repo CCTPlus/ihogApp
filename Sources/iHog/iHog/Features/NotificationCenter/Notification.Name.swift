@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
   static let didSaveShow = Notification.Name("didSaveShow")
+  static let didSaveBoard = Notification.Name("didSaveBoard")
 }

@@ -67,4 +67,10 @@ enum HogError: IdentifiableError, Error {
   case objectTypeNoteFoundCreating
   case objectTypeNoteFoundEditing
   case objectNotFound
+
+  // Board specific errors
+  case boardNotFoundForID
+  case boardNotFoundForShow
+  case boardFailedToCreate
+  case boardFailedToDelete
 }

@@ -17,6 +17,8 @@ struct SwiftDataManager {
         ShowObjectEntity.self,
         TipEntity.self,
         UserCode.self,
+        BoardEntity.self,
+        BoardItemEntity.self,
       ]
     )
 
@@ -56,6 +58,8 @@ struct SwiftDataManager {
         ShowObjectEntity.self,
         TipEntity.self,
         UserCode.self,
+        BoardEntity.self,
+        BoardItemEntity.self,
       ]
     )
 

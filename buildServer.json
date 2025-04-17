@@ -12,8 +12,8 @@
 	"argv": [
 		"/opt/homebrew/bin/xcode-build-server"
 	],
-	"workspace": "/Users/jay/Developer/ihogApp/iHog/iHog.xcodeproj/project.xcworkspace",
-	"build_root": "/Users/jay/Library/Developer/Xcode/DerivedData/iHog-cpcfhuppgfkfnrbnhsjpddkrcvuz",
+	"workspace": "/Users/jay/Developer/ihogApp/Sources/iHog/iHog.xcodeproj/project.xcworkspace",
+	"build_root": "/Users/jay/Library/Developer/Xcode/DerivedData/iHog-bejsnqngybdlygasdrqkyrugtocc",
 	"scheme": "iHog",
 	"kind": "xcode"
 }

@@ -19,6 +19,7 @@ enum LogCategory: String {
   case swiftData
   case show
   case userProfile
+  case board
 }
 
 struct HogLogger {
