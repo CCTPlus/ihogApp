@@ -46,15 +46,15 @@ extension BoardItemMockRepository {
       BoardItem(
         boardID: BoardMockRepository.previewWithBoards.boards[0].id,
         showObjectID: ShowObjectMockRepository.preview.objects.first!.id,
-        position: CGPoint(x: 0, y: 0),
-        size: CGSize(width: 44, height: 44),
+        position: CGPoint(x: -88, y: -88),  // -2 grid units from center
+        size: CGSize(width: 88, height: 88),  // 2x2 grid units
         itemType: .showObject
       ),
       BoardItem(
         boardID: BoardMockRepository.previewWithBoards.boards[0].id,
         showObjectID: ShowObjectMockRepository.preview.objects.first!.id,
-        position: CGPoint(x: 44, y: 44),
-        size: CGSize(width: 88, height: 88),
+        position: CGPoint(x: 88, y: 88),  // 2 grid units from center
+        size: CGSize(width: 88, height: 88),  // 2x2 grid units
         itemType: .showObject
       ),
     ]

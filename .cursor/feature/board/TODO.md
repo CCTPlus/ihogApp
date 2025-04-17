@@ -2,6 +2,16 @@
 
 The purpose of this document is to give an AI agent a step by step guide on how to build a feature. It should follow these steps and implementation in the order given. There should be no adding features. There should be no assumptions. If something is unclear, the AI agent needs to stop and ask for more instructions. Each section should be implemented one at a time and one file at a time.
 
+General guidance on SwiftUI view:
+
+- Each view or component must have it's own file.
+- Each view or component must have Previews. If there are multiple states, then there must be a preview for each state.
+- Previews must use the mock repository
+
+Guidence about the project:
+- The app uses a repository architecture to manipulate and fetch items from SwiftData.
+- Entities or managed objects are NOT to be used in views. Only non managed models can be used in views
+
 ## 1. Feature Structure Setup
 1. [x] Create directory structure:
    - Features/Board/
@@ -60,14 +70,14 @@ The purpose of this document is to give an AI agent a step by step guide on how 
          - save()  // Saves to SwiftData via repository
          - restore()  // Loads from SwiftData via repository
 
-3. [ ] Create core board structure:
+4. [ ] Create core board structure:
    - Views/
      - [ ] BoardView.swift (container)
-       - [ ] Infinite scrollable area:
+       - [x] Infinite scrollable area:
          - Both axes enabled
          - No pan limits
        - Layer management (ZStack):
-         - [ ] Grid layer (back):
+         - [x] Grid layer (back):
            - Dots at corners of 44×44pt squares
            - Translucent gray dots
            - Scales with zoom
@@ -90,7 +100,7 @@ The purpose of this document is to give an AI agent a step by step guide on how 
          - Show edit vs play mode states
          - Show with different zoom levels
 
-4. [ ] Create interactive components:
+5. [ ] Create interactive components:
    - Components/
      - [ ] ObjectSelectionMenu.swift
        - Standard sheet/popover presentation
@@ -106,7 +116,7 @@ The purpose of this document is to give an AI agent a step by step guide on how 
          - Show search state
          - Show empty state
 
-5. [ ] Create board items:
+6. [ ] Create board items:
    - Views/
      - [ ] BoardItemView.swift
        - Rectangle rendering (not just square)

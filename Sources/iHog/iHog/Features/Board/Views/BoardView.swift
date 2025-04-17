@@ -9,17 +9,14 @@ struct BoardView: View {
   /// The view model that manages the board's state and behavior
   @Bindable var viewModel: BoardViewModel
 
-  /// The current pan offset
-  @State private var panOffset: CGPoint = .zero
-
   /// The current gesture translation
   @GestureState private var gestureTranslation: CGSize = .zero
 
   /// The current total offset (stored + gesture)
   private var totalOffset: CGPoint {
     CGPoint(
-      x: panOffset.x + gestureTranslation.width,
-      y: panOffset.y + gestureTranslation.height
+      x: viewModel.boardState.contentOffset.x + gestureTranslation.width,
+      y: viewModel.boardState.contentOffset.y + gestureTranslation.height
     )
   }
 
@@ -27,6 +24,10 @@ struct BoardView: View {
     NavigationStack {
       GeometryReader { geometry in
         ZStack {
+          // Background layer to capture gestures
+          Color.clear
+            .contentShape(Rectangle())
+
           // Grid layer (back)
           if viewModel.boardState.isGridVisible {
             GridView(
@@ -36,17 +37,25 @@ struct BoardView: View {
               contentOffset: totalOffset
             )
           }
+
+          // Board Items layer (middle)
+          BoardItemsLayer(
+            items: viewModel.items,
+            contentOffset: totalOffset
+          )
         }
+        .ignoresSafeArea(edges: .all)
         .gesture(
           DragGesture(minimumDistance: 0)
             .updating($gestureTranslation) { value, state, _ in
               state = value.translation
             }
             .onEnded { value in
-              panOffset = CGPoint(
-                x: panOffset.x + value.translation.width,
-                y: panOffset.y + value.translation.height
+              let newOffset = CGPoint(
+                x: viewModel.boardState.contentOffset.x + value.translation.width,
+                y: viewModel.boardState.contentOffset.y + value.translation.height
               )
+              viewModel.updateOffset(to: newOffset)
             }
         )
       }
@@ -54,9 +63,15 @@ struct BoardView: View {
       .toolbarTitleDisplayMode(.inline)
       .toolbarBackground(.hidden, for: .navigationBar)
       .toolbar {
-        ToolbarItem(placement: .navigationBarLeading) {
+        ToolbarItemGroup(placement: .topBarLeading) {
           Button(action: {}) {
             Image(systemName: "xmark")
+          }
+
+          Button(action: {
+            viewModel.updateOffset(to: .zero)
+          }) {
+            Image(systemName: "scope")
           }
         }
 
@@ -65,13 +80,15 @@ struct BoardView: View {
             .font(.headline)
         }
 
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
-          Button(action: {}) {
-            Image(systemName: "arrow.uturn.backward")
-          }
+        ToolbarItemGroup(placement: .topBarTrailing) {
+          if viewModel.boardState.isEditMode {
+            Button(action: {}) {
+              Image(systemName: "arrow.uturn.backward")
+            }
 
-          Button(action: {}) {
-            Image(systemName: "arrow.uturn.forward")
+            Button(action: {}) {
+              Image(systemName: "arrow.uturn.forward")
+            }
           }
 
           Button(action: viewModel.toggleEditMode) {
@@ -83,12 +100,26 @@ struct BoardView: View {
   }
 }
 
-#Preview {
+#Preview("Edit mode") {
   BoardView(
     viewModel: BoardViewModel(
       board: BoardMockRepository.previewWithBoards.boards[0],
       boardState: BoardState(isEditMode: true),
-      repository: BoardMockRepository.previewWithBoards
+      repository: BoardMockRepository.previewWithBoards,
+      itemRepository: BoardItemMockRepository.previewWithItems,
+      items: BoardItemMockRepository.previewWithItems.items
+    )
+  )
+}
+
+#Preview("Play") {
+  BoardView(
+    viewModel: BoardViewModel(
+      board: BoardMockRepository.previewWithBoards.boards[0],
+      boardState: BoardState(isEditMode: false),
+      repository: BoardMockRepository.previewWithBoards,
+      itemRepository: BoardItemMockRepository.previewWithItems,
+      items: BoardItemMockRepository.previewWithItems.items
     )
   )
 }
