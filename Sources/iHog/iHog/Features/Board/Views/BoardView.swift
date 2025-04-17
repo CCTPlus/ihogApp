@@ -9,65 +9,46 @@ struct BoardView: View {
   /// The view model that manages the board's state and behavior
   @Bindable var viewModel: BoardViewModel
 
-  /// The current scroll position
-  @State private var scrollOffset: CGPoint = .zero
+  /// The current pan offset
+  @State private var panOffset: CGPoint = .zero
 
-  /// The content offset (used to reset scroll position)
-  @State private var contentOffset: CGPoint = .zero
+  /// The current gesture translation
+  @GestureState private var gestureTranslation: CGSize = .zero
 
-  /// The size of the scrollable area
-  private let scrollAreaSize: CGFloat = 2000
+  /// The current total offset (stored + gesture)
+  private var totalOffset: CGPoint {
+    CGPoint(
+      x: panOffset.x + gestureTranslation.width,
+      y: panOffset.y + gestureTranslation.height
+    )
+  }
 
   var body: some View {
     NavigationStack {
       GeometryReader { geometry in
-        ScrollViewReader { proxy in
-          ScrollView([.horizontal, .vertical], showsIndicators: false) {
-            ZStack {
-              // Grid layer (back)
-              if viewModel.boardState.isGridVisible {
-                GridView(
-                  size: geometry.size,
-                  zoomLevel: viewModel.boardState.zoomLevel,
-                  scrollOffset: scrollOffset,
-                  contentOffset: contentOffset
-                )
-              }
-            }
-            .frame(width: scrollAreaSize, height: scrollAreaSize)
-            .id("center")
-            .background(
-              GeometryReader { proxy in
-                Color.clear.preference(
-                  key: ScrollOffsetPreferenceKey.self,
-                  value: proxy.frame(in: .named("scroll")).origin
-                )
-              }
-            )
-          }
-          .coordinateSpace(name: "scroll")
-          .onAppear {
-            // Start centered
-            withAnimation(.none) {
-              proxy.scrollTo("center", anchor: .center)
-            }
-          }
-          .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-            // Update scroll offset
-            let oldOffset = scrollOffset
-            scrollOffset = value
-
-            // Calculate the change in scroll position
-            let dx = value.x - oldOffset.x
-            let dy = value.y - oldOffset.y
-
-            // Update content offset
-            contentOffset = CGPoint(
-              x: contentOffset.x - dx,
-              y: contentOffset.y - dy
+        ZStack {
+          // Grid layer (back)
+          if viewModel.boardState.isGridVisible {
+            GridView(
+              size: geometry.size,
+              zoomLevel: viewModel.boardState.zoomLevel,
+              scrollOffset: .zero,
+              contentOffset: totalOffset
             )
           }
         }
+        .gesture(
+          DragGesture(minimumDistance: 0)
+            .updating($gestureTranslation) { value, state, _ in
+              state = value.translation
+            }
+            .onEnded { value in
+              panOffset = CGPoint(
+                x: panOffset.x + value.translation.width,
+                y: panOffset.y + value.translation.height
+              )
+            }
+        )
       }
       .toolbarRole(.navigationStack)
       .toolbarTitleDisplayMode(.inline)
@@ -99,15 +80,6 @@ struct BoardView: View {
         }
       }
     }
-  }
-}
-
-/// A preference key to track scroll position
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
-  static var defaultValue: CGPoint = .zero
-
-  static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
-    value = nextValue()
   }
 }
 
