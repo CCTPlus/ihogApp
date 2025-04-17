@@ -41,7 +41,7 @@ struct ShowSelectionView: View {
 #Preview {
   let container = ShowEntity.preview
   List {
-    ShowSelectionView(showRespository: ShowMockRespository.previewWithShows)
+    ShowSelectionView(showRespository: ShowMockRepository.previewWithShows)
       .modelContainer(container)
       .environment(AppRouter())
   }

@@ -3,7 +3,7 @@
 The purpose of this document is to give an AI agent a step by step guide on how to build a feature. It should follow these steps and implementation in the order given. There should be no adding features. There should be no assumptions. If something is unclear, the AI agent needs to stop and ask for more instructions. Each section should be implemented one at a time and one file at a time.
 
 ## 1. Feature Structure Setup
-1. [ ] Create directory structure:
+1. [x] Create directory structure:
    - Features/Board/
      - Models/
      - Views/
@@ -25,7 +25,7 @@ The purpose of this document is to give an AI agent a step by step guide on how 
 
 3. [ ] Create and implement foundation:
    - Models/
-     - [ ] BoardState.swift (class)
+     - [x] BoardState.swift (class)
        - Current zoom level (no zoom limits)
        - Current offset (supports infinite panning)
        - Edit/Play mode
@@ -39,7 +39,7 @@ The purpose of this document is to give an AI agent a step by step guide on how 
          - isGridVisible: Bool  // True in Edit Mode, false in Play Mode
          - lastSavedOffset: CGPoint?  // Loaded from BoardEntity via SwiftData
          - lastSavedZoom: Double?  // Loaded from BoardEntity via SwiftData
-     - [ ] BoardViewModel.swift (@Observable)
+     - [x] BoardViewModel.swift (@Observable)
        - Owns/manages BoardState instance
        - Handles Board/BoardEntity persistence through SwiftData
        - Reads lastPanOffset/lastZoomScale from Board model
@@ -63,12 +63,11 @@ The purpose of this document is to give an AI agent a step by step guide on how 
 3. [ ] Create core board structure:
    - Views/
      - [ ] BoardView.swift (container)
-       - Infinite scrollable area:
-         - ScrollView with GeometryReader
+       - [ ] Infinite scrollable area:
          - Both axes enabled
          - No pan limits
        - Layer management (ZStack):
-         - Grid layer (back):
+         - [ ] Grid layer (back):
            - Dots at corners of 44×44pt squares
            - Translucent gray dots
            - Scales with zoom
@@ -78,7 +77,7 @@ The purpose of this document is to give an AI agent a step by step guide on how 
          - Grid coordinate system has fixed (0,0) center
          - Position initial view to show center
          - Maintains center during zoom/pan
-       - Navigation/toolbar setup:
+       - [x] Navigation/toolbar setup:
          - Left: Close button (✕)
          - Center: Board name (unique per show)
          - Right section (in order):

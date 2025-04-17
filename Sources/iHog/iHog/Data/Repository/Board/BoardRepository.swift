@@ -15,6 +15,14 @@ protocol BoardRepository {
   func deleteAll(for showID: UUID) async throws
   /// Returns the number of boards a show has
   func getCountOfBoards(for showID: UUID) async throws -> Int
+  /// Updates an existing board's name
+  func updateBoardName(_ name: String, for boardID: UUID) async throws -> Board
+  /// Updates an existing board's position and zoom
+  func updateBoardPositionAndZoom(
+    boardID: UUID,
+    lastPanOffset: CGPoint,
+    lastZoomScale: Double
+  ) async throws -> Board
 }
 
 extension BoardRepository {

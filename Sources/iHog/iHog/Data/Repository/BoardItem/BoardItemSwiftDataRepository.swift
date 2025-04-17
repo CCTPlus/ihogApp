@@ -27,23 +27,6 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
     return BoardItem(from: newItemEntity)
   }
 
-  func updateItem(_ item: BoardItem) async throws {
-    let descriptor = FetchDescriptor<BoardItemEntity>(
-      predicate: #Predicate { $0.id == item.id }
-    )
-    guard let itemEntity = try modelContext.fetch(descriptor).first else {
-      throw HogError.boardItemNotFound
-    }
-
-    itemEntity.itemType = item.itemType
-    itemEntity.positionX = item.position.x
-    itemEntity.positionY = item.position.y
-    itemEntity.width = item.size.width
-    itemEntity.height = item.size.height
-
-    try modelContext.save()
-  }
-
   func deleteItem(by id: UUID) async throws {
     let descriptor = FetchDescriptor<BoardItemEntity>(
       predicate: #Predicate { $0.id == id }

@@ -15,10 +15,6 @@ protocol BoardItemRepository {
   ///   - boardID: The ID of the board this item belongs to
   func createItem(_ item: BoardItem, boardID: UUID) async throws -> BoardItem
 
-  /// Updates an existing board item
-  /// - Parameter item: The board item to update
-  func updateItem(_ item: BoardItem) async throws
-
   /// Deletes a board item by ID
   /// - Parameter id: The ID of the board item to delete
   func deleteItem(by id: UUID) async throws

@@ -75,4 +75,33 @@ actor BoardSwiftDataRepository: BoardRepository {
     )
     return try modelContext.fetchCount(descriptor)
   }
+
+  func updateBoardName(_ name: String, for boardID: UUID) async throws -> Board {
+    let descriptor = FetchDescriptor<BoardEntity>(predicate: #Predicate { $0.id == boardID })
+    guard let boardEntity = try modelContext.fetch(descriptor).first else {
+      throw HogError.boardNotFoundForID
+    }
+
+    boardEntity.name = name
+    try modelContext.save()
+    return Board(from: boardEntity)
+  }
+
+  func updateBoardPositionAndZoom(
+    boardID: UUID,
+    lastPanOffset: CGPoint,
+    lastZoomScale: Double
+  ) async throws -> Board {
+    let descriptor = FetchDescriptor<BoardEntity>(predicate: #Predicate { $0.id == boardID })
+    guard let boardEntity = try modelContext.fetch(descriptor).first else {
+      throw HogError.boardNotFoundForID
+    }
+
+    boardEntity.lastPanOffsetX = lastPanOffset.x
+    boardEntity.lastPanOffsetY = lastPanOffset.y
+    boardEntity.lastZoomScale = lastZoomScale
+
+    try modelContext.save()
+    return Board(from: boardEntity)
+  }
 }

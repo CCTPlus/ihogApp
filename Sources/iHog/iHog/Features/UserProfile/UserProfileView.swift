@@ -96,7 +96,7 @@ struct UserProfileView: View {
 
 //#Preview {
 //  UserProfileView(
-//    showRepository: ShowMockRespository.previewWithShows,
+//    showRepository: ShowMockRepository.previewWithShows,
 //    showObjectRepository: ShowObjectSwiftDataRepository(
 //      modelContainer: SwiftDataManager.previewContainer
 //    )

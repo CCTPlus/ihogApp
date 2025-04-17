@@ -35,7 +35,7 @@ final class BoardItemEntity {
   }
 }
 
-enum BoardItemType: String {
+enum BoardItemType: String, Codable {
   case showObject
   case encoder
   case frontPanel

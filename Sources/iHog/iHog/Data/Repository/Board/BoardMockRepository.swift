@@ -54,6 +54,27 @@ class BoardMockRepository: BoardRepository {
   func getCountOfBoards(for showID: UUID) async throws -> Int {
     return boards.filter { $0.showID == showID }.count
   }
+
+  func updateBoardName(_ name: String, for boardID: UUID) async throws -> Board {
+    guard let index = boards.firstIndex(where: { $0.id == boardID }) else {
+      throw HogError.boardNotFoundForID
+    }
+    boards[index].name = name
+    return boards[index]
+  }
+
+  func updateBoardPositionAndZoom(
+    boardID: UUID,
+    lastPanOffset: CGPoint,
+    lastZoomScale: Double
+  ) async throws -> Board {
+    guard let index = boards.firstIndex(where: { $0.id == boardID }) else {
+      throw HogError.boardNotFoundForID
+    }
+    boards[index].lastPanOffset = lastPanOffset
+    boards[index].lastZoomScale = lastZoomScale
+    return boards[index]
+  }
 }
 
 extension BoardMockRepository {
@@ -61,7 +82,7 @@ extension BoardMockRepository {
     boards: [
       Board(
         name: "Main Board",
-        showID: ShowMockRepository.previewWithShows.shows[0].id,,
+        showID: ShowMockRepository.previewWithShows.shows[0].id,
         lastPanOffset: .zero,
         lastZoomScale: 1.0
       ),
