@@ -7,6 +7,7 @@ General guidance on SwiftUI view:
 - Each view or component must have it's own file.
 - Each view or component must have Previews. If there are multiple states, then there must be a preview for each state.
 - Previews must use the mock repository
+- Comments need to be added for each significant piece of code explaining what it does
 
 Guidence about the project:
 - The app uses a repository architecture to manipulate and fetch items from SwiftData.
