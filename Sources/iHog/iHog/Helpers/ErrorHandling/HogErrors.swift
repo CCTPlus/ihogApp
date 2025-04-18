@@ -61,6 +61,7 @@ enum HogError: IdentifiableError, Error {
     }
   }
 
+  case noShowSelected
   case showNotFound
   case objectTypeNotFound
   case objectTypeNoteFoundDeleting

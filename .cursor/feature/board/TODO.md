@@ -7,11 +7,17 @@ General guidance on SwiftUI view:
 - Each view or component must have it's own file.
 - Each view or component must have Previews. If there are multiple states, then there must be a preview for each state.
 - Previews must use the mock repository
+- Views should be folling an MVVM pattern and using the observation framework
+
+General guidance on coding:
 - Comments need to be added for each significant piece of code explaining what it does
+- All models must be fetched using the repository architecture. Each repository has a protcol so that must be adjusted first.
+- Coding style must match the style of other files in the app.
 
 Guidence about the project:
 - The app uses a repository architecture to manipulate and fetch items from SwiftData.
 - Entities or managed objects are NOT to be used in views. Only non managed models can be used in views
+- All source files live in Sources/iHog/iHog
 
 ## 1. Feature Structure Setup
 1. [x] Create directory structure:
@@ -34,7 +40,7 @@ Guidence about the project:
        - Add sample data matching real data patterns
        - Mirror SwiftData implementation behavior
 
-3. [ ] Create and implement foundation:
+3. [x] Create and implement foundation:
    - Models/
      - [x] BoardState.swift (class)
        - Current zoom level (no zoom limits)
@@ -117,9 +123,9 @@ Guidence about the project:
          - Show search state
          - Show empty state
 
-6. [ ] Create board items:
+6. [x] Create board items:
    - Views/
-     - [ ] BoardItemView.swift
+     - [x] BoardItemView.swift
        - Rectangle rendering (not just square)
        - Minimum 44×44pts (1×1 grid)
        - Color comes from the related ShowObject
@@ -143,22 +149,21 @@ Guidence about the project:
          - Show with resize handles
 
 ## 2. Board Management
-1. [ ] Implement basic board list:
+1. [x] Implement basic board list:
    - Setup BoardListView:
      - Create list layout
      - Connect to show's boards
      - Handle empty state
-     - Add pull-to-refresh
      - SwiftUI Preview Development:
+       - Use the mock repositories and adjust them if they need to be adjusted for previews
        - Show with sample boards
        - Show empty state
-       - Show loading state
    - Setup navigation:
      - Handle board selection
      - Preserve navigation state
      - Restore board state on return
 
-2. [ ] Create board creation flow:
+2. [x] Create board creation flow:
    - Add creation UI:
      - "New Board" button
      - Name input dialog
@@ -166,11 +171,11 @@ Guidence about the project:
    - Handle creation:
      - Create BoardEntity
      - Save via repository
-     - Navigate to new board
+     - Navigate to new board in a full screen cover
      - Start in edit mode
      - Set default zoom/position
 
-3. [ ] Add board actions:
+3. [x] Add board actions:
    - Implement rename:
      - Add rename swipe action
      - Show rename dialog
@@ -244,6 +249,7 @@ Guidence about the project:
        - Show error toast if invalid
        - Show selection menu if valid
    - SwiftUI Preview Development:
+     - Use the mock repositories and adjust them if they need to be adjusted for previews
      - Show drag in progress
      - Show valid vs invalid states
      - Show with different size rectangles
@@ -264,6 +270,7 @@ Guidence about the project:
      - Create BoardItemEntity on selection
      - Clean up if cancelled
    - SwiftUI Preview Development:
+     - Use the mock repositories and adjust them if they need to be adjusted for previews
      - Show grid with sample show objects
      - Show with search active
      - Show filtered by different types
@@ -335,6 +342,7 @@ Guidence about the project:
      - Handle trigger completion
      - Handle trigger errors
    - SwiftUI Preview Development:
+     - Use the mock repositories and adjust them if they need to be adjusted for previews
      - Show tap recognition states
      - Show feedback animations
      - Show error states
@@ -352,10 +360,9 @@ Guidence about the project:
      - Before list display
    - Add caching system for performance
    - SwiftUI Preview Development:
+     - Use the mock repositories and adjust them if they need to be adjusted for previews
      - Show different board states as thumbnails
      - Show different sizes
-     - Show loading state
-     - Show error state
 
 2. [ ] Add previews to board list:
    - Update BoardListView layout

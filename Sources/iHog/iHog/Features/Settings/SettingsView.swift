@@ -201,6 +201,23 @@ struct SettingsView: View {
               NewShowView()
                 .environment(\.modelContext, modelContext)
             }
+          case .newBoard:
+            if let showID = router.showID {
+              NavigationStack {
+                NewBoardView(showID: showID)
+                  .environment(\.modelContext, modelContext)
+              }
+            } else {
+              Text("There is no show selected")
+                .task {
+                  Analytics.shared
+                    .logError(
+                      with: HogError.noShowSelected,
+                      for: .board,
+                      level: .critical
+                    )
+                }
+            }
           case .paywall:
             NavigationStack {
               CurrentPaywallView(issue: 0, analyticsSource: .newShowView)
@@ -220,20 +237,28 @@ struct SettingsView: View {
               showRepository: ShowSwiftDataRepository(modelContainer: modelContext.container)
             )
           )
+          .environment(router)
         case .osc:
           OSCSettings()
+            .environment(router)
         case .programmer:
           FPProgrammer()
+            .environment(router)
         case .playback:
           FPPlayback()
+            .environment(router)
         case .programmerSettings:
           ProgrammerSettings()
+            .environment(router)
         case .showSettings:
           ShowSetting()
+            .environment(router)
         case .appFeedback:
           UserFeedbackView()
+            .environment(router)
         case .none:
           OSCSettings()
+            .environment(router)
       }
     }
     .task {
@@ -266,9 +291,9 @@ struct SettingsView: View {
   }
 
   func addShow() {
-      Analytics.shared.logEvent(with: .addShowTapped)
+    Analytics.shared.logEvent(with: .addShowTapped)
     if user.isPro {
-        router.openSheet(.newShow)
+      router.openSheet(.newShow)
     } else {
       Task {
         let showRepository =
@@ -277,13 +302,13 @@ struct SettingsView: View {
             modelContainer: modelContext.container
           )
         let showsCount: Int = (try? await showRepository.getCountOfShows()) ?? 0
-          await MainActor.run {
-              if showsCount >= 1 {
-                router.openSheet(.paywall)
-              } else {
-                router.openSheet(.newShow)
-              }
+        await MainActor.run {
+          if showsCount >= 1 {
+            router.openSheet(.paywall)
+          } else {
+            router.openSheet(.newShow)
           }
+        }
       }
     }
   }

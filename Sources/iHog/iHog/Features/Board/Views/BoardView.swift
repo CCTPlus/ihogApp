@@ -7,6 +7,7 @@ import SwiftUI
 /// - Board UI layer (front)
 struct BoardView: View {
   @Environment(\.modelContext) private var modelContext
+  @Environment(\.dismiss) private var dismiss
   /// The view model that manages the board's state and behavior
   @State var viewModel: BoardViewModel
 
@@ -21,7 +22,7 @@ struct BoardView: View {
     )
   }
 
-  let showObjectRepository: ShowObjectRepository?
+  var showObjectRepository: ShowObjectRepository? = nil
 
   var body: some View {
     NavigationStack {
@@ -69,7 +70,9 @@ struct BoardView: View {
       .toolbarBackground(.hidden, for: .navigationBar)
       .toolbar {
         ToolbarItemGroup(placement: .topBarLeading) {
-          Button(action: {}) {
+          Button {
+            dismiss()
+          } label: {
             Image(systemName: "xmark")
           }
 

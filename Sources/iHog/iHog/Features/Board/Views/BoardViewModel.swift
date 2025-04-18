@@ -68,9 +68,7 @@ class BoardViewModel {
 
   func restore() {
     // Restore saved state from board
-    if let savedZoom = board.lastZoomScale {
-      boardState.zoomLevel = savedZoom
-    }
+    boardState.zoomLevel = board.lastZoomScale
     boardState.contentOffset = board.lastPanOffset
   }
 
