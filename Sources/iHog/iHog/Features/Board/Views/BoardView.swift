@@ -1,10 +1,11 @@
 import SwiftUI
+import UIKit
 
 /// A container view that provides an infinite scrollable area for board items.
 /// The view maintains a center origin coordinate system and manages multiple layers:
 /// - Grid layer (back)
-/// - Board Items layer (middle)
-/// - Board UI layer (front)
+/// - Gesture Handler when in edit mode
+/// - Board Items layer (front)
 struct BoardView: View {
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) private var dismiss
@@ -23,79 +24,44 @@ struct BoardView: View {
     NavigationStack {
       GeometryReader { geometry in
         ZStack {
-          // Background layer to capture gestures
-          Color.clear
-            .contentShape(Rectangle())
-
+          if viewModel.boardState.isEditMode == false {
+            TwoFingerPanGesture(
+              sensitivity: 0.75,
+              onChanged: { translation in
+                viewModel.updateOffset(
+                  to: CGPoint(
+                    x: viewModel.totalOffset.x + translation.x,
+                    y: viewModel.totalOffset.y + translation.y
+                  )
+                )
+              },
+              onEnded: { _ in }
+            )
+          }
           // Grid layer (back)
           if viewModel.boardState.isGridVisible {
             GridView(
               size: geometry.size,
-              zoomLevel: viewModel.totalScale * gestureScale,
+              zoomLevel: viewModel.totalScale,
               scrollOffset: .zero,
-              contentOffset: CGPoint(
-                x: viewModel.totalOffset.x + gestureTranslation.width,
-                y: viewModel.totalOffset.y + gestureTranslation.height
-              )
+              contentOffset: viewModel.totalOffset
             )
-            .animation(.easeInOut(duration: 0.2), value: viewModel.totalScale * gestureScale)
           }
 
-          // Board Items layer (middle)
+          if viewModel.boardState.isEditMode {
+            // Unified gesture handler
+            UnifiedGestureHandler(geometry: geometry)
+              .environment(viewModel)
+          }
+
           BoardItemsLayer(
             items: viewModel.items,
-            contentOffset: CGPoint(
-              x: viewModel.totalOffset.x + gestureTranslation.width,
-              y: viewModel.totalOffset.y + gestureTranslation.height
-            ),
+            contentOffset: viewModel.totalOffset,
             showObjectRepository: showObjectRepository
           )
           .environment(viewModel)
-          .animation(.easeInOut(duration: 0.2), value: viewModel.totalScale * gestureScale)
-
-          // Placement gesture layer (front)
-          if viewModel.boardState.isEditMode {
-            PlacementGestureView()
-              .environment(viewModel)
-          }
         }
         .ignoresSafeArea(edges: .all)
-        .gesture(
-          SimultaneousGesture(
-            // Pan gesture
-            DragGesture(minimumDistance: 0)
-              .updating($gestureTranslation) { value, state, _ in
-                // Only update pan if not in placement mode
-                if !viewModel.isPlacingItem {
-                  state = value.translation
-                }
-              }
-              .onEnded { value in
-                // Only handle pan if not in placement mode
-                if !viewModel.isPlacingItem {
-                  withAnimation(.easeInOut(duration: 0.2)) {
-                    viewModel.handlePanGesture(value)
-                  }
-                }
-              },
-            // Zoom gesture
-            MagnificationGesture()
-              .updating($gestureScale) { value, state, _ in
-                // Only update zoom if not in placement mode
-                if !viewModel.isPlacingItem {
-                  state = value
-                }
-              }
-              .onEnded { value in
-                // Only handle zoom if not in placement mode
-                if !viewModel.isPlacingItem {
-                  withAnimation(.easeInOut(duration: 0.2)) {
-                    viewModel.handleZoomGesture(value)
-                  }
-                }
-              }
-          )
-        )
       }
       .toolbarRole(.navigationStack)
       .toolbarTitleDisplayMode(.inline)
@@ -109,9 +75,7 @@ struct BoardView: View {
           }
 
           Button(action: {
-            withAnimation(.easeInOut(duration: 0.2)) {
-              viewModel.updateOffset(to: .zero)
-            }
+            viewModel.updateOffset(to: .zero)
           }) {
             Image(systemName: "scope")
           }

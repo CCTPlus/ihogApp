@@ -21,6 +21,57 @@ struct PlacementGestureView: View {
         Color.clear
           .contentShape(Rectangle())
           .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .overlay(
+            PlacementGestureRecognizerView(
+              onChanged: { location in
+                // Snap to grid dots (not cell centers)
+                let snappedViewPoint = CGPoint(
+                  x: round((location.x - gridSize / 2) / gridSize) * gridSize + gridSize / 2,
+                  y: round((location.y - gridSize / 2) / gridSize) * gridSize + gridSize / 2
+                )
+
+                // Then convert to board coordinates
+                let boardLocation = CGPoint(
+                  x: snappedViewPoint.x - geometry.size.width / 2 - viewModel.totalOffset.x,
+                  y: snappedViewPoint.y - geometry.size.height / 2 - viewModel.totalOffset.y
+                )
+
+                if viewModel.placementDragState == .inactive {
+                  // Start new drag immediately at the exact snapped point
+                  startPosition = boardLocation
+                  currentPosition = boardLocation
+                  viewModel.startPlacement()
+                  viewModel.updatePlacementDragState(.valid)
+                } else {
+                  // Update current position
+                  currentPosition = boardLocation
+
+                  // Calculate the rectangle
+                  let rect = calculateRectangle()
+
+                  // Validate size (must be at least one grid unit)
+                  let isValid = rect.width >= gridSize && rect.height >= gridSize
+
+                  // Validate position
+                  let wouldOverlap = viewModel.wouldOverlap(rect)
+
+                  viewModel.updatePlacementDragState(isValid && !wouldOverlap ? .valid : .invalid)
+                }
+              },
+              onEnded: {
+                if viewModel.placementDragState == .valid {
+                  // Calculate final rectangle
+                  let rect = calculateRectangle()
+
+                  // Show object selection menu
+                  viewModel.prepareToAddItem(at: rect)
+                }
+
+                // Reset drag state
+                viewModel.endPlacement()
+              }
+            )
+          )
 
         // Visual feedback rectangle
         if viewModel.placementDragState != .inactive {
@@ -42,56 +93,6 @@ struct PlacementGestureView: View {
             )
         }
       }
-      .gesture(
-        DragGesture(minimumDistance: 0)
-          .onChanged { value in
-            // Snap to grid dots (not cell centers)
-            let snappedViewPoint = CGPoint(
-              x: round((value.location.x - gridSize / 2) / gridSize) * gridSize + gridSize / 2,
-              y: round((value.location.y - gridSize / 2) / gridSize) * gridSize + gridSize / 2
-            )
-
-            // Then convert to board coordinates
-            let location = CGPoint(
-              x: snappedViewPoint.x - geometry.size.width / 2 - viewModel.totalOffset.x,
-              y: snappedViewPoint.y - geometry.size.height / 2 - viewModel.totalOffset.y
-            )
-
-            if viewModel.placementDragState == .inactive {
-              // Start new drag immediately at the exact snapped point
-              startPosition = location
-              currentPosition = location
-              viewModel.startPlacement()
-              viewModel.updatePlacementDragState(.valid)
-            } else {
-              // Update current position
-              currentPosition = location
-
-              // Calculate the rectangle
-              let rect = calculateRectangle()
-
-              // Validate size (must be at least one grid unit)
-              let isValid = rect.width >= gridSize && rect.height >= gridSize
-
-              // Validate position
-              let wouldOverlap = viewModel.wouldOverlap(rect)
-
-              viewModel.updatePlacementDragState(isValid && !wouldOverlap ? .valid : .invalid)
-            }
-          }
-          .onEnded { _ in
-            if viewModel.placementDragState == .valid {
-              // Calculate final rectangle
-              let rect = calculateRectangle()
-
-              // Show object selection menu
-              viewModel.prepareToAddItem(at: rect)
-            }
-
-            // Reset drag state
-            viewModel.endPlacement()
-          }
-      )
     }
   }
 
