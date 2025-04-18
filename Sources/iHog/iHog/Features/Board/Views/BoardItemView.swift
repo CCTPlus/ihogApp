@@ -3,11 +3,16 @@ import SwiftUI
 /// A view that displays a board item as a rounded rectangle.
 /// The view supports both edit and play modes, with different interactions for each.
 struct BoardItemView: View {
+  @Environment(\.modelContext) private var modelContext
+  @Environment(BoardViewModel.self) private var viewModel
+
+  @EnvironmentObject private var osc: OSCHelper
+
+  @State private var showObject: ShowObject? = nil
+  @State var showObjectRepository: ShowObjectRepository? = nil
+
   /// The board item to display
   let item: BoardItem
-
-  /// The show object associated with this item
-  let showObject: ShowObject
 
   /// Whether the board is in edit mode
   let isEditMode: Bool
@@ -15,35 +20,36 @@ struct BoardItemView: View {
   /// The current zoom level
   let zoomLevel: Double
 
-  @Environment(BoardViewModel.self) private var viewModel
-  @EnvironmentObject private var osc: OSCHelper
-
   var body: some View {
     Button {
       if !isEditMode {
-        sendOSC()
+        if let showObject = showObject {
+          sendOSC(for: showObject)
+        }
       }
     } label: {
       ZStack {
-        RoundedRectangle(cornerRadius: DOUBLE_CORNER_RADIUS)
-          .fill(showObject.isOutlined ? Color.clear : OBJ_COLORS[showObject.getColor()])
-          .overlay(
-            RoundedRectangle(cornerRadius: DOUBLE_CORNER_RADIUS)
-              .stroke(OBJ_COLORS[showObject.getColor()], lineWidth: BASE_LINE_WIDTH)
-          )
-          .overlay(
-            VStack(alignment: .leading) {
-              HStack {
-                Text(showObject.getShortType())
+        if let showObject = showObject {
+          RoundedRectangle(cornerRadius: DOUBLE_CORNER_RADIUS)
+            .fill(showObject.isOutlined ? Color.clear : OBJ_COLORS[showObject.getColor()])
+            .overlay(
+              RoundedRectangle(cornerRadius: DOUBLE_CORNER_RADIUS)
+                .stroke(OBJ_COLORS[showObject.getColor()], lineWidth: BASE_LINE_WIDTH)
+            )
+            .overlay(
+              VStack(alignment: .leading) {
+                HStack {
+                  Text(showObject.getShortType())
+                  Spacer()
+                  Text(showObject.getObjNumber())
+                }
                 Spacer()
-                Text(showObject.getObjNumber())
+                Text(showObject.getName())
+                  .font(.headline)
               }
-              Spacer()
-              Text(showObject.getName())
-                .font(.headline)
-            }
-            .padding(8)
-          )
+              .padding(8)
+            )
+        }
 
         if isEditMode {
           // Top left handle
@@ -132,7 +138,7 @@ struct BoardItemView: View {
           let newX =
             round((item.position.x + value.translation.width / zoomLevel) / gridSize) * gridSize
           let newY =
-            round((item.position.y + value.translation.height / zoomLevel) * gridSize) * gridSize
+            round((item.position.y + value.translation.height / zoomLevel) / gridSize) * gridSize
 
           // Check for overlaps
           let newPosition = CGPoint(x: newX, y: newY)
@@ -145,13 +151,23 @@ struct BoardItemView: View {
           viewModel.registerMoveUndo(for: item)
         }
     )
+    .task {
+      do {
+        let repo =
+          showObjectRepository
+          ?? ShowObjectSwiftDataRepository(modelContainer: modelContext.container)
+        showObject = try await repo.getObject(by: item.showObjectID)
+      } catch {
+        HogLogger.log(category: .board).error("Error fetching show object: \(error)")
+      }
+    }
   }
 
-  private func sendOSC() {
-    let objNum = showObject.getObjNumber()
-    switch showObject.objType {
+  private func sendOSC(for object: ShowObject) {
+    let objNum = object.getObjNumber()
+    switch object.objType {
       case .group, .intensity, .position, .color, .beam, .effect:
-        osc.selectProgrammingObject(objNumber: objNum, objType: showObject.objType)
+        osc.selectProgrammingObject(objNumber: objNum, objType: object.objType)
       case .list:
         osc.goList(objNumber: objNum)
       case .scene:
@@ -179,7 +195,7 @@ struct BoardItemView: View {
         )
         newHeight = max(
           minSize,
-          round((item.size.height - value.translation.height / zoomLevel) * gridSize) * gridSize
+          round((item.size.height - value.translation.height / zoomLevel) / gridSize) * gridSize
         )
       case .topRight:
         newWidth = max(
@@ -188,7 +204,7 @@ struct BoardItemView: View {
         )
         newHeight = max(
           minSize,
-          round((item.size.height - value.translation.height / zoomLevel) * gridSize) * gridSize
+          round((item.size.height - value.translation.height / zoomLevel) / gridSize) * gridSize
         )
       case .bottomLeft:
         newWidth = max(
@@ -197,7 +213,7 @@ struct BoardItemView: View {
         )
         newHeight = max(
           minSize,
-          round((item.size.height + value.translation.height / zoomLevel) * gridSize) * gridSize
+          round((item.size.height + value.translation.height / zoomLevel) / gridSize) * gridSize
         )
       case .bottomRight:
         newWidth = max(
@@ -206,7 +222,7 @@ struct BoardItemView: View {
         )
         newHeight = max(
           minSize,
-          round((item.size.height + value.translation.height / zoomLevel) * gridSize) * gridSize
+          round((item.size.height + value.translation.height / zoomLevel) / gridSize) * gridSize
         )
     }
 
@@ -227,8 +243,8 @@ private enum ResizeCorner {
 
 #Preview("Edit Mode") {
   BoardItemView(
+    showObjectRepository: ShowObjectMockRepository.preview,
     item: BoardItemMockRepository.previewWithItems.items[1],
-    showObject: ShowObjectMockRepository.preview.objects[0],
     isEditMode: true,
     zoomLevel: 1.0
   )
@@ -246,8 +262,8 @@ private enum ResizeCorner {
 
 #Preview("Play Mode") {
   BoardItemView(
+    showObjectRepository: ShowObjectMockRepository.preview,
     item: BoardItemMockRepository.previewWithItems.items[0],
-    showObject: ShowObjectMockRepository.preview.objects[0],
     isEditMode: false,
     zoomLevel: 1.0
   )

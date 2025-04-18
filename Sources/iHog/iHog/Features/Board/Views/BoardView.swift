@@ -6,8 +6,9 @@ import SwiftUI
 /// - Board Items layer (middle)
 /// - Board UI layer (front)
 struct BoardView: View {
+  @Environment(\.modelContext) private var modelContext
   /// The view model that manages the board's state and behavior
-  @Bindable var viewModel: BoardViewModel
+  @State var viewModel: BoardViewModel
 
   /// The current gesture translation
   @GestureState private var gestureTranslation: CGSize = .zero
@@ -43,6 +44,7 @@ struct BoardView: View {
             items: viewModel.items,
             contentOffset: totalOffset
           )
+          .environment(viewModel)
         }
         .ignoresSafeArea(edges: .all)
         .gesture(
@@ -82,13 +84,19 @@ struct BoardView: View {
 
         ToolbarItemGroup(placement: .topBarTrailing) {
           if viewModel.boardState.isEditMode {
-            Button(action: {}) {
+            Button(action: {
+              viewModel.undoManager?.undo()
+            }) {
               Image(systemName: "arrow.uturn.backward")
             }
+            .disabled(!(viewModel.undoManager?.canUndo ?? false))
 
-            Button(action: {}) {
+            Button(action: {
+              viewModel.undoManager?.redo()
+            }) {
               Image(systemName: "arrow.uturn.forward")
             }
+            .disabled(!(viewModel.undoManager?.canRedo ?? false))
           }
 
           Button(action: viewModel.toggleEditMode) {
@@ -100,7 +108,7 @@ struct BoardView: View {
   }
 }
 
-#Preview("Edit mode") {
+#Preview("Edit Mode") {
   BoardView(
     viewModel: BoardViewModel(
       board: BoardMockRepository.previewWithBoards.boards[0],
@@ -112,7 +120,7 @@ struct BoardView: View {
   )
 }
 
-#Preview("Play") {
+#Preview("Play Mode") {
   BoardView(
     viewModel: BoardViewModel(
       board: BoardMockRepository.previewWithBoards.boards[0],

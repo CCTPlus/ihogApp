@@ -40,6 +40,13 @@ class ShowObjectMockRepository: ShowObjectRepository {
     return objects.filter { $0.objType == objectType }
   }
 
+  func getObject(by id: UUID) async throws -> ShowObject {
+    guard let object = objects.first(where: { $0.id == id }) else {
+      throw HogError.objectNotFound
+    }
+    return object
+  }
+
   func getCount(for showID: UUID, of objectType: ShowObjectType) async throws -> Int {
     return objects.filter { $0.objType == objectType }.count
   }

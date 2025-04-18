@@ -45,14 +45,14 @@ extension BoardItemMockRepository {
     items: [
       BoardItem(
         boardID: BoardMockRepository.previewWithBoards.boards[0].id,
-        showObjectID: ShowObjectMockRepository.preview.objects.first!.id,
+        showObjectID: ShowObjectMockRepository.preview.objects[0].id,
         position: CGPoint(x: -88, y: -88),  // -2 grid units from center
         size: CGSize(width: 88, height: 88),  // 2x2 grid units
         itemType: .showObject
       ),
       BoardItem(
         boardID: BoardMockRepository.previewWithBoards.boards[0].id,
-        showObjectID: ShowObjectMockRepository.preview.objects.first!.id,
+        showObjectID: ShowObjectMockRepository.preview.objects[1].id,
         position: CGPoint(x: 88, y: 88),  // 2 grid units from center
         size: CGSize(width: 88, height: 88 * 2),  // 2x2 grid units
         itemType: .showObject

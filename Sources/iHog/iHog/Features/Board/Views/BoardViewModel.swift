@@ -38,7 +38,7 @@ class BoardViewModel {
             self.items = foundItems
           }
         } catch {
-          print("Error fetching items: \(error)")
+          HogLogger.log(category: .board).error("Error fetching items: \(error)")
         }
       }
     }
@@ -151,9 +151,11 @@ class BoardViewModel {
     Task {
       do {
         try await itemRepository.deleteItem(by: item.id)
-        items.removeAll { $0.id == item.id }
+        await MainActor.run {
+          items.removeAll { $0.id == item.id }
+        }
       } catch {
-        print("Error removing item: \(error)")
+        HogLogger.log(category: .board).error("Error removing item: \(error)")
       }
     }
   }
