@@ -231,7 +231,7 @@ Guidence about the project:
      - Handle zoom momentum/velocity
 
 ## 4. Object Placement System
-1. [ ] Create placement gesture system:
+1. [x] Create placement gesture system:
    - Setup drag gesture:
      - Add DragGesture to BoardView
      - Track start position (snapped to grid)
@@ -255,7 +255,7 @@ Guidence about the project:
      - Show with different size rectangles
      - Show with grid snapping
 
-2. [ ] Implement object selection menu:
+2. [x] Implement object selection menu:
    - Setup menu presentation:
      - Show as sheet/popover after valid drag
      - Grid layout of available show objects
@@ -283,6 +283,7 @@ Guidence about the project:
      - Track item position
      - Snap to grid during movement
      - Update position in BoardState via ViewModel
+     - implement ability to undo position change
    - Add resize handling:
      - Create corner resize handles
      - Track resize gesture
@@ -298,7 +299,6 @@ Guidence about the project:
      - Check for overlaps during drag/resize
      - Show red highlight when invalid
      - Revert to previous position if invalid
-     - Show error toast on invalid placement
 
 2. [ ] Add context menu:
    - Setup menu trigger:
@@ -370,7 +370,7 @@ Guidence about the project:
    - Handle loading states
    - Update on changes
 
-## 8. Bugs to fix
+## 8. Blocking issues to fix
 
 - [ ] After adding a board, it should automatically open
 
@@ -401,3 +401,7 @@ Guidence about the project:
    - Track mode switches (edit/play)
    - Track object triggers in play mode
    - Track trigger errors/failures
+
+## 10. Non blocking testflight issues to fix
+
+- [ ]
