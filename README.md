@@ -67,6 +67,9 @@ iHog/
 └── Preview Content/   # SwiftUI preview content
 ```
 
+In addition to the main application structure shown above, this project includes a `.cursor/` directory. This directory is maintained by the Cursor IDE and contains project-specific settings, AI features, and development configurations that enhance the coding experience. While not part of the application code itself, it helps streamline the development workflow.
+
+
 ## Usage
 
 1. Launch the app on your iOS device
