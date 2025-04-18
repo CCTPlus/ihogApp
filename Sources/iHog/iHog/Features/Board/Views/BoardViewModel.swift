@@ -150,11 +150,12 @@ class BoardViewModel {
     let itemsToCheck = excludingItemID.map { id in items.filter { $0.id != id } } ?? items
     return itemsToCheck.contains { item in
       let itemRect = CGRect(
-        x: item.position.x,
-        y: item.position.y,
+        x: item.position.x - item.size.width / 2,
+        y: item.position.y - item.size.height / 2,
         width: item.size.width,
         height: item.size.height
       )
+      // Use exact intersection check without any padding
       return itemRect.intersects(rect)
     }
   }
@@ -213,7 +214,7 @@ class BoardViewModel {
       id: UUID(),
       boardID: board.id,
       showObjectID: object.id,
-      position: CGPoint(x: rect.minX, y: rect.minY),
+      position: rect.center,
       size: CGSize(width: rect.width, height: rect.height)
     )
 
@@ -223,6 +224,9 @@ class BoardViewModel {
         await MainActor.run {
           items.append(newItem)
           currentPlacementRect = nil
+          showingObjectSelection = false
+          isPlacingItem = false
+          placementDragState = .inactive
         }
       } catch {
         HogLogger.log(category: .board).error("Error adding item: \(error)")

@@ -24,21 +24,18 @@ struct PlacementGestureView: View {
 
         // Visual feedback rectangle
         if viewModel.placementDragState != .inactive {
+          let rect = calculateRectangle()
+          let coordinateSystem = BoardCoordinateSystem(
+            viewportSize: geometry.size,
+            contentOffset: viewModel.totalOffset
+          )
           Rectangle()
             .fill(
               viewModel.placementDragState == .valid
                 ? Color.gray.opacity(0.3) : Color.red.opacity(0.3)
             )
-            .frame(
-              width: abs(currentPosition.x - startPosition.x),
-              height: abs(currentPosition.y - startPosition.y)
-            )
-            .position(
-              x: geometry.size.width / 2 + viewModel.totalOffset.x
-                + (startPosition.x + currentPosition.x) / 2,
-              y: geometry.size.height / 2 + viewModel.totalOffset.y
-                + (startPosition.y + currentPosition.y) / 2
-            )
+            .frame(width: rect.width, height: rect.height)
+            .position(coordinateSystem.viewPosition(for: rect.center))
         }
       }
       .gesture(
@@ -59,19 +56,21 @@ struct PlacementGestureView: View {
               // Update current position
               currentPosition = snapToGrid(location)
 
-              // Validate size
-              let width = abs(currentPosition.x - startPosition.x)
-              let height = abs(currentPosition.y - startPosition.y)
-              let isValid = width >= gridSize && height >= gridSize
+              // Calculate the rectangle
+              let rect = calculateRectangle()
+
+              // Validate size (must be at least one grid unit)
+              let isValid = rect.width >= gridSize && rect.height >= gridSize
 
               // Validate position
-              let rect = CGRect(
-                x: min(startPosition.x, currentPosition.x),
-                y: min(startPosition.y, currentPosition.y),
-                width: width,
-                height: height
-              )
               let wouldOverlap = viewModel.wouldOverlap(rect)
+
+              // Debug logging
+              print("Rectangle size: \(rect.width) x \(rect.height)")
+              print("Grid size: \(gridSize)")
+              print("Is valid size: \(isValid)")
+              print("Would overlap: \(wouldOverlap)")
+              print("Items on board: \(viewModel.items.count)")
 
               viewModel.updatePlacementDragState(isValid && !wouldOverlap ? .valid : .invalid)
             }
@@ -79,12 +78,7 @@ struct PlacementGestureView: View {
           .onEnded { _ in
             if viewModel.placementDragState == .valid {
               // Calculate final rectangle
-              let rect = CGRect(
-                x: min(startPosition.x, currentPosition.x),
-                y: min(startPosition.y, currentPosition.y),
-                width: abs(currentPosition.x - startPosition.x),
-                height: abs(currentPosition.y - startPosition.y)
-              )
+              let rect = calculateRectangle()
 
               // Show object selection menu
               viewModel.prepareToAddItem(at: rect)
@@ -103,6 +97,19 @@ struct PlacementGestureView: View {
       x: round(point.x / gridSize) * gridSize,
       y: round(point.y / gridSize) * gridSize
     )
+  }
+
+  /// Calculates the rectangle in grid-aligned coordinates
+  private func calculateRectangle() -> CGRect {
+    // Calculate width and height, ensuring they're grid-aligned
+    let width = round(abs(currentPosition.x - startPosition.x) / gridSize) * gridSize
+    let height = round(abs(currentPosition.y - startPosition.y) / gridSize) * gridSize
+
+    // Calculate position, ensuring we're aligned to grid
+    let x = round(min(startPosition.x, currentPosition.x) / gridSize) * gridSize
+    let y = round(min(startPosition.y, currentPosition.y) / gridSize) * gridSize
+
+    return CGRect(x: x, y: y, width: width, height: height)
   }
 }
 

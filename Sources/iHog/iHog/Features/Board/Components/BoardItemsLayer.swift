@@ -20,6 +20,10 @@ struct BoardItemsLayer: View {
 
   var body: some View {
     GeometryReader { geometry in
+      let coordinateSystem = BoardCoordinateSystem(
+        viewportSize: geometry.size,
+        contentOffset: contentOffset
+      )
       ForEach(items) { item in
         BoardItemView(
           showObjectRepository: showObjectRepository,
@@ -27,10 +31,7 @@ struct BoardItemsLayer: View {
           isEditMode: viewModel.boardState.isEditMode,
           zoomLevel: viewModel.boardState.zoomLevel
         )
-        .position(
-          x: geometry.size.width / 2 + contentOffset.x + item.position.x,
-          y: geometry.size.height / 2 + contentOffset.y + item.position.y
-        )
+        .position(coordinateSystem.viewPosition(for: item.position))
       }
     }
   }

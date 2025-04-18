@@ -44,3 +44,54 @@ struct BoardState {
     self.lastSavedZoom = lastSavedZoom
   }
 }
+
+/// Handles all board-specific coordinate system calculations
+struct BoardCoordinateSystem {
+  /// The size of the viewport
+  let viewportSize: CGSize
+
+  /// The current offset of the viewport
+  let contentOffset: CGPoint
+
+  /// Converts a point from board coordinates to view coordinates
+  func viewPosition(for boardPosition: CGPoint) -> CGPoint {
+    CGPoint(
+      x: viewportSize.width / 2 + contentOffset.x + boardPosition.x,
+      y: viewportSize.height / 2 + contentOffset.y + boardPosition.y
+    )
+  }
+
+  /// Converts a point from view coordinates to board coordinates
+  func boardPosition(for viewPosition: CGPoint) -> CGPoint {
+    CGPoint(
+      x: viewPosition.x - viewportSize.width / 2 - contentOffset.x,
+      y: viewPosition.y - viewportSize.height / 2 - contentOffset.y
+    )
+  }
+}
+
+// MARK: - Coordinate System Extensions
+
+extension CGRect {
+  /// The center point of the rectangle
+  var center: CGPoint {
+    CGPoint(x: minX + width / 2, y: minY + height / 2)
+  }
+
+  /// Creates a rectangle from a center point and size
+  static func from(center: CGPoint, size: CGSize) -> CGRect {
+    CGRect(
+      x: center.x - size.width / 2,
+      y: center.y - size.height / 2,
+      width: size.width,
+      height: size.height
+    )
+  }
+}
+
+extension CGPoint {
+  /// The position of this point in the board's center-based coordinate system
+  var boardPosition: CGPoint {
+    self  // Already in center-based coordinates
+  }
+}
