@@ -14,13 +14,8 @@ struct BoardView: View {
   /// The current gesture translation
   @GestureState private var gestureTranslation: CGSize = .zero
 
-  /// The current total offset (stored + gesture)
-  private var totalOffset: CGPoint {
-    CGPoint(
-      x: viewModel.boardState.contentOffset.x + gestureTranslation.width,
-      y: viewModel.boardState.contentOffset.y + gestureTranslation.height
-    )
-  }
+  /// The current gesture scale
+  @GestureState private var gestureScale: CGFloat = 1.0
 
   var showObjectRepository: ShowObjectRepository? = nil
 
@@ -36,33 +31,52 @@ struct BoardView: View {
           if viewModel.boardState.isGridVisible {
             GridView(
               size: geometry.size,
-              zoomLevel: viewModel.boardState.zoomLevel,
+              zoomLevel: viewModel.totalScale * gestureScale,
               scrollOffset: .zero,
-              contentOffset: totalOffset
+              contentOffset: CGPoint(
+                x: viewModel.totalOffset.x + gestureTranslation.width,
+                y: viewModel.totalOffset.y + gestureTranslation.height
+              )
             )
+            .animation(.easeInOut(duration: 0.2), value: viewModel.totalScale * gestureScale)
           }
 
           // Board Items layer (middle)
           BoardItemsLayer(
             items: viewModel.items,
-            contentOffset: totalOffset,
+            contentOffset: CGPoint(
+              x: viewModel.totalOffset.x + gestureTranslation.width,
+              y: viewModel.totalOffset.y + gestureTranslation.height
+            ),
             showObjectRepository: showObjectRepository
           )
           .environment(viewModel)
+          .animation(.easeInOut(duration: 0.2), value: viewModel.totalScale * gestureScale)
         }
         .ignoresSafeArea(edges: .all)
         .gesture(
-          DragGesture(minimumDistance: 0)
-            .updating($gestureTranslation) { value, state, _ in
-              state = value.translation
-            }
-            .onEnded { value in
-              let newOffset = CGPoint(
-                x: viewModel.boardState.contentOffset.x + value.translation.width,
-                y: viewModel.boardState.contentOffset.y + value.translation.height
-              )
-              viewModel.updateOffset(to: newOffset)
-            }
+          SimultaneousGesture(
+            // Pan gesture
+            DragGesture(minimumDistance: 0)
+              .updating($gestureTranslation) { value, state, _ in
+                state = value.translation
+              }
+              .onEnded { value in
+                withAnimation(.easeInOut(duration: 0.2)) {
+                  viewModel.handlePanGesture(value)
+                }
+              },
+            // Zoom gesture
+            MagnificationGesture()
+              .updating($gestureScale) { value, state, _ in
+                state = value
+              }
+              .onEnded { value in
+                withAnimation(.easeInOut(duration: 0.2)) {
+                  viewModel.handleZoomGesture(value)
+                }
+              }
+          )
         )
       }
       .toolbarRole(.navigationStack)
@@ -77,7 +91,9 @@ struct BoardView: View {
           }
 
           Button(action: {
-            viewModel.updateOffset(to: .zero)
+            withAnimation(.easeInOut(duration: 0.2)) {
+              viewModel.updateOffset(to: .zero)
+            }
           }) {
             Image(systemName: "scope")
           }

@@ -12,6 +12,16 @@ class BoardViewModel {
   var board: Board
   var items: [BoardItem]
 
+  /// The current total offset
+  var totalOffset: CGPoint {
+    boardState.contentOffset
+  }
+
+  /// The current total scale
+  var totalScale: CGFloat {
+    CGFloat(boardState.zoomLevel)
+  }
+
   init(
     board: Board,
     boardState: BoardState = .init(),
@@ -156,5 +166,20 @@ class BoardViewModel {
         HogLogger.log(category: .board).error("Error removing item: \(error)")
       }
     }
+  }
+
+  // MARK: - Gesture Handling
+
+  func handlePanGesture(_ value: DragGesture.Value) {
+    let newOffset = CGPoint(
+      x: boardState.contentOffset.x + value.translation.width,
+      y: boardState.contentOffset.y + value.translation.height
+    )
+    updateOffset(to: newOffset)
+  }
+
+  func handleZoomGesture(_ value: CGFloat) {
+    let newZoom = boardState.zoomLevel * Double(value)
+    updateZoom(to: newZoom)
   }
 }

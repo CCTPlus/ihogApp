@@ -189,7 +189,7 @@ Guidence about the project:
      - Handle navigation after delete
 
 ## 3. Core Board Implementation
-1. [ ] Connect state management:
+1. [x] Connect state management:
    - Wire ViewModel to views:
      - Bind zoom/pan state to transforms
      - Bind edit mode to grid visibility
@@ -202,7 +202,7 @@ Guidence about the project:
      - Register state changes in edit mode
      - Clear undo stack on mode exit
 
-2. [ ] Implement pan functionality:
+2. [x] Implement pan functionality:
    - Connect drag gesture to BoardState:
      - Update contentOffset in BoardState via ViewModel
      - Use standard SwiftUI drag gesture
@@ -211,7 +211,7 @@ Guidence about the project:
      - Apply content offset from BoardState
      - Maintain (0,0) center origin during transforms
 
-3. [ ] Implement zoom functionality:
+3. [x] Implement zoom functionality:
    - Setup zoom gesture coordination:
      - Add MagnificationGesture to BoardView's ScrollView
      - Handle gesture state updates (.onChanged, .onEnded)
@@ -370,7 +370,11 @@ Guidence about the project:
    - Handle loading states
    - Update on changes
 
-## 8. Analytics
+## 8. Bugs to fix
+
+- [ ] After adding a board, it should automatically open
+
+## 9. Analytics
 1. [ ] Add board management events:
    - Track board creation:
      - Board name
