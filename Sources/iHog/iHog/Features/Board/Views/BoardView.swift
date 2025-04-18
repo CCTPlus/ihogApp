@@ -21,6 +21,8 @@ struct BoardView: View {
     )
   }
 
+  let showObjectRepository: ShowObjectRepository?
+
   var body: some View {
     NavigationStack {
       GeometryReader { geometry in
@@ -42,7 +44,8 @@ struct BoardView: View {
           // Board Items layer (middle)
           BoardItemsLayer(
             items: viewModel.items,
-            contentOffset: totalOffset
+            contentOffset: totalOffset,
+            showObjectRepository: showObjectRepository
           )
           .environment(viewModel)
         }
@@ -116,7 +119,8 @@ struct BoardView: View {
       repository: BoardMockRepository.previewWithBoards,
       itemRepository: BoardItemMockRepository.previewWithItems,
       items: BoardItemMockRepository.previewWithItems.items
-    )
+    ),
+    showObjectRepository: ShowObjectMockRepository.preview
   )
 }
 
@@ -128,6 +132,7 @@ struct BoardView: View {
       repository: BoardMockRepository.previewWithBoards,
       itemRepository: BoardItemMockRepository.previewWithItems,
       items: BoardItemMockRepository.previewWithItems.items
-    )
+    ),
+    showObjectRepository: ShowObjectMockRepository.preview
   )
 }

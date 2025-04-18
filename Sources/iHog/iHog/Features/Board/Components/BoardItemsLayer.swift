@@ -15,10 +15,14 @@ struct BoardItemsLayer: View {
   /// Shared view model providing edit state and zoom level to child BoardItemViews
   @Environment(BoardViewModel.self) private var viewModel
 
+  /// Repository for fetching show object data, enables preview mocking without ModelContext
+  let showObjectRepository: ShowObjectRepository?
+
   var body: some View {
     GeometryReader { geometry in
       ForEach(items) { item in
         BoardItemView(
+          showObjectRepository: showObjectRepository,
           item: item,
           isEditMode: viewModel.boardState.isEditMode,
           zoomLevel: viewModel.boardState.zoomLevel
@@ -42,7 +46,8 @@ struct BoardItemsLayer: View {
 
   return BoardItemsLayer(
     items: BoardItemMockRepository.previewWithItems.items,
-    contentOffset: .zero
+    contentOffset: .zero,
+    showObjectRepository: ShowObjectMockRepository.preview
   )
   .environment(viewModel)
 }
@@ -57,7 +62,8 @@ struct BoardItemsLayer: View {
 
   return BoardItemsLayer(
     items: BoardItemMockRepository.previewWithItems.items,
-    contentOffset: .zero
+    contentOffset: .zero,
+    showObjectRepository: ShowObjectMockRepository.preview
   )
   .environment(viewModel)
 }
