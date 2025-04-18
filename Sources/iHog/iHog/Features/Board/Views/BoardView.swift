@@ -52,6 +52,12 @@ struct BoardView: View {
           )
           .environment(viewModel)
           .animation(.easeInOut(duration: 0.2), value: viewModel.totalScale * gestureScale)
+
+          // Placement gesture layer (front)
+          if viewModel.boardState.isEditMode {
+            PlacementGestureView()
+              .environment(viewModel)
+          }
         }
         .ignoresSafeArea(edges: .all)
         .gesture(
@@ -59,21 +65,33 @@ struct BoardView: View {
             // Pan gesture
             DragGesture(minimumDistance: 0)
               .updating($gestureTranslation) { value, state, _ in
-                state = value.translation
+                // Only update pan if not in placement mode
+                if !viewModel.isPlacingItem {
+                  state = value.translation
+                }
               }
               .onEnded { value in
-                withAnimation(.easeInOut(duration: 0.2)) {
-                  viewModel.handlePanGesture(value)
+                // Only handle pan if not in placement mode
+                if !viewModel.isPlacingItem {
+                  withAnimation(.easeInOut(duration: 0.2)) {
+                    viewModel.handlePanGesture(value)
+                  }
                 }
               },
             // Zoom gesture
             MagnificationGesture()
               .updating($gestureScale) { value, state, _ in
-                state = value
+                // Only update zoom if not in placement mode
+                if !viewModel.isPlacingItem {
+                  state = value
+                }
               }
               .onEnded { value in
-                withAnimation(.easeInOut(duration: 0.2)) {
-                  viewModel.handleZoomGesture(value)
+                // Only handle zoom if not in placement mode
+                if !viewModel.isPlacingItem {
+                  withAnimation(.easeInOut(duration: 0.2)) {
+                    viewModel.handleZoomGesture(value)
+                  }
                 }
               }
           )
@@ -125,6 +143,14 @@ struct BoardView: View {
             Image(systemName: viewModel.boardState.isEditMode ? "pencil" : "play.fill")
           }
         }
+      }
+      .sheet(isPresented: $viewModel.showingObjectSelection) {
+        ObjectSelectionMenu(
+          repository: showObjectRepository
+            ?? ShowObjectSwiftDataRepository(modelContainer: modelContext.container),
+          showID: viewModel.board.showID,
+          onSelect: viewModel.handleObjectSelection
+        )
       }
     }
   }

@@ -3,14 +3,14 @@ import SwiftUI
 /// A view that presents a menu for selecting show objects to place on the board.
 /// This menu includes search functionality, type filtering, and object preview.
 struct ObjectSelectionMenu: View {
-  /// The repository used to fetch show objects
-  let repository: ShowObjectRepository
-
-  /// The ID of the show to fetch objects from
-  let showID: UUID
+  /// The environment dismiss action
+  @Environment(\.dismiss) private var dismiss
 
   /// The currently selected object type filter
   @State private var selectedTypes: [ShowObjectType] = []
+
+  /// The list of objects to display, filtered by type and search text
+  @State private var objects: [ShowObject] = []
 
   /// The search text entered by the user
   @State private var searchText = ""
@@ -19,14 +19,15 @@ struct ObjectSelectionMenu: View {
   @State private var selectedObject: ShowObject?
 
   @State private var filters = ShowObjectType.boardObjects
+  /// The repository used to fetch show objects
+
+  /// The repository used to fetch show objects
+  let repository: ShowObjectRepository
+
+  /// The ID of the show to fetch objects from
+  let showID: UUID
   /// The action to perform when an object is selected
   let onSelect: (ShowObject) -> Void
-
-  /// The environment dismiss action
-  @Environment(\.dismiss) private var dismiss
-
-  /// The list of objects to display, filtered by type and search text
-  @State private var objects: [ShowObject] = []
 
   var body: some View {
     NavigationStack {

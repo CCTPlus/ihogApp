@@ -142,7 +142,13 @@ struct BoardItemView: View {
 
           // Check for overlaps
           let newPosition = CGPoint(x: newX, y: newY)
-          if !viewModel.wouldOverlap(item: item, at: newPosition) {
+          let itemRect = CGRect(
+            x: newPosition.x,
+            y: newPosition.y,
+            width: item.size.width,
+            height: item.size.height
+          )
+          if !viewModel.wouldOverlap(itemRect, excludingItemID: item.id) {
             viewModel.moveItem(item, to: newPosition)
           }
         }
@@ -227,7 +233,13 @@ struct BoardItemView: View {
     }
 
     // Check for overlaps with new size
-    if !viewModel.wouldOverlap(item: item, with: CGSize(width: newWidth, height: newHeight)) {
+    let itemRect = CGRect(
+      x: item.position.x,
+      y: item.position.y,
+      width: newWidth,
+      height: newHeight
+    )
+    if !viewModel.wouldOverlap(itemRect, excludingItemID: item.id) {
       viewModel.resizeItem(item, to: CGSize(width: newWidth, height: newHeight))
     }
   }

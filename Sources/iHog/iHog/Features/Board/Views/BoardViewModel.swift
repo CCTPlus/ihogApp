@@ -3,24 +3,57 @@ import Observation
 import SwiftData
 import SwiftUI
 
+/// Coordinates the board's state, item placement, and user interactions.
+/// Handles persistence, undo/redo, and gesture responses.
 @Observable
 class BoardViewModel {
-  var boardState: BoardState
-  let undoManager: UndoManager?
+  // MARK: - Dependencies
+
+  /// Handles board-level persistence and state restoration
   let repository: BoardRepository
+
+  /// Manages CRUD operations for items on the board
   let itemRepository: BoardItemRepository
+
+  /// Tracks and manages undo/redo operations for item movements and resizes
+  let undoManager: UndoManager?
+
+  // MARK: - State
+
+  /// Tracks the current viewport state (zoom, offset) and edit mode
+  var boardState: BoardState
+
+  /// The underlying board model containing persistent state
   var board: Board
+
+  /// Currently placed items on the board, maintained in sync with SwiftData
   var items: [BoardItem]
 
-  /// The current total offset
+  /// Controls visibility of the object selection menu during placement
+  var showingObjectSelection = false
+
+  /// The current drag state for placement
+  var placementDragState: PlacementDragState = .inactive
+
+  /// Tracks if we're currently in placement mode
+  var isPlacingItem = false
+
+  /// The current placement rectangle being created
+  var currentPlacementRect: CGRect?
+
+  // MARK: - Computed Properties
+
+  /// Current viewport offset, derived from boardState for consistency
   var totalOffset: CGPoint {
     boardState.contentOffset
   }
 
-  /// The current total scale
+  /// Current zoom scale, converted from boardState's zoomLevel
   var totalScale: CGFloat {
     CGFloat(boardState.zoomLevel)
   }
+
+  // MARK: - Initialization
 
   init(
     board: Board,
@@ -36,10 +69,10 @@ class BoardViewModel {
     self.itemRepository = itemRepository
     self.items = items
 
-    // Restore saved state on init
+    // Restore saved viewport state on initialization
     restore()
 
-    // Fetch items if none provided
+    // Only fetch items if none provided, to support both new boards and restored state
     if items.isEmpty {
       Task {
         do {
@@ -54,21 +87,26 @@ class BoardViewModel {
     }
   }
 
+  // MARK: - Board State Management
+
+  /// Updates zoom level and triggers viewport recalculation
   func updateZoom(to zoomLevel: Double) {
     boardState.zoomLevel = zoomLevel
   }
 
+  /// Updates viewport offset and triggers view recalculation
   func updateOffset(to offset: CGPoint) {
     boardState.contentOffset = offset
   }
 
+  /// Toggles between edit and play modes, clearing undo stack on exit
   func toggleEditMode() {
     boardState.isEditMode.toggle()
-    undoManager?.removeAllActions()  // Clear undo stack on mode exit
+    undoManager?.removeAllActions()
   }
 
+  /// Persists current viewport state to SwiftData
   func save() async throws {
-    // Update board with current state
     board = try await repository.updateBoardPositionAndZoom(
       boardID: board.id,
       lastPanOffset: boardState.contentOffset,
@@ -76,62 +114,52 @@ class BoardViewModel {
     )
   }
 
+  /// Restores viewport state from persistent storage
   func restore() {
-    // Restore saved state from board
     boardState.zoomLevel = board.lastZoomScale
     boardState.contentOffset = board.lastPanOffset
   }
 
+  // MARK: - Item Management
+
+  /// Updates item position and registers undo operation
   func moveItem(_ item: BoardItem, to position: CGPoint) {
     if let index = items.firstIndex(where: { $0.id == item.id }) {
       items[index].position = position
     }
   }
 
+  /// Updates item size and registers undo operation
   func resizeItem(_ item: BoardItem, to size: CGSize) {
     if let index = items.firstIndex(where: { $0.id == item.id }) {
       items[index].size = size
     }
   }
 
-  func wouldOverlap(item: BoardItem, at position: CGPoint) -> Bool {
-    let otherItems = items.filter { $0.id != item.id }
-    return otherItems.contains { otherItem in
-      let itemRect = CGRect(
-        x: position.x,
-        y: position.y,
-        width: item.size.width,
-        height: item.size.height
-      )
-      let otherRect = CGRect(
-        x: otherItem.position.x,
-        y: otherItem.position.y,
-        width: otherItem.size.width,
-        height: otherItem.size.height
-      )
-      return itemRect.intersects(otherRect)
-    }
-  }
-
-  func wouldOverlap(item: BoardItem, with size: CGSize) -> Bool {
-    let otherItems = items.filter { $0.id != item.id }
-    return otherItems.contains { otherItem in
+  /// Checks if a rectangle would overlap with any existing board items.
+  ///
+  /// When moving or resizing an existing item, we need to exclude that item from the overlap check.
+  /// For example, if we're moving Item A, we want to check if it overlaps with Item B, but not with itself.
+  ///
+  /// - Parameters:
+  ///   - rect: The rectangle to check for overlaps
+  ///   - excludingItemID: The ID of an item to exclude from the check. Use this when moving or resizing an existing item
+  ///                     to prevent checking for overlap with itself. Set to nil when placing a new item.
+  /// - Returns: true if the rectangle would overlap with any existing items, false otherwise
+  func wouldOverlap(_ rect: CGRect, excludingItemID: UUID? = nil) -> Bool {
+    let itemsToCheck = excludingItemID.map { id in items.filter { $0.id != id } } ?? items
+    return itemsToCheck.contains { item in
       let itemRect = CGRect(
         x: item.position.x,
         y: item.position.y,
-        width: size.width,
-        height: size.height
+        width: item.size.width,
+        height: item.size.height
       )
-      let otherRect = CGRect(
-        x: otherItem.position.x,
-        y: otherItem.position.y,
-        width: otherItem.size.width,
-        height: otherItem.size.height
-      )
-      return itemRect.intersects(otherRect)
+      return itemRect.intersects(rect)
     }
   }
 
+  /// Registers a move operation with the undo manager for later reversal
   func registerMoveUndo(for item: BoardItem) {
     guard let undoManager = undoManager else { return }
     let oldPosition = item.position
@@ -141,6 +169,7 @@ class BoardViewModel {
     }
   }
 
+  /// Registers a resize operation with the undo manager for later reversal
   func registerResizeUndo(for item: BoardItem) {
     guard let undoManager = undoManager else { return }
     let oldSize = item.size
@@ -150,11 +179,13 @@ class BoardViewModel {
     }
   }
 
+  /// Prepares to change an item's type, will show object selection menu
   func reassignItem(_ item: BoardItem) {
     // TODO: Implement reassign item
     // This will need to show the object selection menu
   }
 
+  /// Removes an item from both the board and persistent storage
   func removeItem(_ item: BoardItem) {
     Task {
       do {
@@ -168,9 +199,58 @@ class BoardViewModel {
     }
   }
 
+  /// Stores placement position and shows object selection menu
+  func prepareToAddItem(at rect: CGRect) {
+    currentPlacementRect = rect
+    showingObjectSelection = true
+  }
+
+  /// Creates and adds a new item after object type selection
+  func handleObjectSelection(_ object: ShowObject) {
+    guard let rect = currentPlacementRect else { return }
+
+    let item = BoardItem(
+      id: UUID(),
+      boardID: board.id,
+      showObjectID: object.id,
+      position: CGPoint(x: rect.minX, y: rect.minY),
+      size: CGSize(width: rect.width, height: rect.height)
+    )
+
+    Task {
+      do {
+        let newItem = try await itemRepository.createItem(item, boardID: board.id)
+        await MainActor.run {
+          items.append(newItem)
+          currentPlacementRect = nil
+        }
+      } catch {
+        HogLogger.log(category: .board).error("Error adding item: \(error)")
+      }
+    }
+  }
+
+  /// Persists a new item and updates local state
+  func addItem(_ item: BoardItem) {
+    Task {
+      do {
+        let newItem = try await itemRepository.createItem(item, boardID: board.id)
+        await MainActor.run {
+          items.append(newItem)
+        }
+      } catch {
+        HogLogger.log(category: .board).error("Error adding item: \(error)")
+      }
+    }
+  }
+
   // MARK: - Gesture Handling
 
+  /// Updates viewport offset based on pan gesture translation
   func handlePanGesture(_ value: DragGesture.Value) {
+    // Only handle pan if not in placement mode
+    guard !isPlacingItem else { return }
+
     let newOffset = CGPoint(
       x: boardState.contentOffset.x + value.translation.width,
       y: boardState.contentOffset.y + value.translation.height
@@ -178,8 +258,39 @@ class BoardViewModel {
     updateOffset(to: newOffset)
   }
 
+  /// Updates zoom level based on magnification gesture
   func handleZoomGesture(_ value: CGFloat) {
+    // Only handle zoom if not in placement mode
+    guard !isPlacingItem else { return }
+
     let newZoom = boardState.zoomLevel * Double(value)
     updateZoom(to: newZoom)
   }
+
+  // MARK: - Placement Handling
+
+  /// Updates the placement drag state
+  func updatePlacementDragState(_ state: PlacementDragState) {
+    placementDragState = state
+  }
+
+  /// Starts a new placement operation
+  func startPlacement() {
+    isPlacingItem = true
+    placementDragState = .active
+  }
+
+  /// Ends the current placement operation
+  func endPlacement() {
+    isPlacingItem = false
+    placementDragState = .inactive
+  }
+}
+
+/// The possible states of a placement drag operation
+enum PlacementDragState {
+  case inactive
+  case active
+  case valid
+  case invalid
 }
