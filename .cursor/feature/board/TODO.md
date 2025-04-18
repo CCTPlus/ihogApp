@@ -70,9 +70,9 @@ Guidence about the project:
          - save()  // Saves to SwiftData via repository
          - restore()  // Loads from SwiftData via repository
 
-4. [ ] Create core board structure:
+4. [x] Create core board structure:
    - Views/
-     - [ ] BoardView.swift (container)
+     - [x] BoardView.swift (container)
        - [x] Infinite scrollable area:
          - Both axes enabled
          - No pan limits
@@ -100,9 +100,9 @@ Guidence about the project:
          - Show edit vs play mode states
          - Show with different zoom levels
 
-5. [ ] Create interactive components:
+5. [x] Create interactive components:
    - Components/
-     - [ ] ObjectSelectionMenu.swift
+     - [x] ObjectSelectionMenu.swift
        - Standard sheet/popover presentation
        - List of show objects:
          - Use standard iOS searchable modifier

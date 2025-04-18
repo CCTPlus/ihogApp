@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ShowObjectType: String {
+public enum ShowObjectType: String, Identifiable, Hashable {
   //programming objects
   case group
   case intensity
@@ -24,6 +24,21 @@ public enum ShowObjectType: String {
   // others
   case macro
   case plot
+
+  static let boardObjects: [ShowObjectType] = [
+    .group,
+    .intensity,
+    .position,
+    .color,
+    .beam,
+    .effect,
+    .list,
+    .scene,
+  ]
+
+  public var id: String {
+    self.rawValue
+  }
 }
 
 /// An object in the show that is used for programming or playback.
