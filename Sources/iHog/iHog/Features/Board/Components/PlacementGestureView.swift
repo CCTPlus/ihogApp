@@ -35,26 +35,37 @@ struct PlacementGestureView: View {
                 ? Color.gray.opacity(0.3) : Color.red.opacity(0.3)
             )
             .frame(width: rect.width, height: rect.height)
-            .position(coordinateSystem.viewPosition(for: rect.center))
+            .offset(x: rect.width / 2, y: rect.height / 2)
+            .position(
+              x: coordinateSystem.viewPosition(for: rect.origin).x,
+              y: coordinateSystem.viewPosition(for: rect.origin).y
+            )
         }
       }
       .gesture(
         DragGesture(minimumDistance: 0)
           .onChanged { value in
-            // Convert drag location to board coordinates
+            // Snap to grid dots (not cell centers)
+            let snappedViewPoint = CGPoint(
+              x: round((value.location.x - gridSize / 2) / gridSize) * gridSize + gridSize / 2,
+              y: round((value.location.y - gridSize / 2) / gridSize) * gridSize + gridSize / 2
+            )
+
+            // Then convert to board coordinates
             let location = CGPoint(
-              x: value.location.x - geometry.size.width / 2 - viewModel.totalOffset.x,
-              y: value.location.y - geometry.size.height / 2 - viewModel.totalOffset.y
+              x: snappedViewPoint.x - geometry.size.width / 2 - viewModel.totalOffset.x,
+              y: snappedViewPoint.y - geometry.size.height / 2 - viewModel.totalOffset.y
             )
 
             if viewModel.placementDragState == .inactive {
-              // Start new drag
-              startPosition = snapToGrid(location)
-              currentPosition = startPosition
+              // Start new drag immediately at the exact snapped point
+              startPosition = location
+              currentPosition = location
               viewModel.startPlacement()
+              viewModel.updatePlacementDragState(.valid)
             } else {
               // Update current position
-              currentPosition = snapToGrid(location)
+              currentPosition = location
 
               // Calculate the rectangle
               let rect = calculateRectangle()
@@ -64,13 +75,6 @@ struct PlacementGestureView: View {
 
               // Validate position
               let wouldOverlap = viewModel.wouldOverlap(rect)
-
-              // Debug logging
-              print("Rectangle size: \(rect.width) x \(rect.height)")
-              print("Grid size: \(gridSize)")
-              print("Is valid size: \(isValid)")
-              print("Would overlap: \(wouldOverlap)")
-              print("Items on board: \(viewModel.items.count)")
 
               viewModel.updatePlacementDragState(isValid && !wouldOverlap ? .valid : .invalid)
             }
@@ -91,23 +95,13 @@ struct PlacementGestureView: View {
     }
   }
 
-  /// Snaps a point to the nearest grid intersection
-  private func snapToGrid(_ point: CGPoint) -> CGPoint {
-    CGPoint(
-      x: round(point.x / gridSize) * gridSize,
-      y: round(point.y / gridSize) * gridSize
-    )
-  }
-
   /// Calculates the rectangle in grid-aligned coordinates
   private func calculateRectangle() -> CGRect {
-    // Calculate width and height, ensuring they're grid-aligned
-    let width = round(abs(currentPosition.x - startPosition.x) / gridSize) * gridSize
-    let height = round(abs(currentPosition.y - startPosition.y) / gridSize) * gridSize
-
-    // Calculate position, ensuring we're aligned to grid
-    let x = round(min(startPosition.x, currentPosition.x) / gridSize) * gridSize
-    let y = round(min(startPosition.y, currentPosition.y) / gridSize) * gridSize
+    // Use the already-snapped positions directly
+    let width = abs(currentPosition.x - startPosition.x)
+    let height = abs(currentPosition.y - startPosition.y)
+    let x = min(startPosition.x, currentPosition.x)
+    let y = min(startPosition.y, currentPosition.y)
 
     return CGRect(x: x, y: y, width: width, height: height)
   }

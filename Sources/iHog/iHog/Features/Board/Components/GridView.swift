@@ -40,8 +40,9 @@ struct GridView: View {
       // Draw dots
       for x in 0...horizontalDots {
         for y in 0...verticalDots {
-          let dotX = minX + CGFloat(x) * spacing - totalOffsetX
-          let dotY = minY + CGFloat(y) * spacing - totalOffsetY
+          // Calculate dot position at the center of each grid unit
+          let dotX = minX + CGFloat(x) * spacing + spacing / 2 - totalOffsetX
+          let dotY = minY + CGFloat(y) * spacing + spacing / 2 - totalOffsetY
 
           context.fill(
             Circle()
