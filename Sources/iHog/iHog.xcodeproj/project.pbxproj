@@ -73,6 +73,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		69666BD82CDD6CA0008A0057 /* iHog */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (69666C392CDD6CA0008A0057 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = iHog; sourceTree = "<group>"; };
+		69D844A22DB549EF00DDFA43 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +154,7 @@
 		15DA268C251237D70063E236 /* iHogTests */ = {
 			isa = PBXGroup;
 			children = (
+				69D844A22DB549EF00DDFA43 /* Data */,
 				15DA268F251237D70063E236 /* Info.plist */,
 			);
 			path = iHogTests;
@@ -238,6 +240,9 @@
 			);
 			dependencies = (
 				15DA268B251237D70063E236 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				69D844A22DB549EF00DDFA43 /* Data */,
 			);
 			name = iHogTests;
 			productName = iHogTests;
@@ -629,7 +634,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iHogTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -649,7 +654,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iHogTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

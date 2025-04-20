@@ -18,6 +18,8 @@ import SwiftData
   var objType: String?
   var showID: String?
   var show: ShowEntity?
+  @Relationship(inverse: \BoardItemEntity.showObject)
+  var boardItem: BoardItemEntity?
 
   init(
     id: UUID = UUID(),
@@ -27,7 +29,8 @@ import SwiftData
     objColor: String? = nil,
     objType: String? = nil,
     showID: String? = nil,
-    show: ShowEntity? = nil
+    show: ShowEntity? = nil,
+    boardItem: BoardItemEntity? = nil
   ) {
     self.id = id
     self.isOutlined = isOutlined
@@ -37,6 +40,6 @@ import SwiftData
     self.objType = objType
     self.showID = showID
     self.show = show
+    self.boardItem = boardItem
   }
-
 }

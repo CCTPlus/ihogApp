@@ -2,20 +2,20 @@
 
 ## Step 1: Data Models & Repositories
 
-- [ ] Create `Board.swift` in Data/Models
-  - [ ] Properties: 
+- [x] Create `Board.swift` in Data/Models
+  - [x] Properties: 
     - id: UUID
     - name: String
     - showID: UUID
     - lastPanOffset: CGPoint (from lastPanOffsetX/Y)
     - lastZoomScale: CGFloat
     - dateLastModified: Date
-  - [ ] Add init(from entity: BoardEntity)
-  - [ ] Add preview data
-  - [ ] Add unit tests for model properties and initialization
+  - [x] Add init(from entity: BoardEntity)
+  - [x] Add preview data
+  - [x] Add unit tests for model properties and initialization
 
-- [ ] Create `BoardEntity.swift` in Data/ManagedModels
-  - [ ] Properties:
+- [x] Create `BoardEntity.swift` in Data/ManagedModels
+  - [x] Properties:
     - id: UUID?
     - name: String?
     - showID: UUID?
@@ -23,34 +23,34 @@
     - lastPanOffsetY: Double?
     - lastZoomScale: Double?
     - dateLastModified: Date? (auto-updates on any property change and when board is opened)
-  - [ ] Add show: ShowEntity? property (relationship managed by ShowEntity)
-  - [ ] Add @Relationship(deleteRule: .cascade) to BoardItemEntity
-  - [ ] Add @Relationship(inverse: \BoardItemEntity.board) var items: [BoardItemEntity]?
-  - [ ] Make all properties optional for CloudKit support
-  - [ ] Make all relationships optional for CloudKit support
-  - [ ] Add @Model annotation for SwiftData
-  - [ ] Ensure model supports CloudKit sync
-  - [ ] Add unit tests for entity properties and relationships
+  - [x] Add show: ShowEntity? property (relationship managed by ShowEntity)
+  - [x] Add @Relationship(deleteRule: .cascade) to BoardItemEntity
+  - [x] Add @Relationship(inverse: \BoardItemEntity.board) var items: [BoardItemEntity]?
+  - [x] Make all properties optional for CloudKit support
+  - [x] Make all relationships optional for CloudKit support
+  - [x] Add @Model annotation for SwiftData
+  - [x] Ensure model supports CloudKit sync
+  - [x] Add unit tests for entity properties and relationships
 
-- [ ] Update `ShowEntity.swift` in Data/ManagedModels
-  - [ ] Add @Relationship(deleteRule: .cascade, inverse: \BoardEntity.show) var boards: [BoardEntity]?
-  - [ ] Make relationship optional for CloudKit support
-  - [ ] Add unit tests for relationship
+- [x] Update `ShowEntity.swift` in Data/ManagedModels
+  - [x] Add @Relationship(deleteRule: .cascade, inverse: \BoardEntity.show) var boards: [BoardEntity]?
+  - [x] Make relationship optional for CloudKit support
+  - [x] Add unit tests for relationship
 
-- [ ] Create `BoardItem.swift` in Data/Models
-  - [ ] Properties:
+- [x] Create `BoardItem.swift` in Data/Models
+  - [x] Properties:
     - id: UUID
     - boardID: UUID
     - itemType: ShowObjectType
     - referenceID: UUID (references ShowObjectEntity.id)
     - position: CGPoint (from positionX/Y, relative to board center)
     - size: CGSize (width/height in grid units, minimum 1x1)
-  - [ ] Add init(from entity: BoardItemEntity)
-  - [ ] Add preview data
-  - [ ] Add unit tests for model properties and initialization
+  - [x] Add init(from entity: BoardItemEntity)
+  - [x] Add preview data
+  - [x] Add unit tests for model properties and initialization
 
-- [ ] Create `BoardItemEntity.swift` in Data/ManagedModels
-  - [ ] Properties:
+- [x] Create `BoardItemEntity.swift` in Data/ManagedModels
+  - [x] Properties:
     - id: UUID?
     - boardID: UUID?
     - itemType: String that is equal to ShowObjectType.RawValue
@@ -59,61 +59,56 @@
     - positionY: Double?
     - width: Double?
     - height: Double?
-  - [ ] Add @Relationship to BoardEntity
-  - [ ] Add @Relationship(inverse: \ShowObjectEntity.boardItems) var showObject: ShowObjectEntity?
-  - [ ] Make all properties optional for CloudKit support
-  - [ ] Make all relationships optional for CloudKit support
-  - [ ] Add @Model annotation for SwiftData
-  - [ ] Ensure model supports CloudKit sync
-  - [ ] Add unit tests for entity properties and relationships
+  - [x] Add @Relationship to BoardEntity
+  - [x] Add @Relationship(inverse: \ShowObjectEntity.boardItems) var showObject: ShowObjectEntity?
+  - [x] Make all properties optional for CloudKit support
+  - [x] Make all relationships optional for CloudKit support
+  - [x] Add @Model annotation for SwiftData
+  - [x] Ensure model supports CloudKit sync
+  - [x] Add unit tests for entity properties and relationships
 
-- [ ] Create `BoardRepository.swift` protocol in Data/Repository/Board
-  - [ ] async Create new board with name -> throws, returns Board
-  - [ ] async Get boards for show sorted by dateLastModified in descending order (newest first) -> throws, returns [Board]
-  - [ ] async Delete board by id -> throws
-  - [ ] async Update board name by id -> throws, returns updated Board
-  - [ ] async Update board pan offset by id -> throws, returns updated Board
-  - [ ] async Update board zoom scale by id -> throws, returns updated Board
-  - [ ] Add unit tests for protocol requirements
-  - [ ] Add unit tests for sorting order
-  - [ ] Add unit tests for dateLastModified updates
+- [x] Create `BoardRepository.swift` protocol in Data/Repository/Board
+  - [x] async Create new board with name -> throws, returns Board
+  - [x] async Get boards for show sorted by dateLastModified in descending order (newest first) -> throws, returns [Board]
+  - [x] async Delete board by id -> throws
+  - [x] async Update board name by id -> throws, returns updated Board
+  - [x] async Update board pan offset by id -> throws, returns updated Board
+  - [x] async Update board zoom scale by id -> throws, returns updated Board
+  - [x] Add unit tests for protocol requirements
 
-- [ ] Create `BoardSwiftDataRepository.swift`
-  - [ ] Implement protocol
-  - [ ] Add proper error handling
-  - [ ] Add unit tests for all CRUD operations
-  - [ ] Add unit tests for error cases
-  - [ ] Add integration tests with SwiftData
-  - [ ] Add unit tests for sorting order
-  - [ ] Add unit tests for dateLastModified updates
+- [x] Create `BoardSwiftDataRepository.swift`
+  - [x] Implement protocol
+  - [x] Add proper error handling
+  - [x] Add unit tests for all CRUD operations
+  - [x] Add unit tests for error cases
+  - [x] Add integration tests with SwiftData
+  - [x] Add unit tests for sorting order
+  - [x] Add unit tests for dateLastModified updates
 
-- [ ] Create `BoardMockRepository.swift`
-  - [ ] Implement protocol
-  - [ ] Add preview data
-  - [ ] Support all operations
+- [x] Create `BoardMockRepository.swift`
+  - [x] Implement protocol
+  - [x] Add preview data
+  - [x] Support all operations
 
-- [ ] Create `BoardItemRepository.swift` protocol in Data/Repository/BoardItem
-  - [ ] async Place new item on board (minimum size 2×2 grid units = 88×88 points) -> throws, returns BoardItem
-  - [ ] async Get items for board sorted by positionY ascending, then positionX ascending (top to bottom, left to right) -> throws, returns [BoardItem]
-  - [ ] async Update item position by id (must snap to 44×44 point grid) -> throws, returns updated BoardItem
-  - [ ] async Update item size by id (minimum 2×2 grid units) -> throws, returns updated BoardItem
-  - [ ] async Delete item by id -> throws
-  - [ ] async Update item reference by id -> throws, returns updated BoardItem
-  - [ ] Add unit tests for protocol requirements
-  - [ ] Add unit tests for sorting order
+- [x] Create `BoardItemRepository.swift` protocol in Data/Repository/BoardItem
+  - [x] async Place new item on board (minimum size 2×2 grid units = 88×88 points) -> throws, returns BoardItem
+  - [x] async Get items for board sorted by positionY ascending, then positionX ascending (top to bottom, left to right) -> throws, returns [BoardItem]
+  - [x] async Update item position by id (must snap to 44×44 point grid) -> throws, returns updated BoardItem
+  - [x] async Update item size by id (minimum 2×2 grid units) -> throws, returns updated BoardItem
+  - [x] async Delete item by id -> throws
+  - [x] async Update item reference by id -> throws, returns updated BoardItem
 
-- [ ] Create `BoardItemSwiftDataRepository.swift`
-  - [ ] Implement protocol
-  - [ ] Add proper error handling
-  - [ ] Add unit tests for all CRUD operations
-  - [ ] Add unit tests for error cases
-  - [ ] Add integration tests with SwiftData
-  - [ ] Add unit tests for sorting order
+- [x] Create `BoardItemSwiftDataRepository.swift`
+  - [x] Implement protocol
+  - [x] Add proper error handling
+  - [x] Add unit tests for all CRUD operations
+  - [x] Add unit tests for error cases
+  - [x] Add integration tests with SwiftData
 
-- [ ] Create `BoardItemMockRepository.swift`
-  - [ ] Implement protocol
-  - [ ] Add preview data
-  - [ ] Support all operations
+- [x] Create `BoardItemMockRepository.swift`
+  - [x] Implement protocol
+  - [x] Add preview data
+  - [x] Support all operations
 
 ## Step 2: Basic Board List UI
 - [ ] Create `BoardListViewModel.swift`
