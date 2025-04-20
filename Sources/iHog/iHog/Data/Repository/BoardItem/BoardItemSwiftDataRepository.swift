@@ -65,6 +65,7 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
     )
 
     modelContext.insert(entity)
+    board.dateLastModified = Date()
     try modelContext.save()
 
     return BoardItem(from: entity)
@@ -111,6 +112,7 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
 
     entity.positionX = snappedPosition.x
     entity.positionY = snappedPosition.y
+    entity.board?.dateLastModified = Date()
     try modelContext.save()
 
     return BoardItem(from: entity)
@@ -139,6 +141,7 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
 
     entity.width = validatedSize.width
     entity.height = validatedSize.height
+    entity.board?.dateLastModified = Date()
     try modelContext.save()
 
     return BoardItem(from: entity)
@@ -156,6 +159,9 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
       throw BoardItemError.notFound
     }
 
+    if let board = entity.board {
+      board.dateLastModified = Date()
+    }
     modelContext.delete(entity)
     try modelContext.save()
   }
@@ -183,8 +189,17 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
       throw BoardItemError.showObjectNotFound
     }
 
+    // Clear old relationship if exists
+    if let oldShowObject = entity.showObject {
+      oldShowObject.boardItem = nil
+    }
+
+    // Set both sides of the relationship
     entity.referenceID = referenceID
     entity.showObject = showObject
+    showObject.boardItem = entity
+    entity.board?.dateLastModified = Date()
+
     try modelContext.save()
 
     return BoardItem(from: entity)

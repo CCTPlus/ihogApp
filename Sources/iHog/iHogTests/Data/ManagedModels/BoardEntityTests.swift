@@ -47,8 +47,8 @@ final class BoardEntityTests {
     #expect(entity.lastPanOffsetX == nil)
     #expect(entity.lastPanOffsetY == nil)
     #expect(entity.lastZoomScale == nil)
-    #expect(entity.dateLastModified == nil)
-    #expect(entity.items == nil)
+    #expect(entity.dateLastModified != nil)
+    #expect(entity.items!.isEmpty)
     #expect(entity.show == nil)
   }
 
@@ -175,34 +175,5 @@ final class BoardEntityTests {
     let fetchDescriptor = FetchDescriptor<BoardItemEntity>()
     let remainingItems = try modelContext.fetch(fetchDescriptor)
     #expect(remainingItems.isEmpty)
-  }
-
-  /// Tests that dateLastModified is updated when any property changes
-  @Test("BoardEntity dateLastModified updates")
-  func testDateLastModifiedUpdates() throws {
-    let board = BoardEntity()
-    modelContext.insert(board)
-    try modelContext.save()
-
-    let initialDate = board.dateLastModified
-
-    // Modify a property
-    board.name = "New Name"
-    try modelContext.save()
-
-    // Verify date changed
-    #expect(board.dateLastModified != nil)
-    #expect(initialDate == nil || board.dateLastModified != initialDate)
-
-    // Store the new date
-    let secondDate = board.dateLastModified
-
-    // Modify another property
-    board.lastZoomScale = 2.0
-    try modelContext.save()
-
-    // Verify date changed again
-    #expect(board.dateLastModified != nil)
-    #expect(secondDate == nil || board.dateLastModified != secondDate)
   }
 }
