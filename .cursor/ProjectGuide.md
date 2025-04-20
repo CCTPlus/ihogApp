@@ -1,26 +1,49 @@
 # Project Guide
 
-This file describes how to write consistent code in this project. All these rules and guidence must be followed.
+# Project Guide
 
-When creating a SwiftUI view:
+This guide defines the required coding standards and architectural patterns for the iHog app. All rules must be followed without exception.
 
-- Each view or component must have it's own file.
-- Each view or component must have Previews. If there are multiple states, then there must be a preview for each state.
-- Previews needing data must use the mock repository
-- Views should be folling an MVVM pattern and using the observation framework
-    - ViewModels should always handle all the logic. There should be little to no logic in the views. 
+## File and Folder Structure
 
-General guidance on coding:
+- All source files must be placed under: `Sources/iHog/iHog/`
+- Each SwiftUI view, view model, model, entity, and repository must live in its own file
+- Test files should mirror the source structure inside the appropriate test targets
 
-- Comments need to be added for each significant piece of code explaining what it does
-    - Comments must explain the why and how
-    - Comments must not be redundant IE if the name has repository the comment doesnt need to start with "the repository that does xyz" it should be "used to fetch and update item"
-- All models must be fetched using the repository architecture. Each repository has a protcol so that must be adjusted first.
-- Coding style must match the style of other files in the app.
+## SwiftUI View Requirements
 
-Guidence about the project:
+- Every view or component must be in its own file
+- Every view must include a `#Preview` section
+  - If a view has multiple states, each state must have its own preview
+  - Previews that require data must use the mock repository
+- Views must follow the MVVM pattern using the Observation framework
+  - ViewModels must handle all logic; views should contain minimal to no business logic
 
-- The app uses a repository architecture to manipulate and fetch items from SwiftData.
-- Entities or managed objects are NOT to be used in views. Only non managed models can be used in views
-- All source files live in Sources/iHog/iHog
-- All testing should be using Swift Testing see https://developer.apple.com/documentation/testing/ for more information
+## General Coding Standards
+
+- Comments must be added for each significant block of code
+  - Comments must explain what the code does, why it’s needed, and how it works
+  - Avoid redundant comments. Do not restate what is obvious from naming.
+    - For example, do not write: “The repository that fetches items”
+    - Instead write: “Used to fetch and update item data”
+- Code style must match the style used throughout the existing project
+
+## Repository Architecture
+
+- All data access must be done through the repository layer
+- Each repository must:
+  - Be defined as a protocol
+  - Have a concrete implementation (e.g., `BoardSwiftDataRepository`)
+  - Have a mock implementation for previews and tests
+  - Mock implementations must allow for the objects to be passed in so that no objects can be in memory of any kind
+- Entities (SwiftData-managed models) must never be used in views
+  - Views must always use non-managed models (e.g., `Board.swift`, not `BoardEntity.swift`)
+
+## Testing and Previews
+
+- Unit tests must be created for:
+  - All view models
+  - All model types
+  - All repository implementations and protocols
+- Swift Testing should be used: https://developer.apple.com/documentation/testing/ **DO NOT USE XCTEST**
+- Previews must represent real UI states using mock data and the mock repository
