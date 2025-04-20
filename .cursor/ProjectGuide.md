@@ -48,6 +48,8 @@ This guide defines the required coding standards and architectural patterns for 
   - All repository implementations and protocols
   - Unit tests should be testing for one thing and one thing only.
 - Previews must represent real UI states using mock data and the mock repository
+- Never use sleeps in tests. thats bad practice
+- Swift Data does not use @Setup or @Teardown macros. It uses init and deinit for classes. 
 
 ## Swift Data issues and ways to solve it
 
