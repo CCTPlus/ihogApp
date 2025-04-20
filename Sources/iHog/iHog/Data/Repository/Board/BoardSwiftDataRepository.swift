@@ -12,8 +12,8 @@ import SwiftData
 /// Manages board data persistence using SwiftData
 @ModelActor
 actor BoardSwiftDataRepository: BoardRepository {
-  func createBoard(name: String) async throws -> Board {
-    let entity = BoardEntity(name: name)
+  func createBoard(name: String, showID: UUID) async throws -> Board {
+    let entity = BoardEntity(name: name, showID: showID)
     modelContext.insert(entity)
     try modelContext.save()
     return Board(from: entity)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ShowMockRespository: ShowRepository {
+class ShowMockRepository: ShowRepository {
   func getCountOfShows() async throws -> Int {
     return shows.count
   }
@@ -48,8 +48,8 @@ class ShowMockRespository: ShowRepository {
   }
 }
 
-extension ShowMockRespository {
-  static let previewWithShows = ShowMockRespository(
+extension ShowMockRepository {
+  static let previewWithShows = ShowMockRepository(
     shows: [
       Show(
         dateCreated: .now,

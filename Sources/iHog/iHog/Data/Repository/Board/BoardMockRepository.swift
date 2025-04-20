@@ -12,15 +12,15 @@ import Foundation
 final class BoardMockRepository: BoardRepository {
   private var boards: [Board]
 
-  init(boards: [Board]) {
+  init(boards: [Board] = []) {
     self.boards = boards
   }
 
-  func createBoard(name: String) async throws -> Board {
+  func createBoard(name: String, showID: UUID) async throws -> Board {
     let board = Board(
       id: UUID(),
       name: name,
-      showID: UUID(),
+      showID: showID,
       lastPanOffset: .zero,
       lastZoomScale: 1.0,
       dateLastModified: Date()
@@ -78,4 +78,36 @@ final class BoardMockRepository: BoardRepository {
     boards[index] = board
     return board
   }
+}
+
+extension BoardMockRepository {
+  /// Preview data for testing and SwiftUI previews
+  static let previewWithBoards = BoardMockRepository(
+    boards: [
+      Board(
+        id: UUID(),
+        name: "Main Stage",
+        showID: ShowMockRepository.previewWithShows.shows[0].id,
+        lastPanOffset: .zero,
+        lastZoomScale: 1.0,
+        dateLastModified: Date()
+      ),
+      Board(
+        id: UUID(),
+        name: "Backstage",
+        showID: ShowMockRepository.previewWithShows.shows[0].id,
+        lastPanOffset: .zero,
+        lastZoomScale: 1.0,
+        dateLastModified: Date()
+      ),
+      Board(
+        id: UUID(),
+        name: "Wings",
+        showID: ShowMockRepository.previewWithShows.shows[0].id,
+        lastPanOffset: .zero,
+        lastZoomScale: 1.0,
+        dateLastModified: Date()
+      ),
+    ]
+  )
 }

@@ -74,6 +74,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		69666BD82CDD6CA0008A0057 /* iHog */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (69666C392CDD6CA0008A0057 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = iHog; sourceTree = "<group>"; };
 		69D844A22DB549EF00DDFA43 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
+		69D844B02DB59E9100DDFA43 /* Features */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Features; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +155,7 @@
 		15DA268C251237D70063E236 /* iHogTests */ = {
 			isa = PBXGroup;
 			children = (
+				69D844B02DB59E9100DDFA43 /* Features */,
 				69D844A22DB549EF00DDFA43 /* Data */,
 				15DA268F251237D70063E236 /* Info.plist */,
 			);
@@ -243,6 +245,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				69D844A22DB549EF00DDFA43 /* Data */,
+				69D844B02DB59E9100DDFA43 /* Features */,
 			);
 			name = iHogTests;
 			productName = iHogTests;

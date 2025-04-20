@@ -105,7 +105,7 @@ struct NewShowView: View {
 
 struct NewShowView_Previews: PreviewProvider {
   static var previews: some View {
-    NewShowView(showRepository: ShowMockRespository.previewWithShows)
+    NewShowView(showRepository: ShowMockRepository.previewWithShows)
       .environmentObject(UserState())
   }
 }

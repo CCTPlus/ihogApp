@@ -12,10 +12,12 @@ import TelemetryDeck
 /// Provides methods for creating, reading, updating, and deleting boards
 protocol BoardRepository {
   /// Creates a new board with the specified name
-  /// - Parameter name: The name for the new board
+  /// - Parameters:
+  ///   - name: The name for the new board
+  ///   - showID: The ID of the show this board belongs to
   /// - Returns: The newly created board
   /// - Throws: An error if the board could not be created
-  func createBoard(name: String) async throws -> Board
+  func createBoard(name: String, showID: UUID) async throws -> Board
 
   /// Gets all boards for a show, sorted by dateLastModified in descending order
   /// - Parameter showID: The ID of the show to get boards for

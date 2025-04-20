@@ -111,37 +111,36 @@
   - [x] Support all operations
 
 ## Step 2: Basic Board List UI
-- [ ] Create `BoardListViewModel.swift`
-  - [ ] Handle board CRUD operations
-    - [ ] Create new board with default name "New Board"
-    - [ ] Auto-save boards when modified
-    - [ ] Permanent deletion of boards
-    - [ ] Load boards for current show
-  - [ ] Handle board switching
-    - [ ] Track currently selected board
-    - [ ] Maintain board state during app suspension
-  - [ ] Sort boards by last modified date (descending)
-  - [ ] Handle error states
-    - [ ] Creation failures
-    - [ ] Loading failures
-    - [ ] Deletion failures
-    - [ ] Update failures
-  - [ ] Add preview support
-  - [ ] Add unit tests for all operations
-  - [ ] Add unit tests for sorting
-  - [ ] Add unit tests for state management
+- [x] Create `BoardListViewModel.swift`
+  - [x] Handle board CRUD operations
+    - [x] Create new board with default name "New Board"
+    - [x] Auto-save boards when modified
+    - [x] Permanent deletion of boards
+    - [x] Load boards for current show
+  - [x] Handle board switching
+    - [x] Track currently selected board
+    - [x] Maintain board state during app suspension
+  - [x] Sort boards by last modified date (descending)
+  - [x] Handle error states
+    - [x] Creation failures
+    - [x] Loading failures
+    - [x] Deletion failures
+    - [x] Update failures
+  - [x] Add preview support
+  - [x] Add unit tests for all operations
+  - [x] Add unit tests for sorting
+  - [x] Add unit tests for state management
 
 - [ ] Create `BoardListView.swift`
-  - [ ] Implement grid layout for board thumbnails
-    - [ ] Show scaled preview of entire board content
-    - [ ] Display board title
-    - [ ] Show last modified date using standard Date formatting
-  - [ ] Add new board button using SF Symbol "plus.circle"
-  - [ ] Handle board selection
-    - [ ] Present selected board as full screen cover
-    - [ ] Support dismissal back to grid
-  - [ ] Add context menu actions for delete and rename
-  - [ ] Add previews for all states
+  - [x] Implement grid layout for board thumbnails
+    - [x] Display board title
+    - [x] Show last modified date using standard Date formatting
+  - [x] Add new board button using SF Symbol "plus.circle"
+  - [x] Handle board selection
+    - [x] Present selected board as full screen cover
+    - [x] Support dismissal back to grid
+  - [x] Add context menu actions for delete and rename
+  - [x] Add previews for all states
 
 ## Step 3: Basic Board Canvas
 - [ ] Create `BoardViewModel.swift`
@@ -189,22 +188,17 @@
     - [ ] Play mode: SF Symbol "play.fill"
     - [ ] Standard iOS button feedback in play mode
   - [ ] Add previews for all states
-
-- [ ] Update `BoardViewModel.swift`
-  - [ ] Add unit tests for:
-    - [ ] Grid coordinate conversion:
-      - [ ] Screen to grid coordinates
-      - [ ] Grid to screen coordinates
-      - [ ] Edge cases (negative coordinates, large numbers)
-      - [ ] Rounding/precision tests
-    - [ ] Pan/zoom state:
-      - [ ] Pan offset persistence
-      - [ ] Zoom scale persistence
-      - [ ] Combined pan and zoom transformations
-    - [ ] Edit/Play mode:
-      - [ ] Mode switching
-      - [ ] Default modes (new vs existing boards)
-      - [ ] Persistence of mode state
+  - [ ] Update BoardListView to use BoardView for previews and full screen presentation
+  - [ ] Implement `BoardThumbnailView.swift`
+    - [ ] Create reusable component for board thumbnails
+    - [ ] Accept board model and scale factor as parameters
+    - [ ] Display board items at correct positions and sizes
+    - [ ] Maintain aspect ratio of board content
+    - [ ] Add border and rounded corners to match design
+    - [ ] Ensure performance with multiple thumbnails
+    - [ ] Add unit tests for thumbnail rendering
+    - [ ] Add previews for different board layouts
+  - [ ] Update BoardListView to use BoardThumbnailView
 
 ## Step 4: Board Item UI
 - [ ] Create `ResizeHandleView.swift` in Views/Board

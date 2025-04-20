@@ -18,6 +18,7 @@ import Testing
 final class BoardSwiftDataRepositoryTests {
   private var modelContainer: ModelContainer!
   private var repository: BoardSwiftDataRepository!
+  private let testShowID = UUID()
 
   init() throws {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
@@ -34,10 +35,11 @@ final class BoardSwiftDataRepositoryTests {
   /// Verifies that the board is stored in SwiftData and can be retrieved
   @Test("Create board")
   func testCreateBoard() async throws {
-    let board = try await repository.createBoard(name: "Test Board")
+    let board = try await repository.createBoard(name: "Test Board", showID: testShowID)
 
     // Verify the board was created
     #expect(board.name == "Test Board")
+    #expect(board.showID == testShowID)
 
     // Verify the board was persisted
     let boardID = board.id
@@ -47,6 +49,7 @@ final class BoardSwiftDataRepositoryTests {
     let entities = try modelContainer.mainContext.fetch(descriptor)
     #expect(entities.count == 1)
     #expect(entities[0].name == "Test Board")
+    #expect(entities[0].showID == testShowID)
   }
 
   /// Tests that boards can be retrieved for a show and are properly sorted
@@ -56,16 +59,8 @@ final class BoardSwiftDataRepositoryTests {
     let showID = UUID()
 
     // Create multiple boards with different modification dates
-    let board1 = try await repository.createBoard(name: "Board 1")
-    let board2 = try await repository.createBoard(name: "Board 2")
-
-    // Set showID for both boards
-    let descriptor = FetchDescriptor<BoardEntity>()
-    let entities = try modelContainer.mainContext.fetch(descriptor)
-    for entity in entities {
-      entity.showID = showID
-    }
-    try modelContainer.mainContext.save()
+    let board1 = try await repository.createBoard(name: "Board 1", showID: showID)
+    let board2 = try await repository.createBoard(name: "Board 2", showID: showID)
 
     let boards = try await repository.getBoards(for: showID)
 
@@ -78,7 +73,7 @@ final class BoardSwiftDataRepositoryTests {
   /// Verifies that the board is no longer accessible after deletion
   @Test("Delete board")
   func testDeleteBoard() async throws {
-    let board = try await repository.createBoard(name: "Test Board")
+    let board = try await repository.createBoard(name: "Test Board", showID: testShowID)
 
     try await repository.deleteBoard(id: board.id)
     let boardID = board.id
@@ -94,7 +89,7 @@ final class BoardSwiftDataRepositoryTests {
   /// Verifies that the update is stored in SwiftData
   @Test("Update board name")
   func testUpdateBoardName() async throws {
-    let board = try await repository.createBoard(name: "Original Name")
+    let board = try await repository.createBoard(name: "Original Name", showID: testShowID)
     let originalDate = board.dateLastModified
 
     let updatedBoard = try await repository.updateBoardName(id: board.id, name: "New Name")
@@ -116,7 +111,7 @@ final class BoardSwiftDataRepositoryTests {
   /// Verifies that the update is stored in SwiftData
   @Test("Update board pan offset")
   func testUpdateBoardPanOffset() async throws {
-    let board = try await repository.createBoard(name: "Test Board")
+    let board = try await repository.createBoard(name: "Test Board", showID: testShowID)
     let originalDate = board.dateLastModified
 
     let newOffset = CGPoint(x: 100, y: 200)
@@ -139,7 +134,7 @@ final class BoardSwiftDataRepositoryTests {
   /// Verifies that the update is stored in SwiftData
   @Test("Update board zoom scale")
   func testUpdateBoardZoomScale() async throws {
-    let board = try await repository.createBoard(name: "Test Board")
+    let board = try await repository.createBoard(name: "Test Board", showID: testShowID)
     let originalDate = board.dateLastModified
 
     let newScale: CGFloat = 2.0
