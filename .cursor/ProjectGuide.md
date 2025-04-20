@@ -47,3 +47,16 @@ This guide defines the required coding standards and architectural patterns for 
   - All repository implementations and protocols
 - Swift Testing should be used: https://developer.apple.com/documentation/testing/ **DO NOT USE XCTEST**
 - Previews must represent real UI states using mock data and the mock repository
+
+## Swift Data issues and ways to solve it
+
+A predicate cannot reference values from a struct, so set those values as a constant before the predicate. See the example below
+```swift
+      // Board I want to find in the predicate
+      let board = Board(name: "Test board")
+      let boardID = board.id
+        // Verify the update was persisted
+        let descriptor = FetchDescriptor<BoardEntity>(
+            predicate: #Predicate<BoardEntity> { $0.id == boardID }
+        )
+```
