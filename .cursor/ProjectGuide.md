@@ -41,11 +41,12 @@ This guide defines the required coding standards and architectural patterns for 
 
 ## Testing and Previews
 
+- Swift Testing should be used: https://developer.apple.com/documentation/testing/ **DO NOT USE XCTEST**
 - Unit tests must be created for:
   - All view models
   - All model types
   - All repository implementations and protocols
-- Swift Testing should be used: https://developer.apple.com/documentation/testing/ **DO NOT USE XCTEST**
+  - Unit tests should be testing for one thing and one thing only.
 - Previews must represent real UI states using mock data and the mock repository
 
 ## Swift Data issues and ways to solve it
