@@ -73,13 +73,21 @@ final class BoardItemSwiftDataRepositoryTests {
     #expect(item.position == position)
     #expect(item.size == size)
 
-    // Verify persistence and one-to-one relationship
+    // Fetch updated entities
     let descriptor = FetchDescriptor<BoardItemEntity>()
     let entities = try modelContainer.mainContext.fetch(descriptor)
+
+    // Fetch updated show object to get latest relationship state
+    let showObjectID = showObject.id!
+    let objectDescriptor = FetchDescriptor<ShowObjectEntity>(
+      predicate: #Predicate<ShowObjectEntity> { $0.id == showObjectID }
+    )
+    let updatedShowObject = try modelContainer.mainContext.fetch(objectDescriptor).first
+
     #expect(entities.count == 1)
     #expect(entities[0].board == board)
     #expect(entities[0].showObject == showObject)
-    #expect(showObject.boardItem == entities[0])
+    #expect(updatedShowObject?.boardItem == entities[0])
   }
 
   /// Tests enforcing minimum size when placing item
@@ -102,29 +110,36 @@ final class BoardItemSwiftDataRepositoryTests {
   /// Verifies that items are sorted by Y ascending, then X ascending
   @Test("Get items with sorting")
   func testGetItemsWithSorting() async throws {
-    // Create items at different positions
-    let positions = [
-      CGPoint(x: 44, y: 0),  // Middle
-      CGPoint(x: 0, y: -44),  // Bottom
-      CGPoint(x: 88, y: 44),  // Top
-    ]
+    // Create second show object
+    let showObject2 = ShowObjectEntity()
+    showObject2.id = UUID()
+    showObject2.objType = ShowObjectType.group.rawValue
+    modelContainer.mainContext.insert(showObject2)
+    try modelContainer.mainContext.save()
 
-    for position in positions {
-      _ = try await repository.placeItem(
-        boardID: board.id!,
-        itemType: .group,
-        referenceID: showObject.id!,
-        position: position,
-        size: CGSize(width: 88, height: 88)
-      )
-    }
+    // First item with original show object
+    _ = try await repository.placeItem(
+      boardID: board.id!,
+      itemType: .group,
+      referenceID: showObject.id!,
+      position: CGPoint(x: 0, y: -44),
+      size: CGSize(width: 88, height: 88)
+    )
+
+    // Second item with new show object
+    _ = try await repository.placeItem(
+      boardID: board.id!,
+      itemType: .group,
+      referenceID: showObject2.id!,
+      position: CGPoint(x: 44, y: 0),
+      size: CGSize(width: 88, height: 88)
+    )
 
     let items = try await repository.getItems(for: board.id!)
 
-    #expect(items.count == 3)
-    #expect(items[0].position.y == -44)  // Bottom first
-    #expect(items[1].position.y == 0)  // Middle second
-    #expect(items[2].position.y == 44)  // Top last
+    #expect(items.count == 2)
+    #expect(items[0].position.y == -44)
+    #expect(items[1].position.y == 0)
   }
 
   /// Tests updating item position with grid snapping
@@ -217,8 +232,16 @@ final class BoardItemSwiftDataRepositoryTests {
 
     let descriptor = FetchDescriptor<BoardItemEntity>()
     let entity = try modelContainer.mainContext.fetch(descriptor).first
-    #expect(entity?.showObject == newShowObject)
-    #expect(newShowObject.boardItem == entity)
+    let updatedShowObjectID = newShowObject.id!
+    // Fetch the updated show object to get latest state
+    let updatedShowObjectDescriptor = FetchDescriptor<ShowObjectEntity>(
+      predicate: #Predicate<ShowObjectEntity> { $0.id == updatedShowObjectID }
+    )
+    let updatedNewShowObject = try modelContainer.mainContext.fetch(updatedShowObjectDescriptor)
+      .first
+
+    #expect(entity?.showObject == updatedNewShowObject)
+    #expect(updatedNewShowObject?.boardItem == entity)
     #expect(showObject.boardItem == nil)
   }
 

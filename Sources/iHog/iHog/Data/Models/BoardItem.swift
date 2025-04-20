@@ -20,23 +20,23 @@ struct BoardItem {
 
   /// Identifier of the board this item belongs to
   /// Required for relationship management and filtering items by board
-  let boardID: UUID
+  var boardID: UUID
 
   /// Item type of object on the board
   ///
   /// For now this is the same as the ShowObjectType but it will be expanded to include other types like encoderwheels and sliders
-  let itemType: ShowObjectType
+  var itemType: ShowObjectType
 
   /// Links this board item to its source object for data synchronization
-  let referenceID: UUID
+  var referenceID: UUID
 
   /// Position of the item's center relative to the board's center (0,0)
   /// Measured in points, with positive X right and positive Y up
-  let position: CGPoint
+  var position: CGPoint
 
   /// Size of the item in grid units
   /// Each grid unit is 44×44 points, with a minimum size of 1×1
-  let size: CGSize
+  var size: CGSize
 
   /// Creates a new board item with the specified properties
   /// - Parameters:
@@ -65,6 +65,7 @@ struct BoardItem {
   /// Creates a new board item from a managed entity
   /// Used when loading items from SwiftData storage
   init(from entity: BoardItemEntity) {
+    print("Creating BoardItem from entity: \(entity.id?.uuidString ?? "nil")")
     self.id = entity.id ?? UUID()
     self.boardID = entity.boardID ?? UUID()
     self.itemType = ShowObjectType(rawValue: entity.itemType ?? "") ?? .group

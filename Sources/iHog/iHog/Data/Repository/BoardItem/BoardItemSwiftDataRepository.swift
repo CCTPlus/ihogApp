@@ -75,6 +75,7 @@ actor BoardItemSwiftDataRepository: BoardItemRepository {
   /// - Returns: Array of board items sorted by Y ascending, then X ascending
   /// - Throws: BoardItemError if fetch fails
   func getItems(for boardID: UUID) async throws -> [BoardItem] {
+    try modelContext.save()
     let descriptor = FetchDescriptor<BoardItemEntity>(
       predicate: #Predicate<BoardItemEntity> { $0.boardID == boardID },
       sortBy: [
