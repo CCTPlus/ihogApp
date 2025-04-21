@@ -201,7 +201,7 @@
   - [x] Update BoardListView to use BoardThumbnailView
 
 ## Step 4: Board Item UI
-- [ ] Create `ResizeHandleView.swift` in Views/Board
+- [x] Create `ResizeHandleView.swift` in Views/Board
   ```swift
   import SwiftUI
 
@@ -245,32 +245,32 @@
   }
   ```
 
-- [ ] Create `BoardItemView.swift`
-  - [ ] Display show objects using same style as `ShowObjectView`
-    - [ ] Match VStack layout with HStack header
-    - [ ] Use same text styles (short type and number in header, name in headline font)
-    - [ ] Support both filled and outlined states using `isOutlined`
-    - [ ] Use same colors from `OBJ_COLORS`
-    - [ ] Use `BASE_CORNER_RADIUS` and `DOUBLE_CORNER_RADIUS` constants
-    - [ ] Use `BASE_LINE_WIDTH` for outline stroke
-  - [ ] Implement base layout:
-    - [ ] Support minimum size of 2×2 grid units (88×88 points)
-    - [ ] Support non-square rectangular sizes
-    - [ ] Maintain same padding as ShowObjectView
-    - [ ] Position resize handles at corners with 24×24pt size
-  - [ ] Handle mode-specific appearance:
-    - [ ] Edit Mode: show resize handles
-    - [ ] Play Mode: hide resize handles
-  - [ ] Add accessibility:
-    - [ ] Add accessibility labels to resize handles ("Resize from top-left corner", etc)
-    - [ ] Ensure minimum 44×44pt touch targets for resize handles
-  - [ ] Add resize handle states:
-    - [ ] Default state (white fill)
-    - [ ] Pressed state (darker fill)
-  - [ ] Add previews for:
-    - [ ] Common use cases (2×2 square in both modes, typical object)
-    - [ ] Edge cases (large rectangular size, outlined vs filled)
-    - [ ] Different object types in a grid layout
+- [x] Create `BoardItemView.swift`
+  - [x] Display show objects using same style as `ShowObjectView`
+    - [x] Match VStack layout with HStack header
+    - [x] Use same text styles (short type and number in header, name in headline font)
+    - [x] Support both filled and outlined states using `isOutlined`
+    - [x] Use same colors from `OBJ_COLORS`
+    - [x] Use `BASE_CORNER_RADIUS` and `DOUBLE_CORNER_RADIUS` constants
+    - [x] Use `BASE_LINE_WIDTH` for outline stroke
+  - [x] Implement base layout:
+    - [x] Support minimum size of 2×2 grid units (88×88 points)
+    - [x] Support non-square rectangular sizes
+    - [x] Maintain same padding as ShowObjectView
+    - [x] Position resize handles at corners with 24×24pt size
+  - [x] Handle mode-specific appearance:
+    - [x] Edit Mode: show resize handles
+    - [x] Play Mode: hide resize handles
+  - [x] Add accessibility:
+    - [x] Add accessibility labels to resize handles
+    - [x] Ensure minimum 44×44pt touch targets for resize handles
+  - [x] Add resize handle states:
+    - [x] Default state (white fill)
+    - [x] Pressed state (darker fill)
+  - [x] Add previews for:
+    - [x] Common use cases (2×2 square in both modes, typical object)
+    - [x] Edge cases (large rectangular size, outlined vs filled)
+    - [x] Different object types in a grid layout
 
 ## Step 5: Object Selection & Placement
 - [ ] Update `BoardViewModel.swift`
