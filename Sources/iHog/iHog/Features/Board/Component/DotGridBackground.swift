@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BoardGridView: View {
+struct DotGridBackground: View {
   let panOffset: CGPoint
 
   var body: some View {
@@ -36,7 +36,7 @@ struct BoardGridView: View {
 }
 
 #Preview {
-  BoardGridView(panOffset: .zero)
+  DotGridBackground(panOffset: .zero)
     .frame(width: 300, height: 300)
     .border(Color.gray)
 }

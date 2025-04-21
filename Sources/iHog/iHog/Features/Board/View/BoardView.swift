@@ -18,7 +18,7 @@ struct BoardView: View {
     GeometryReader { geometry in
       ZStack {
         if viewModel.mode == .edit {
-          BoardGridView(panOffset: viewModel.panOffset)
+          DotGridBackground(panOffset: viewModel.panOffset)
         }
 
         // Board items will go here
@@ -45,6 +45,7 @@ struct BoardView: View {
         )
       )
     }
+    .navigationBarTitleDisplayMode(.inline)
     .toolbar {
       ToolbarItem(placement: .topBarTrailing) {
         Button {
