@@ -156,9 +156,11 @@ final class BoardViewModel {
 
   // MARK: - Item Management
 
-  /// Checks if a size is valid (meets minimum requirements)
-  /// - Parameter size: The size to check
-  /// - Returns: True if the size is valid
+  /// Validates that a board item's dimensions meet the minimum size requirements.
+  /// Board items must be at least 2 grid units in both width and height to ensure
+  /// they are large enough to be easily selectable and manipulated by users.
+  /// - Parameter size: The size to validate (width and height in grid units)
+  /// - Returns: True if both width and height are at least 2 grid units
   func isValidSize(_ size: CGSize) -> Bool {
     size.width >= Self.minimumItemSize && size.height >= Self.minimumItemSize
   }
@@ -169,18 +171,19 @@ final class BoardViewModel {
   ///   - item2: The second item
   /// - Returns: True if the items overlap
   func itemsOverlap(_ item1: BoardItem, _ item2: BoardItem) -> Bool {
+    // Create rectangles with position as center
     let item1Rect = CGRect(
-      x: item1.position.x,
-      y: item1.position.y,
-      width: item1.size.width * Self.gridUnitSize,
-      height: item1.size.height * Self.gridUnitSize
+      x: item1.position.x - item1.size.width / 2,
+      y: item1.position.y - item1.size.height / 2,
+      width: item1.size.width,
+      height: item1.size.height
     )
 
     let item2Rect = CGRect(
-      x: item2.position.x,
-      y: item2.position.y,
-      width: item2.size.width * Self.gridUnitSize,
-      height: item2.size.height * Self.gridUnitSize
+      x: item2.position.x - item2.size.width / 2,
+      y: item2.position.y - item2.size.height / 2,
+      width: item2.size.width,
+      height: item2.size.height
     )
 
     return item1Rect.intersects(item2Rect)

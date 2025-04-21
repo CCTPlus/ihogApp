@@ -31,7 +31,7 @@ struct BoardItem {
   var referenceID: UUID
 
   /// Position of the item's center relative to the board's center (0,0)
-  /// Measured in points, with positive X right and positive Y up
+  /// Measured in grid units, with positive X right and positive Y up
   var position: CGPoint
 
   /// Size of the item in grid units
@@ -44,7 +44,7 @@ struct BoardItem {
   ///   - boardID: Identifier of the board this item belongs to
   ///   - itemType: Type of the referenced show object
   ///   - referenceID: Identifier of the referenced show object
-  ///   - position: Position of the item's center relative to the board's center
+  ///   - position: Position of the item's center relative to the board's center (in grid units)
   ///   - size: Size of the item in grid units (minimum 1×1)
   init(
     id: UUID = UUID(),
@@ -71,12 +71,12 @@ struct BoardItem {
     self.itemType = ShowObjectType(rawValue: entity.itemType ?? "") ?? .group
     self.referenceID = entity.referenceID ?? UUID()
     self.position = CGPoint(
-      x: entity.positionX ?? 0,
-      y: entity.positionY ?? 0
+      x: (entity.positionX ?? 0) / BoardViewModel.gridUnitSize,
+      y: (entity.positionY ?? 0) / BoardViewModel.gridUnitSize
     )
     self.size = CGSize(
-      width: entity.width ?? 44,
-      height: entity.height ?? 44
+      width: (entity.width ?? 44) / BoardViewModel.gridUnitSize,
+      height: (entity.height ?? 44) / BoardViewModel.gridUnitSize
     )
   }
 }
@@ -89,7 +89,7 @@ extension BoardItem {
     itemType: .group,
     referenceID: testShowObjects[0].id,
     position: .zero,
-    size: CGSize(width: 88, height: 88)
+    size: CGSize(width: 2, height: 2)
   )
 
   /// Preview board item for an intensity at the top right
@@ -97,8 +97,8 @@ extension BoardItem {
     boardID: Board.preview.id,
     itemType: .intensity,
     referenceID: testShowObjects[5].id,
-    position: CGPoint(x: 44, y: 44),
-    size: CGSize(width: 88, height: 88)
+    position: CGPoint(x: 1, y: 1),
+    size: CGSize(width: 2, height: 2)
   )
 
   /// Preview board item for a position at the bottom left
@@ -106,8 +106,8 @@ extension BoardItem {
     boardID: Board.preview.id,
     itemType: .position,
     referenceID: testShowObjects[1].id,
-    position: CGPoint(x: -44, y: -44),
-    size: CGSize(width: 88, height: 88)
+    position: CGPoint(x: -1, y: -1),
+    size: CGSize(width: 2, height: 2)
   )
 
   /// Preview board item for a color at the top left
@@ -115,8 +115,8 @@ extension BoardItem {
     boardID: Board.preview.id,
     itemType: .color,
     referenceID: testShowObjects[6].id,
-    position: CGPoint(x: -44, y: 44),
-    size: CGSize(width: 88, height: 88)
+    position: CGPoint(x: -1, y: 1),
+    size: CGSize(width: 2, height: 2)
   )
 
   /// Preview board item for a beam at the bottom right
@@ -124,7 +124,7 @@ extension BoardItem {
     boardID: Board.preview.id,
     itemType: .beam,
     referenceID: testShowObjects[7].id,
-    position: CGPoint(x: 44, y: -44),
-    size: CGSize(width: 88, height: 88)
+    position: CGPoint(x: 1, y: -1),
+    size: CGSize(width: 2, height: 2)
   )
 }

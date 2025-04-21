@@ -102,10 +102,10 @@ final class BoardItemTests {
     #expect(item.boardID == testBoard.id)
     #expect(item.itemType == testShowObjects[3].objType)
     #expect(item.referenceID == testShowObjects[3].id)
-    #expect(item.position.x == 100)
-    #expect(item.position.y == 200)
-    #expect(item.size.width == 88)
-    #expect(item.size.height == 88)
+    #expect(item.position.x == 100 / 44.0)
+    #expect(item.position.y == 200 / 44.0)
+    #expect(item.size.width == 88 / 44.0)
+    #expect(item.size.height == 88 / 44.0)
   }
 
   /// Tests initialization from entity with missing properties
@@ -121,7 +121,7 @@ final class BoardItemTests {
     #expect(item.itemType == .group)
     #expect(item.referenceID != UUID())
     #expect(item.position == .zero)
-    #expect(item.size.width == 44)
-    #expect(item.size.height == 44)
+    #expect(item.size.width == 44 / 44.0)
+    #expect(item.size.height == 44 / 44.0)
   }
 }

@@ -127,4 +127,16 @@ actor ShowObjectSwiftDataRepository: ShowObjectRepository {
     objects.forEach { modelContext.delete($0) }
     try modelContext.save()
   }
+
+  func getObject(by id: UUID) async throws -> ShowObject {
+    let descriptor = FetchDescriptor<ShowObjectEntity>(
+      predicate: #Predicate<ShowObjectEntity> { $0.id == id }
+    )
+
+    guard let object = try modelContext.fetch(descriptor).first else {
+      throw HogError.objectNotFound
+    }
+
+    return ShowObject(from: object)
+  }
 }

@@ -30,11 +30,11 @@ import SwiftData
   var referenceID: UUID?
 
   /// X position of the item's center relative to the board's center (0,0)
-  /// Measured in points, with positive X right
+  /// Measured in grid units, with positive X right
   var positionX: Double?
 
   /// Y position of the item's center relative to the board's center (0,0)
-  /// Measured in points, with positive Y up
+  /// Measured in grid units, with positive Y up
   var positionY: Double?
 
   /// Width of the item in grid units

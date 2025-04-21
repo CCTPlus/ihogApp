@@ -70,8 +70,8 @@ final class BoardItemSwiftDataRepositoryTests {
     #expect(item.boardID == board.id)
     #expect(item.itemType == .group)
     #expect(item.referenceID == showObject.id)
-    #expect(item.position == position)
-    #expect(item.size == size)
+    #expect(item.position == CGPoint(x: 1.0, y: 2.0))
+    #expect(item.size == CGSize(width: 2.0, height: 2.0))
 
     // Fetch updated entities
     let descriptor = FetchDescriptor<BoardItemEntity>()
@@ -99,11 +99,11 @@ final class BoardItemSwiftDataRepositoryTests {
       itemType: .group,
       referenceID: showObject.id!,
       position: .zero,
-      size: CGSize(width: 44, height: 44)  // Too small
+      size: CGSize(width: 1, height: 1)  // Too small
     )
 
-    #expect(item.size.width == 88)  // Should be enforced to minimum
-    #expect(item.size.height == 88)
+    #expect(item.size.width == 2.0)  // Should be enforced to minimum
+    #expect(item.size.height == 2.0)
   }
 
   /// Tests getting items for a board with correct sorting
@@ -138,7 +138,7 @@ final class BoardItemSwiftDataRepositoryTests {
     let items = try await repository.getItems(for: board.id!)
 
     #expect(items.count == 2)
-    #expect(items[0].position.y == -44)
+    #expect(items[0].position.y == -1.0)
     #expect(items[1].position.y == 0)
   }
 
@@ -159,8 +159,8 @@ final class BoardItemSwiftDataRepositoryTests {
       position: CGPoint(x: 50, y: 60)  // Off-grid
     )
 
-    #expect(updatedItem.position.x == 44)  // Should snap to nearest grid point
-    #expect(updatedItem.position.y == 44)
+    #expect(updatedItem.position.x == 1.0)  // Should snap to nearest grid point
+    #expect(updatedItem.position.y == 1.0)
   }
 
   /// Tests updating item size with minimum enforcement
@@ -180,8 +180,8 @@ final class BoardItemSwiftDataRepositoryTests {
       size: CGSize(width: 44, height: 44)  // Too small
     )
 
-    #expect(updatedItem.size.width == 88)  // Should be enforced to minimum
-    #expect(updatedItem.size.height == 88)
+    #expect(updatedItem.size.width == 2.0)  // Should be enforced to minimum
+    #expect(updatedItem.size.height == 2.0)
   }
 
   /// Tests deleting an item

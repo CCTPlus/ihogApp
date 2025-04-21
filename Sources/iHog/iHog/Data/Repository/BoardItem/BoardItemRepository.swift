@@ -16,7 +16,7 @@ protocol BoardItemRepository {
   ///   - boardID: The ID of the board to place the item on
   ///   - itemType: The type of the item to place
   ///   - referenceID: The ID of the show object to reference
-  ///   - position: The position to place the item at (relative to board center)
+  ///   - position: The position to place the item at (relative to board center, in grid units)
   ///   - size: The size of the item in grid units (minimum 2×2)
   /// - Returns: The newly created board item
   /// - Throws: An error if the item could not be created
@@ -37,7 +37,7 @@ protocol BoardItemRepository {
   /// Updates an item's position
   /// - Parameters:
   ///   - id: The ID of the item to update
-  ///   - position: The new position for the item (must snap to 44×44 point grid)
+  ///   - position: The new position for the item (in grid units)
   /// - Returns: The updated board item
   /// - Throws: An error if the item could not be updated
   func updateItemPosition(id: UUID, position: CGPoint) async throws -> BoardItem
