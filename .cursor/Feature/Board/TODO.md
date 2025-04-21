@@ -169,36 +169,36 @@
   - [ ] Add preview support
   - [ ] Add unit tests for all functionality
 
-- [ ] Create `BoardView.swift`
-  - [ ] Implement infinite canvas
-    - [ ] Center origin at (0,0)
-    - [ ] Support unlimited scrolling in all directions
-  - [ ] Implement grid system
-    - [ ] Show light grey dots at grid corners (44×44 pt spacing)
-    - [ ] Grid always visible in edit mode
-    - [ ] Grid always hidden in play mode
-  - [ ] Handle pinch to zoom gesture
-    - [ ] No zoom limits
-    - [ ] Maintain zoom state per board
-  - [ ] Handle drag to pan gesture
-    - [ ] Support infinite panning
-    - [ ] Maintain pan offset state per board
-  - [ ] Add edit/play mode toggle button in toolbar
-    - [ ] Edit mode: SF Symbol "pencil"
-    - [ ] Play mode: SF Symbol "play.fill"
-    - [ ] Standard iOS button feedback in play mode
-  - [ ] Add previews for all states
-  - [ ] Update BoardListView to use BoardView for previews and full screen presentation
-  - [ ] Implement `BoardThumbnailView.swift`
-    - [ ] Create reusable component for board thumbnails
-    - [ ] Accept board model and scale factor as parameters
-    - [ ] Display board items at correct positions and sizes
-    - [ ] Maintain aspect ratio of board content
-    - [ ] Add border and rounded corners to match design
-    - [ ] Ensure performance with multiple thumbnails
-    - [ ] Add unit tests for thumbnail rendering
-    - [ ] Add previews for different board layouts
-  - [ ] Update BoardListView to use BoardThumbnailView
+- [x] Create `BoardView.swift`
+  - [x] Implement infinite canvas
+    - [x] Center origin at (0,0)
+    - [x] Support unlimited scrolling in all directions
+  - [x] Implement grid system
+    - [x] Show light grey dots at grid corners (44×44 pt spacing)
+    - [x] Grid always visible in edit mode
+    - [x] Grid always hidden in play mode
+  - [x] Handle pinch to zoom gesture
+    - [x] No zoom limits
+    - [x] Maintain zoom state per board
+  - [x] Handle drag to pan gesture
+    - [x] Support infinite panning
+    - [x] Maintain pan offset state per board
+  - [x] Add edit/play mode toggle button in toolbar
+    - [x] Edit mode: SF Symbol "pencil
+    - [x] Play mode: SF Symbol "play.fill"
+    - [x] Standard iOS button feedback in play mode
+  - [x] Add previews for all states
+  - [x] Update BoardListView to use BoardView for previews and full screen presentation
+  - [x] Implement `BoardThumbnailView.swift`
+    - [x] Create reusable component for board thumbnails
+    - [x] Accept board model and scale factor as parameters
+    - [x] Display board items at correct positions and sizes
+    - [x] Maintain aspect ratio of board content
+    - [x] Add border and rounded corners to match design
+    - [x] Ensure performance with multiple thumbnails
+    - [x] Add unit tests for thumbnail rendering
+    - [x] Add previews for different board layouts
+  - [x] Update BoardListView to use BoardThumbnailView
 
 ## Step 4: Board Item UI
 - [ ] Create `ResizeHandleView.swift` in Views/Board
@@ -361,11 +361,13 @@
 
 ## Step 7: Navigation Integration
 - [ ] Update `ShowNavigation.swift`
-  - [ ] Add Boards tab using SF Symbol "square.grid.3x3"
+  - [ ] Add Boards tab using SF Symbol "puzzlepiece"
   - [ ] Handle navigation state for boards
   - [ ] Add unit tests for:
     - [ ] Tab selection state
     - [ ] Navigation path management
+- [ ] Tests to do
+  - [ ] Check that zoom maginificationgesture works
 
 ## Step 8: Performance Testing
 - [ ] Performance testing

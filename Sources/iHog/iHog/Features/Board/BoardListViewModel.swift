@@ -21,7 +21,7 @@ final class BoardListViewModel {
   private(set) var boards: [Board] = []
 
   /// Repository for board operations
-  private let boardRepository: BoardRepository
+  let boardRepository: BoardRepository
 
   /// ID of the show these boards belong to
   private let showID: UUID

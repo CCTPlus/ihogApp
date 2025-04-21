@@ -5,12 +5,14 @@
 //  Created by Jay Wilson on 4/20/25.
 //
 
+import SwiftData
 import SwiftUI
 
 /// A view that displays a grid of boards for the current show.
 /// Each board is shown as a thumbnail with its title and last modified date.
 /// Supports creating new boards, selecting boards, and managing boards through context menus.
 struct BoardListView: View {
+  @Environment(\.modelContext) var modelContext
   /// The view model that manages the board list state and operations
   @State var viewModel: BoardListViewModel
 
@@ -18,6 +20,8 @@ struct BoardListView: View {
   private let columns = [
     GridItem(.adaptive(minimum: 160, maximum: 200), spacing: 32)
   ]
+
+  var boardItemRepository: BoardItemRepository? = nil
 
   var body: some View {
     NavigationStack {
@@ -45,23 +49,34 @@ struct BoardListView: View {
       }
       .fullScreenCover(item: $viewModel.selectedBoard) { board in
         NavigationStack {
-          // Placeholder until BoardView is implemented
-          Text("Board: \(board.name)")
-            .navigationTitle(board.name)
-            .toolbar {
-              ToolbarItem(placement: .topBarLeading) {
-                Button {
-                  viewModel.deselectBoard()
-                } label: {
-                  Image(systemName: "xmark.circle.fill")
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(
-                      Color.secondary,
-                      Color.systemGray5
-                    )
-                }
+          BoardView(
+            viewModel: BoardViewModel(
+              board: board,
+              mode: .play,
+              panOffset: board.lastPanOffset,
+              zoomScale: board.lastZoomScale,
+              boardRepository: viewModel.boardRepository,
+              boardItemRepository: boardItemRepository
+                ?? BoardItemSwiftDataRepository(
+                  modelContainer: modelContext.container
+                )
+            )
+          )
+          .navigationTitle(board.name)
+          .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+              Button {
+                viewModel.deselectBoard()
+              } label: {
+                Image(systemName: "xmark.circle.fill")
+                  .symbolRenderingMode(.palette)
+                  .foregroundStyle(
+                    Color.secondary,
+                    Color.systemGray5
+                  )
               }
             }
+          }
         }
       }
     }
@@ -112,7 +127,8 @@ struct BoardListView: View {
     viewModel: BoardListViewModel(
       showID: UUID(),
       boardRepository: BoardMockRepository()
-    )
+    ),
+    boardItemRepository: BoardItemMockRepository()
   )
 }
 
@@ -122,7 +138,8 @@ struct BoardListView: View {
     boardRepository: BoardMockRepository.previewWithBoards
   )
   BoardListView(
-    viewModel: viewModel
+    viewModel: viewModel,
+    boardItemRepository: BoardItemMockRepository()
   )
   .task {
     await viewModel.loadBoards()
