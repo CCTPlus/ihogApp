@@ -1,5 +1,5 @@
 {
-  "originHash" : "8c3679f60ab478d8a0179d07bc4403c63f88dd1def0d37f6f3f683fe91d99bd9",
+  "originHash" : "0b947bc129fb4282b8415427d1b535d96249f317a408d208acee677622f7f59e",
   "pins" : [
     {
       "identity" : "cocoaasyncsocket",
@@ -34,13 +34,13 @@
       "location" : "https://github.com/nerdishbynature/octokit.swift",
       "state" : {
         "branch" : "main",
-        "revision" : "1e63f582d69a2c78335af532171e2fb2749251a6"
+        "revision" : "99aea9cfb39d65d339ba3ec4674e22ae08ebcaaa"
       }
     },
     {
       "identity" : "osckit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/maeganwilson/OSCKit",
+      "location" : "https://github.com/heyjaywilson/OSCKit",
       "state" : {
         "revision" : "f5982778ddfe573d82d9a1137dbfea17bb52989b",
         "version" : "3.1.0"
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PostHog/posthog-ios.git",
       "state" : {
-        "revision" : "0e3845ef83640701afb820837fe59f95e95e819e",
-        "version" : "3.14.2"
+        "revision" : "f381818bc153f63fbe13d6822e65cc7233ba4647",
+        "version" : "3.31.0"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RevenueCat/purchases-ios.git",
       "state" : {
-        "revision" : "2f559c69a255da5cd5f66d5a6b9a1dfe6bc61ead",
-        "version" : "4.32.0"
+        "revision" : "a315ca87fcec9fa6290c538e88e2f0a62f796458",
+        "version" : "5.40.0"
       }
     },
     {
@@ -87,8 +87,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TelemetryDeck/SwiftSDK",
       "state" : {
-        "revision" : "06bd6c3005da9113ae3766f8e23bb0fd07f8852f",
-        "version" : "2.5.0"
+        "revision" : "a7fd1eb469589a3c8fd8cc3abe19b092b5d674dc",
+        "version" : "2.9.4"
       }
     }
   ],

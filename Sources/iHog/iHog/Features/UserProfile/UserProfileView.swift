@@ -65,8 +65,6 @@ struct UserProfileView: View {
             "You'll only be entering codes here if you have received specific instruction to enter one or have ran the beta version of iHog."
           )
         }
-        ExperimentalFeatureView()
-        //            .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
       }
     }
   }

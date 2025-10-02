@@ -18,8 +18,6 @@ enum AnalyticEventParameter: String {
   case purchaseAmount
   case onboardingStep
   case userIsSandBoxed = "user.isSandboxed"
-  case featureFlagValue = "featureFlag.value"
-  case featureFlagKey = "featureFlag.key"
 }
 
 enum PaywallSource: String {
