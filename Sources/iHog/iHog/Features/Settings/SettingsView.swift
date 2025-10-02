@@ -15,6 +15,8 @@ struct SettingsView: View {
   @Environment(\.modelContext) var modelContext
   @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
+  @Environment(AppPaymentService.self) var appPaymentService
+
   @EnvironmentObject var user: UserState
   @EnvironmentObject var osc: OSCHelper
   @EnvironmentObject var toast: ToastNotification
@@ -34,10 +36,6 @@ struct SettingsView: View {
   let paywalls: [Paywall] = [.currentPaywall]
 
   var networkMonitor = NetworkMonitor.shared
-
-  private var foundProducts: [Package] {
-    return user.offerings?[RCConstants.Offerings.year.name]?.availablePackages ?? []
-  }
 
   var showRepository: ShowRepository? = nil
 
@@ -183,6 +181,7 @@ struct SettingsView: View {
           }
         }
       }
+      .hogPaywall(source: .settings)
       .sheet(item: $router.selectedSheet) { sheet in
         switch sheet {
           case .userProfile:
@@ -200,11 +199,7 @@ struct SettingsView: View {
             NavigationStack {
               NewShowView()
                 .environment(\.modelContext, modelContext)
-            }
-          case .paywall:
-            NavigationStack {
-              CurrentPaywallView(issue: 0, analyticsSource: .newShowView)
-                .environmentObject(user)
+                .environment(appPaymentService)
             }
         }
       }
@@ -245,6 +240,15 @@ struct SettingsView: View {
       networkMonitor.stopMonitoring()
       notificationTask?.cancel()
     }
+    .onChange(of: appPaymentService.isPro) { oldValue, newValue in
+      // If the user became a pro while adding a show, then show the new show sheet
+      if newValue == true,
+        case .addShow(let showCount) = appPaymentService.lastUsedTrigger,
+        showCount >= 1
+      {
+        router.selectedSheet = .newShow
+      }
+    }
   }
 
   func listenForShowCreated() async {
@@ -266,24 +270,19 @@ struct SettingsView: View {
   }
 
   func addShow() {
-      Analytics.shared.logEvent(with: .addShowTapped)
-    if user.isPro {
-        router.openSheet(.newShow)
-    } else {
-      Task {
-        let showRepository =
-          self.showRepository
-          ?? ShowSwiftDataRepository(
-            modelContainer: modelContext.container
-          )
-        let showsCount: Int = (try? await showRepository.getCountOfShows()) ?? 0
-          await MainActor.run {
-              if showsCount >= 1 {
-                router.openSheet(.paywall)
-              } else {
-                router.openSheet(.newShow)
-              }
-          }
+    Analytics.shared.logEvent(with: .addShowTapped)
+    Task {
+      let showRepository =
+        self.showRepository
+        ?? ShowSwiftDataRepository(
+          modelContainer: modelContext.container
+        )
+      let showsCount: Int = (try? await showRepository.getCountOfShows()) ?? 0
+      await MainActor.run {
+        appPaymentService.triggerPaywall(for: .addShow(showCount: showsCount))
+        if appPaymentService.isPro || showsCount == 0 {
+          router.openSheet(.newShow)
+        }
       }
     }
   }
@@ -303,5 +302,6 @@ struct SettingsView_Previews: PreviewProvider {
     SettingsView()
       .environmentObject(UserState())
       .environmentObject(OSCHelper(ip: "120.000.000.012", inputPort: 1234, outputPort: 1235))
+      .environment(AppPaymentService())
   }
 }

@@ -45,14 +45,11 @@ struct iHogApp: App {
   @StateObject var osc = OSCHelper(ip: "192.168.0.101", inputPort: 9009, outputPort: 9009)
   @StateObject var user = UserState()
 
+  @State private var paymentService = AppPaymentService()
+
   let analtyics = Analytics.shared
 
   init() {
-    Purchases.logLevel = .debug
-    Purchases.configure(
-      with: Configuration.Builder(withAPIKey: RCConstants.apiKey)
-        .build()
-    )
     // Setup the model container
     _ = SwiftDataManager.modelContainer
   }
@@ -72,30 +69,21 @@ struct iHogApp: App {
             OnboardingView(setting: $settings)
               .environmentObject(osc)
               .environmentObject(user)
+              .environment(paymentService)
           } else {
             SettingsView()
               .environmentObject(osc)
               .environmentObject(user)
               .environmentObject(toastNotification)
+              .environment(paymentService)
           }
         }
       }
       .modelContainer(SwiftDataManager.modelContainer)
       .task {
+        paymentService.configure()
         analtyics.logEvent(with: .appLaunched)
         increaseTimesLaunchedAndAskReview()
-        do {
-          try await getCustomerInfo()
-          user.offerings = try await Purchases.shared.offerings()
-          for await customerInfo in Purchases.shared.customerInfoStream {
-            for _ in customerInfo.activeSubscriptions {
-              HogLogger.log(category: .purchases).debug("🐛 \(customerInfo.activeSubscriptions)")
-            }
-            user.customerInfo = customerInfo
-          }
-        } catch {
-          Analytics.shared.logError(with: error, for: .purchases, level: .critical)
-        }
       }
     }
   }
@@ -108,10 +96,5 @@ extension iHogApp {
     if timesLaunched >= 10 {
       requestReview()
     }
-  }
-
-  func getCustomerInfo() async throws {
-    user.customerInfo = try await Purchases.shared.restorePurchases()
-    analtyics.identifyUser(with: Purchases.shared.appUserID)
   }
 }

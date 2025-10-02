@@ -19,8 +19,21 @@ enum LogCategory: String {
   case swiftData
   case show
   case userProfile
+  case appPaymentService
 }
 
+extension Logger {
+  static let subsystem = Bundle.main.bundleIdentifier!
+
+  static let appPaymentService = Logger(
+    subsystem: Self.subsystem,
+    category: LogCategory.appPaymentService.rawValue
+  )
+  static let purchases = Logger(
+    subsystem: Self.subsystem,
+    category: LogCategory.purchases.rawValue
+  )
+}
 struct HogLogger {
   static func log(category: LogCategory = .default) -> Logger {
     let bundleID =

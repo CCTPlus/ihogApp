@@ -19,6 +19,7 @@
 		692677A32D0943500006895D /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 692677A22D0943500006895D /* AppRouter */; };
 		693137A42CE1579000562B73 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = 693137A32CE1579000562B73 /* PostHog */; };
 		69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 69666DE82CDD774B008A0057 /* TelemetryDeck */; };
+		69C8F9752E8E269900F3C4D9 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 69C8F9742E8E269900F3C4D9 /* RevenueCatUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 				3730E00D27A17B27006FCA5E /* OctoKit in Frameworks */,
 				15C8285125FA4B83003FAEFA /* StoreKit.framework in Frameworks */,
 				69666DE92CDD774B008A0057 /* TelemetryDeck in Frameworks */,
+				69C8F9752E8E269900F3C4D9 /* RevenueCatUI in Frameworks */,
 				377087D727AABFF000B0754A /* CoffeeToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +223,7 @@
 				69666DE82CDD774B008A0057 /* TelemetryDeck */,
 				693137A32CE1579000562B73 /* PostHog */,
 				692677A22D0943500006895D /* AppRouter */,
+				69C8F9742E8E269900F3C4D9 /* RevenueCatUI */,
 			);
 			productName = iHog;
 			productReference = 15DA2673251237D60063E236 /* iHog.app */;
@@ -834,6 +837,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 69666DE72CDD774B008A0057 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
 			productName = TelemetryDeck;
+		};
+		69C8F9742E8E269900F3C4D9 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3769730A28A52743004D9BEF /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

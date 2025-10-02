@@ -5,10 +5,12 @@
 //  Created by Jay Wilson on 10/15/20.
 //
 
+import RevenueCatUI
 import SwiftUI
 
 /// TabView for the selected show
 struct ShowNavigation: View {
+  @Environment(AppPaymentService.self) var appPaymentService: AppPaymentService
   @EnvironmentObject var user: UserState
 
   @ObservedObject var chosenShow: ChosenShow
@@ -35,7 +37,7 @@ struct ShowNavigation: View {
           Image(systemName: "play.rectangle")
         }
         .tag(Views.playbackObjects)
-      if user.isPro {
+      if appPaymentService.isPro {
         PPPlayback(show: chosenShow)
           .tabItem {
             Image(symbol: ._sliderhorizontalbelowsquareandsquarefilled)
@@ -52,7 +54,10 @@ struct ShowNavigation: View {
           }
           .tag(Views.puntPageProgramming)
       } else {
-        CurrentPaywallView(issue: 1, analyticsSource: .puntPage)
+        HogPaywallView(showDismiss: false, source: .puntPage)
+          .task {
+            appPaymentService.lastUsedTrigger = .puntPage
+          }
           .tabItem {
             Image(symbol: ._sliderhorizontalbelowsquareandsquarefilled)
           }

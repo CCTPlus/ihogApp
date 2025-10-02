@@ -10,7 +10,6 @@ import Foundation
 public enum SheetDestination: String {
   case userProfile
   case newShow
-  case paywall
 }
 
 extension SheetDestination: Identifiable {
@@ -24,8 +23,6 @@ extension SheetDestination: Identifiable {
         "Sheet.UserProfile"
       case .newShow:
         "Sheet.NewShow"
-      case .paywall:
-        "Sheet.paywall"
     }
   }
 }

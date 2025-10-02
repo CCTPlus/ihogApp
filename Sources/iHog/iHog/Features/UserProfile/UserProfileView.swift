@@ -5,11 +5,14 @@
 //  Created by Jay Wilson on 12/6/24.
 //
 
+import OSLog
+import RevenueCat
 import SwiftData
 import SwiftUI
 
 /// Used to access a user's profile from the Settings view
 struct UserProfileView: View {
+  @Environment(AppPaymentService.self) var appPaymentService
   @EnvironmentObject var user: UserState
 
   var showRepository: ShowRepository
@@ -20,31 +23,50 @@ struct UserProfileView: View {
       List {
         // MARK: Level
         Section {
-          if user.isPro {
-            HStack {
-              // Premium Icon
-              Image(systemName: "star.square.on.square")
-                .foregroundStyle(.orange, .blue)
-                .font(.title2)
-
-              // Text Stack
-              VStack(alignment: .leading, spacing: 4) {
-                Text("Premium Subscriber")
-                  .font(.headline)
-                if let proSince = user.proSinceDate {
-                  Text("Since \(proSince.formatted(date: .abbreviated, time: .omitted))")
-                    .foregroundStyle(.secondary)
-                    .font(.subheadline)
+          if appPaymentService.isPro {
+            Button {
+              Task { @MainActor in
+                do {
+                  try await Purchases.shared.showManageSubscriptions()
+                } catch {
+                  Logger.appPaymentService.error("Cannot manage subscription \(error)")
                 }
               }
+            } label: {
+              HStack {
+                // Premium Icon
+                Image(systemName: "star.square.on.square")
+                  .foregroundStyle(.orange, .blue)
+                  .font(.title2)
 
-              Spacer()
+                // Text Stack
+                VStack(alignment: .leading, spacing: 4) {
+                  Text("Pro Subscriber")
+                    .font(.headline)
+                  if let proSince = appPaymentService.dateOriginallySubscribed {
+                    Text("Since \(proSince.formatted(date: .abbreviated, time: .omitted))")
+                      .foregroundStyle(.secondary)
+                      .font(.subheadline)
+                  }
+                }
+
+                Spacer()
+              }
+              .padding(.vertical, 4)
             }
-            .padding(.vertical, 4)
           } else {
-            NavigationLink("Sign up for pro") {
-              CurrentPaywallView(analyticsSource: .settings)
+            Button {
+              appPaymentService.triggerPaywall(for: .userRequest)
+            } label: {
+              VStack(alignment: .leading) {
+                Text("Go PRO")
+                  .font(.title)
+                  .fontWeight(.black)
+                Text("Unlimited shows, custom controls, and premium features await")
+              }
             }
+            .buttonStyle(.plain)
+            .foregroundStyle(.primary)
           }
         }
 
@@ -53,17 +75,6 @@ struct UserProfileView: View {
           Button("Delete all objects", action: deleteAllObjects)
         } header: {
           Text("Data management")
-        }
-        // MARK: Analytics
-        Section {
-          UserCodeView()
-          //              .environment(\.modelContext, SwiftDataManager.modelContainer.mainContext)
-        } header: {
-          Text("User codes")
-        } footer: {
-          Text(
-            "You'll only be entering codes here if you have received specific instruction to enter one or have ran the beta version of iHog."
-          )
         }
       }
     }
