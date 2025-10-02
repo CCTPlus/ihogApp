@@ -26,4 +26,5 @@ enum AppInfo {
   }()
 
   static let revenueCatKey = "appl_iuNkLloJrdhvmSrVYSoZPrfJcOp"
+  static let api = "https://api.cctplus.app"
 }

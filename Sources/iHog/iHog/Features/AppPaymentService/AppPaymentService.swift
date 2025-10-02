@@ -12,12 +12,20 @@ import RevenueCat
 /// Determines when to show a paywall based on a trigger
 @Observable
 class AppPaymentService {
+  static let buildNumberWithSubscription = 193
   var shouldShowPaywall = false
 
   private var customerInfo: CustomerInfo? = nil {
     didSet {
       determineIsPro()
       determineDateOriginallySubscribed()
+      Task {
+        do {
+          try await determineIfNeedsEarlyAdopterEntitlement()
+        } catch {
+          Logger.appPaymentService.error("Could not check for early adopter entitlement: \(error)")
+        }
+      }
     }
   }
 
@@ -149,6 +157,37 @@ class AppPaymentService {
         shouldShowPaywall = showCount > 0
       case .thisIsAdamsFault, .customIcons, .userRequest, .puntPage:
         shouldShowPaywall = true
+    }
+  }
+
+  func determineIfNeedsEarlyAdopterEntitlement() async throws {
+    let userId = Purchases.shared.appUserID
+    // Get original app build number
+    guard let customerInfo else {
+      Logger.appPaymentService.info("No customer info")
+      return
+    }
+    // DO NOT CONTINUE IF THE USER HAS THE ENTITLEMENT
+    guard
+      customerInfo.entitlements.active
+        .contains(where: { $0.key == HogEntitlement.earlyAdopter.rawValue }) == false
+    else {
+      Logger.appPaymentService.info("Customer does not have early adopter entitlement")
+      return
+    }
+    guard let originalAppBuildNumberString = customerInfo.originalApplicationVersion,
+      let originalAppBuildNumber = Int(originalAppBuildNumberString)
+    else {
+      Logger.appPaymentService.info("Build number not able to be made into an Int")
+      return
+    }
+    if originalAppBuildNumber <= Self.buildNumberWithSubscription {
+      // Need to grant intitlement now that
+      let response = try await BaconService().grantLifetimeEntitlement(for: userId)
+      Logger.appPaymentService
+        .info(
+          "Granted entitlement for \(response.userId) at \(response.grantedAt.formatted())"
+        )
     }
   }
 }
