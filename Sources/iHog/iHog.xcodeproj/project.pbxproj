@@ -763,7 +763,7 @@
 			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		377087D527AABFF000B0754A /* XCRemoteSwiftPackageReference "CoffeeToast" */ = {
@@ -776,7 +776,7 @@
 		};
 		37EAFA8E27AF31530092C11E /* XCRemoteSwiftPackageReference "OSCKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maeganwilson/OSCKit";
+			repositoryURL = "https://github.com/heyjaywilson/OSCKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
