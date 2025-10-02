@@ -30,9 +30,25 @@
             filePath = "iHog/Features/AppPaymentService/AppPaymentService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "triggerPaywall(for:)"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "determineDateOriginallySubscribed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA40AE08-09E6-4DCA-B70E-B93758D8D03F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iHog/Features/AppPaymentService/AppPaymentService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "determineIfNeedsEarlyAdopterEntitlement()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
