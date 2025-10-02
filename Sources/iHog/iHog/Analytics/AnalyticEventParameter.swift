@@ -13,6 +13,9 @@ enum UserProperty: String {
 enum AnalyticEventParameter: String {
   case numberOfShows
   case paywallSource
+  case paywallTrigger
+  case restoreSuccessful
+  case activeSubscriptions
   case errorLevel
   case purchaseState
   case purchaseAmount

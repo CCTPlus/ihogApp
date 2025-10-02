@@ -11,6 +11,7 @@ import SwiftUI
 struct NewShowView: View {
   @Environment(\.dismiss) var dismiss
   @Environment(\.modelContext) var context
+  @Environment(AppPaymentService.self) var appPaymentService
 
   @EnvironmentObject var user: UserState
 
@@ -19,10 +20,6 @@ struct NewShowView: View {
   @State private var presentIconChoice = false
 
   var showRepository: ShowRepository? = nil
-
-  var showIconChoice: Bool {
-    return presentIconChoice && user.isPro
-  }
 
   let gridItems = [
     GridItem(.flexible(), spacing: 10, alignment: .center),
@@ -35,7 +32,10 @@ struct NewShowView: View {
     VStack {
       HStack {
         Button {
-          presentIconChoice.toggle()
+          appPaymentService.triggerPaywall(for: .customIcons)
+          if appPaymentService.shouldShowPaywall == false {
+            presentIconChoice = true
+          }
         } label: {
           Image(symbol: selectedIcon)
             .font(.title)
@@ -50,26 +50,22 @@ struct NewShowView: View {
       .padding(.leading)
       Spacer()
       if presentIconChoice {
-        if showIconChoice {
-          ScrollView {
-            LazyVGrid(columns: gridItems) {
-              ForEach(SFSymbol.ALL_ICONS, id: \.self) { icon in
-                Button {
-                  self.selectedIcon = icon
-                } label: {
-                  Image(symbol: icon)
-                    .font(.title)
-                }
-                .tint(.gray)
-                .padding(.all, HALF_PADDING)
-
+        ScrollView {
+          LazyVGrid(columns: gridItems) {
+            ForEach(SFSymbol.ALL_ICONS, id: \.self) { icon in
+              Button {
+                self.selectedIcon = icon
+              } label: {
+                Image(symbol: icon)
+                  .font(.title)
               }
+              .tint(.gray)
+              .padding(.all, HALF_PADDING)
+
             }
           }
-          .padding(.bottom)
-        } else {
-          CurrentPaywallView(issue: 4, analyticsSource: .addIconView)
         }
+        .padding(.bottom)
       }
     }
     .navigationTitle("\(showName)")

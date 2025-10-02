@@ -13,6 +13,8 @@ enum AnalyticEvent: String {
   case subscribeButtonTapped
   /// Track when a purchase is made
   case purchase
+  case purchaseRestoreCompleted
+  case paywallDismissed
   /// Track when the connect to console button is tapped
   case connectToConsoleTapped
   /// Track when the disconnect from console button is tapped
@@ -31,8 +33,8 @@ enum AnalyticEvent: String {
   case showDeleted
   /// Button to delete show was tapped
   case showDeleteTapped
-    /// Add show button tapped
-case addShowTapped
+  /// Add show button tapped
+  case addShowTapped
 
   /// Hyphen separated
   var value: String {

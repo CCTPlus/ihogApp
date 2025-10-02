@@ -5,11 +5,14 @@
 //  Created by Jay Wilson on 2/14/22.
 //
 
+import RevenueCatUI
 import SwiftUI
 
 struct OBIPAddress: View {
   @AppStorage(AppStorageKey.showOnboarding.rawValue) var showOnboarding: Bool = true
   @AppStorage(AppStorageKey.isOSCOn.rawValue) var isOSCOn: Bool = false
+
+  @Environment(AppPaymentService.self) var paymentService: AppPaymentService
 
   @EnvironmentObject var osc: OSCHelper
 
@@ -46,7 +49,7 @@ struct OBIPAddress: View {
       HStack {
         Spacer()
         Button("Enable OSC") {
-          showPaywall = true
+          paymentService.triggerPaywall(for: .thisIsAdamsFault)
         }
         .padding()
         .foregroundColor(.white)
@@ -57,14 +60,17 @@ struct OBIPAddress: View {
         Spacer()
       }
       .multilineTextAlignment(.center)
-      .sheet(isPresented: $showPaywall) {
-        OnboardingPaywall()
-          .onDisappear {
-            enableOSC()
-          }
-      }
+      .hogPaywall(source: .onboarding)
     }
     .padding()
+    .onChange(
+      of: paymentService.shouldShowPaywall,
+      initial: false
+    ) { oldValue, newValue in
+      if newValue == false {
+        enableOSC()
+      }
+    }
   }
 
   func enableOSC() {

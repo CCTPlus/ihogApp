@@ -24,4 +24,6 @@ enum AppInfo {
       )
     return Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
   }()
+
+  static let revenueCatKey = "appl_iuNkLloJrdhvmSrVYSoZPrfJcOp"
 }
