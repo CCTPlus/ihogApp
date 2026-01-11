@@ -16,6 +16,8 @@ enum AppInfo {
   static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0"
   /// App's display name
   static let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "iHog"
+  /// BundleId
+  static let bundleId = Bundle.main.bundleIdentifier ?? "com.appsbymw.hogosc"
 
   static let isSandboxed: Bool = {
     HogLogger.log()

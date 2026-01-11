@@ -45,6 +45,9 @@ class AppPaymentService {
     self.customerInfo = customerInfo
     self.lastUsedTrigger = lastUsedTrigger
     self.isPro = isPro
+    #if ABM
+      self.isPro = true
+    #endif
   }
 
   func configure() {
@@ -69,37 +72,48 @@ class AppPaymentService {
       Purchases.logLevel = .error
     #endif
     Purchases.configure(withAPIKey: AppInfo.revenueCatKey)
-    Task {
-      for await newCustomerInfo in Purchases.shared.customerInfoStream {
-        await MainActor.run {
-          customerInfo = newCustomerInfo
-          Logger.appPaymentService.info(
-            """
-            💸 Subscription status updated:
-                IsPro: \(self.isPro, privacy: .public)
-            """
-          )
+
+    #if ABM
+      isPro = true
+      return
+    #else
+      Task {
+        for await newCustomerInfo in Purchases.shared.customerInfoStream {
+          await MainActor.run {
+            customerInfo = newCustomerInfo
+            Logger.appPaymentService.info(
+              """
+              💸 Subscription status updated:
+                  IsPro: \(self.isPro, privacy: .public)
+              """
+            )
+          }
         }
       }
-    }
+    #endif
   }
 
   func determineIsPro() {
-    for entitlement in HogEntitlement.allCases {
-      guard
-        let isActive = customerInfo?.entitlements.active
-          .contains(where: { $0.key == entitlement.rawValue })
-      else {
-        // Did not find entitlement on user
-        continue
+    #if ABM
+      isPro = true
+      return
+    #else
+      for entitlement in HogEntitlement.allCases {
+        guard
+          let isActive = customerInfo?.entitlements.active
+            .contains(where: { $0.key == entitlement.rawValue })
+        else {
+          // Did not find entitlement on user
+          continue
+        }
+        if isActive {
+          isPro = true
+          // TODO: Setup analytics to mark the person's entitlement property
+          return
+        }
       }
-      if isActive {
-        isPro = true
-        // TODO: Setup analytics to mark the person's entitlement property
-        return
-      }
-    }
-    isPro = false
+      isPro = false
+    #endif
   }
 
   func determineDateOriginallySubscribed() {
@@ -144,6 +158,11 @@ class AppPaymentService {
   }
 
   func triggerPaywall(for trigger: PaywallTrigger) {
+    #if ABM
+      shouldShowPaywall = false
+      isPro = true
+      return
+    #endif
     guard isPro == false else {
       shouldShowPaywall = false
       return
