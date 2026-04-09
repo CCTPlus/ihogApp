@@ -6,9 +6,12 @@
 //
 
 import OSLog
-import RevenueCat
 import SwiftData
 import SwiftUI
+
+#if !ABM
+  import RevenueCat
+#endif
 
 /// Used to access a user's profile from the Settings view
 struct UserProfileView: View {
@@ -22,53 +25,55 @@ struct UserProfileView: View {
     NavigationStack {
       List {
         // MARK: Level
-        Section {
-          if appPaymentService.isPro {
-            Button {
-              Task { @MainActor in
-                do {
-                  try await Purchases.shared.showManageSubscriptions()
-                } catch {
-                  Logger.appPaymentService.error("Cannot manage subscription \(error)")
-                }
-              }
-            } label: {
-              HStack {
-                // Premium Icon
-                Image(systemName: "star.square.on.square")
-                  .foregroundStyle(.orange, .blue)
-                  .font(.title2)
-
-                // Text Stack
-                VStack(alignment: .leading, spacing: 4) {
-                  Text("Pro Subscriber")
-                    .font(.headline)
-                  if let proSince = appPaymentService.dateOriginallySubscribed {
-                    Text("Since \(proSince.formatted(date: .abbreviated, time: .omitted))")
-                      .foregroundStyle(.secondary)
-                      .font(.subheadline)
+        #if !ABM
+          Section {
+            if appPaymentService.isPro {
+              Button {
+                Task { @MainActor in
+                  do {
+                    try await Purchases.shared.showManageSubscriptions()
+                  } catch {
+                    Logger.appPaymentService.error("Cannot manage subscription \(error)")
                   }
                 }
+              } label: {
+                HStack {
+                  // Premium Icon
+                  Image(systemName: "star.square.on.square")
+                    .foregroundStyle(.orange, .blue)
+                    .font(.title2)
 
-                Spacer()
+                  // Text Stack
+                  VStack(alignment: .leading, spacing: 4) {
+                    Text("Pro Subscriber")
+                      .font(.headline)
+                    if let proSince = appPaymentService.dateOriginallySubscribed {
+                      Text("Since \(proSince.formatted(date: .abbreviated, time: .omitted))")
+                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
+                    }
+                  }
+
+                  Spacer()
+                }
+                .padding(.vertical, 4)
               }
-              .padding(.vertical, 4)
-            }
-          } else {
-            Button {
-              appPaymentService.triggerPaywall(for: .userRequest)
-            } label: {
-              VStack(alignment: .leading) {
-                Text("Go PRO")
-                  .font(.title)
-                  .fontWeight(.black)
-                Text("Unlimited shows, custom controls, and premium features await")
+            } else {
+              Button {
+                appPaymentService.triggerPaywall(for: .userRequest)
+              } label: {
+                VStack(alignment: .leading) {
+                  Text("Go PRO")
+                    .font(.title)
+                    .fontWeight(.black)
+                  Text("Unlimited shows, custom controls, and premium features await")
+                }
               }
+              .buttonStyle(.plain)
+              .foregroundStyle(.primary)
             }
-            .buttonStyle(.plain)
-            .foregroundStyle(.primary)
           }
-        }
+        #endif
 
         Section {
           Button("Delete all shows", action: deleteAllShows)

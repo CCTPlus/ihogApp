@@ -49,7 +49,11 @@ struct OBIPAddress: View {
       HStack {
         Spacer()
         Button("Enable OSC") {
-          paymentService.triggerPaywall(for: .thisIsAdamsFault)
+          #if ABM
+            enableOSC()
+          #else
+            paymentService.triggerPaywall(for: .thisIsAdamsFault)
+          #endif
         }
         .padding()
         .foregroundColor(.white)
